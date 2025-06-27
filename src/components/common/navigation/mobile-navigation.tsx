@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation'
 import type React from 'react'
 
 import { Compass, Gamepad2, Home, Newspaper, ShoppingBag } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 interface NavItem {
   href: string
@@ -23,8 +24,13 @@ const navigation: NavItem[] = [
 const MobileBottomNav = () => {
   const pathname = usePathname()
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 md:hidden">
-      <div className="flex items-center justify-around px-2 py-2">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-gray border-t border-gray-200 md:hidden">
+      <div
+        className={cn(
+          'flex items-center justify-around px-2 py-2 ',
+          'bg-custom-dark  ',
+        )}
+      >
         {navigation.map((item) => {
           const isActive = pathname === item.href
           return (
@@ -48,22 +54,20 @@ function NavigationItem({
     <Link
       key={href}
       href={href}
-      className={`relative flex flex-col items-center justify-center p-2 rounded-lg transition-all duration-200 ${
+      className={`relative flex flex-col items-center justify-center p-4 w-10 h-10 rounded-lg transition-all duration-200 ${
         isActive
-          ? 'bg-blue-100 text-blue-600'
-          : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+          ? 'bg-blue-100 text-custom-primary'
+          : 'text-white hover:text-gray-700 hover:bg-gray-50'
       }`}
     >
       {/* Square background for active state */}
       {isActive && (
-        <div className="absolute inset-0 bg-blue-100 rounded-lg transition-all duration-200" />
+        <div className="absolute inset-0 bg-[#7B001F] rounded-lg transition-all duration-200" />
       )}
 
       {/* Icon container with badge */}
       <div className="relative z-10 mb-1">
-        <Icon
-          className={`h-5 w-5 ${isActive ? 'text-blue-600' : 'text-gray-500'}`}
-        />
+        <Icon className={`h-5 w-5 ${isActive && 'text-custom-primary'}`} />
 
         {notificationCount && (
           <div className="indicator">
@@ -76,13 +80,13 @@ function NavigationItem({
       </div>
 
       {/* Label */}
-      <span
+      {/* <span
         className={`text-xs font-medium z-10 ${
           isActive ? 'text-primary' : 'text-gray-500'
         }`}
       >
         {label}
-      </span>
+      </span> */}
     </Link>
   )
 }
