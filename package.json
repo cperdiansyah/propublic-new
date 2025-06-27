@@ -19,9 +19,13 @@
     ]
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
     "next": "15.3.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.5",
@@ -29,6 +33,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/redux-persist": "^4.0.0",
     "daisyui": "^5.0.43",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
