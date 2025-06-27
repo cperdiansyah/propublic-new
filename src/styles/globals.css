@@ -124,3 +124,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.transition-200s {
+  @apply transition-all ease-in-out duration-200;
+}

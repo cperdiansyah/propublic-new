@@ -40,7 +40,7 @@ export default function RootLayout({
           {/* Cotnent */}
           {children}
           {/* Footer */}
-          <Footer />
+
           {/* Bottom Navbar */}
           <MobileBottomNav />
         </AppProviders>
