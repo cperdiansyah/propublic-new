@@ -1,0 +1,4 @@
+@import './common.css';
+
+/* global css need last import */
+@import './globals.css';

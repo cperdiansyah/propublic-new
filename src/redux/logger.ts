@@ -3,11 +3,10 @@ import type { Middleware } from '@reduxjs/toolkit'
 // Custom logger middleware for development
 export const loggerMiddleware: Middleware = (store) => (next) => (action) => {
   if (process.env.NODE_ENV === 'development') {
+    const result = next(action)
     console.group(`Action: ${action.type}`)
     console.log('Previous State:', store.getState())
     console.log('Action:', action)
-
-    const result = next(action)
 
     console.log('Next State:', store.getState())
     console.groupEnd()
