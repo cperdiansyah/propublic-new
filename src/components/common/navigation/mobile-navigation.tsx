@@ -3,8 +3,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import type React from 'react'
 
-import { Compass, Gamepad2, Home, Newspaper, ShoppingBag } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { navigation } from '@/config/const'
 
 interface NavItem {
   href: string
@@ -12,14 +12,6 @@ interface NavItem {
   label: string
   badge?: number
 }
-
-const navigation: NavItem[] = [
-  { label: 'Home', href: '/', icon: Home },
-  { label: 'Academy', href: '/academy', icon: Compass },
-  { label: 'Games', href: '/games', icon: Gamepad2 },
-  { label: 'Shop', href: '/shop', icon: ShoppingBag },
-  { label: 'News', href: '/news', icon: Newspaper },
-]
 
 const MobileBottomNav = () => {
   const pathname = usePathname()
