@@ -1,4 +1,4 @@
-import BottomNavbar from '@/components/bottom-navbar'
+import MobileBottomNav from '@/components/common/navigation/mobile-navigation'
 import Footer from '@/components/footer'
 import AppProviders from '@/providers/AppProviders'
 // import '@/styles/globals.css';
@@ -42,7 +42,7 @@ export default function RootLayout({
           {/* Footer */}
           <Footer />
           {/* Bottom Navbar */}
-          <BottomNavbar />
+          <MobileBottomNav />
         </AppProviders>
       </body>
     </html>

@@ -1,4 +1,4 @@
 .bottom-navbar-wrapper {
   color: red;
-  @apply absolute bottom-0 left-0 w-full h-16 p-4;
+  @apply absolute bottom-0 left-0 w-full  p-4;
 }
