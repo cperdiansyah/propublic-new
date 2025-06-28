@@ -8,7 +8,7 @@ export interface NavItem {
 }
 
 export const navigation: NavItem[] = [
-  // { label: 'Home', href: '/', icon: Home },
+  { label: 'Home', href: '/', icon: Home },
   { label: 'Academy', href: '/academy', icon: Compass },
   { label: 'Games', href: '/games', icon: Gamepad2 },
   { label: 'Shop', href: '/shop', icon: ShoppingBag },

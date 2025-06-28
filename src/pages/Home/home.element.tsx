@@ -8,27 +8,27 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="space-y-6">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black ">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-center lg:text-left ">
                 We're changing how{' '}
                 <span className="gradient-text">gaming communities </span>
                 are built
               </h1>
-              <p className="text-xl md:text-2xl text-cream/80 ">
+              <p className="text-xl md:text-2xl text-cream/80 text-center lg:text-left">
                 Connect with the best players, learn from pros, and build
                 lasting relationships in the ultimate gaming community platform.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-gradient-to-r from-custom-primary to-custom-draker-primary text-cream px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:scale-105 transition-all glow h-auto">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Button className="bg-gradient-to-r from-custom-primary to-custom-draker-primary text-cream px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:scale-105 transition-all glow h-auto cursor-pointer">
                 Join Community Free
               </Button>
-              <Button className="border bg-transparent border-custom-secondary hover:bg-custom-secondary hover:text-dark-primary text-accent px-8 py-4 rounded-xl font-semibold text-lg transition-all h-auto">
+              <Button className="border bg-transparent border-custom-secondary hover:bg-custom-secondary hover:text-dark-primary text-accent px-8 py-4 rounded-xl font-semibold text-lg transition-all h-auto cursor-pointer">
                 Watch Demo
               </Button>
             </div>
 
-            <div className="flex items-center space-x-8 pt-4">
+            <div className="flex items-center space-x-8 pt-4 justify-center lg:justify-start">
               <div className="flex items-center space-x-2">
                 <div className="w-3 h-3 bg-custom-secondary rounded-full animate-pulse"></div>
                 <span className="text-cream/60 font-medium">

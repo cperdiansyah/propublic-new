@@ -1,3 +1,4 @@
+import Desktopnavigation from '@/components/common/navigation/desktop-navigation'
 import { Button } from '@/components/ui/button'
 import { navigation } from '@/config/const'
 import Image from 'next/image'
@@ -23,31 +24,12 @@ const Header = () => {
             </div>
           </div>
           {/* Link */}
-          <HeaderLink />
+          <Desktopnavigation />
           {/* User Navigation */}
           <HeaderUser />
         </div>
       </div>
     </nav>
-  )
-}
-
-function HeaderLink() {
-  return (
-    <div className=" gap-3 text-white list-none capitalize font-semibold md:flex hidden p-5">
-      {navigation.map((link) => {
-        return (
-          <li
-            key={link.label}
-            className="p-3 hover:text-custom-secondary transition-200s "
-          >
-            <Link href={link.href} className="">
-              {link.label}
-            </Link>
-          </li>
-        )
-      })}
-    </div>
   )
 }
 

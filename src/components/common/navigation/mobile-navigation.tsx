@@ -16,10 +16,10 @@ interface NavItem {
 const MobileBottomNav = () => {
   const pathname = usePathname()
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-gray border-t border-gray-200 md:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-gray  border-t border-gray-200/ md:hidden">
       <div
         className={cn(
-          'flex items-center justify-around px-2 py-2 ',
+          'flex items-center justify-around px-2 py-4 ',
           'bg-dark-primary  ',
         )}
       >
