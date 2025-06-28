@@ -113,8 +113,15 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   --color-custom-primary: #f50a45;
+  --color-custom-draker-primary: #e53935;
   --color-custom-secondary: #ffcc00;
-  --color-custom-dark: #171212;
+  --color-dark-primary: #171212;
+  --color-dark-secondary: #2c2c2c;
+  --color-dark-tertiary: #3a3a3a;
+
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+
+  --font-display: 'Inter', 'system-ui', 'sans-serif';
 }
 
 @layer base {
@@ -128,4 +135,34 @@
 
 .transition-200s {
   @apply transition-all ease-in-out duration-200;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px rgba(255, 0, 56, 0.5);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(255, 0, 56, 0.8);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

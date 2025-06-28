@@ -19,7 +19,7 @@ const Footer = () => {
     scrollToTop()
   }
   return (
-    <footer className="bg-custom-dark text-white">
+    <footer className="bg-dark-primary text-white">
       {/* Main footer content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex justify-between flex-col md:flex-row">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
@@ -59,7 +59,7 @@ const Footer = () => {
           <Button
             onClick={handleScroll}
             className={cn(
-              'bg-white text-custom-dark hidden md:block mt-6',
+              'bg-white text-dark-primary hidden md:block mt-6',
               'hover:bg-amber-300 transition-200s',
             )}
           >

@@ -1,4 +1,5 @@
 @import './common.css';
+@import './mockup.css';
 
 /* global css need last import */
 @import './globals.css';

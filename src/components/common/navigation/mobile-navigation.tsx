@@ -20,7 +20,7 @@ const MobileBottomNav = () => {
       <div
         className={cn(
           'flex items-center justify-around px-2 py-2 ',
-          'bg-custom-dark  ',
+          'bg-dark-primary  ',
         )}
       >
         {navigation.map((item) => {
