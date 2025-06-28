@@ -61,6 +61,7 @@ const Footer = () => {
             className={cn(
               'bg-white text-dark-primary hidden md:block mt-6',
               'hover:bg-amber-300 transition-200s',
+              'cursor-pointer',
             )}
           >
             Back To Top
