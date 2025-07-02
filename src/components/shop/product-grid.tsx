@@ -3,7 +3,7 @@ import { Star, ExternalLink } from 'lucide-react'
 export default function ProductGrid() {
   const products = [
     {
-      name: 'ProPublic Hoodie',
+      name: 'Propublic Hoodie',
       description: 'Premium cotton blend hoodie with embroidered logo.',
       price: 79,
       rating: 4.8,
@@ -35,7 +35,7 @@ export default function ProductGrid() {
     },
     {
       name: 'Minimalist Pro Tee',
-      description: 'Clean design with subtle ProPublic logo.',
+      description: 'Clean design with subtle Propublic logo.',
       price: 39,
       rating: 4.6,
       category: 'Apparel',
@@ -44,7 +44,7 @@ export default function ProductGrid() {
       gradient: 'from-custom-secondary/20 to-custom-primary/20',
     },
     {
-      name: 'ProPublic Water Bottle',
+      name: 'Propublic Water Bottle',
       description: 'Stay hydrated during long gaming sessions.',
       price: 25,
       rating: 4.8,
@@ -64,7 +64,7 @@ export default function ProductGrid() {
       gradient: 'from-custom-accent/20 to-custom-secondary/20',
     },
     {
-      name: 'ProPublic Snapback',
+      name: 'Propublic Snapback',
       description: 'Adjustable cap with embroidered logo.',
       price: 29,
       rating: 4.7,

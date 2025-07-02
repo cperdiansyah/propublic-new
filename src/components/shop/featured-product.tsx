@@ -15,11 +15,11 @@ export default function FeaturedProduct() {
             </span>
           </div>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
-            ProPublic <span className="gradient-text">Gaming Jersey</span>
+            Propublic <span className="gradient-text">Gaming Jersey</span>
           </h2>
           <p className="text-cream/80 text-base md:text-lg mb-4 md:mb-6 leading-relaxed">
             Premium gaming jersey worn by our sponsored pro players.
-            Moisture-wicking fabric, ergonomic design, and bold ProPublic
+            Moisture-wicking fabric, ergonomic design, and bold Propublic
             branding. Available in multiple colorways.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 md:mb-6 text-sm md:text-base">

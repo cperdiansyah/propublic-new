@@ -31,9 +31,9 @@ export default function LoginContent() {
   }
 
   return (
-    <div className="min-h-screen hero-pattern flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen hero-pattern flex items-center justify-center px-4 py-12 ">
       <div className="max-w-6xl mx-auto w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center mt-14">
           {/* Left Side - Branding */}
           <div className="hidden lg:block space-y-8">
             <div className="space-y-6">
@@ -86,7 +86,7 @@ export default function LoginContent() {
                 </div>
               </div>
               <p className="text-cream/80 italic">
-                "ProPublic helped me reach Radiant in just 3 months. The
+                "Propublic helped me reach Radiant in just 3 months. The
                 coaching is incredible!"
               </p>
             </div>

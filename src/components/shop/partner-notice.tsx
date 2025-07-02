@@ -6,7 +6,7 @@ export default function PartnerNotice() {
           <span className="gradient-text">Trusted Partners</span>
         </h3>
         <p className="text-cream/70 text-sm md:text-base leading-relaxed">
-          All ProPublic merchandise is sold through our certified retail
+          All Propublic merchandise is sold through our certified retail
           partners. When you click "Shop Now", you'll be redirected to our
           official store partners for secure checkout and worldwide shipping.
         </p>

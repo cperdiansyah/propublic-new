@@ -15,7 +15,7 @@ export default function ShopContent() {
         {/* Shop Header */}
         <div className="text-center mb-8 md:mb-12">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
-            ProPublic <span className="gradient-text">Shop</span>
+            Propublic <span className="gradient-text">Shop</span>
           </h1>
           <p className="text-lg md:text-xl text-cream/70 max-w-3xl mx-auto">
             Get premium gaming merchandise and gear. All items are available

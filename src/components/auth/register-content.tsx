@@ -53,14 +53,14 @@ export default function RegisterContent() {
   ]
 
   return (
-    <div className="min-h-screen hero-pattern flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen hero-pattern flex items-center justify-center px-4 py-12 mt-14">
       <div className="max-w-6xl mx-auto w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center md:items-start">
           {/* Left Side - Registration Form */}
           <div className="w-full max-w-md mx-auto lg:mx-0 order-2 lg:order-1">
             <div className="enhanced-card rounded-3xl p-8 md:p-10">
               <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold mb-2">Join ProPublic</h2>
+                <h2 className="text-3xl font-bold mb-2">Join Propublic</h2>
                 <p className="text-cream/70">
                   Start your journey to gaming excellence
                 </p>
@@ -329,18 +329,7 @@ export default function RegisterContent() {
 
           {/* Right Side - Branding & Benefits */}
           <div className="space-y-8 order-1 lg:order-2">
-            <div className="space-y-6">
-              <div className="lg:hidden text-center">
-                <Link href="/" className="inline-flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-custom-primary to-custom-secondary rounded-xl flex items-center justify-center animate-glow">
-                    <span className="logo-p text-cream">P</span>
-                  </div>
-                  <span className="font-bold text-2xl text-cream">
-                    PROPUBLIC
-                  </span>
-                </Link>
-              </div>
-
+            <div className="space-y-6 ">
               <h1 className="text-4xl md:text-5xl font-black leading-tight text-center lg:text-left">
                 Join the
                 <span className="gradient-text"> ultimate gaming</span>{' '}
