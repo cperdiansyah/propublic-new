@@ -1,4 +1,11 @@
-import { Compass, Gamepad2, Home, Newspaper, ShoppingBag } from 'lucide-react'
+import {
+  Compass,
+  Gamepad2,
+  Home,
+  Newspaper,
+  ShoppingBag,
+  SquarePlay,
+} from 'lucide-react'
 
 export interface NavItem {
   href: string
@@ -12,5 +19,6 @@ export const navigation: NavItem[] = [
   { label: 'Academy', href: '/academy', icon: Compass },
   { label: 'Games', href: '/games', icon: Gamepad2 },
   { label: 'Shop', href: '/shop', icon: ShoppingBag },
-  { label: 'News', href: '/news', icon: Newspaper },
+  // { label: 'News', href: '/news', icon: Newspaper },
+  { label: 'Replay', href: '/replay', icon: SquarePlay },
 ]
