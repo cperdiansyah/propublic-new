@@ -78,6 +78,24 @@ type TypeHomeService = {
   description: string
 }
 
+function CardFeature({ title, icon, description }: TypeHomeService) {
+  return (
+    <div className="card-hover bg-dark-secondary/80 border border-dark-tertiary rounded-3xl p-8 group">
+      <div className="flex items-start space-x-6">
+        <div className="w-16 h-16 bg-gradient-to-r from-custom-primary to-custom-secondary rounded-2xl flex items-center justify-center flex-shrink-0">
+          {icon}
+        </div>
+        <div>
+          <h3 className="text-2xl font-bold mb-4 group-hover:text-custom-primary transition-colors">
+            {title}
+          </h3>
+          <p className="text-cream/70 text-lg leading-relaxed">{description}</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export const HomeServices = () => {
   const services: TypeHomeService[] = [
     {
@@ -126,23 +144,5 @@ export const HomeServices = () => {
         </div>
       </div>
     </section>
-  )
-}
-
-function CardFeature({ title, icon, description }: TypeHomeService) {
-  return (
-    <div className="card-hover bg-dark-secondary/80 border border-dark-tertiary rounded-3xl p-8 group">
-      <div className="flex items-start space-x-6">
-        <div className="w-16 h-16 bg-gradient-to-r from-custom-primary to-custom-secondary rounded-2xl flex items-center justify-center flex-shrink-0">
-          {icon}
-        </div>
-        <div>
-          <h3 className="text-2xl font-bold mb-4 group-hover:text-custom-primary transition-colors">
-            {title}
-          </h3>
-          <p className="text-cream/70 text-lg leading-relaxed">{description}</p>
-        </div>
-      </div>
-    </div>
   )
 }
