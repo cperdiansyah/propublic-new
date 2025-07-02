@@ -258,7 +258,7 @@ export default function RegisterContent() {
                       <input
                         {...register('agreeToTerms')}
                         type="checkbox"
-                        className="w-4 h-4 mt-1 rounded border-cream/30 bg-dark-secondary text-custom-primary focus:ring-custom-primary focus:ring-2"
+                        className="w-4 h-4 mt-1 rounded border-cream/30 bg-dark-custom-secondary text-custom-primary focus:ring-custom-primary focus:ring-2"
                       />
                       <span className="text-cream/70 text-sm">
                         I agree to the{' '}
@@ -289,7 +289,7 @@ export default function RegisterContent() {
                     <input
                       {...register('subscribeNewsletter')}
                       type="checkbox"
-                      className="w-4 h-4 mt-1 rounded border-cream/30 bg-dark-secondary text-custom-primary focus:ring-custom-primary focus:ring-2"
+                      className="w-4 h-4 mt-1 rounded border-cream/30 bg-dark-custom-secondary text-custom-primary focus:ring-custom-primary focus:ring-2"
                     />
                     <span className="text-cream/70 text-sm">
                       Subscribe to our newsletter for gaming tips and updates
@@ -301,7 +301,7 @@ export default function RegisterContent() {
                 <button
                   type="submit"
                   disabled={isSubmitting || !isValid}
-                  className="w-full bg-gradient-to-r from-custom-primary to-secondary text-cream py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  className="w-full bg-gradient-to-r from-custom-primary to-custom-secondary text-cream py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                 >
                   {isSubmitting ? (
                     <>
@@ -322,7 +322,7 @@ export default function RegisterContent() {
                     <div className="w-full border-t border-cream/20"></div>
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-4 bg-dark-secondary text-cream/60">
+                    <span className="px-4 bg-dark-custom-secondary text-cream/60">
                       Or sign up with
                     </span>
                   </div>
@@ -423,8 +423,8 @@ export default function RegisterContent() {
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Check className="w-6 h-6 text-secondary" />
+                  <div className="w-12 h-12 bg-custom-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Check className="w-6 h-6 text-custom-secondary" />
                   </div>
                   <div>
                     <h4 className="font-bold text-lg">Expert Guides</h4>
@@ -437,7 +437,7 @@ export default function RegisterContent() {
             </div>
 
             {/* Trust Indicators */}
-            <div className="bg-dark-secondary/50 rounded-2xl p-6 border border-custom-primary/20">
+            <div className="bg-dark-custom-secondary/50 rounded-2xl p-6 border border-custom-primary/20">
               <div className="text-center">
                 <h4 className="font-bold text-lg mb-4">
                   Trusted by gamers worldwide
