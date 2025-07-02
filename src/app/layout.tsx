@@ -1,5 +1,5 @@
-import MobileBottomNav from '@/components/common/navigation/mobile-navigation'
-import Footer from '@/components/common/footer'
+import MobileBottomNav from '@/components/layout/navigation/mobile-navigation'
+import Footer from '@/components/layout/footer'
 import AppProviders from '@/providers/AppProviders'
 // import '@/styles/globals.css';
 import '@/styles/styles.css'

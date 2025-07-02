@@ -1,4 +1,4 @@
-import Desktopnavigation from '@/components/common/navigation/desktop-navigation'
+import Desktopnavigation from '@/components/layout/navigation/desktop-navigation'
 import { Button } from '@/components/ui/button'
 import { navigation } from '@/config/const'
 import Image from 'next/image'
