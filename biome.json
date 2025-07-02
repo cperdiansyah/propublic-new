@@ -39,7 +39,9 @@
 				"useButtonType": "off",
 				"useValidAnchor": "warn",
 				"noStaticElementInteractions": "warn",
-				"useKeyWithClickEvents": "warn"
+				"useKeyWithClickEvents": "warn",
+				"noLabelWithoutControl": "warn",
+				"noSvgWithoutTitle": "warn"
 			}
 		}
 	},

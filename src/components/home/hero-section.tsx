@@ -24,7 +24,7 @@ export default function HeroSection() {
                 Join Community Free
               </button>
               <button
-                className="border border-custom-accent hover:bg-custom-accent hover:text-dark-custom-primary text-custom-accent px-8 py-4 rounded-xl font-semibold text-lg transition-all"
+                className="border border-custom-accent hover:bg-custom-accent hover:text-dark--primary text-custom-accent px-8 py-4 rounded-xl font-semibold text-lg transition-all"
                 type="button"
               >
                 Watch Demo

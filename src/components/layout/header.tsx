@@ -37,7 +37,7 @@ function HeaderUser() {
   /* need improve for state management in this section for login and logout*/
   return (
     <div className="flex items-center gap-3">
-      <Link href="/login">
+      <Link href="/auth/login">
         <Button
           variant="outline"
           className=" transition-200s bg-transparent text-white hover:bg-custom-secondary-dark hover:text-white px-4 py-3 text-base font-semibold cursor-pointer"
@@ -45,7 +45,7 @@ function HeaderUser() {
           Join
         </Button>
       </Link>
-      <Link href="">
+      <Link href="/auth/register">
         <Button className="bg-custom-primary text-white px-4 py-3  hover:bg-custom-secondary-dark transition-200s text-base font-semibold hover:bg-custom-primary/80 cursor-pointer">
           Get Started
         </Button>

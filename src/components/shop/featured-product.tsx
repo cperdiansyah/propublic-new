@@ -59,7 +59,7 @@ export default function FeaturedProduct() {
           </div>
         </div>
         <div className="relative">
-          <div className="bg-gradient-to-br from-dark-custom-secondary to-dark-custom-primary rounded-2xl p-6 md:p-8 border border-custom-primary/20">
+          <div className="bg-gradient-to-br from-dark--secondary to-dark--primary rounded-2xl p-6 md:p-8 border border-custom-primary/20">
             <div className="aspect-square bg-gradient-to-br from-custom-primary/20 to-custom-secondary/20 rounded-xl flex items-center justify-center">
               <div className="text-center">
                 <div className="w-16 md:w-24 h-16 md:h-24 bg-gradient-to-br from-custom-primary to-custom-secondary rounded-2xl flex items-center justify-center mx-auto mb-4">
