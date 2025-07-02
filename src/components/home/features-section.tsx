@@ -1,34 +1,40 @@
 import { Users, Video, Calendar, BookOpen } from 'lucide-react'
+export type TypeFeaturesSection = {
+  icon: unknown
+  title: string
+  description: string
+  gradient?: string
+}
 
 export default function FeaturesSection() {
-  const features = [
+  const features: TypeFeaturesSection[] = [
     {
       icon: Users,
       title: 'Communities',
       description:
         "There's safety in numbers. Support your favorite players and creators, share strategies with your peers, and find your next playgroup.",
-      gradient: 'from-primary to-secondary',
+      gradient: 'from-custom-primary to-custom-secondary',
     },
     {
       icon: Video,
       title: '1-on-1 Sessions',
       description:
         'Face-time with the best in the game. Get personalized coaching, play co-op, or just hang out with your favorite players.',
-      gradient: 'from-accent to-primary',
+      gradient: 'from-custom-accent to-custom-primary',
     },
     {
       icon: Calendar,
       title: 'Live Events',
       description:
         'Gaming events without the expensive drinks. Learn, discover, and connect with your internet friends.',
-      gradient: 'from-secondary to-accent',
+      gradient: 'from-custom-secondary to-custom-accent',
     },
     {
       icon: BookOpen,
       title: 'Expert Guides',
       description:
         "Greatness leaves clues. We're building the modern Library of Alexandria for gaming knowledge.",
-      gradient: 'from-primary via-accent to-secondary',
+      gradient: 'from-custom-primary via-custom-accent to-custom-secondary',
     },
   ]
 
@@ -48,7 +54,7 @@ export default function FeaturesSection() {
 
         <div className="grid md:grid-cols-2 gap-8">
           {features.map((feature, index) => {
-            const IconComponent = feature.icon
+            const IconComponent: any = feature.icon
             return (
               <div
                 key={index}

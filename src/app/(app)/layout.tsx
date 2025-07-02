@@ -11,7 +11,7 @@ export default function AppLayout({
       {/* Header */}
       <Header />
       {/* Cotnent */}
-      {children}
+      <main className="pb-20 md:pb-0">{children}</main>
       {/* Footer */}
       <Footer />
     </>

@@ -18,13 +18,13 @@ export default function HeroSection() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <button
-                className="bg-gradient-to-r from-primary to-secondary text-cream px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:scale-105 transition-all glow"
+                className="bg-gradient-to-r from-custom-primary to-custom-secondary text-cream px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:scale-105 transition-all glow"
                 type="button"
               >
                 Join Community Free
               </button>
               <button
-                className="border border-accent hover:bg-accent hover:text-dark-primary text-accent px-8 py-4 rounded-xl font-semibold text-lg transition-all"
+                className="border border-custom-accent hover:bg-custom-accent hover:text-dark-custom-primary text-custom-accent px-8 py-4 rounded-xl font-semibold text-lg transition-all"
                 type="button"
               >
                 Watch Demo
@@ -33,13 +33,13 @@ export default function HeroSection() {
 
             <div className="flex items-center space-x-8 pt-4">
               <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-accent rounded-full animate-pulse"></div>
+                <div className="w-3 h-3 bg-custom-accent rounded-full animate-pulse"></div>
                 <span className="text-cream/60 font-medium">
                   28,000+ Active Gamers
                 </span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-primary rounded-full"></div>
+                <div className="w-3 h-3 bg-custom-primary rounded-full"></div>
                 <span className="text-cream/60 font-medium">
                   1,200+ Pro Coaches
                 </span>
@@ -48,10 +48,10 @@ export default function HeroSection() {
           </div>
 
           <div className="relative">
-            <div className="bg-gradient-to-br from-dark-secondary to-dark-primary rounded-3xl p-8 border border-primary/20 animate-float">
+            <div className="bg-gradient-to-br from-dark-secondary to-dark-primary rounded-3xl p-8 border border-custom-primary/20 animate-float">
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-custom-accent rounded-full flex items-center justify-center">
                     <span className="text-dark-primary font-bold">🏆</span>
                   </div>
                   <div>

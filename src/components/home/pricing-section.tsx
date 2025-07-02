@@ -9,7 +9,7 @@ export default function PricingSection() {
       features: ['Access to all communities', 'Basic guides library'],
       buttonText: 'Get Started Free',
       buttonStyle:
-        'border border-accent hover:bg-accent hover:text-dark-primary text-accent',
+        'border border-custom-accent hover:bg-custom-accent hover:text-dark-primary text-custom-accent',
     },
     {
       name: 'Pro',
@@ -18,7 +18,8 @@ export default function PricingSection() {
       description: 'For serious improvement',
       features: ['Everything in Starter', '3 coaching sessions/month'],
       buttonText: 'Start 7-Day Free Trial',
-      buttonStyle: 'bg-gradient-to-r from-primary to-secondary text-cream glow',
+      buttonStyle:
+        'bg-gradient-to-r from-custom-primary to-custom-secondary text-cream glow',
       featured: true,
     },
     {
@@ -29,7 +30,7 @@ export default function PricingSection() {
       features: ['Everything in Pro', 'Unlimited coaching sessions'],
       buttonText: 'Contact Sales',
       buttonStyle:
-        'border border-accent hover:bg-accent hover:text-dark-primary text-accent',
+        'border border-custom-accent hover:bg-custom-accent hover:text-dark-primary text-custom-accent',
     },
   ]
 
@@ -54,7 +55,7 @@ export default function PricingSection() {
             >
               {plan.featured && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-gradient-to-r from-primary to-secondary text-cream px-4 py-2 rounded-full text-sm font-bold">
+                  <span className="bg-gradient-to-r from-custom-primary to-custom-secondary text-cream px-4 py-2 rounded-full text-sm font-bold">
                     Most Popular
                   </span>
                 </div>
@@ -79,7 +80,7 @@ export default function PricingSection() {
                     key={featureIndex}
                     className="flex items-center space-x-3"
                   >
-                    <Check className="w-5 h-5 text-accent" />
+                    <Check className="w-5 h-5 text-custom-accent" />
                     <span>{feature}</span>
                   </li>
                 ))}

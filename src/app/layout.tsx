@@ -37,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={` ${interSans.variable}} font-display antialiased relative max-h-screen h-screen`}
+        className={` ${interSans.variable}} bg-dark-primary text-cream font-display antialiased`}
       >
         <AppProviders>
           {/* Header */}

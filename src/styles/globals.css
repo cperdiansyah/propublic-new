@@ -113,8 +113,12 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   --color-custom-primary: #f50a45;
-  --color-custom-draker-primary: #e53935;
-  --color-custom-secondary: #ffcc00;
+  --color-custom-secondary: #e53935;
+  --color-custom-accent: #ffcc00;
+  --color-dark-primary: #171212;
+  --color-dark-secondary: #2c2c2c;
+  --color-dark-tertiary: #3a3a3a;
+  --color-cream: #fffcfb;
   --color-dark-primary: #171212;
   --color-dark-secondary: #2c2c2c;
   --color-dark-tertiary: #3a3a3a;
