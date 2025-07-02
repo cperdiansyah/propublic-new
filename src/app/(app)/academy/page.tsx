@@ -1,7 +1,8 @@
+import AcademyContent from '@/pages/Academy'
 import React from 'react'
 
 const page = () => {
-  return <div>page</div>
+  return <AcademyContent />
 }
 
 export default page
