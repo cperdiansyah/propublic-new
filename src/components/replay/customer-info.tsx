@@ -33,7 +33,7 @@ export default function CustomerInfo() {
         <div>
           <label className="block text-cream font-semibold mb-3 text-lg">
             Game *
-            <select className="input-field w-full px-4 py-4 rounded-xl text-cream focus:outline-none text-lg bg-dark--secondary">
+            <select className="input-field w-full px-4 py-4 rounded-xl text-cream focus:outline-none text-lg bg-dark-secondary">
               <option value="">Select your game</option>
               <option value="valorant">Valorant</option>
               <option value="league">League of Legends</option>

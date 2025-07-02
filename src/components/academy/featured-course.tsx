@@ -58,7 +58,7 @@ export default function FeaturedCourse() {
         </div>
         <div className="relative">
           <div className="bg-gradient-to-br from-dark--secondary to-dark--primary rounded-2xl p-8 border border-custom-primary/20">
-            <div className="aspect-video bg-dark--primary/50 rounded-xl flex items-center justify-center mb-4">
+            <div className="aspect-video bg-dark-primary/50 rounded-xl flex items-center justify-center mb-4">
               <div className="w-16 h-16 bg-custom-primary rounded-full flex items-center justify-center">
                 <div className="w-0 h-0 border-l-[20px] border-l-cream border-y-[12px] border-y-transparent ml-1"></div>
               </div>

@@ -37,13 +37,6 @@ export default function LoginContent() {
           {/* Left Side - Branding */}
           <div className="hidden lg:block space-y-8">
             <div className="space-y-6">
-              <Link href="/" className="flex items-center space-x-3">
-                <div className="w-16 h-16 bg-gradient-to-br from-custom-primary to-custom-secondary rounded-2xl flex items-center justify-center animate-glow">
-                  <span className="logo-p text-cream text-2xl">P</span>
-                </div>
-                <span className="font-bold text-3xl text-cream">PROPUBLIC</span>
-              </Link>
-
               <h1 className="text-4xl md:text-5xl font-black leading-tight">
                 Welcome back to the
                 <span className="gradient-text"> ultimate gaming</span>{' '}

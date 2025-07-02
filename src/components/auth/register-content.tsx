@@ -208,20 +208,20 @@ export default function RegisterContent() {
                       name="agreeToTerms"
                       checked={formData.agreeToTerms}
                       onChange={handleInputChange}
-                      className="w-4 h-4 mt-1 rounded border-cream/30 bg-dark--secondary text-custom-primary focus:ring-custom-primary focus:ring-2"
+                      className="w-4 h-4 mt-1 rounded border-cream/30 bg-dark-secondary text-custom-primary focus:ring-custom-primary focus:ring-2"
                       required
                     />
                     <span className="text-cream/70 text-sm">
                       I agree to the{' '}
                       <Link
-                        href="/terms"
+                        href="/"
                         className="text-custom-accent hover:text-custom-accent/80 underline"
                       >
                         Terms of Service
                       </Link>{' '}
                       and{' '}
                       <Link
-                        href="/privacy"
+                        href="/"
                         className="text-custom-accent hover:text-custom-accent/80 underline"
                       >
                         Privacy Policy
@@ -235,7 +235,7 @@ export default function RegisterContent() {
                       name="subscribeNewsletter"
                       checked={formData.subscribeNewsletter}
                       onChange={handleInputChange}
-                      className="w-4 h-4 mt-1 rounded border-cream/30 bg-dark--secondary text-custom-primary focus:ring-custom-primary focus:ring-2"
+                      className="w-4 h-4 mt-1 rounded border-cream/30 bg-dark-secondary text-custom-primary focus:ring-custom-primary focus:ring-2"
                     />
                     <span className="text-cream/70 text-sm">
                       Subscribe to our newsletter for gaming tips and updates
@@ -272,7 +272,7 @@ export default function RegisterContent() {
                     <div className="w-full border-t border-cream/20"></div>
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-4 bg-dark--secondary text-cream/60">
+                    <span className="px-4 bg-dark-secondary text-cream/60">
                       Or sign up with
                     </span>
                   </div>
@@ -398,7 +398,7 @@ export default function RegisterContent() {
             </div>
 
             {/* Trust Indicators */}
-            <div className="bg-dark--secondary/50 rounded-2xl p-6 border border-custom-primary/20">
+            <div className="bg-dark-secondary/50 rounded-2xl p-6 border border-custom-primary/20">
               <div className="text-center">
                 <h4 className="font-bold text-lg mb-4">
                   Trusted by gamers worldwide
