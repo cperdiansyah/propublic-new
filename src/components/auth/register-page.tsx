@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Eye,
   EyeOff,
@@ -11,45 +13,61 @@ import {
   ArrowRight,
   Check,
   GamepadIcon,
+  AlertCircle,
 } from 'lucide-react'
+import { registerSchema, type RegisterInput } from '@/lib/validations/auth'
 
 export default function RegisterContent() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    agreeToTerms: false,
-    subscribeNewsletter: false,
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isSubmitting, isValid },
+    setError,
+  } = useForm<RegisterInput>({
+    resolver: zodResolver(registerSchema),
+    mode: 'onChange',
   })
-  const [isLoading, setIsLoading] = useState(false)
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }))
-  }
+  const password = watch('password', '')
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+  const onSubmit = async (data: RegisterInput) => {
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 2000))
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false)
-      // Handle registration logic here
-    }, 2000)
+      // Here you would make the actual API call
+      // const response = await fetch('/api/auth/register', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(data),
+      // });
+
+      // if (!response.ok) {
+      //   throw new Error('Registration failed');
+      // }
+
+      // Handle successful registration
+      console.log('Registration successful:', data)
+    } catch (error) {
+      // Handle API errors
+      setError('email', {
+        type: 'manual',
+        message:
+          'This email is already registered. Please use a different email.',
+      })
+    }
   }
 
   const passwordRequirements = [
-    { text: 'At least 8 characters', met: formData.password.length >= 8 },
-    { text: 'Contains uppercase letter', met: /[A-Z]/.test(formData.password) },
-    { text: 'Contains lowercase letter', met: /[a-z]/.test(formData.password) },
-    { text: 'Contains number', met: /\d/.test(formData.password) },
+    { text: 'At least 8 characters', met: password.length >= 8 },
+    { text: 'Contains uppercase letter', met: /[A-Z]/.test(password) },
+    { text: 'Contains lowercase letter', met: /[a-z]/.test(password) },
+    { text: 'Contains number', met: /\d/.test(password) },
+    { text: 'Contains special character', met: /[^A-Za-z0-9]/.test(password) },
   ]
 
   return (
@@ -60,13 +78,13 @@ export default function RegisterContent() {
           <div className="w-full max-w-md mx-auto lg:mx-0 order-2 lg:order-1">
             <div className="enhanced-card rounded-3xl p-8 md:p-10">
               <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold mb-2">Join Propublic</h2>
+                <h2 className="text-3xl font-bold mb-2">Join ProPublic</h2>
                 <p className="text-cream/70">
                   Start your journey to gaming excellence
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 {/* Username Field */}
                 <div>
                   <label className="block text-cream font-semibold mb-3">
@@ -75,15 +93,27 @@ export default function RegisterContent() {
                   <div className="relative">
                     <User className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-cream/40" />
                     <input
+                      {...register('username')}
                       type="text"
-                      name="username"
-                      value={formData.username}
-                      onChange={handleInputChange}
-                      className="input-field w-full pl-12 pr-4 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none"
+                      className={`input-field w-full pl-12 pr-4 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none ${
+                        errors.username
+                          ? 'border-red-500 focus:border-red-500'
+                          : ''
+                      }`}
                       placeholder="Choose a username"
-                      required
                     />
+                    {errors.username && (
+                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
+                        <AlertCircle className="w-5 h-5 text-red-400" />
+                      </div>
+                    )}
                   </div>
+                  {errors.username && (
+                    <p className="text-red-400 text-sm mt-2 flex items-center space-x-1">
+                      <AlertCircle className="w-4 h-4" />
+                      <span>{errors.username.message}</span>
+                    </p>
+                  )}
                 </div>
 
                 {/* Email Field */}
@@ -94,15 +124,27 @@ export default function RegisterContent() {
                   <div className="relative">
                     <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-cream/40" />
                     <input
+                      {...register('email')}
                       type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="input-field w-full pl-12 pr-4 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none"
+                      className={`input-field w-full pl-12 pr-4 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none ${
+                        errors.email
+                          ? 'border-red-500 focus:border-red-500'
+                          : ''
+                      }`}
                       placeholder="your@email.com"
-                      required
                     />
+                    {errors.email && (
+                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
+                        <AlertCircle className="w-5 h-5 text-red-400" />
+                      </div>
+                    )}
                   </div>
+                  {errors.email && (
+                    <p className="text-red-400 text-sm mt-2 flex items-center space-x-1">
+                      <AlertCircle className="w-4 h-4" />
+                      <span>{errors.email.message}</span>
+                    </p>
+                  )}
                 </div>
 
                 {/* Password Field */}
@@ -113,13 +155,14 @@ export default function RegisterContent() {
                   <div className="relative">
                     <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-cream/40" />
                     <input
+                      {...register('password')}
                       type={showPassword ? 'text' : 'password'}
-                      name="password"
-                      value={formData.password}
-                      onChange={handleInputChange}
-                      className="input-field w-full pl-12 pr-12 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none"
+                      className={`input-field w-full pl-12 pr-12 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none ${
+                        errors.password
+                          ? 'border-red-500 focus:border-red-500'
+                          : ''
+                      }`}
                       placeholder="Create a strong password"
-                      required
                     />
                     <button
                       type="button"
@@ -135,7 +178,7 @@ export default function RegisterContent() {
                   </div>
 
                   {/* Password Requirements */}
-                  {formData.password && (
+                  {password && (
                     <div className="mt-3 space-y-2">
                       {passwordRequirements.map((req, index) => (
                         <div
@@ -160,6 +203,13 @@ export default function RegisterContent() {
                       ))}
                     </div>
                   )}
+
+                  {errors.password && (
+                    <p className="text-red-400 text-sm mt-2 flex items-center space-x-1">
+                      <AlertCircle className="w-4 h-4" />
+                      <span>{errors.password.message}</span>
+                    </p>
+                  )}
                 </div>
 
                 {/* Confirm Password Field */}
@@ -170,13 +220,14 @@ export default function RegisterContent() {
                   <div className="relative">
                     <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-cream/40" />
                     <input
+                      {...register('confirmPassword')}
                       type={showConfirmPassword ? 'text' : 'password'}
-                      name="confirmPassword"
-                      value={formData.confirmPassword}
-                      onChange={handleInputChange}
-                      className="input-field w-full pl-12 pr-12 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none"
+                      className={`input-field w-full pl-12 pr-12 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none ${
+                        errors.confirmPassword
+                          ? 'border-red-500 focus:border-red-500'
+                          : ''
+                      }`}
                       placeholder="Confirm your password"
-                      required
                     />
                     <button
                       type="button"
@@ -192,49 +243,52 @@ export default function RegisterContent() {
                       )}
                     </button>
                   </div>
-                  {formData.confirmPassword &&
-                    formData.password !== formData.confirmPassword && (
-                      <p className="text-red-400 text-xs mt-2">
-                        Passwords do not match
-                      </p>
-                    )}
+                  {errors.confirmPassword && (
+                    <p className="text-red-400 text-sm mt-2 flex items-center space-x-1">
+                      <AlertCircle className="w-4 h-4" />
+                      <span>{errors.confirmPassword.message}</span>
+                    </p>
+                  )}
                 </div>
 
                 {/* Checkboxes */}
                 <div className="space-y-4">
-                  <label className="flex items-start space-x-3 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      name="agreeToTerms"
-                      checked={formData.agreeToTerms}
-                      onChange={handleInputChange}
-                      className="w-4 h-4 mt-1 rounded border-cream/30 bg-dark-secondary text-custom-primary focus:ring-custom-primary focus:ring-2"
-                      required
-                    />
-                    <span className="text-cream/70 text-sm">
-                      I agree to the{' '}
-                      <Link
-                        href="/"
-                        className="text-custom-accent hover:text-custom-accent/80 underline"
-                      >
-                        Terms of Service
-                      </Link>{' '}
-                      and{' '}
-                      <Link
-                        href="/"
-                        className="text-custom-accent hover:text-custom-accent/80 underline"
-                      >
-                        Privacy Policy
-                      </Link>
-                    </span>
-                  </label>
+                  <div>
+                    <label className="flex items-start space-x-3 cursor-pointer">
+                      <input
+                        {...register('agreeToTerms')}
+                        type="checkbox"
+                        className="w-4 h-4 mt-1 rounded border-cream/30 bg-dark-secondary text-custom-primary focus:ring-custom-primary focus:ring-2"
+                      />
+                      <span className="text-cream/70 text-sm">
+                        I agree to the{' '}
+                        <Link
+                          href="/terms"
+                          className="text-custom-accent hover:text-custom-accent/80 underline"
+                        >
+                          Terms of Service
+                        </Link>{' '}
+                        and{' '}
+                        <Link
+                          href="/privacy"
+                          className="text-custom-accent hover:text-custom-accent/80 underline"
+                        >
+                          Privacy Policy
+                        </Link>
+                      </span>
+                    </label>
+                    {errors.agreeToTerms && (
+                      <p className="text-red-400 text-sm mt-2 flex items-center space-x-1">
+                        <AlertCircle className="w-4 h-4" />
+                        <span>{errors.agreeToTerms.message}</span>
+                      </p>
+                    )}
+                  </div>
 
                   <label className="flex items-start space-x-3 cursor-pointer">
                     <input
+                      {...register('subscribeNewsletter')}
                       type="checkbox"
-                      name="subscribeNewsletter"
-                      checked={formData.subscribeNewsletter}
-                      onChange={handleInputChange}
                       className="w-4 h-4 mt-1 rounded border-cream/30 bg-dark-secondary text-custom-primary focus:ring-custom-primary focus:ring-2"
                     />
                     <span className="text-cream/70 text-sm">
@@ -246,14 +300,10 @@ export default function RegisterContent() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  disabled={
-                    isLoading ||
-                    !formData.agreeToTerms ||
-                    formData.password !== formData.confirmPassword
-                  }
-                  className="w-full bg-gradient-to-r from-custom-primary to-custom-secondary text-cream py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  disabled={isSubmitting || !isValid}
+                  className="w-full bg-gradient-to-r from-custom-primary to-secondary text-cream py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                 >
-                  {isLoading ? (
+                  {isSubmitting ? (
                     <>
                       <div className="w-5 h-5 border-2 border-cream/30 border-t-cream rounded-full animate-spin"></div>
                       <span>Creating Account...</span>
@@ -329,7 +379,7 @@ export default function RegisterContent() {
 
           {/* Right Side - Branding & Benefits */}
           <div className="space-y-8 order-1 lg:order-2">
-            <div className="space-y-6 ">
+            <div className="space-y-6">
               <h1 className="text-4xl md:text-5xl font-black leading-tight text-center lg:text-left">
                 Join the
                 <span className="gradient-text"> ultimate gaming</span>{' '}
@@ -373,8 +423,8 @@ export default function RegisterContent() {
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-custom-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Check className="w-6 h-6 text-custom-secondary" />
+                  <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Check className="w-6 h-6 text-secondary" />
                   </div>
                   <div>
                     <h4 className="font-bold text-lg">Expert Guides</h4>

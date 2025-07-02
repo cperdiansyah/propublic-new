@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Eye,
   EyeOff,
@@ -11,29 +13,54 @@ import {
   GamepadIcon,
   Trophy,
   Users,
+  AlertCircle,
 } from 'lucide-react'
+import { loginSchema, type LoginInput } from '@/lib/validations/auth'
 
 export default function LoginContent() {
   const [showPassword, setShowPassword] = useState(false)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting, isValid },
+    setError,
+  } = useForm<LoginInput>({
+    resolver: zodResolver(loginSchema),
+    mode: 'onChange',
+  })
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false)
-      // Handle login logic here
-    }, 2000)
+  const onSubmit = async (data: LoginInput) => {
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+
+      // Here you would make the actual API call
+      // const response = await fetch('/api/auth/login', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(data),
+      // });
+
+      // if (!response.ok) {
+      //   throw new Error('Invalid credentials');
+      // }
+
+      // Handle successful login (redirect, etc.)
+      console.log('Login successful:', data)
+    } catch (error) {
+      // Handle API errors
+      setError('email', {
+        type: 'manual',
+        message: 'Invalid email or password. Please try again.',
+      })
+    }
   }
 
   return (
-    <div className="min-h-screen hero-pattern flex items-center justify-center px-4 py-12 ">
+    <div className="min-h-screen hero-pattern flex items-center justify-center px-4 py-12 mt-14">
       <div className="max-w-6xl mx-auto w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center mt-14">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Branding */}
           <div className="hidden lg:block space-y-8">
             <div className="space-y-6">
@@ -86,7 +113,7 @@ export default function LoginContent() {
                 </div>
               </div>
               <p className="text-cream/80 italic">
-                "Propublic helped me reach Radiant in just 3 months. The
+                "ProPublic helped me reach Radiant in just 3 months. The
                 coaching is incredible!"
               </p>
             </div>
@@ -102,7 +129,7 @@ export default function LoginContent() {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 {/* Email Field */}
                 <div>
                   <label className="block text-cream font-semibold mb-3">
@@ -111,14 +138,27 @@ export default function LoginContent() {
                   <div className="relative">
                     <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-cream/40" />
                     <input
+                      {...register('email')}
                       type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="input-field w-full pl-12 pr-4 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none"
+                      className={`input-field w-full pl-12 pr-4 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none ${
+                        errors.email
+                          ? 'border-red-500 focus:border-red-500'
+                          : ''
+                      }`}
                       placeholder="your@email.com"
-                      required
                     />
+                    {errors.email && (
+                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
+                        <AlertCircle className="w-5 h-5 text-red-400" />
+                      </div>
+                    )}
                   </div>
+                  {errors.email && (
+                    <p className="text-red-400 text-sm mt-2 flex items-center space-x-1">
+                      <AlertCircle className="w-4 h-4" />
+                      <span>{errors.email.message}</span>
+                    </p>
+                  )}
                 </div>
 
                 {/* Password Field */}
@@ -129,12 +169,14 @@ export default function LoginContent() {
                   <div className="relative">
                     <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-cream/40" />
                     <input
+                      {...register('password')}
                       type={showPassword ? 'text' : 'password'}
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className="input-field w-full pl-12 pr-12 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none"
+                      className={`input-field w-full pl-12 pr-12 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none ${
+                        errors.password
+                          ? 'border-red-500 focus:border-red-500'
+                          : ''
+                      }`}
                       placeholder="Enter your password"
-                      required
                     />
                     <button
                       type="button"
@@ -148,12 +190,19 @@ export default function LoginContent() {
                       )}
                     </button>
                   </div>
+                  {errors.password && (
+                    <p className="text-red-400 text-sm mt-2 flex items-center space-x-1">
+                      <AlertCircle className="w-4 h-4" />
+                      <span>{errors.password.message}</span>
+                    </p>
+                  )}
                 </div>
 
                 {/* Remember Me & Forgot Password */}
                 <div className="flex items-center justify-between">
                   <label className="flex items-center space-x-2 cursor-pointer">
                     <input
+                      {...register('rememberMe')}
                       type="checkbox"
                       className="w-4 h-4 rounded border-cream/30 bg-dark-secondary text-custom-primary focus:ring-custom-primary focus:ring-2"
                     />
@@ -170,10 +219,10 @@ export default function LoginContent() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                   className="w-full bg-gradient-to-r from-custom-primary to-custom-secondary text-cream py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                 >
-                  {isLoading ? (
+                  {isSubmitting ? (
                     <>
                       <div className="w-5 h-5 border-2 border-cream/30 border-t-cream rounded-full animate-spin"></div>
                       <span>Signing In...</span>

@@ -1,4 +1,4 @@
-import LoginContent from '@/components/auth/login-content'
+import LoginContent from '@/components/auth/login-page'
 
 export const metadata = {
   title: 'Login - Propublic',
