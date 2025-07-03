@@ -42,6 +42,9 @@
 				"useKeyWithClickEvents": "warn",
 				"noLabelWithoutControl": "warn",
 				"noSvgWithoutTitle": "warn"
+			},
+			"nursery": {
+				"useUniqueElementIds": "warn"
 			}
 		}
 	},

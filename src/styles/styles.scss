@@ -1,0 +1,15 @@
+:root {
+  --propublic-border-radius: 5px;
+}
+@import './mockup.css';
+@import './common.css';
+
+@import './home.styles.scss';
+
+/* global css need last import */
+@import './globals.css';
+
+button {
+  border-radius: var(--propublic-border-radius);
+  @apply cursor-pointer;
+}
