@@ -1,10 +1,13 @@
+import Marquee from '@/components/common/Marquee'
+import { COLORS } from '@/config/const'
+
 export default function HeroSection() {
   return (
-    <section className="hero-pattern pt-28 pb-20 px-4 min-h-screen flex items-center hero-section">
-      <div className="max-w-7xl mx-auto w-full z-1">
+    <section className="bg-black pt-28 pb-20 px-4 min-h-screen flex flex-col items-center hero-section max-w-screen overflow-hidden">
+      <div className="max-w-7xl mx-auto w-full z-1 lg:py-20">
         <div className=" gap-12 items-center text-center">
           <div className="space-y-8">
-            <div className="space-y-6 w-2/3 mx-auto">
+            <div className="space-y-6 lg:w-2/3 mx-auto">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight">
                 We're changing how
                 <span className="gradient-text"> gaming communities</span> are
@@ -48,28 +51,17 @@ export default function HeroSection() {
               </div>
             </div>
           </div>
-
-          {/* <div className="relative">
-            <div className="bg-gradient-to-br from-dark-secondary to-dark-primary rounded-3xl p-8 border border-custom-primary/20 animate-float">
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-custom-accent rounded-full flex items-center justify-center">
-                    <span className="text-dark-primary font-bold">🏆</span>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg">Pro Tournament Winner</h3>
-                    <p className="text-cream/60">just joined the community</p>
-                  </div>
-                </div>
-                <div className="bg-dark-primary/50 rounded-xl p-4">
-                  <p className="text-cream/80">
-                    "The coaching here is next level. Went from Diamond to
-                    Master in 2 weeks!"
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div> */}
+        </div>
+      </div>
+      <div className="hero-marquee-wrapper relative  mt-5">
+        <Marquee text="SCROLL TO EXPLORE" />
+        <div className="react-marquee-red-line ">
+          <Marquee
+            text="UNLEASH YOUR POTENTIAL"
+            background={COLORS.redPrimary}
+            color="white"
+            direction="right"
+          />
         </div>
       </div>
     </section>

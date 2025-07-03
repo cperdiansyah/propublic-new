@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Teko:wght@300..700&display=swap');
+
 :root {
   --propublic-border-radius: 5px;
 }
 @import './mockup.css';
-@import './common.css';
+@import './common.scss';
 
 @import './home.styles.scss';
 
@@ -12,4 +14,14 @@
 button {
   border-radius: var(--propublic-border-radius);
   @apply cursor-pointer;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Teko', sans-serif !important;
+  /* margin-top: 1rem !important;
+  margin-bottom: 1rem !important; */
+  /* font-weight: 800 !important; */
 }
