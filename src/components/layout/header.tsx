@@ -45,7 +45,7 @@ function HeaderUser() {
           Join
         </Button>
       </Link>
-      <Link href="/auth/register">
+      <Link href="/auth/register" className="hidden md:block">
         <Button className="bg-custom-primary text-white px-4 py-3  hover:bg-custom-secondary-dark transition-200s text-base font-semibold hover:bg-custom-primary/80 cursor-pointer">
           Get Started
         </Button>

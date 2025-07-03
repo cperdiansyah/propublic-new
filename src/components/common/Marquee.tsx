@@ -27,7 +27,7 @@ const Marquee: React.FC<IMarquee> = ({
       className="marquee-wrapper"
     >
       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((id) => (
-        <ul key={id} className="react-marquee gap-1">
+        <ul key={id} className="react-marquee">
           {text}
         </ul>
       ))}

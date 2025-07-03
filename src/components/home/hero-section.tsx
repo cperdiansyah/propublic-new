@@ -3,7 +3,7 @@ import { COLORS } from '@/config/const'
 
 export default function HeroSection() {
   return (
-    <section className="bg-black pt-28 pb-20 px-4 min-h-screen flex flex-col items-center hero-section max-w-screen overflow-hidden">
+    <section className="bg-black pt-28 pb-20 px-4 min-h-screen flex flex-col items-center hero-section max-w-screen">
       <div className="max-w-7xl mx-auto w-full z-1 lg:py-20">
         <div className=" gap-12 items-center text-center">
           <div className="space-y-8">
@@ -28,12 +28,6 @@ export default function HeroSection() {
               >
                 Join Community
               </button>
-              <button
-                className="border border-custom-accent hover:bg-custom-accent hover:text-dark-primary text-custom-accent px-8 py-4 rounded-xl font-semibold text-lg transition-all"
-                type="button"
-              >
-                Watch Demo
-              </button>
             </div>
 
             <div className="flex items-center justify-center  space-x-8 pt-4">
@@ -53,8 +47,16 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-      <div className="hero-marquee-wrapper relative  mt-5">
-        <Marquee text="SCROLL TO EXPLORE" />
+      <PropublicMarquee />
+    </section>
+  )
+}
+
+function PropublicMarquee() {
+  return (
+    <div className="propublic-marquee-wrapper absolute bottom-0 max-w-screen">
+      <div className="marque-content relative">
+        <Marquee text="SCROLL TO EXPLORE" direction="left" />
         <div className="react-marquee-red-line ">
           <Marquee
             text="UNLEASH YOUR POTENTIAL"
@@ -64,6 +66,6 @@ export default function HeroSection() {
           />
         </div>
       </div>
-    </section>
+    </div>
   )
 }
