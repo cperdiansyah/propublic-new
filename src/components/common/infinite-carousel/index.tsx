@@ -120,7 +120,7 @@ export function InfiniteCarouselItem({
   customBasis,
 }: InfiniteCarouselItemProps) {
   const { visibleItems, orientation } = useCarouselContext()
-
+  console.log(visibleItems)
   const basisClasses =
     customBasis ||
     cn(
@@ -237,9 +237,3 @@ export function CarouselIndicators({
     </div>
   )
 }
-
-// export { CarouselProvider } from "./carousel-context"
-// export { InfiniteCarouselContent } from "./carousel-content"
-// export { InfiniteCarouselItem } from "./carousel-item"
-// export { CarouselPrevious, CarouselNext, CarouselIndicators } from "./carousel-controls"
-// export { useCarouselContext } from "./carousel-context"

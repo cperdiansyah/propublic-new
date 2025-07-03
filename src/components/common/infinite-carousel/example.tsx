@@ -26,7 +26,7 @@ interface ScalableCarouselDemoProps {
 }
 
 // Custom carousel info component
-function CarouselInfo() {
+export function CarouselInfo() {
   const { current, totalItems, infiniteMultiplier } = useCarouselContext()
   const originalCount = totalItems / infiniteMultiplier
   const currentOriginal = (current % originalCount) + 1
