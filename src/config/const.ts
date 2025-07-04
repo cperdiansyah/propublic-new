@@ -22,3 +22,8 @@ export const navigation: NavItem[] = [
   // { label: 'News', href: '/news', icon: Newspaper },
   { label: 'Replay', href: '/replay', icon: SquarePlay },
 ]
+
+export const COLORS = {
+  redPrimary: '#FE0037',
+  limeGreenSecondary: '#ffcc00',
+}

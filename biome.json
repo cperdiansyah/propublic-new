@@ -41,7 +41,11 @@
 				"noStaticElementInteractions": "warn",
 				"useKeyWithClickEvents": "warn",
 				"noLabelWithoutControl": "warn",
-				"noSvgWithoutTitle": "warn"
+				"noSvgWithoutTitle": "warn",
+				"useSemanticElements": "warn"
+			},
+			"nursery": {
+				"useUniqueElementIds": "warn"
 			}
 		}
 	},
