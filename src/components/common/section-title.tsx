@@ -26,7 +26,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
 }) => {
   return (
     <div
-      className={`section-title-wrapper container mx-auto flex flex-col items-center justify-between ${center && 'text-center justify-center'} ${className} `}
+      className={`section-title-wrapper container mx-auto flex flex-col items-center justify-between ${center ? 'text-center justify-center' : ''} ${className ?? ''} `}
     >
       <div>
         <h1 className="section-title-title">{title}</h1>

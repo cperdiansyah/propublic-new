@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Star } from 'lucide-react'
 import Image from 'next/image'
 import type React from 'react'
+// import Plac
 
 const AcademiesSection = () => {
   const courses = [
@@ -153,7 +154,7 @@ const AcademyCard: React.FC<CoachCardProps> = ({
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           width={500}
           height={500}
-          blurDataURL={image}
+          blurDataURL={'/images/placeholder.png'}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
       </div>

@@ -167,7 +167,7 @@ const BrandSection = () => {
                     width={100}
                     height={180}
                     className="object-contain"
-                    blurDataURL={brand.logo || '/placeholder.svg'}
+                    blurDataURL={brand.logo || '/images/placeholder.png'}
                   />
                 </div>
                 <h3 className="text-center font-bold text-sm text-gray-300 group-hover:text-white transition-colors duration-300">
