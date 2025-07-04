@@ -7,8 +7,10 @@ import {
   InfiniteCarouselItem,
 } from '@/components/common/infinite-carousel'
 import SectionTitle from '@/components/common/section-title'
+import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { StepBack, StepForward } from 'lucide-react'
+import Link from 'next/link'
 import type React from 'react'
 
 interface IGameSection {
@@ -57,10 +59,20 @@ const GameSection: React.FC<IGameSection> = ({ games }) => {
         {/* Controls */}
         <div className="flex justify-center items-center mb-4 mt-5">
           {/* <CarouselInfo /> */}
-          <div className="flex  gap-2">
+          <div className="flex items-center gap-5">
             <CarouselPrevious variant="default" size="sm">
               <StepBack />
             </CarouselPrevious>
+
+            <Link href="/games" className="">
+              <button
+                className={`w-full py-2 px-3 rounded-xl font-semibold transition-all hover:shadow-lg border border-custom-accent hover:bg-custom-accent hover:text-dark-primary text-custom-accent`}
+                type="button"
+              >
+                Explore More
+              </button>
+            </Link>
+
             <CarouselNext variant="default" size="sm">
               <StepForward />
             </CarouselNext>
