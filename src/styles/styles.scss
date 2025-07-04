@@ -16,6 +16,10 @@ button {
   @apply cursor-pointer;
 }
 
+.border-radius-propublic {
+  border-radius: var(--propublic-border-radius);
+}
+
 h1,
 h2,
 h3,

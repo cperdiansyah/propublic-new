@@ -99,6 +99,7 @@ export function InfiniteCarouselContent({
       <CarouselContent
         className={cn(
           orientation === 'vertical' ? '-mt-2 flex-col' : '-ml-2 md:-ml-4',
+          'p-3',
         )}
       >
         {infiniteChildren}

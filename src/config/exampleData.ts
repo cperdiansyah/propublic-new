@@ -11,7 +11,7 @@ export const GAMELIST: CarouselGameItem[] = [
     name: 'Apex Legends',
     slug: 'apex-legends',
     path: '/games/apex-legends',
-    imageSrc: '/images/game-covers/apex-legends.png',
+    imageSrc: '/images/game-covers/apex-legends.jpg',
   },
   {
     id: 3,
