@@ -1,4 +1,5 @@
 'use client'
+import BrandSection from '@/components/home/brands-section'
 import FeaturesSection from '@/components/home/features-section'
 import GameSection from '@/components/home/game-section'
 import HeroSection from '@/components/home/hero-section'
@@ -12,6 +13,7 @@ const HomePage = () => {
       <HeroSection />
       <FeaturesSection />
       <GameSection games={GAMELIST} />
+      <BrandSection />
       <PricingSection />
     </div>
   )
