@@ -43,13 +43,13 @@ const GameSection: React.FC<IGameSection> = ({ games }) => {
         itemCount={games.length}
         autoplay={false}
         autoplayDelay={4000}
-        visibleItems={{ mobile: 1, tablet: 2, desktop: 4 }}
+        visibleItems={{ mobile: 2, desktop: 4 }}
       >
         <InfiniteCarouselContent className="px-3">
           {games.map((game) => (
             <InfiniteCarouselItem
               key={game.id}
-              customBasis="basis-full sm:basis-1/3 lg:basis-1/5"
+              customBasis="basis-1/2 lg:basis-1/5"
             >
               <GameCard game={game} />
             </InfiniteCarouselItem>
@@ -88,7 +88,7 @@ interface IGameCard {
 }
 const GameCard: React.FC<IGameCard> = ({ game }) => {
   return (
-    <Card className="aspect-w-9 aspect-h-16 overflow-hidden group cursor-pointer  hover:shadow-lg transition-shadow p-0 border-radius-propublic outline-card ">
+    <Card className="overflow-hidden group cursor-pointer  hover:shadow-lg transition-shadow p-0 border-radius-propublic outline-card">
       <div className="relative border-none ">
         {/* Background Image */}
         <div
@@ -104,7 +104,7 @@ const GameCard: React.FC<IGameCard> = ({ game }) => {
         {/* Blur Overlay on Hover */}
         <div className="absolute inset-0 backdrop-blur-0 group-hover:backdrop-blur-xs transition-all duration-300" />
 
-        <CardContent className="py-15 bg-transparent  border-none">
+        <CardContent className="py-10 md:py-15 bg-transparent  border-none">
           <div className="aspect-square bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg mb-3 flex items-center justify-center">
             <span className="text-2xl font-bold text-blue-600">
               {game.name.charAt(0)}

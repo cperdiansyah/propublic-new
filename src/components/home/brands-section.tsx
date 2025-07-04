@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import SectionTitle from '@/components/common/section-title'
+import GradientBackground from '@/components/common/GradientBackground'
 
 const brands: Brand[] = [
   {
@@ -101,7 +102,9 @@ const BrandSection = () => {
       : brands.filter((brand) => brand.category === selectedCategory)
 
   return (
-    <section className="bg-black text-white py-16 px-4 min-h-screen">
+    <section className="bg-black text-white py-16 px-4 min-h-screen relative">
+      <GradientBackground top={-50} right={0} mirror />
+
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <SectionTitle
@@ -113,7 +116,6 @@ const BrandSection = () => {
           }
           center
         />
-
         {/* Filter Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {categories.map((category) => (
@@ -130,10 +132,9 @@ const BrandSection = () => {
             </button>
           ))}
         </div>
-
         {/* Brand Grid */}
         <motion.div
-          className="flex flex-row justify-center gap-4 justify-items-center flex-wrap max-w-[50vw] mx-auto"
+          className="flex flex-row justify-center gap-4 justify-items-center flex-wrap md:max-w-[50vw] mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -143,7 +144,7 @@ const BrandSection = () => {
             {filteredBrands.map((brand, index) => (
               <motion.div
                 key={`${selectedCategory}-${brand.id}`}
-                className="bg-gray-500/50 border border-gray-400 rounded backdrop-blur-sm p-6 flex flex-col items-center  min-h-[200px] hover:bg-gray-800 transition-colors duration-300 group justify-between"
+                className="bg-gray-500/50 border border-gray-400 rounded backdrop-blur-sm p-6 flex flex-col items-center  md:min-h-[200px] hover:bg-gray-800 transition-colors duration-300 group justify-between"
                 variants={itemVariants}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{
@@ -176,7 +177,6 @@ const BrandSection = () => {
             ))}
           </AnimatePresence>
         </motion.div>
-
         {/* Results Count */}
         {/* <div className="text-center mt-8">
           <p className="text-gray-400">
