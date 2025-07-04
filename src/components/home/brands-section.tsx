@@ -101,10 +101,9 @@ const BrandSection = () => {
       : brands.filter((brand) => brand.category === selectedCategory)
 
   return (
-    <section className="bg-black text-white py-16 px-4">
+    <section className="bg-black text-white py-16 px-4 min-h-screen">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-
         <SectionTitle
           title={
             <>
@@ -121,10 +120,10 @@ const BrandSection = () => {
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
-              className={`px-6 py-3  font-semibold text-sm transition-all duration-300 ${
+              className={`px-6 py-3 border-radius-propublic font-semibold text-sm transition-all duration-300 font-teko ${
                 selectedCategory === category.id
                   ? 'bg-white text-black'
-                  : 'bg-gray-800 text-white hover:bg-gray-700'
+                  : 'bg-gray-700/50 text-white hover:bg-gray-700'
               }`}
             >
               {category.label}
@@ -141,14 +140,24 @@ const BrandSection = () => {
           key={selectedCategory}
         >
           <AnimatePresence mode="wait">
-            {filteredBrands.map((brand) => (
+            {filteredBrands.map((brand, index) => (
               <motion.div
                 key={`${selectedCategory}-${brand.id}`}
-                className="bg-gray-500/50 rounded backdrop-blur-sm p-6 flex flex-col items-center  min-h-[200px] hover:bg-gray-800 transition-colors duration-300 group justify-between"
+                className="bg-gray-500/50 border border-gray-400 rounded backdrop-blur-sm p-6 flex flex-col items-center  min-h-[200px] hover:bg-gray-800 transition-colors duration-300 group justify-between"
                 variants={itemVariants}
-                initial="hidden"
-                animate="visible"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
                 exit="exit"
+                transition={{
+                  type: 'spring',
+                  stiffness: 300,
+                  damping: 20,
+                  delay: index * 0.1,
+                  ease: 'easeIn',
+                }}
               >
                 <div className="mb-4 group-hover:scale-110 transition-transform duration-300 h-[130px] justify-center items-center flex">
                   <Image
