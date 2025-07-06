@@ -106,7 +106,7 @@ const BrandSection = () => {
     <section className="bg-black text-white px-4 ">
       <RadialGradient
         x={70}
-        y={40}
+        y={50}
         primaryOpacity={0.2}
         className=" py-16 min-h-screen relative"
       >
