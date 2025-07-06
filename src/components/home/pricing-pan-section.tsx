@@ -1,0 +1,340 @@
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import {
+  Trophy,
+  Users,
+  Network,
+  Gift,
+  Zap,
+  Shield,
+  Badge,
+  Star,
+  type LucideIcon,
+} from 'lucide-react'
+
+const pricingData = {
+  price: '99K',
+  currency: 'RP',
+  period: 'month',
+  description: '< 3,300 RP per day for unlimited gaming growth >',
+}
+
+const perksData = [
+  {
+    icon: Trophy,
+    title: 'VIP Tournament Access',
+    description:
+      'Priority access to exclusive tournaments with bigger prize pools and professional exposure.',
+    gradient: 'from-red-500 to-red-600',
+    glowColor: 'red-500/20',
+  },
+  {
+    icon: Users,
+    title: 'Pro Coaching Sessions',
+    description:
+      '1-on-1 sessions with professional gamers and exclusive strategy workshops.',
+    gradient: 'from-yellow-500 to-yellow-600',
+    glowColor: 'yellow-500/20',
+  },
+  {
+    icon: Network,
+    title: 'Elite Gaming Network',
+    description:
+      'Connect with top players, streamers, and industry professionals in our exclusive community.',
+    gradient: 'from-red-600 to-yellow-500',
+    glowColor: 'red-500/15',
+  },
+  {
+    icon: Gift,
+    title: 'Monthly Rewards & Gear',
+    description:
+      'Exclusive gaming gear, in-game items, and surprise rewards delivered monthly.',
+    gradient: 'from-yellow-600 to-red-500',
+    glowColor: 'yellow-500/15',
+  },
+]
+
+export default function PricingPlan() {
+  const handleJoinElite = () => {
+    console.log('Join Elite clicked!')
+    // Add your join logic here
+  }
+
+  return (
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      <BackgroundEffects />
+
+      <div className="relative z-10 max-w-7xl mx-auto p-4 md:p-8">
+        <HeaderBar />
+
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-yellow-500/3 to-red-600/5 blur-xl" />
+
+          <div className="relative bg-gradient-to-br from-gray-900/90 via-black/90 to-gray-800/90 backdrop-blur-xl rounded-b-lg border border-red-500/20 p-8 md:p-12">
+            <CornerDecorations />
+
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
+              {/* Left Side - Pricing */}
+              <div className="space-y-8">
+                <HeroSection
+                  title="BECOME A"
+                  subtitle="GAMING LEGEND"
+                  description="Join thousands of elite gamers in exclusive tournaments, masterclasses, and VIP events."
+                />
+
+                <PricingCard
+                  price={pricingData.price}
+                  currency={pricingData.currency}
+                  period={pricingData.period}
+                  description={pricingData.description}
+                />
+
+                <CTAButton onClick={handleJoinElite}>
+                  JOIN THE ELITE NOW!
+                </CTAButton>
+              </div>
+
+              {/* Right Side - Perks */}
+              <PerksSection />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function BackgroundEffects() {
+  return (
+    <div className="absolute inset-0">
+      {/* Base gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-red-800/10 to-black" />
+
+      {/* Grid patterns */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,0,0,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,0,0,0.05)_1px,transparent_1px)] bg-[size:50px_50px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,0,0.02)_1px,transparent_1px),linear-gradient(-45deg,rgba(255,255,0,0.02)_1px,transparent_1px)] bg-[size:30px_30px]" />
+
+      {/* Glowing orbs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-yellow-500/8 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-red-600/8 rounded-full blur-3xl animate-pulse delay-500" />
+
+      {/* Geometric shapes */}
+      <div
+        className="absolute top-20 right-20 w-32 h-32 border border-red-500/20 rotate-45 animate-spin"
+        style={{ animationDuration: '20s' }}
+      />
+      <div
+        className="absolute bottom-32 left-32 w-24 h-24 border border-yellow-500/20 rotate-12 animate-bounce"
+        style={{ animationDuration: '3s' }}
+      />
+
+      {/* Scanning line */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-500/5 to-transparent h-2 animate-pulse" />
+    </div>
+  )
+}
+function CornerDecorations() {
+  return (
+    <>
+      <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-red-400/50" />
+      <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-red-400/50" />
+      <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-red-400/50" />
+      <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-red-400/50" />
+    </>
+  )
+}
+
+interface CTAButtonProps {
+  children: React.ReactNode
+  onClick?: () => void
+}
+
+function CTAButton({ children, onClick }: CTAButtonProps) {
+  return (
+    <div className="relative group">
+      {/* <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-red-400 blur-lg group-hover:blur-xl transition-all duration-300" /> */}
+      <Button
+        onClick={onClick}
+        className={cn(
+          'relative w-full font-bold py-6 text-xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-red-500/25',
+          'bg-gradient-to-r from-custom-primary to-custom-secondary text-cream  rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all glow text-xl propublic-button glow-pulse py-6 border-radius-propublic ',
+        )}
+      >
+        <Zap className="w-6 h-6 mr-3 animate-pulse" />
+        {children}
+        <Zap className="w-6 h-6 ml-3 animate-pulse" />
+      </Button>
+    </div>
+  )
+}
+
+function HeaderBar() {
+  return (
+    <div className="relative">
+      <div className="absolute inset-0 bg-gradient-to-r from-red-600/80 to-red-500/80 blur-sm" />
+      <div className="relative bg-gradient-to-r from-red-600 to-red-500 rounded-t-lg px-6 py-4 flex justify-between items-center text-white text-sm font-mono border border-red-400/50">
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse" />
+            <div className="absolute inset-0 w-3 h-3 bg-yellow-400 rounded-full animate-ping" />
+          </div>
+          <span className="tracking-wider">PREMIUM MEMBERSHIP PROTOCOL</span>
+          <Zap className="w-4 h-4 text-yellow-400 animate-pulse" />
+        </div>
+        <div className="flex items-center gap-2">
+          <Shield className="w-4 h-4 text-yellow-400" />
+          <span className="tracking-wider">
+            ID: PROP-VIP-{new Date().getFullYear()}
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+interface HeroSectionProps {
+  title: string
+  subtitle: string
+  description: string
+}
+
+function HeroSection({ title, subtitle, description }: HeroSectionProps) {
+  return (
+    <div className="space-y-6">
+      {/* <div className="relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-yellow-600/50 to-yellow-500/50 blur-md" />
+        <Badge className="relative bg-gradient-to-r from-yellow-600 to-yellow-500 text-black font-bold px-6 py-3 text-sm border border-yellow-400/50 shadow-lg shadow-yellow-500/25">
+          <Star className="w-4 h-4 mr-2" />
+          EXCLUSIVE ACCESS
+        </Badge>
+      </div> */}
+
+      <div className="space-y-6">
+        <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+          <span className="text-white drop-shadow-2xl">{title}</span>
+          <br />
+          <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent drop-shadow-2xl animate-pulse">
+            {subtitle}
+          </span>
+        </h1>
+
+        <p className="text-gray-300 text-lg leading-relaxed max-w-md drop-shadow-lg">
+          {description}
+        </p>
+      </div>
+    </div>
+  )
+}
+
+interface PerkCardProps {
+  icon: LucideIcon
+  title: string
+  description: string
+  gradient: string
+  glowColor: string
+}
+
+function PerkCard({
+  icon: Icon,
+  title,
+  description,
+  gradient,
+  glowColor,
+}: PerkCardProps) {
+  return (
+    <div className="relative group">
+      <div
+        className={`absolute inset-0 bg-${glowColor} blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500`}
+      />
+
+      <div className="relative bg-gradient-to-r from-gray-800/60 via-black/60 to-gray-900/60 border border-gray-600/50 border-radius-propublic  p-6 backdrop-blur-sm hover:border-red-400/50 transition-all duration-500 group-hover:transform group-hover:scale-105">
+        <div className="absolute inset-1 bg-gradient-to-r from-transparent via-red-500/5 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500" />
+
+        <div className="relative flex items-start gap-4">
+          <div
+            className={`bg-gradient-to-br ${gradient} p-4 border-radius-propublic  shadow-lg group-hover:shadow-2xl transition-all duration-300`}
+          >
+            <Icon className="w-6 h-6 text-white" />
+          </div>
+          <div className="flex-1">
+            <h3 className="text-white font-bold text-lg mb-3 group-hover:text-yellow-300 transition-colors duration-300">
+              {title}
+            </h3>
+            <p className="text-gray-300 text-sm leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+              {description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function PerksSection() {
+  return (
+    <div className="space-y-8  ">
+      <div className="text-center lg:text-left">
+        <h2 className="text-3xl md:text-4xl font-bold text-white bg-clip-text text-transparent drop-shadow-2xl">
+          ELITE MEMBER PERKS
+        </h2>
+        {/* <div className="w-24 h-1 bg-gradient-to-r from-red-400 to-yellow-400 mx-auto lg:mx-0 mt-2 rounded-full" /> */}
+      </div>
+
+      <div className="space-y-6">
+        {perksData.map((perk, index) => (
+          <PerkCard
+            key={index}
+            icon={perk.icon}
+            title={perk.title}
+            description={perk.description}
+            gradient={perk.gradient}
+            glowColor={perk.glowColor}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+interface PricingCardProps {
+  price: string
+  currency: string
+  period: string
+  description: string
+}
+
+function PricingCard({
+  price,
+  currency,
+  period,
+  description,
+}: PricingCardProps) {
+  return (
+    <div className="relative group">
+      <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-yellow-500/15 blur-xl group-hover:blur-2xl transition-all duration-500" />
+
+      <div className="relative bg-gradient-to-br from-gray-800/80 via-black/80 to-gray-900/80 border-2 border-red-600/50 border-radius-propublic  p-8 backdrop-blur-sm group-hover:border-red-400/70 transition-all duration-500">
+        <div className="absolute inset-1 bg-gradient-to-br from-red-500/5 to-yellow-500/5 rounded-lg" />
+
+        <div className="relative text-center space-y-4">
+          <div className="text-yellow-400 text-sm font-mono tracking-widest mb-4 animate-pulse">
+            ⚡ MONTHLY INVESTMENT ⚡
+          </div>
+          <div className="flex items-baseline justify-center gap-3">
+            <span className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-custom-primary  to-red-400 bg-clip-text text-transparent drop-shadow-2xl animate-pulse">
+              {price}
+            </span>
+            <div className="text-gray-300">
+              {/* <div className="text-xl font-bold text-yellow-400">
+                {currency}
+              </div> */}
+              <div className="text-sm text-gray-400">/{period}</div>
+            </div>
+          </div>
+          <p className="text-gray-400 text-sm mt-4 font-mono">{description}</p>
+        </div>
+      </div>
+    </div>
+  )
+}

@@ -72,7 +72,7 @@ const AcademiesSection = () => {
   ]
 
   return (
-    <ParticleGradient>
+    <ParticleGradient className="bg-black">
       <div className="py-20 pt-44 ">
         <SectionTitle
           title={

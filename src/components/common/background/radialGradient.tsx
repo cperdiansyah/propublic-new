@@ -32,7 +32,7 @@ const RadialGradient: React.FC<RadialGradientProps> = ({
   const gradientStyle = {
     background: `radial-gradient(circle at ${x}% ${y}%, 
       ${primaryColor.replace('rgb(', 'rgba(').replace(')', `, ${primaryOpacity})`)} 0%, 
-      ${primaryColor.replace('rgb(', 'rgba(').replace(')', `, ${primaryOpacity * 0.5})`)} 25%, 
+      ${primaryColor.replace('rgb(', 'rgba(').replace(')', `, ${primaryOpacity * 0.5})`)} 15%, 
       ${backgroundColor.replace('rgb(', 'rgba(').replace(')', `, ${backgroundOpacity})`)} 50%)`,
   }
 
