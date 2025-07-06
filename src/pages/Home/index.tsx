@@ -11,7 +11,7 @@ const HomePage = () => {
   return (
     <div className="homepage-wrapper ">
       <HeroSection />
-      <FeaturesSection />
+      {/* <FeaturesSection /> */}
       <AcademiesSection />
       <GameSection games={GAMELIST} />
       <BrandSection />

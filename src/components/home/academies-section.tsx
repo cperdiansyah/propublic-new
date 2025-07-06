@@ -70,7 +70,7 @@ const AcademiesSection = () => {
   ]
 
   return (
-    <div className="py-20">
+    <div className="py-20 pt-44 bg-black">
       <SectionTitle
         title={
           <>

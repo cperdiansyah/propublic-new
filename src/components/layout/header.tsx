@@ -7,7 +7,7 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <nav className="fixed w-full top-0 z-50 bg-dark-primary/50  backdrop-blur-sm border-b border-gray-800 py-3">
+    <nav className="fixed w-full top-0 z-50 bg-dark-primary/50  backdrop-blur-sm border-b border-gray-800 py-2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="nav-left flex items-center justify-between gap-5">
