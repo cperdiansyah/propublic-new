@@ -1,8 +1,8 @@
 /** biome-ignore-all lint/security/noDangerouslySetInnerHtml: <explanation> */
 'use client'
 
+import ParticleGradient from '@/components/common/background/particleGradient'
 import SectionTitle from '@/components/common/section-title'
-import { Card, CardContent } from '@/components/ui/card'
 import { formatIDRCurrency } from '@/lib/formatCurrency'
 import { Star } from 'lucide-react'
 import Image from 'next/image'
@@ -72,33 +72,35 @@ const AcademiesSection = () => {
   ]
 
   return (
-    <div className="py-20 pt-44 bg-black">
-      <SectionTitle
-        title={
-          <>
-            Top Popular{' '}
-            <span className="section-title-underline">Academies!</span>
-          </>
-        }
-        withButton
-        btnText="Explore More Course"
-        href="/academy"
-        buttonClassname="bg-custom-accent text-black hover:bg-custom-accent/90"
-      />
-      <div className="academies-wrapper container px-4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ">
-        {courses.map((course) => (
-          <AcademyCard
-            key={course.course_id}
-            id={course.course_id}
-            name={course.course_title}
-            rating={Number(course.course_rating)}
-            image={course.course_image_url}
-            price={Number(course.course_price)}
-            description={course.course_description}
-          />
-        ))}
+    <ParticleGradient>
+      <div className="py-20 pt-44 ">
+        <SectionTitle
+          title={
+            <>
+              Top Popular{' '}
+              <span className="section-title-underline">Academies!</span>
+            </>
+          }
+          withButton
+          btnText="Explore More Course"
+          href="/academy"
+          buttonClassname="bg-custom-accent text-black hover:bg-custom-accent/90"
+        />
+        <div className="academies-wrapper container px-4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ">
+          {courses.map((course) => (
+            <AcademyCard
+              key={course.course_id}
+              id={course.course_id}
+              name={course.course_title}
+              rating={Number(course.course_rating)}
+              image={course.course_image_url}
+              price={Number(course.course_price)}
+              description={course.course_description}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </ParticleGradient>
   )
 }
 

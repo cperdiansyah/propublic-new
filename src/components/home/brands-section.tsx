@@ -4,8 +4,8 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import SectionTitle from '@/components/common/section-title'
-import GradientBackground from '@/components/common/GradientBackground'
-import RadialGradient from '@/components/common/radialGradient'
+import GradientBackground from '@/components/common/background/GradientBackground'
+import RadialGradient from '@/components/common/background/radialGradient'
 
 const brands: Brand[] = [
   {
