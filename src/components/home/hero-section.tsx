@@ -23,7 +23,7 @@ export default function HeroSection() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center ">
               <button
-                className="bg-gradient-to-r from-custom-primary to-custom-secondary text-cream px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:scale-105 transition-all glow"
+                className="bg-gradient-to-r from-custom-primary to-custom-secondary text-cream  rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all glow text-xl propublic-button"
                 type="button"
               >
                 Join Community

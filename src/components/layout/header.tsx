@@ -40,13 +40,13 @@ function HeaderUser() {
       <Link href="/auth/login">
         <Button
           variant="outline"
-          className=" transition-200s bg-transparent text-white hover:bg-custom-secondary-dark hover:text-white px-4 py-3 text-base font-semibold cursor-pointer"
+          className=" transition-200s bg-transparent text-white hover:bg-custom-secondary-dark hover:text-white propublic-button text-base font-semibold cursor-pointer"
         >
           Join
         </Button>
       </Link>
       <Link href="/auth/register" className="hidden md:block">
-        <Button className="bg-custom-primary text-white px-4 py-3  hover:bg-custom-secondary-dark transition-200s text-base font-semibold hover:bg-custom-primary/80 cursor-pointer">
+        <Button className="bg-custom-primary text-white propublic-button  hover:bg-custom-secondary-dark transition-200s text-base font-semibold hover:bg-custom-primary/80 cursor-pointer">
           Get Started
         </Button>
       </Link>
