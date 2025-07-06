@@ -90,7 +90,7 @@ const GameCard: React.FC<IGameCard> = ({ game }) => {
       <div className="relative border-none ">
         {/* Background Image */}
         <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 "
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110 "
           style={{
             backgroundImage: `url(${game.imageSrc || `/placeholder.svg?height=320&width=280&text=${encodeURIComponent(game.name)}`})`,
           }}
