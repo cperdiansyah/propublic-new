@@ -1,7 +1,9 @@
+/** biome-ignore-all lint/security/noDangerouslySetInnerHtml: <explanation> */
 'use client'
 
+import ParticleGradient from '@/components/common/background/particleGradient'
 import SectionTitle from '@/components/common/section-title'
-import { Card, CardContent } from '@/components/ui/card'
+import { formatIDRCurrency } from '@/lib/formatCurrency'
 import { Star } from 'lucide-react'
 import Image from 'next/image'
 import type React from 'react'
@@ -70,49 +72,54 @@ const AcademiesSection = () => {
   ]
 
   return (
-    <div className="py-20 pt-44 bg-black">
-      <SectionTitle
-        title={
-          <>
-            Top Popular{' '}
-            <span className="section-title-underline">Academies!</span>
-          </>
-        }
-        withButton
-        btnText="Explore More Course"
-        href="/academy"
-        buttonClassname="bg-custom-accent text-black hover:bg-custom-accent/90"
-      />
-      <div className="academies-wrapper container px-4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ">
-        {courses.map((course) => (
-          <AcademyCard
-            key={course.course_id}
-            id={course.course_id}
-            name={course.course_title}
-            rating={Number(course.course_rating)}
-            image={course.course_image_url}
-          />
-        ))}
+    <ParticleGradient>
+      <div className="py-20 pt-44 ">
+        <SectionTitle
+          title={
+            <>
+              Top Popular{' '}
+              <span className="section-title-underline">Academies!</span>
+            </>
+          }
+          withButton
+          btnText="Explore More Course"
+          href="/academy"
+          buttonClassname="bg-custom-accent text-black hover:bg-custom-accent/90"
+        />
+        <div className="academies-wrapper container px-4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ">
+          {courses.map((course) => (
+            <AcademyCard
+              key={course.course_id}
+              id={course.course_id}
+              name={course.course_title}
+              rating={Number(course.course_rating)}
+              image={course.course_image_url}
+              price={Number(course.course_price)}
+              description={course.course_description}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </ParticleGradient>
   )
 }
 
 interface CoachCardProps {
   id: string | number
   name: string
-  // game: string
+  description?: string | null
   rating: number
   image: string
+  price: number
   // onSelect: (coachId: string) => void
 }
 
 const AcademyCard: React.FC<CoachCardProps> = ({
-  id,
   name,
-  // game,
+  description,
   rating,
   image,
+  price,
   // onSelect,
 }) => {
   const renderStars = (rating: number) => {
@@ -164,15 +171,32 @@ const AcademyCard: React.FC<CoachCardProps> = ({
           {name.toUpperCase()}
         </h3>
 
-        {/* <p className="text-gray-300 text-sm mb-4 uppercase tracking-wider">
-          {game}
-        </p> */}
-
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-white font-bold text-lg">{rating}</span>
             <div className="flex items-center gap-1">{renderStars(rating)}</div>
           </div>
+        </div>
+      </div>
+
+      {/* Gradient Overlay */}
+      {/* <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/90 group-hover:via-black/50 transition-all duration-500" /> */}
+      <div className="absolute inset-0 group-hover:bg-gradient-to-t group-hover:from-black/80 group-hover:via-black/20 group-hover:to-transparent transition-all duration-200" />
+
+      {/* Blur Overlay on Hover*/}
+      <div className="absolute inset-0 backdrop-blur-0 group-hover:backdrop-blur-sm transition-all duration-500" />
+
+      {/* Hover visible - Additional content */}
+      <div className="absolute bottom-0 left-0 right-0 p-6 transform  translate-y-4 hover:block opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-100 ">
+        <p
+          className="text-sm text-gray-200 mb-3 line-clamp-3"
+          dangerouslySetInnerHTML={{ __html: description || '' }}
+        ></p>
+
+        <div className="flex justify-between items-center">
+          <span className="text-2xl font-bold text-white">
+            {formatIDRCurrency(price)}
+          </span>
         </div>
       </div>
     </div>

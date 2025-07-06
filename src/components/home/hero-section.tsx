@@ -3,8 +3,8 @@ import { COLORS } from '@/config/const'
 
 export default function HeroSection() {
   return (
-    <section className="bg-black pt-28 pb-20 px-4 min-h-screen flex flex-col items-center hero-section max-w-screen">
-      <div className="max-w-7xl m-auto w-full z-1 lg:py-20">
+    <section className="bg-black pt-28 pb-20 min-h-screen flex flex-col items-center hero-section max-w-screen max-h-screen relative ">
+      <div className="max-w-7xl m-auto w-full z-1  px-4 ">
         <div className=" gap-12 items-center text-center">
           <div className="space-y-8">
             <div className="space-y-6 lg:w-2/3 mx-auto">
@@ -23,7 +23,7 @@ export default function HeroSection() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center ">
               <button
-                className="bg-gradient-to-r from-custom-primary to-custom-secondary text-cream  rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all glow text-xl propublic-button"
+                className="bg-gradient-to-r from-custom-primary to-custom-secondary text-cream  rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all glow text-xl propublic-button glow-pulse"
                 type="button"
               >
                 Join Community
@@ -47,25 +47,26 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-      <PropublicMarquee />
+      <div className="absolute bottom-0  w-full">
+        <PropublicMarquee />
+      </div>
     </section>
   )
 }
 
 function PropublicMarquee() {
   return (
-    <div className="propublic-marquee-wrapper absolute bottom-0 max-w-screen">
-      <div className="marque-content relative">
-        <Marquee text="SCROLL TO EXPLORE" direction="left" />
-        <div className="react-marquee-red-line ">
-          <Marquee
-            text="UNLEASH YOUR POTENTIAL"
-            background={COLORS.redPrimary}
-            color="white"
-            direction="right"
-          />
-        </div>
+    <div className="propublic-marquee-wrapper relative h-full w-full">
+      <Marquee text="SCROLL TO EXPLORE" direction="left" />
+      <div className="react-marquee-red-line h-full">
+        <Marquee
+          text="UNLEASH YOUR POTENTIAL"
+          background={COLORS.redPrimary}
+          color="white"
+          direction="right"
+        />
       </div>
+      <div className="marque-content relative"></div>
     </div>
   )
 }

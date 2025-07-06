@@ -9,7 +9,7 @@ import {
 import SectionTitle from '@/components/common/section-title'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { StepBack, StepForward } from 'lucide-react'
+import { ChevronRight, ChevronLeft, StepBack, StepForward } from 'lucide-react'
 import Link from 'next/link'
 import type React from 'react'
 
@@ -54,14 +54,15 @@ const GameSection: React.FC<IGameSection> = ({ games }) => {
                 className="text-black hover:bg-custom-accent"
                 size="sm"
               >
-                <StepBack />
+                <ChevronLeft />
               </CarouselPrevious>
 
               <CarouselNext
                 className="text-black hover:bg-custom-accent"
                 size="sm"
               >
-                <StepForward />
+                {/* <StepForward /> */}
+                <ChevronRight />
               </CarouselNext>
             </div>
           </div>
