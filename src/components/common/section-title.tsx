@@ -36,7 +36,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
         <Button
           variant={'secondary'}
           size={'default'}
-          className={buttonClassname}
+          className={`${buttonClassname} propublic-button text-base md:text-lg`}
         >
           {/* Using a standard <a> tag as next/link is specific to Next.js */}
           <a href={href} style={{ textDecoration: 'none', color: 'inherit' }}>

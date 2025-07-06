@@ -18,67 +18,65 @@ interface IGameSection {
 }
 const GameSection: React.FC<IGameSection> = ({ games }) => {
   return (
-    <div className="container mx-auto py-[7rem] text-center">
-      <SectionTitle
-        title={
-          <>
-            Choose Your Game.{' '}
-            <span className="section-title-underline">
-              Level Up Starts Here.
-            </span>
-          </>
-        }
-        subTitle={
-          <>
-            Ready to take your game to the next level?
-            <br />
-            Pick the title you want to master — whether you’re climbing ranked,
-            sharpening your mechanics, or preparing for tournaments, we’ve got
-            the right coach for you.
-          </>
-        }
-        center
-      />
-      <CarouselProvider
-        itemCount={games.length}
-        autoplay={false}
-        autoplayDelay={4000}
-        visibleItems={{ mobile: 2, desktop: 4 }}
-      >
-        <InfiniteCarouselContent className="px-3">
-          {games.map((game) => (
-            <InfiniteCarouselItem
-              key={game.id}
-              customBasis="basis-1/2 lg:basis-1/5"
-            >
-              <GameCard game={game} />
-            </InfiniteCarouselItem>
-          ))}
-        </InfiniteCarouselContent>
+    <div className="game-wrapper bg-black">
+      <div className="game-container container mx-auto py-[7rem] text-center px-4 ">
+        <SectionTitle
+          title={
+            <>
+              Choose Your Game.{' '}
+              <span className="section-title-underline">
+                Level Up Starts Here.
+              </span>
+            </>
+          }
+          subTitle={
+            <div className="text-base md:text-lg">
+              Ready to take your game to the next level?
+              <br />
+              Pick the title you want to master — whether you’re climbing
+              ranked, sharpening your mechanics, or preparing for tournaments,
+              we’ve got the right coach for you.
+            </div>
+          }
+          center
+        />
 
-        {/* Controls */}
-        <div className="flex justify-center items-center mb-4 mt-5">
-          {/* <CarouselInfo /> */}
-          <div className="flex items-center gap-5">
-            <CarouselPrevious variant="default" size="sm">
-              <StepBack />
-            </CarouselPrevious>
-
-            <Link href="/games" className="">
-              <button
-                className={`w-full py-2 px-3 rounded-xl font-semibold transition-all hover:shadow-lg border border-custom-accent hover:bg-custom-accent hover:text-dark-primary text-custom-accent`}
-                type="button"
+        <CarouselProvider
+          itemCount={games.length}
+          autoplay={false}
+          autoplayDelay={4000}
+          visibleItems={{ mobile: 2, desktop: 4 }}
+        >
+          {/* Controls */}
+          <div className="flex justify-end items-center mb-4 mt-5">
+            <div className="flex items-center gap-2">
+              <CarouselPrevious
+                className="text-black hover:bg-custom-accent"
+                size="sm"
               >
-                Explore More
-              </button>
-            </Link>
+                <StepBack />
+              </CarouselPrevious>
 
-            <CarouselNext variant="default" size="sm">
-              <StepForward />
-            </CarouselNext>
+              <CarouselNext
+                className="text-black hover:bg-custom-accent"
+                size="sm"
+              >
+                <StepForward />
+              </CarouselNext>
+            </div>
           </div>
-        </div>
-      </CarouselProvider>
+          <InfiniteCarouselContent className="px-3">
+            {games.map((game) => (
+              <InfiniteCarouselItem
+                key={game.id}
+                customBasis="basis-1/2 lg:basis-1/5"
+              >
+                <GameCard game={game} />
+              </InfiniteCarouselItem>
+            ))}
+          </InfiniteCarouselContent>
+        </CarouselProvider>
+      </div>
     </div>
   )
 }
@@ -92,7 +90,7 @@ const GameCard: React.FC<IGameCard> = ({ game }) => {
       <div className="relative border-none ">
         {/* Background Image */}
         <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 "
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110 "
           style={{
             backgroundImage: `url(${game.imageSrc || `/placeholder.svg?height=320&width=280&text=${encodeURIComponent(game.name)}`})`,
           }}

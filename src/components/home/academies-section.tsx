@@ -70,7 +70,7 @@ const AcademiesSection = () => {
   ]
 
   return (
-    <div className="py-20">
+    <div className="py-20 pt-44 bg-black">
       <SectionTitle
         title={
           <>
@@ -83,7 +83,7 @@ const AcademiesSection = () => {
         href="/academy"
         buttonClassname="bg-custom-accent text-black hover:bg-custom-accent/90"
       />
-      <div className="academies-wrapper container px-4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+      <div className="academies-wrapper container px-4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ">
         {courses.map((course) => (
           <AcademyCard
             key={course.course_id}
