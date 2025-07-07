@@ -21,31 +21,31 @@ const ParticleGradient: React.FC<ParticleGradientProps> = ({
       ></div>
       <div
         className="scan-line fixed "
-        style={{ left: '30%', animationDelay: '4s' }}
+        style={{ left: '30%', animationDelay: '3s' }}
       ></div>
       <div
         className="scan-line fixed "
-        style={{ left: '40%', animationDelay: '6s' }}
+        style={{ left: '40%', animationDelay: '1s' }}
       ></div>
       <div
         className="scan-line fixed "
-        style={{ left: '50%', animationDelay: '8s' }}
+        style={{ left: '50%', animationDelay: '2s' }}
       />
       <div
         className="scan-line fixed "
-        style={{ left: '60%', animationDelay: '1s' }}
+        style={{ left: '60%', animationDelay: '3s' }}
       />
       <div
         className="scan-line fixed "
-        style={{ left: '70%', animationDelay: '3s' }}
+        style={{ left: '70%', animationDelay: '1s' }}
       />
       <div
         className="scan-line fixed "
-        style={{ left: '80%', animationDelay: '5s' }}
+        style={{ left: '80%', animationDelay: '2s' }}
       />
       <div
         className="scan-line fixed "
-        style={{ left: '90%', animationDelay: '7s' }}
+        style={{ left: '90%', animationDelay: '3s' }}
       />
       {/* </div> */}
 

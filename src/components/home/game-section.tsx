@@ -7,6 +7,7 @@ import {
   InfiniteCarouselItem,
 } from '@/components/common/infinite-carousel'
 import SectionTitle from '@/components/common/section-title'
+import { BackgroundEffects } from '@/components/home/home.element'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { ChevronRight, ChevronLeft, StepBack, StepForward } from 'lucide-react'
@@ -18,8 +19,10 @@ interface IGameSection {
 }
 const GameSection: React.FC<IGameSection> = ({ games }) => {
   return (
-    <div className="game-wrapper bg-black">
-      <div className="game-container container mx-auto py-[7rem] text-center px-4 ">
+    <div className="game-wrapper bg-black relative overflow-hidden">
+      <BackgroundEffects />
+
+      <div className="game-container container mx-auto py-[7rem] text-center px-4 z-10 ">
         <SectionTitle
           title={
             <>
@@ -48,7 +51,7 @@ const GameSection: React.FC<IGameSection> = ({ games }) => {
           visibleItems={{ mobile: 2, desktop: 4 }}
         >
           {/* Controls */}
-          <div className="flex justify-end items-center mb-4 mt-5">
+          <div className="relative flex justify-end items-center mb-4 mt-5 z-10">
             <div className="flex items-center gap-2">
               <CarouselPrevious
                 className="text-black hover:bg-custom-accent"
@@ -61,7 +64,6 @@ const GameSection: React.FC<IGameSection> = ({ games }) => {
                 className="text-black hover:bg-custom-accent"
                 size="sm"
               >
-                {/* <StepForward /> */}
                 <ChevronRight />
               </CarouselNext>
             </div>

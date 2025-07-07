@@ -13,16 +13,13 @@
 
 button {
   border-radius: var(--propublic-border-radius);
-  @apply cursor-pointer ;
+  @apply cursor-pointer;
 
-  &.propublic-button{
+  &.propublic-button {
     border-radius: var(--propublic-border-radius);
     @apply px-3 py-2;
-
   }
 }
-
-
 
 .border-radius-propublic {
   border-radius: var(--propublic-border-radius);

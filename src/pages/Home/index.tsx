@@ -4,7 +4,7 @@ import BrandSection from '@/components/home/brands-section'
 import FeaturesSection from '@/components/home/features-section'
 import GameSection from '@/components/home/game-section'
 import HeroSection from '@/components/home/hero-section'
-import PricingPlan from '@/components/home/pricing-pan-section'
+import PricingPlan from '@/components/home/pricing-plan-section'
 import PricingSection from '@/components/home/pricing-section'
 import { GAMELIST } from '@/config/exampleData'
 

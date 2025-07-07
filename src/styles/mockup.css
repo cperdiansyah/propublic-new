@@ -145,6 +145,21 @@ html.dark,
   animation: particle-float 10s linear infinite;
 }
 
+/* Hexagonal patterns */
+.hex-pattern {
+  background-image: radial-gradient(
+      circle at 30% 40%,
+      rgba(220, 38, 38, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 60%,
+      rgba(220, 38, 38, 0.05) 0%,
+      transparent 50%
+    );
+  background-size: 100px 100px;
+}
+
 .geometric-bg {
   background-image: radial-gradient(
       circle at 25% 25%,

@@ -1,3 +1,7 @@
+import AnimatedBackground, {
+  BackgroundEffects,
+  CornerDecorations,
+} from '@/components/home/home.element'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import {
@@ -62,11 +66,10 @@ export default function PricingPlan() {
 
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
-      <BackgroundEffects />
-
+      {/* Hexagonal BG */}
+      <AnimatedBackground />
       <div className="relative z-10 max-w-7xl mx-auto p-4 md:p-8">
-        <HeaderBar />
-
+        {/* <HeaderBar /> */}
         <div className="relative">
           <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-yellow-500/3 to-red-600/5 blur-xl" />
 
@@ -104,47 +107,6 @@ export default function PricingPlan() {
   )
 }
 
-function BackgroundEffects() {
-  return (
-    <div className="absolute inset-0">
-      {/* Base gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-red-800/10 to-black" />
-
-      {/* Grid patterns */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,0,0,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,0,0,0.05)_1px,transparent_1px)] bg-[size:50px_50px]" />
-      <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,0,0.02)_1px,transparent_1px),linear-gradient(-45deg,rgba(255,255,0,0.02)_1px,transparent_1px)] bg-[size:30px_30px]" />
-
-      {/* Glowing orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-yellow-500/8 rounded-full blur-3xl animate-pulse delay-1000" />
-      <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-red-600/8 rounded-full blur-3xl animate-pulse delay-500" />
-
-      {/* Geometric shapes */}
-      <div
-        className="absolute top-20 right-20 w-32 h-32 border border-red-500/20 rotate-45 animate-spin"
-        style={{ animationDuration: '20s' }}
-      />
-      <div
-        className="absolute bottom-32 left-32 w-24 h-24 border border-yellow-500/20 rotate-12 animate-bounce"
-        style={{ animationDuration: '3s' }}
-      />
-
-      {/* Scanning line */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-500/5 to-transparent h-2 animate-pulse" />
-    </div>
-  )
-}
-function CornerDecorations() {
-  return (
-    <>
-      <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-red-400/50" />
-      <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-red-400/50" />
-      <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-red-400/50" />
-      <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-red-400/50" />
-    </>
-  )
-}
-
 interface CTAButtonProps {
   children: React.ReactNode
   onClick?: () => void
@@ -169,30 +131,6 @@ function CTAButton({ children, onClick }: CTAButtonProps) {
   )
 }
 
-function HeaderBar() {
-  return (
-    <div className="relative">
-      <div className="absolute inset-0 bg-gradient-to-r from-red-600/80 to-red-500/80 blur-sm" />
-      <div className="relative bg-gradient-to-r from-red-600 to-red-500 rounded-t-lg px-6 py-4 flex justify-between items-center text-white text-sm font-mono border border-red-400/50">
-        <div className="flex items-center gap-3">
-          <div className="relative">
-            <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse" />
-            <div className="absolute inset-0 w-3 h-3 bg-yellow-400 rounded-full animate-ping" />
-          </div>
-          <span className="tracking-wider">PREMIUM MEMBERSHIP PROTOCOL</span>
-          <Zap className="w-4 h-4 text-yellow-400 animate-pulse" />
-        </div>
-        <div className="flex items-center gap-2">
-          <Shield className="w-4 h-4 text-yellow-400" />
-          <span className="tracking-wider">
-            ID: PROP-VIP-{new Date().getFullYear()}
-          </span>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 interface HeroSectionProps {
   title: string
   subtitle: string
@@ -202,19 +140,11 @@ interface HeroSectionProps {
 function HeroSection({ title, subtitle, description }: HeroSectionProps) {
   return (
     <div className="space-y-6">
-      {/* <div className="relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-600/50 to-yellow-500/50 blur-md" />
-        <Badge className="relative bg-gradient-to-r from-yellow-600 to-yellow-500 text-black font-bold px-6 py-3 text-sm border border-yellow-400/50 shadow-lg shadow-yellow-500/25">
-          <Star className="w-4 h-4 mr-2" />
-          EXCLUSIVE ACCESS
-        </Badge>
-      </div> */}
-
       <div className="space-y-6">
         <h1 className="text-4xl md:text-6xl font-bold leading-tight">
           <span className="text-white drop-shadow-2xl">{title}</span>
           <br />
-          <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent drop-shadow-2xl animate-pulse">
+          <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent drop-shadow-2xl ">
             {subtitle}
           </span>
         </h1>
@@ -261,7 +191,7 @@ function PerkCard({
             <h3 className="text-white font-bold text-lg mb-3 group-hover:text-yellow-300 transition-colors duration-300">
               {title}
             </h3>
-            <p className="text-gray-300 text-sm leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+            <p className="text-gray-300 text-base leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
               {description}
             </p>
           </div>
@@ -318,11 +248,11 @@ function PricingCard({
         <div className="absolute inset-1 bg-gradient-to-br from-red-500/5 to-yellow-500/5 rounded-lg" />
 
         <div className="relative text-center space-y-4">
-          <div className="text-yellow-400 text-sm font-mono tracking-widest mb-4 animate-pulse">
+          <div className="text-yellow-400 text-sm font-mono tracking-widest mb-4">
             ⚡ MONTHLY INVESTMENT ⚡
           </div>
           <div className="flex items-baseline justify-center gap-3">
-            <span className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-custom-primary  to-red-400 bg-clip-text text-transparent drop-shadow-2xl animate-pulse">
+            <span className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-custom-primary  to-red-400 bg-clip-text text-transparent drop-shadow-2xl ">
               {price}
             </span>
             <div className="text-gray-300">
