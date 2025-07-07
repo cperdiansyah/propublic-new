@@ -47,7 +47,7 @@ const AnimatedBackground = () => {
           width="100%"
           height="100%"
           viewBox="100 0 100 100"
-          className="scale-100"
+          // className="scale-100"
         >
           <defs>
             <pattern
@@ -67,8 +67,8 @@ const AnimatedBackground = () => {
             </pattern>
           </defs>
           <rect
-            width={100}
-            height={100}
+            // width={100}
+            // height={100}
             className="w-screen h-screen "
             fill="url(#hexagons)"
           />
