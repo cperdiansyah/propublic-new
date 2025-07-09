@@ -19,7 +19,7 @@ interface IGameSection {
 }
 const GameSection: React.FC<IGameSection> = ({ games }) => {
   return (
-    <div className="game-wrapper bg-black  overflow-hidden">
+    <div className="game-wrapper bg-black relative overflow-hidden">
       <BackgroundEffects />
 
       <div className="game-container container mx-auto py-[7rem] text-center px-4 z-10 ">
