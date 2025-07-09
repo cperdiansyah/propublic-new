@@ -33,7 +33,7 @@ const GameSection: React.FC<IGameSection> = ({ games }) => {
             </>
           }
           subTitle={
-            <div className="text-base md:text-lg">
+            <div className="text-xs font-inter ">
               Ready to take your game to the next level?
               <br />
               Pick the title you want to master — whether you’re climbing
