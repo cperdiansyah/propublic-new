@@ -1,18 +1,14 @@
 import AnimatedBackground, {
-  BackgroundEffects,
   CornerDecorations,
 } from '@/components/home/home.element'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import {
+  Gift,
+  Network,
   Trophy,
   Users,
-  Network,
-  Gift,
   Zap,
-  Shield,
-  Badge,
-  Star,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -139,7 +135,7 @@ interface HeroSectionProps {
 
 function HeroSection({ title, subtitle, description }: HeroSectionProps) {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 text-center md:text-left">
       <div className="space-y-6">
         <h1 className="text-4xl md:text-6xl font-bold leading-tight">
           <span className="text-white drop-shadow-2xl">{title}</span>
@@ -181,17 +177,17 @@ function PerkCard({
       <div className="relative bg-gradient-to-r from-gray-800/60 via-black/60 to-gray-900/60 border border-gray-600/50 border-radius-propublic  p-6 backdrop-blur-sm hover:border-red-400/50 transition-all duration-500 group-hover:transform group-hover:scale-105">
         <div className="absolute inset-1 bg-gradient-to-r from-transparent via-red-500/5 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500" />
 
-        <div className="relative flex items-start gap-4">
+        <div className="relative flex items-start gap-4 flex-col md:flex-row justify-center">
           <div
-            className={`bg-gradient-to-br ${gradient} p-4 border-radius-propublic  shadow-lg group-hover:shadow-2xl transition-all duration-300`}
+            className={`bg-gradient-to-br ${gradient} p-4 border-radius-propublic  shadow-lg group-hover:shadow-2xl transition-all duration-300 mx-auto md:mx-0`}
           >
             <Icon className="w-6 h-6 text-white" />
           </div>
           <div className="flex-1">
-            <h3 className="text-white font-bold text-lg mb-3 group-hover:text-yellow-300 transition-colors duration-300">
+            <h3 className="text-white font-bold text-lg mb-3 group-hover:text-yellow-300 transition-colors duration-300 text-center md:text-left">
               {title}
             </h3>
-            <p className="text-gray-300 text-base leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+            <p className="text-gray-300 text-xs leading-relaxed group-hover:text-gray-200 transition-colors duration-300 text-center md:text-left font-inter">
               {description}
             </p>
           </div>
@@ -203,7 +199,7 @@ function PerkCard({
 
 function PerksSection() {
   return (
-    <div className="space-y-8  ">
+    <div className="space-y-8 order-first md:order-last ">
       <div className="text-center lg:text-left">
         <h2 className="text-3xl md:text-4xl font-bold text-white bg-clip-text text-transparent drop-shadow-2xl">
           ELITE MEMBER PERKS

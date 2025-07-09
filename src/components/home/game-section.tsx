@@ -19,7 +19,7 @@ interface IGameSection {
 }
 const GameSection: React.FC<IGameSection> = ({ games }) => {
   return (
-    <div className="game-wrapper bg-black relative overflow-hidden">
+    <div className="game-wrapper bg-black  overflow-hidden">
       <BackgroundEffects />
 
       <div className="game-container container mx-auto py-[7rem] text-center px-4 z-10 ">
@@ -33,7 +33,7 @@ const GameSection: React.FC<IGameSection> = ({ games }) => {
             </>
           }
           subTitle={
-            <div className="text-base md:text-lg">
+            <div className="text-xs font-inter ">
               Ready to take your game to the next level?
               <br />
               Pick the title you want to master — whether you’re climbing
