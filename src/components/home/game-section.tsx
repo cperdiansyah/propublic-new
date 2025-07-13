@@ -9,6 +9,7 @@ import {
 import SectionTitle from '@/components/common/section-title'
 import { BackgroundEffects } from '@/components/home/home.element'
 import { Card, CardContent } from '@/components/ui/card'
+import type { CarouselGameItem } from '@/types/home.types'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import type React from 'react'
 
