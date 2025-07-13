@@ -304,7 +304,7 @@ export default function RegisterContent() {
                 <button
                   type="submit"
                   disabled={isSubmitting || !isValid}
-                  className="w-full bg-gradient-to-r from-custom-primary to-custom-secondary text-cream py-4 border-radius-propublic font-bold text-lg hover:shadow-lg transition-all glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  className="w-full bg-gradient-to-r from-custom-primary to-custom-secondary text-cream py-4 border-radius-propublic font-bold text-lg hover:shadow-lg transition-all glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 propublic-button"
                 >
                   {isSubmitting ? (
                     <>
@@ -325,7 +325,7 @@ export default function RegisterContent() {
                     <div className="w-full border-t border-cream/20"></div>
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-4 bg-dark-custom-secondary text-cream/60">
+                    <span className="px-4 bg-dark-secondary text-cream/60">
                       Or sign up with
                     </span>
                   </div>
@@ -335,7 +335,7 @@ export default function RegisterContent() {
                 <div className="grid grid-cols-2 gap-4">
                   <button
                     type="button"
-                    className="flex items-center justify-center space-x-2 border border-cream/20 hover:border-custom-accent text-cream/80 hover:text-custom-accent py-3 border-radius-propublic transition-all"
+                    className="flex items-center justify-center space-x-2 border border-cream/20 hover:border-custom-accent text-cream/80 hover:text-custom-accent py-3 border-radius-propublic propublic-button transition-all"
                   >
                     <svg
                       className="w-5 h-5"
@@ -351,7 +351,7 @@ export default function RegisterContent() {
                   </button>
                   <button
                     type="button"
-                    className="flex items-center justify-center space-x-2 border border-cream/20 hover:border-custom-accent text-cream/80 hover:text-custom-accent py-3 border-radius-propublic transition-all"
+                    className="flex items-center justify-center space-x-2 border border-cream/20 hover:border-custom-accent text-cream/80 hover:text-custom-accent py-3 border-radius-propublic propublic-button transition-all"
                   >
                     <svg
                       className="w-5 h-5"
