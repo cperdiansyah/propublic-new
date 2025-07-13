@@ -22,8 +22,18 @@ interface IAcademiesSection {
 
 const AcademiesSection: React.FC<IAcademiesSection> = ({ courses }) => {
   return (
-    <ParticleGradient className="bg-black">
-      <div className="py-20 pt-44 px-5">
+    <ParticleGradient className="bg-black ">
+      {/* Animated Background */}
+      <div className="absolute inset-0">
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-red-900/10 to-black"></div>
+
+        {/* Animated geometric shapes */}
+        <div className="absolute top-10 left-20 w-32 h-32 bg-gradient-to-r from-red-600/10 to-yellow-500/10 rounded-full blur-2xl animate-pulse"></div>
+        <div className="absolute bottom-10 right-20 w-40 h-40 bg-gradient-to-l from-red-500/10 to-black/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-gradient-to-r from-yellow-500/5 to-red-600/5 rounded-full blur-2xl animate-pulse delay-500"></div>
+      </div>
+      <div className="  px-5 relative py-5">
         <SectionTitle
           title={
             <>
@@ -128,7 +138,7 @@ const AcademyCard: React.FC<CoachCardProps> = ({
       {/* Hover visible - Additional content */}
       <div className="absolute bottom-0 left-0 right-0 p-6 transform  translate-y-4 hover:block opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-100 ">
         <p
-          className="text-sm text-gray-200 mb-3 line-clamp-3"
+          className="text-base text-gray-200 mb-3 line-clamp-3"
           dangerouslySetInnerHTML={{ __html: description || '' }}
         ></p>
 
