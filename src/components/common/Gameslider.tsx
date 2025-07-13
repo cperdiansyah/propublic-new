@@ -2,13 +2,17 @@
 
 import GameCard from '@/components/common/GameCard'
 import {
-  CarouselNext,
-  CarouselPrevious,
-  CarouselProvider,
   InfiniteCarouselContent,
   InfiniteCarouselItem,
-  type CarouselProviderProps,
 } from '@/components/common/infinite-carousel'
+import {
+  CarouselProvider,
+  type CarouselProviderProps,
+} from '@/components/common/infinite-carousel/carousel-context'
+import {
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/common/infinite-carousel/carousel-controls'
 import type { CarouselGameItem } from '@/types/home.types'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 

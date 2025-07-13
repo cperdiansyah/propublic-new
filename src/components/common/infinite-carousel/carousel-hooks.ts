@@ -1,5 +1,4 @@
 import type { AutoplayType } from 'embla-carousel-autoplay'
-import { CloudCog } from 'lucide-react'
 import React from 'react'
 
 // Custom hook for autoplay control
