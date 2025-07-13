@@ -16,6 +16,7 @@ import {
   AlertCircle,
 } from 'lucide-react'
 import { registerSchema, type RegisterInput } from '@/lib/validations/auth'
+import BackgroundEffects from '@/components/blocks/effects/grid-glow'
 
 export default function RegisterContent() {
   const [showPassword, setShowPassword] = useState(false)
@@ -71,8 +72,10 @@ export default function RegisterContent() {
   ]
 
   return (
-    <div className="min-h-screen hero-pattern flex items-center justify-center px-4 py-12 mt-14">
-      <div className="max-w-6xl mx-auto w-full">
+    <div className="min-h-screen flex relative items-center justify-center px-4 py-12 mt-14">
+      <BackgroundEffects className="overflow-hidden" />
+
+      <div className="max-w-6xl mx-auto w-full relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center md:items-start">
           {/* Left Side - Registration Form */}
           <div className="w-full max-w-md mx-auto lg:mx-0 order-2 lg:order-1">

@@ -17,6 +17,7 @@ import {
   forgotPasswordSchema,
   type ForgotPasswordInput,
 } from '@/lib/validations/auth'
+import BackgroundEffects from '@/components/blocks/effects/grid-glow'
 
 export default function ForgotPasswordContent() {
   const [isEmailSent, setIsEmailSent] = useState(false)
@@ -82,8 +83,10 @@ export default function ForgotPasswordContent() {
 
   if (isEmailSent) {
     return (
-      <div className="min-h-screen hero-pattern flex items-center justify-center px-4 py-12">
-        <div className="max-w-md mx-auto w-full">
+      <div className="min-h-screen relative flex items-center justify-center px-4 py-12">
+        <BackgroundEffects className="overflow-hidden" />
+
+        <div className="max-w-md mx-auto w-full relative">
           <div className="enhanced-card border-radius-propublic p-8 md:p-10 text-center">
             {/* Success Icon */}
             <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6 animate-fadeIn">
@@ -188,8 +191,10 @@ export default function ForgotPasswordContent() {
   }
 
   return (
-    <div className="min-h-screen hero-pattern flex items-center justify-center px-4 py-12 mt-14">
-      <div className="max-w-6xl mx-auto w-full">
+    <div className="min-h-screen relative flex items-center justify-center px-4 py-12 mt-14">
+      <BackgroundEffects className="overflow-hidden" />
+
+      <div className="max-w-6xl mx-auto w-full relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Branding */}
           <div className="hidden lg:block space-y-8">
