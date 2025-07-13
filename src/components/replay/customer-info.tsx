@@ -13,7 +13,7 @@ export default function CustomerInfo() {
             Full Name *
             <input
               type="text"
-              className="input-field w-full px-4 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none text-lg"
+              className="input-field w-full px-4 py-4 border-radius-propublic text-cream placeholder-cream/50 focus:outline-none text-lg"
               placeholder="Enter your full name"
               required
             />
@@ -24,7 +24,7 @@ export default function CustomerInfo() {
             Email Address *
             <input
               type="email"
-              className="input-field w-full px-4 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none text-lg"
+              className="input-field w-full px-4 py-4 border-radius-propublic text-cream placeholder-cream/50 focus:outline-none text-lg"
               placeholder="your@email.com"
               required
             />
@@ -33,7 +33,7 @@ export default function CustomerInfo() {
         <div>
           <label className="block text-cream font-semibold mb-3 text-lg">
             Game *
-            <select className="input-field w-full px-4 py-4 rounded-xl text-cream focus:outline-none text-lg bg-dark-secondary">
+            <select className="input-field w-full px-4 py-4 border-radius-propublic text-cream focus:outline-none text-lg bg-dark-secondary">
               <option value="">Select your game</option>
               <option value="valorant">Valorant</option>
               <option value="league">League of Legends</option>
@@ -49,7 +49,7 @@ export default function CustomerInfo() {
             Current Rank
             <input
               type="text"
-              className="input-field w-full px-4 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none text-lg"
+              className="input-field w-full px-4 py-4 border-radius-propublic text-cream placeholder-cream/50 focus:outline-none text-lg"
               placeholder="e.g., Diamond 2, Gold 3"
             />
           </label>
@@ -58,7 +58,7 @@ export default function CustomerInfo() {
           <label className="block text-cream font-semibold mb-3 text-lg">
             Specific Areas to Focus On
             <textarea
-              className="input-field w-full px-4 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none text-lg h-32 resize-none"
+              className="input-field w-full px-4 py-4 border-radius-propublic text-cream placeholder-cream/50 focus:outline-none text-lg h-32 resize-none"
               placeholder="Tell us what you'd like to improve (e.g., positioning, aim, game sense, team play...)"
             />
           </label>

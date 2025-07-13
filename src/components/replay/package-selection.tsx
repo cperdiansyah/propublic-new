@@ -63,7 +63,7 @@ export default function PackageSelection({
           <div
             key={pkg.id}
             onClick={() => setSelectedPackage(pkg.id)}
-            className={`pricing-card enhanced-card rounded-2xl p-6 cursor-pointer border-2 transition-all duration-300 relative ${
+            className={`pricing-card enhanced-card border-radius-propublic p-6 cursor-pointer border-2 transition-all duration-300 relative ${
               selectedPackage === pkg.id
                 ? 'border-custom-primary'
                 : 'hover:border-accent'

@@ -34,7 +34,7 @@ export default function OrderSummary({ selectedPackage }: OrderSummaryProps) {
         </span>
         Order Summary
       </h2>
-      <div className="glass-effect rounded-2xl p-6 md:p-8 mb-8">
+      <div className="glass-effect border-radius-propublic p-6 md:p-8 mb-8">
         <div className="flex justify-between items-center mb-6">
           <div>
             <h3 className="text-xl font-bold">{currentPackage.name}</h3>
@@ -54,7 +54,7 @@ export default function OrderSummary({ selectedPackage }: OrderSummaryProps) {
       </div>
 
       {/* Payment Button */}
-      <button className="w-full premium-gradient text-white py-5 rounded-2xl font-bold text-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center space-x-3">
+      <button className="w-full premium-gradient text-white py-5 border-radius-propublic font-bold text-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center space-x-3">
         <Lock className="w-6 h-6" />
         <span>Proceed to Secure Payment</span>
       </button>
