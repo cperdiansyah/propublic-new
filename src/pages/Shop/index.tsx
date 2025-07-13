@@ -53,18 +53,23 @@ export default function ShopContent() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center relative">
-          <Button
+          <a
             className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold px-8 py-3 hover:border-red-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-red-500/20 hover:-translate-y-2 cursor-pointer"
-            onClick={() => window.open('https://shopee.com', '_blank')}
+            // onClick={() => window.open('https://shopee.com', '_blank')}
+            href="https://shopee.com"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Shopee
-          </Button>
-          <Button
+          </a>
+          <a
             className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold px-8 py-3 hover:border-red-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-red-500/20 hover:-translate-y-2 cursor-pointer"
-            onClick={() => window.open('https://tokopedia.com', '_blank')}
+            href="https://tokopedia.com"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Tokopedia
-          </Button>
+          </a>
         </div>
       </section>
     </div>
