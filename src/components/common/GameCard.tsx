@@ -1,5 +1,6 @@
 'use client'
 import { Card, CardContent } from '@/components/ui/card'
+import type { CarouselGameItem } from '@/types/home.types'
 
 interface IGameCard {
   game: CarouselGameItem

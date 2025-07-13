@@ -9,6 +9,7 @@ import {
   InfiniteCarouselItem,
   type CarouselProviderProps,
 } from '@/components/common/infinite-carousel'
+import type { CarouselGameItem } from '@/types/home.types'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface IGameSlider {
