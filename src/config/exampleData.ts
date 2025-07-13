@@ -1,4 +1,8 @@
-import type { CarouselGameItem, ICourseItem } from '@/types/home.types'
+import type {
+  CarouselGameItem,
+  ICourseItem,
+  TypeCommunityItem,
+} from '@/types/home.types'
 
 export const GAMELIST: CarouselGameItem[] = [
   {
@@ -98,3 +102,103 @@ export const COURSES: ICourseItem[] = [
     course_rating: '0.0000',
   },
 ] as const
+
+export const COMMUNITIES: TypeCommunityItem[] = [
+  {
+    id: 1,
+    name: 'Elite Gaming Masters',
+    description: 'Mastering the art of competitive gaming',
+    author: 'elon',
+    members: 1247,
+    posts: 89,
+    sessions: 12,
+    guides: 5,
+    category: 'GAMING',
+    avatar: 'https://avatar.iran.liara.run/public',
+    isVerified: true,
+    isFeatured: true,
+    color: 'from-red-600 to-red-700',
+    headerImage:
+      'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=200&fit=crop',
+  },
+  {
+    id: 2,
+    name: 'Pixel Pioneers',
+    description: 'Exploring indie games and hidden gems',
+    author: 'gamedev_guru',
+    members: 589,
+    posts: 42,
+    sessions: 8,
+    guides: 3,
+    category: 'GAMING',
+    avatar: 'https://avatar.iran.liara.run/public',
+    isVerified: false,
+    color: 'from-blue-500 to-blue-600',
+    headerImage:
+      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop',
+  },
+  {
+    id: 3,
+    name: 'Strategy Nexus',
+    description: 'Deep dives into real-time strategy and turn-based tactics',
+    author: 'tactician_x',
+    members: 912,
+    posts: 67,
+    sessions: 10,
+    guides: 7,
+    category: 'GAMING',
+    avatar: 'https://avatar.iran.liara.run/public',
+    isVerified: true,
+    color: 'from-green-600 to-green-700',
+    headerImage:
+      'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=200&fit=crop',
+  },
+  {
+    id: 4,
+    name: 'Esports Fanatics',
+    description: 'Following the latest in professional gaming tournaments',
+    author: 'esports_insider',
+    members: 2300,
+    posts: 150,
+    sessions: 20,
+    guides: 10,
+    category: 'GAMING',
+    avatar: 'https://avatar.iran.liara.run/public',
+    isVerified: true,
+    color: 'from-purple-600 to-purple-700',
+    headerImage:
+      'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=200&fit=crop',
+  },
+  {
+    id: 5,
+    name: 'Retro Game Revival',
+    description: 'Celebrating classic games from the 80s and 90s',
+    author: 'vintage_gamer',
+    members: 765,
+    posts: 55,
+    sessions: 6,
+    guides: 2,
+    category: 'GAMING',
+    avatar: 'https://avatar.iran.liara.run/public',
+    isVerified: false,
+    color: 'from-yellow-500 to-yellow-600',
+    headerImage:
+      'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&h=200&fit=crop',
+  },
+  {
+    id: 6,
+    name: 'RPG Storytellers',
+    description: 'Crafting epic tales in role-playing games',
+    author: 'lore_master',
+    members: 1050,
+    posts: 78,
+    sessions: 15,
+    guides: 8,
+    category: 'GAMING',
+    avatar: 'https://avatar.iran.liara.run/public',
+    isVerified: true,
+    color: 'from-indigo-600 to-indigo-700',
+    headerImage:
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop',
+  },
+]

@@ -16,6 +16,7 @@ import {
   AlertCircle,
 } from 'lucide-react'
 import { registerSchema, type RegisterInput } from '@/lib/validations/auth'
+import BackgroundEffects from '@/components/blocks/effects/grid-glow'
 
 export default function RegisterContent() {
   const [showPassword, setShowPassword] = useState(false)
@@ -71,12 +72,14 @@ export default function RegisterContent() {
   ]
 
   return (
-    <div className="min-h-screen hero-pattern flex items-center justify-center px-4 py-12 mt-14">
-      <div className="max-w-6xl mx-auto w-full">
+    <div className="min-h-screen flex relative items-center justify-center px-4 py-12 mt-14">
+      <BackgroundEffects className="overflow-hidden" />
+
+      <div className="max-w-6xl mx-auto w-full relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center md:items-start">
           {/* Left Side - Registration Form */}
           <div className="w-full max-w-md mx-auto lg:mx-0 order-2 lg:order-1">
-            <div className="enhanced-card rounded-3xl p-8 md:p-10">
+            <div className="enhanced-card border-radius-propublic p-8 md:p-10">
               <div className="text-center mb-8">
                 <h2 className="text-3xl font-bold mb-2">Join ProPublic</h2>
                 <p className="text-cream/70">
@@ -95,7 +98,7 @@ export default function RegisterContent() {
                     <input
                       {...register('username')}
                       type="text"
-                      className={`input-field w-full pl-12 pr-4 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none ${
+                      className={`input-field w-full pl-12 pr-4 py-4 border-radius-propublic text-cream placeholder-cream/50 focus:outline-none ${
                         errors.username
                           ? 'border-red-500 focus:border-red-500'
                           : ''
@@ -126,7 +129,7 @@ export default function RegisterContent() {
                     <input
                       {...register('email')}
                       type="email"
-                      className={`input-field w-full pl-12 pr-4 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none ${
+                      className={`input-field w-full pl-12 pr-4 py-4 border-radius-propublic text-cream placeholder-cream/50 focus:outline-none ${
                         errors.email
                           ? 'border-red-500 focus:border-red-500'
                           : ''
@@ -157,7 +160,7 @@ export default function RegisterContent() {
                     <input
                       {...register('password')}
                       type={showPassword ? 'text' : 'password'}
-                      className={`input-field w-full pl-12 pr-12 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none ${
+                      className={`input-field w-full pl-12 pr-12 py-4 border-radius-propublic text-cream placeholder-cream/50 focus:outline-none ${
                         errors.password
                           ? 'border-red-500 focus:border-red-500'
                           : ''
@@ -222,7 +225,7 @@ export default function RegisterContent() {
                     <input
                       {...register('confirmPassword')}
                       type={showConfirmPassword ? 'text' : 'password'}
-                      className={`input-field w-full pl-12 pr-12 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none ${
+                      className={`input-field w-full pl-12 pr-12 py-4 border-radius-propublic text-cream placeholder-cream/50 focus:outline-none ${
                         errors.confirmPassword
                           ? 'border-red-500 focus:border-red-500'
                           : ''
@@ -301,7 +304,7 @@ export default function RegisterContent() {
                 <button
                   type="submit"
                   disabled={isSubmitting || !isValid}
-                  className="w-full bg-gradient-to-r from-custom-primary to-custom-secondary text-cream py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  className="w-full bg-gradient-to-r from-custom-primary to-custom-secondary text-cream py-4 border-radius-propublic font-bold text-lg hover:shadow-lg transition-all glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                 >
                   {isSubmitting ? (
                     <>
@@ -332,7 +335,7 @@ export default function RegisterContent() {
                 <div className="grid grid-cols-2 gap-4">
                   <button
                     type="button"
-                    className="flex items-center justify-center space-x-2 border border-cream/20 hover:border-custom-accent text-cream/80 hover:text-custom-accent py-3 rounded-xl transition-all"
+                    className="flex items-center justify-center space-x-2 border border-cream/20 hover:border-custom-accent text-cream/80 hover:text-custom-accent py-3 border-radius-propublic transition-all"
                   >
                     <svg
                       className="w-5 h-5"
@@ -348,7 +351,7 @@ export default function RegisterContent() {
                   </button>
                   <button
                     type="button"
-                    className="flex items-center justify-center space-x-2 border border-cream/20 hover:border-custom-accent text-cream/80 hover:text-custom-accent py-3 rounded-xl transition-all"
+                    className="flex items-center justify-center space-x-2 border border-cream/20 hover:border-custom-accent text-cream/80 hover:text-custom-accent py-3 border-radius-propublic transition-all"
                   >
                     <svg
                       className="w-5 h-5"
@@ -399,7 +402,7 @@ export default function RegisterContent() {
               </h3>
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-custom-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-custom-primary/20 border-radius-propublic flex items-center justify-center flex-shrink-0">
                     <GamepadIcon className="w-6 h-6 text-custom-primary" />
                   </div>
                   <div>
@@ -411,7 +414,7 @@ export default function RegisterContent() {
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-custom-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-custom-accent/20 border-radius-propublic flex items-center justify-center flex-shrink-0">
                     <User className="w-6 h-6 text-custom-accent" />
                   </div>
                   <div>
@@ -423,7 +426,7 @@ export default function RegisterContent() {
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-custom-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-custom-secondary/20 border-radius-propublic flex items-center justify-center flex-shrink-0">
                     <Check className="w-6 h-6 text-custom-secondary" />
                   </div>
                   <div>
@@ -437,7 +440,7 @@ export default function RegisterContent() {
             </div>
 
             {/* Trust Indicators */}
-            <div className="bg-dark-custom-secondary/50 rounded-2xl p-6 border border-custom-primary/20">
+            <div className="bg-dark-custom-secondary/50 border-radius-propublic p-6 border border-custom-primary/20">
               <div className="text-center">
                 <h4 className="font-bold text-lg mb-4">
                   Trusted by gamers worldwide

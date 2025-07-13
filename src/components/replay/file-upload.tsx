@@ -33,7 +33,7 @@ export default function FileUpload({
       </h2>
       {/** biome-ignore lint/a11y/noStaticElementInteractions: <explanation> */}
       <div
-        className="glass-effect border-2 border-dashed border-custom-primary/50 rounded-2xl p-8 md:p-12 text-center hover:border-custom-primary transition-all duration-300 cursor-pointer"
+        className="glass-effect border-2 border-dashed border-custom-primary/50 border-radius-propublic p-8 md:p-12 text-center hover:border-custom-primary transition-all duration-300 cursor-pointer"
         onDragOver={handleDragOver}
         onDrop={handleDrop}
       >

@@ -27,7 +27,7 @@ export default function ReplayContent() {
         </div>
 
         {/* Main Form Container */}
-        <div className="enhanced-card rounded-3xl p-8 md:p-12">
+        <div className="enhanced-card border-radius-propublic p-8 md:p-12">
           {/* Step 1: Upload Replay */}
           <FileUpload
             uploadedFile={uploadedFile}

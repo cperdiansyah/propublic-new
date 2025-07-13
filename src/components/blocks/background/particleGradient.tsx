@@ -3,14 +3,16 @@ import type React from 'react'
 interface ParticleGradientProps {
   children?: React.ReactNode
   className?: string
+  isGeomtericBg?: boolean
 }
 const ParticleGradient: React.FC<ParticleGradientProps> = ({
   children,
   className,
+  isGeomtericBg,
 }) => {
   return (
     <section
-      className={`relative min-h-screen flex items-center justify-center overflow-hidden geometric-bg  ${className}`}
+      className={`relative min-h-screen flex items-center justify-center overflow-hidden  ${className} ${isGeomtericBg && 'geometric-bg'}`}
     >
       {/* <!-- Particle Background --> */}
       {/* <div className="particles fixed z-10"> */}
