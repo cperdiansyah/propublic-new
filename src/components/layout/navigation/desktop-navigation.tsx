@@ -12,7 +12,7 @@ const Desktopnavigation = () => {
             key={link.label}
             className="p-3 hover:text-custom-secondary transition-200s "
           >
-            <Link href={link.href} className="">
+            <Link href={link.href} className="text-xl">
               {link.label}
             </Link>
           </li>

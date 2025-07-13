@@ -1,0 +1,33 @@
+.homepage-wrapper {
+  section.hero-section {
+    @apply w-full relative bg-black;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 50%;
+      background-image: url('/images/hero-bg.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 50%;
+      background-image: url('/images/hero-bg.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      transform: scaleX(-1);
+    }
+
+    button {
+      border-radius: var(--propublic-border-radius);
+    }
+  }
+}

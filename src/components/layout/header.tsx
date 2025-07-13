@@ -7,7 +7,7 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <nav className="fixed w-full top-0 z-50 bg-dark-primary/95  backdrop-blur-sm border-b border-gray-800 py-3">
+    <nav className="fixed w-full top-0 z-50 bg-dark-primary/50  backdrop-blur-sm border-b border-gray-800 py-2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="nav-left flex items-center justify-between gap-5">
@@ -40,13 +40,13 @@ function HeaderUser() {
       <Link href="/auth/login">
         <Button
           variant="outline"
-          className=" transition-200s bg-transparent text-white hover:bg-custom-secondary-dark hover:text-white px-4 py-3 text-base font-semibold cursor-pointer"
+          className=" transition-200s bg-transparent text-white hover:bg-custom-secondary-dark hover:text-white propublic-button text-base font-semibold cursor-pointer"
         >
           Join
         </Button>
       </Link>
-      <Link href="/auth/register">
-        <Button className="bg-custom-primary text-white px-4 py-3  hover:bg-custom-secondary-dark transition-200s text-base font-semibold hover:bg-custom-primary/80 cursor-pointer">
+      <Link href="/auth/register" className="hidden md:block">
+        <Button className="bg-custom-primary text-white propublic-button  hover:bg-custom-secondary-dark transition-200s text-base font-semibold hover:bg-custom-primary/80 cursor-pointer">
           Get Started
         </Button>
       </Link>

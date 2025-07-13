@@ -19,7 +19,7 @@ const Footer = () => {
     scrollToTop()
   }
   return (
-    <footer className="bg-dark-primary text-white">
+    <footer className="bg-black text-white">
       {/* Main footer content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex justify-between flex-col md:flex-row">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
@@ -31,6 +31,7 @@ const Footer = () => {
                 width={200}
                 height={100}
                 alt="logo"
+                blurDataURL={'/images/placeholder.png'}
               />
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed capitalize">

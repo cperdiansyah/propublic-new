@@ -1,15 +1,20 @@
 'use client'
-import FeaturesSection from '@/components/home/features-section'
+import AcademiesSection from '@/components/home/academies-section'
+import BrandSection from '@/components/home/brands-section'
 import HeroSection from '@/components/home/hero-section'
-import PricingSection from '@/components/home/pricing-section'
-// import { HeroSection, HomeServices } from '@/pages/Home/home.element'
+import PricingPlan from '@/components/home/pricing-plan-section'
+import { GAMELIST, COURSES } from '@/config/exampleData'
 
 const HomePage = () => {
   return (
     <div className="homepage-wrapper ">
-      <HeroSection />
-      <FeaturesSection />
-      <PricingSection />
+      <HeroSection games={GAMELIST} />
+      {/* <FeaturesSection /> */}
+      <AcademiesSection courses={COURSES} />
+      {/* <GameSection games={GAMELIST} /> */}
+      <BrandSection />
+      {/* <PricingSection /> */}
+      <PricingPlan />
     </div>
   )
 }

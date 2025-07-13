@@ -2,7 +2,8 @@ import MobileBottomNav from '@/components/layout/navigation/mobile-navigation'
 import Footer from '@/components/layout/footer'
 import AppProviders from '@/providers/AppProviders'
 // import '@/styles/globals.css';
-import '@/styles/styles.css'
+// import '@/styles/styles.css'
+import '@/styles/styles.scss'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono, Inter } from 'next/font/google'
 
@@ -10,15 +11,6 @@ const interSans = Inter({
   variable: '--font-inter-sans',
   subsets: ['latin'],
 })
-// const geistSans = Geist({
-//   variable: '--font-geist-sans',
-//   subsets: ['latin'],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: '--font-geist-mono',
-//   subsets: ['latin'],
-// });
 
 export const metadata: Metadata = {
   title: {
