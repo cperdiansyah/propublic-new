@@ -1,17 +1,19 @@
 'use client'
+
 import {
-  CarouselNext,
-  CarouselPrevious,
-  CarouselProvider,
   InfiniteCarouselContent,
   InfiniteCarouselItem,
 } from '@/components/common/infinite-carousel'
+import { CarouselProvider } from '@/components/common/infinite-carousel/carousel-context'
+import {
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/common/infinite-carousel/carousel-controls'
 import SectionTitle from '@/components/common/section-title'
 import { BackgroundEffects } from '@/components/home/home.element'
-import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { ChevronRight, ChevronLeft, StepBack, StepForward } from 'lucide-react'
-import Link from 'next/link'
+import type { CarouselGameItem } from '@/types/home.types'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import type React from 'react'
 
 interface IGameSection {

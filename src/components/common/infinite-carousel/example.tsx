@@ -1,16 +1,20 @@
 'use client'
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import {
-  CarouselProvider,
   InfiniteCarouselContent,
   InfiniteCarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-  CarouselIndicators,
-  useCarouselContext,
 } from '@/components/common/infinite-carousel'
+import {
+  CarouselProvider,
+  useCarouselContext,
+} from '@/components/common/infinite-carousel/carousel-context'
+import {
+  CarouselIndicators,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/common/infinite-carousel/carousel-controls'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 interface Product {
   id: number

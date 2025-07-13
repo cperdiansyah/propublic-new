@@ -1,6 +1,9 @@
-export function BackgroundEffects() {
+export function BackgroundEffects({ className }: { className?: string }) {
   return (
-    <div className="absolute inset-0 top-0">
+    <div
+      className={`absolute inset-0 top-0 ${className}`}
+      id="grid-background-effect"
+    >
       {/* Base gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-red-800/10 to-black" />
 
