@@ -22,7 +22,6 @@ export function useCarouselContext() {
   return context
 }
 
-// Provider Component
 export interface CarouselProviderProps extends UseInfiniteCarouselProps {
   children: React.ReactNode
   orientation?: 'horizontal' | 'vertical'
@@ -38,8 +37,8 @@ export function CarouselProvider({
   const autoplayPlugin = React.useRef(
     Autoplay({
       delay: carousel.autoplayDelay,
-      stopOnInteraction: false, // We'll handle this manually
-      stopOnMouseEnter: false, // We'll handle this manually
+      stopOnInteraction: false,
+      stopOnMouseEnter: false,
     }),
   )
 

@@ -26,7 +26,6 @@ export function InfiniteCarouselContent({
     }),
   )
 
-  // Duplicate children for infinite effect
   const infiniteChildren = React.useMemo(() => {
     const childrenArray = React.Children.toArray(children)
     return Array.from({ length: infiniteMultiplier }, (_, i) =>
