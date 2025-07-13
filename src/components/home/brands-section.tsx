@@ -5,8 +5,8 @@ import type { Brand } from '@/types/home.types'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import SectionTitle from '@/components/common/section-title'
-import GradientBackground from '@/components/common/background/GradientBackground'
-import RadialGradient from '@/components/common/background/radialGradient'
+import GradientBackground from '@/components/blocks/background/GradientBackground'
+import RadialGradient from '@/components/blocks/background/radialGradient'
 
 const brands: Brand[] = [
   {
