@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+import type { Brand } from '@/types/home.types'
 
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'

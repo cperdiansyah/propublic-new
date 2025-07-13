@@ -4,6 +4,8 @@ import GameSlider from '@/components/common/Gameslider'
 import Marquee from '@/components/common/Marquee'
 import { BackgroundEffects } from '@/components/home/home.element'
 import { COLORS } from '@/config/const'
+import type { CarouselGameItem } from '@/types/home.types'
+
 interface IGameSection {
   games?: CarouselGameItem[]
 }
