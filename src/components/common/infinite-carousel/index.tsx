@@ -29,7 +29,7 @@ export function useCarouselContext() {
 }
 
 // Provider Component
-interface CarouselProviderProps extends UseInfiniteCarouselProps {
+export interface CarouselProviderProps extends UseInfiniteCarouselProps {
   children: React.ReactNode
   orientation?: 'horizontal' | 'vertical'
 }
@@ -121,15 +121,12 @@ export function InfiniteCarouselItem({
   customBasis,
 }: InfiniteCarouselItemProps) {
   const { visibleItems, orientation } = useCarouselContext()
-  console.log(visibleItems)
-  const basisClasses =
-    customBasis ||
-    cn(
-      'basis-full',
-      visibleItems.tablet && `sm:basis-1/${visibleItems.tablet}`,
-      visibleItems.desktop && `lg:basis-1/${visibleItems.desktop}`,
-    )
-
+  const basisClasses = cn(
+    // 'basis-full',
+    visibleItems.mobile && `basis-1/${visibleItems.mobile}`,
+    visibleItems.tablet && `md:basis-1/${visibleItems.tablet}`,
+    visibleItems.desktop && `lg:basis-1/${visibleItems.desktop}`,
+  )
   return (
     <CarouselItem
       className={cn(

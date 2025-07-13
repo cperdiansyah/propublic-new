@@ -1,12 +1,20 @@
-import Marquee from '@/components/common/Marquee'
-import { COLORS } from '@/config/const'
+'use client'
 
-export default function HeroSection() {
+import GameSlider from '@/components/common/Gameslider'
+import Marquee from '@/components/common/Marquee'
+import { BackgroundEffects } from '@/components/home/home.element'
+import { COLORS } from '@/config/const'
+interface IGameSection {
+  games?: CarouselGameItem[]
+}
+export default function HeroSection({ games }: IGameSection) {
   return (
-    <section className="bg-black pt-28 pb-20 min-h-screen flex flex-col items-center hero-section max-w-screen max-h-screen relative ">
+    <section className="bg-black pt-28 pb-20 min-h-screen flex flex-col items-center hero-section max-w-screen relative ">
+      <BackgroundEffects className="z-1 overflow-hidden" />
+
       <div className="max-w-7xl m-auto w-full z-1  px-4 ">
         <div className=" gap-12 items-center text-center">
-          <div className="space-y-8">
+          <div className="space-y-5 ">
             <div className="space-y-6 lg:w-2/3 mx-auto">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight capitalize">
                 We're changing how
@@ -21,7 +29,9 @@ export default function HeroSection() {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center ">
+            <GameSlider games={games} />
+
+            {/* <div className="flex flex-col sm:flex-row gap-4 justify-center ">
               <button
                 className="bg-gradient-to-r from-custom-primary to-custom-secondary text-cream  rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all glow text-xl propublic-button glow-pulse"
                 type="button"
@@ -43,7 +53,7 @@ export default function HeroSection() {
                   1,200+ Pro Coaches
                 </span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

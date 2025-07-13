@@ -10,10 +10,10 @@ import { GAMELIST } from '@/config/exampleData'
 const HomePage = () => {
   return (
     <div className="homepage-wrapper ">
-      <HeroSection />
+      <HeroSection games={GAMELIST} />
       {/* <FeaturesSection /> */}
       <AcademiesSection />
-      <GameSection games={GAMELIST} />
+      {/* <GameSection games={GAMELIST} /> */}
       <BrandSection />
       {/* <PricingSection /> */}
       <PricingPlan />

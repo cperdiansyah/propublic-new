@@ -27,4 +27,11 @@ export const GAMELIST: CarouselGameItem[] = [
     path: '/games/dota-2',
     imageSrc: '/images/game-covers/dota-2.jpg',
   },
+  {
+    id: 5,
+    name: 'EA FC',
+    slug: 'eafc',
+    path: '/games/eafc',
+    imageSrc: '/images/game-covers/eafc.jpg',
+  },
 ] as const
