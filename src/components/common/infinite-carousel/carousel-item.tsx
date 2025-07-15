@@ -1,6 +1,6 @@
 'use client'
 
-import type * as React from 'react'
+import * as React from 'react'
 import { CarouselItem } from '@/components/ui/carousel'
 import { useCarouselContext } from './carousel-context'
 import { cn } from '@/lib/utils'
@@ -18,20 +18,22 @@ export function InfiniteCarouselItem({
 }: InfiniteCarouselItemProps) {
   const { visibleItems, orientation } = useCarouselContext()
 
-  const basisClasses =
-    customBasis ||
-    cn(
-      'basis-full',
-      visibleItems.tablet && `sm:basis-1/${visibleItems.tablet}`,
-      visibleItems.desktop && `lg:basis-1/${visibleItems.desktop}`,
-      visibleItems.desktopLarge && `xl:basis-1/${visibleItems.desktopLarge}`,
-    )
+  const basisClasses = React.useMemo(
+    () =>
+      cn(
+        visibleItems.mobile && `basis-1/${visibleItems.mobile}`,
+        visibleItems.tablet && `md:basis-1/${visibleItems.tablet}`,
+        visibleItems.desktop && `lg:basis-1/${visibleItems.desktop}`,
+        visibleItems.desktopLarge && `xl:basis-1/${visibleItems.desktopLarge}`,
+      ),
+    [visibleItems],
+  )
 
   return (
     <CarouselItem
       className={cn(
         orientation === 'vertical' ? 'pt-2' : 'pl-2 md:pl-4',
-        basisClasses,
+        customBasis || basisClasses,
         className,
       )}
     >

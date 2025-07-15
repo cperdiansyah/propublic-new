@@ -40,6 +40,41 @@ export const GAMELIST: CarouselGameItem[] = [
     path: '/games/eafc',
     imageSrc: '/images/game-covers/eafc.jpg',
   },
+  {
+    id: 6,
+    name: 'League of Legends',
+    slug: 'league-of-legends',
+    path: '/games/league-of-legends',
+    imageSrc: '/images/game-covers/league-of-legends.jpg',
+  },
+  {
+    id: 7,
+    name: 'Counter-Strike 2',
+    slug: 'counter-strike-2',
+    path: '/games/counter-strike-2',
+    imageSrc: '/images/game-covers/counter-strike-2.jpg',
+  },
+  {
+    id: 8,
+    name: 'Genshin Impact',
+    slug: 'genshin-impact',
+    path: '/games/genshin-impact',
+    imageSrc: '/images/game-covers/genshin-impact.jpg',
+  },
+  {
+    id: 9,
+    name: 'PUBG: Battlegrounds',
+    slug: 'pubg-battlegrounds',
+    path: '/games/pubg-battlegrounds',
+    imageSrc: '/images/game-covers/pubg-battlegrounds.jpg',
+  },
+  {
+    id: 10,
+    name: 'Fortnite',
+    slug: 'fortnite',
+    path: '/games/fortnite',
+    imageSrc: '/images/game-covers/fortnite.jpg',
+  },
 ] as const
 
 export const COURSES: ICourseItem[] = [

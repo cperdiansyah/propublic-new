@@ -1,9 +1,5 @@
 'use client'
 
-import {
-  InfiniteCarouselContent,
-  InfiniteCarouselItem,
-} from '@/components/common/infinite-carousel'
 import { CarouselProvider } from '@/components/common/infinite-carousel/carousel-context'
 import BackgroundEffects from '@/components/blocks/effects/grid-glow'
 
@@ -16,6 +12,8 @@ import { Card, CardContent } from '@/components/ui/card'
 import type { CarouselGameItem } from '@/types/home.types'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import type React from 'react'
+import { InfiniteCarouselContent } from '@/components/common/infinite-carousel/carousel-content'
+import { InfiniteCarouselItem } from '@/components/common/infinite-carousel/carousel-item'
 
 interface IGameSection {
   games: CarouselGameItem[]
