@@ -1,170 +1,274 @@
+// src/pages/Game/index.tsx
 'use client'
 
-import { useState, useEffect } from 'react'
-import { Search } from 'lucide-react'
-import PopularGames from '@/components/pages/game/popular-games'
-import GameCard from '@/components/pages/game/game-card'
-// import GameCard from './game-card'
-// import PopularGames from './popular-games'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Plus, Search } from 'lucide-react'
+import { useCallback, useState } from 'react'
+import { useForm } from 'react-hook-form'
 
-const gamesData = [
-  { name: 'Valorant', icon: '🎮', coaches: '2,500+', category: 'FPS' },
-  { name: 'League of Legends', icon: '⚔️', coaches: '3,200+', category: 'MOBA' },
-  { name: 'Rocket League', icon: '🚗', coaches: '1,800+', category: 'Sports' },
-  { name: 'CS2', icon: '🎯', coaches: '2,100+', category: 'FPS' },
-  { name: 'Tekken 8', icon: '🥊', coaches: '890+', category: 'Fighting' },
-  {
-    name: 'Fortnite',
-    icon: '🏰',
-    coaches: '1,500+',
-    category: 'Battle Royale',
-  },
-  {
-    name: 'Apex Legends',
-    icon: '⚡',
-    coaches: '1,200+',
-    category: 'Battle Royale',
-  },
-  { name: 'Overwatch 2', icon: '🌟', coaches: '1,600+', category: 'FPS' },
-  { name: 'Call of Duty', icon: '💀', coaches: '2,000+', category: 'FPS' },
-  { name: 'Dota 2', icon: '🛡️', coaches: '1,400+', category: 'MOBA' },
-  {
-    name: 'Street Fighter 6',
-    icon: '👊',
-    coaches: '750+',
-    category: 'Fighting',
-  },
-  {
-    name: 'Teamfight Tactics',
-    icon: '♟️',
-    coaches: '600+',
-    category: 'Auto Battler',
-  },
-]
+// shadcn/ui components
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
 
+// Existing components
+import ComunitiesCard from '@/components/blocks/community/community-card'
+import {
+  useAvailableGames,
+  useFilteredCommunities,
+  useSavedGames,
+} from '@/components/pages/game/hooks'
+import type { SavedGame, SearchGameForm } from '@/types/game.types'
+import type { CarouselGameItem, TypeCommunityItem } from '@/types/home.types'
+import { searchGameSchema } from '@/validation/games'
+import { MyGameCard } from '@/components/pages/game/game-card'
+import { MyGamesSection } from '@/components/pages/game/my-games-section'
+
+// Custom Hooks
+// Main Component
 export default function GameContent() {
-  const [currentPage, setCurrentPage] = useState(1)
-  const [displayedGames, setDisplayedGames] = useState<typeof gamesData>([])
-  const [loading, setLoading] = useState(false)
-  const [activeFilter, setActiveFilter] = useState('All Games')
+  const { savedGames, addGame, removeGame } = useSavedGames()
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const gamesPerPage = 6
-  const filters = ['All Games', 'FPS', 'MOBA', 'Battle Royale', 'Fighting']
+  // Form for search functionality
+  const searchForm = useForm<SearchGameForm>({
+    resolver: zodResolver(searchGameSchema),
+    defaultValues: {
+      searchTerm: '',
+    },
+  })
 
-  useEffect(() => {
-    loadGames()
-  }, [])
+  const searchTerm = searchForm.watch('searchTerm')
+  const filteredCommunities = useFilteredCommunities(savedGames)
+  const availableGames = useAvailableGames(savedGames, searchTerm)
 
-  const loadGames = () => {
-    const startIndex = (currentPage - 1) * gamesPerPage
-    const endIndex = startIndex + gamesPerPage
-    const newGames = gamesData.slice(startIndex, endIndex)
+  const handleAddGame = useCallback(
+    (game: CarouselGameItem) => {
+      const success = addGame(game)
+      if (success) {
+        setIsModalOpen(false)
+        searchForm.reset()
+      }
+    },
+    [addGame, searchForm],
+  )
 
-    setDisplayedGames((prev) => [...prev, ...newGames])
-    setCurrentPage((prev) => prev + 1)
-  }
+  const handleModalClose = useCallback(() => {
+    setIsModalOpen(false)
+    searchForm.reset()
+  }, [searchForm])
 
-  const loadMoreGames = () => {
-    if (loading) return
+  return (
+    <div className="pt-28 pb-20 px-4 min-h-screen bg-black">
+      <div className="max-w-7xl mx-auto">
+        <MyGamesSection
+          savedGames={savedGames}
+          onRemoveGame={removeGame}
+          onOpenModal={() => setIsModalOpen(true)}
+        />
 
-    setLoading(true)
-    setTimeout(() => {
-      loadGames()
-      setLoading(false)
-    }, 1000)
+        <CommunitiesSection
+          communities={filteredCommunities}
+          onOpenModal={() => setIsModalOpen(true)}
+        />
+
+        <AddGameModal
+          isOpen={isModalOpen}
+          onClose={handleModalClose}
+          availableGames={availableGames}
+          searchForm={searchForm}
+          onAddGame={handleAddGame}
+        />
+      </div>
+    </div>
+  )
+}
+
+interface CommunitiesSectionProps {
+  communities: TypeCommunityItem[]
+  onOpenModal: () => void
+}
+
+function CommunitiesSection({
+  communities,
+  onOpenModal,
+}: CommunitiesSectionProps) {
+  if (communities.length === 0) {
+    return <EmptyCommunitiesState onOpenModal={onOpenModal} />
   }
 
   return (
-    <div className="pt-28 pb-20 px-4 min-h-screen">
-      <div className="max-w-7xl mx-auto">
-        {/* Search Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Find your <span className="gradient-text">game</span>
-          </h1>
-          <p className="text-xl text-cream/70 max-w-2xl mx-auto">
-            Discover communities, sessions, and events for your favorite games
+    <section>
+      <div className="flex items-center justify-between mb-8">
+        <h2 className="text-3xl font-bold text-white flex items-center">
+          <span className="mr-3">👥</span>
+          Related Communities
+          <Badge variant="secondary" className="ml-3">
+            {communities.length}
+          </Badge>
+        </h2>
+      </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {communities.map((community, index) => (
+          <ComunitiesCard
+            key={community.id}
+            community={community}
+            index={index}
+          />
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// Empty Communities State Component
+interface EmptyCommunitiesStateProps {
+  onOpenModal: () => void
+}
+
+function EmptyCommunitiesState({ onOpenModal }: EmptyCommunitiesStateProps) {
+  return (
+    <section>
+      <h2 className="text-3xl font-bold text-white flex items-center mb-8">
+        <span className="mr-3">👥</span>
+        Related Communities
+      </h2>
+
+      <Card className="border-dashed border-2 border-gray-600">
+        <CardContent className="text-center py-16">
+          <div className="text-6xl mb-4">🎯</div>
+          <h3 className="text-2xl font-bold text-white mb-2">
+            No Communities Yet
+          </h3>
+          <p className="text-cream/70 mb-6">
+            Add some games to discover related communities
           </p>
-        </div>
+          <Button
+            onClick={onOpenModal}
+            className="bg-gradient-to-r from-custom-primary to-custom-secondary hover:shadow-lg glow"
+          >
+            Add Your First Game
+          </Button>
+        </CardContent>
+      </Card>
+    </section>
+  )
+}
 
-        {/* Search and Filters */}
-        <div className="bg-dark-secondary/50 rounded-3xl p-8 mb-12">
-          <div className="flex flex-col lg:flex-row gap-6">
-            <div className="flex-1">
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-cream/40" />
-                <input
-                  type="text"
-                  placeholder="Search games, coaches, or events..."
-                  className="w-full pl-12 pr-4 py-4 rounded-xl search-input text-cream placeholder-cream/40 focus:outline-none"
-                />
-              </div>
-            </div>
-            <div className="flex gap-3 flex-wrap">
-              {filters.map((filter) => (
-                <button
-                  key={filter}
-                  onClick={() => setActiveFilter(filter)}
-                  className={`filter-btn px-6 py-3 rounded-xl text-cream/80 font-medium ${
-                    activeFilter === filter ? 'active' : ''
-                  }`}
-                  type="button"
-                >
-                  {filter}
-                </button>
-              ))}
-            </div>
+// Add Game Modal Component
+interface AddGameModalProps {
+  isOpen: boolean
+  onClose: () => void
+  availableGames: CarouselGameItem[]
+  searchForm: any
+  onAddGame: (game: CarouselGameItem) => void
+}
+
+function AddGameModal({
+  isOpen,
+  onClose,
+  availableGames,
+  searchForm,
+  onAddGame,
+}: AddGameModalProps) {
+  const {
+    register,
+    formState: { errors },
+  } = searchForm
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="max-w-4xl max-h-[80vh] bg-dark-secondary/90 backdrop-blur-sm border-custom-primary/30">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-bold text-white">
+            Add New Game
+          </DialogTitle>
+          <DialogDescription className="text-cream/70">
+            Search and add games to your collection
+          </DialogDescription>
+        </DialogHeader>
+
+        <div className="space-y-6">
+          {/* Search Input */}
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-cream/40" />
+            <Input
+              {...register('searchTerm')}
+              placeholder="Search games..."
+              className="pl-10 search-input"
+              autoFocus
+            />
+            {errors.searchTerm && (
+              <p className="text-red-400 text-sm mt-1">
+                {errors.searchTerm.message}
+              </p>
+            )}
           </div>
-        </div>
 
-        {/* Popular Games */}
-        <PopularGames />
-
-        {/* All Games Section */}
-        <section>
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold">All Games</h2>
-            <span className="text-cream/60">
-              Showing 1-{displayedGames.length} of {gamesData.length}+ games
-            </span>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {displayedGames.map((game, index) => (
-              <GameCard key={`${game.name}-${index}`} game={game} />
+          {/* Games Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 overflow-y-auto max-h-96">
+            {availableGames.map((game) => (
+              <GameOption key={game.id} game={game} onSelect={onAddGame} />
             ))}
           </div>
 
-          {loading && (
-            <div className="text-center py-12">
-              <div className="inline-flex items-center space-x-2">
-                <div className="w-4 h-4 bg-custom-primary rounded-full animate-pulse"></div>
-                <div
-                  className="w-4 h-4 bg-accent rounded-full animate-pulse"
-                  style={{ animationDelay: '0.2s' }}
-                ></div>
-                <div
-                  className="w-4 h-4 bg-secondary rounded-full animate-pulse"
-                  style={{ animationDelay: '0.4s' }}
-                ></div>
-              </div>
-              <p className="text-cream/60 mt-4">Loading more games...</p>
-            </div>
+          {availableGames.length === 0 && (
+            <Card className="border-dashed">
+              <CardContent className="text-center py-8">
+                <div className="text-4xl mb-4">🔍</div>
+                <p className="text-cream/70">
+                  {searchForm.watch('searchTerm')
+                    ? `No games found matching "${searchForm.watch('searchTerm')}"`
+                    : 'All available games have been added'}
+                </p>
+              </CardContent>
+            </Card>
           )}
+        </div>
+      </DialogContent>
+    </Dialog>
+  )
+}
 
-          {displayedGames.length < gamesData.length && !loading && (
-            <div className="text-center mt-12">
-              <button
-                onClick={loadMoreGames}
-                className="border border-accent hover:bg-accent hover:text-dark-primary text-accent px-8 py-4 rounded-xl font-semibold transition-all"
-                type="button"
-              >
-                Load More Games
-              </button>
-            </div>
-          )}
-        </section>
-      </div>
-    </div>
+// Game Option Component
+interface GameOptionProps {
+  game: CarouselGameItem
+  onSelect: (game: CarouselGameItem) => void
+}
+
+function GameOption({ game, onSelect }: GameOptionProps) {
+  const handleSelect = useCallback(() => {
+    onSelect(game)
+  }, [game, onSelect])
+
+  return (
+    <Card
+      onClick={handleSelect}
+      className="cursor-pointer border-2 border-transparent hover:border-custom-primary transition-all group overflow-hidden"
+    >
+      <CardContent className="p-0">
+        <div className="aspect-[9/16] relative">
+          <div
+            className="w-full h-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+            style={{
+              backgroundImage: `url(${game.imageSrc || `/placeholder.svg?height=320&width=280&text=${encodeURIComponent(game.name)}`})`,
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-3 text-white">
+            <h4 className="font-bold text-sm truncate">{game.name}</h4>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   )
 }

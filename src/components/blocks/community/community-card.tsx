@@ -90,32 +90,6 @@ const CommunitiesCard = ({
               </p>
             </div>
 
-            {/* Stats */}
-            {/* <div className="grid grid-cols-2 gap-4 mb-6">
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-1 text-red-400 mb-1">
-                <Users size={14} />
-                <span className="text-xl font-bold text-white">
-                  {community.members}
-                </span>
-              </div>
-              <span className="text-gray-400 text-xs uppercase tracking-wider">
-                Members
-              </span>
-            </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-1 text-yellow-400 mb-1">
-                <MessageSquare size={14} />
-                <span className="text-xl font-bold text-white">
-                  {community.posts}
-                </span>
-              </div>
-              <span className="text-gray-400 text-xs uppercase tracking-wider">
-                Posts
-              </span>
-            </div>
-          </div> */}
-
             {/* Additional Stats */}
             <div className="flex justify-between items-center text-base text-gray-400 mb-3">
               <div className="flex items-center gap-1">
