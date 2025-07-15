@@ -1,5 +1,8 @@
+'use client'
+
 import type { TypeCommunityItem } from '@/types/home.types'
 import { ArrowRight, Calendar, FileText } from 'lucide-react'
+import Image from 'next/image'
 
 const ComunitiesCard = ({
   community,
@@ -11,7 +14,7 @@ const ComunitiesCard = ({
   return (
     <div
       key={community.id}
-      className="group relative bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm border border-red-600/20 rounded-2xl  hover:border-red-500/40 transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 w-90 flex-shrink-0 border-radius-propublic   "
+      className="group relative bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm border border-white rounded-2xl  hover:border-red-500/40 transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 w-90 flex-shrink-0 border-radius-propublic   "
       style={{
         animationDelay: `${index * 200}ms`,
         animation: 'fadeInUp 0.8s ease-out forwards',
@@ -20,15 +23,16 @@ const ComunitiesCard = ({
       <div className="content-wrapper relative ">
         {/* Bg image header */}
         <div className="image-header-wrapper relative overflow-hidden">
-          <img
-            src={community.headerImage}
+          <Image
+            src={community.headerImage || '/placeholder.png'}
             alt={community.name}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            width={400}
+            height={200}
+            blurDataURL={community.headerImage || '/placeholder.png'}
           />
-
-          {/* Gradient Overlay */}
+          {/* Gradient Overlay */}{' '}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent  group-hover:scale-125 transition-transform duration-700"></div>
-
           {/* Featured Badge */}
           {community.isFeatured && (
             <div className="absolute top-3 left-3">
@@ -48,6 +52,8 @@ const ComunitiesCard = ({
               src={`${community.avatar}/${community.id}`}
               alt={community.name}
               className="  "
+              width={56}
+              height={56}
             />
           </div>
         </div>

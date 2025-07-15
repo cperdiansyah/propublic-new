@@ -37,7 +37,7 @@ const AcademySlider = ({
       itemCount={academies.length}
       autoplay={autoPlay}
       autoplayDelay={autoplayDelay}
-      visibleItems={{ mobile: 2, tablet: 4 }}
+      visibleItems={{ mobile: 1, tablet: 4 }}
     >
       <div className={`carousel-container ${className}`}>
         {/* Controls */}

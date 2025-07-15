@@ -333,7 +333,7 @@ export default function ForgotPasswordContent() {
                 <button
                   type="submit"
                   disabled={isSubmitting || !isValid}
-                  className="w-full bg-gradient-to-r from-custom-primary to-custom-secondary text-cream py-4 border-radius-propublic font-bold text-lg hover:shadow-lg transition-all glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  className="w-full bg-gradient-to-r from-custom-primary to-custom-secondary text-cream py-4 border-radius-propublic font-bold text-lg hover:shadow-lg transition-all glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2  propublic-button"
                 >
                   {isSubmitting ? (
                     <>
