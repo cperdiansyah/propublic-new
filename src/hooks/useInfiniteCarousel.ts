@@ -11,6 +11,7 @@ export interface UseInfiniteCarouselProps {
     mobile?: number
     tablet?: number
     desktop?: number
+    desktopExtraLarge?: number
   }
 }
 
@@ -67,7 +68,6 @@ export function useInfiniteCarousel({
     },
     [api],
   )
-
   return {
     api,
     setApi,

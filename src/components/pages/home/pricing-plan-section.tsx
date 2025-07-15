@@ -60,7 +60,7 @@ export default function PricingPlan() {
   }
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
+    <div className="min-h-screen lg:min-h-fit py-24 lg:py-0 bg-black relative overflow-hidden">
       {/* Hexagonal BG */}
       <AnimatedBackground />
       <div className="relative z-10 max-w-7xl mx-auto p-4 md:p-8">

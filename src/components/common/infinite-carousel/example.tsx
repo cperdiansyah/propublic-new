@@ -1,9 +1,6 @@
 'use client'
 
-import {
-  InfiniteCarouselContent,
-  InfiniteCarouselItem,
-} from '@/components/common/infinite-carousel'
+import { InfiniteCarouselContent } from '@/components/common/infinite-carousel/carousel-content'
 import {
   CarouselProvider,
   useCarouselContext,
@@ -13,6 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/common/infinite-carousel/carousel-controls'
+import { InfiniteCarouselItem } from '@/components/common/infinite-carousel/carousel-item'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 

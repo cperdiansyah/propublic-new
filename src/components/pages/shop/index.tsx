@@ -5,12 +5,12 @@ import { Crown, ShoppingBag, Sparkles, Star, Zap } from 'lucide-react'
 
 export default function ShopContent() {
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden pt-20 md:pt-0">
+    <div className="min-h-screen lg:min-h-fit bg-black relative overflow-hidden pt-20 md:pt-0">
       <RadialGradient
         x={70}
         y={50}
         primaryOpacity={0.15}
-        className="min-h-screen relative"
+        className="min-h-screen lg:min-h-fit relative"
       >
         {/* Enhanced Animated Background Elements */}
         <div className="absolute inset-0 opacity-20">

@@ -15,7 +15,7 @@ interface IAcademiesSection {
 
 const AcademiesSection: React.FC<IAcademiesSection> = ({ courses }) => {
   return (
-    <ParticleGradient className="bg-black ">
+    <ParticleGradient className="bg-black min-h-screen lg:min-h-fit py-24 lg:py-0 ">
       {/* Animated Background */}
       <div className="absolute inset-0">
         {/* Gradient overlay */}
@@ -31,7 +31,9 @@ const AcademiesSection: React.FC<IAcademiesSection> = ({ courses }) => {
           title={
             <>
               Top Popular{' '}
-              <span className="section-title-underline">Academies!</span>
+              <span className="section-title-underline font-teko">
+                Academies!
+              </span>
             </>
           }
           withButton

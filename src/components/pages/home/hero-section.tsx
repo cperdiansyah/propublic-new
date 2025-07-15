@@ -11,19 +11,19 @@ interface IGameSection {
 }
 export default function HeroSection({ games }: IGameSection) {
   return (
-    <section className="bg-black pt-28 pb-20 min-h-screen flex flex-col items-center hero-section max-w-screen relative ">
+    <section className="bg-black flex flex-col items-center hero-section max-w-screen min-h-screen lg:min-h-fit py-32 relative ">
       <BackgroundEffects className="z-1 overflow-hidden" />
 
       <div className="max-w-7xl m-auto w-full z-1  px-4 ">
         <div className=" gap-12 items-center text-center">
           <div className="space-y-5 ">
             <div className="space-y-6 lg:w-2/3 mx-auto">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight capitalize">
+              <h1 className="text-5xl md:text-6xl lg:text-6xl font-black leading-tight capitalize">
                 We're changing how
                 <span className="gradient-text"> gaming communities</span> are
                 built
               </h1>
-              <p className="text-2xl md:text-2xl text-cream/80 leading-relaxed">
+              <p className="text-lg md:text-lg text-cream/80 leading-relaxed">
                 {/* Connect with the best players, learn from pros, and build
                 lasting relationships in the ultimate gaming community platform. */}
                 The all-in-one platform for Southeast Asia’s gamers and coaches
@@ -32,30 +32,6 @@ export default function HeroSection({ games }: IGameSection) {
             </div>
 
             <GameSlider games={games} />
-
-            {/* <div className="flex flex-col sm:flex-row gap-4 justify-center ">
-              <button
-                className="bg-gradient-to-r from-custom-primary to-custom-secondary text-cream  rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all glow text-xl propublic-button glow-pulse"
-                type="button"
-              >
-                Join Community
-              </button>
-            </div>
-
-            <div className="flex items-center justify-center  space-x-8 pt-4">
-              <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-custom-accent rounded-full animate-pulse"></div>
-                <span className="text-cream/60 font-medium text-lg">
-                  28,000+ Active Gamers
-                </span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-custom-primary rounded-full animate-pulse"></div>
-                <span className="text-cream/60 font-medium text-lg">
-                  1,200+ Pro Coaches
-                </span>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

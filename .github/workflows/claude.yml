@@ -1,0 +1,95 @@
+name: Claude PR Assistant
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  issue_comment:
+    types: [created]
+  issues:
+    types: [opened]
+
+  # Trigger for monthly vulnerability scans (cron format)
+  schedule:
+    # Runs at 00:00 UTC on the 1st of every month (9:00 AM JST)
+    - cron: "0 0 1 * *"
+
+jobs:
+  # --- Job 1: Job for Automatic Pull Request Reviews ---
+  auto-pr-review:
+    # This job only runs when a pull request is created or updated
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      id-token: write # Added in case Claude Code Action uses OIDC authentication
+    steps:
+      - name: Add auto review comment as user
+        uses: actions/github-script@v7
+        with:
+          # Use a user's PAT here to comment as a human, not a bot
+          github-token: ${{ secrets.USER_PAT }}
+          script: |
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '@claude Please review this pull request.'
+            });
+
+  # --- Job 2: Job for Automatically Creating a Vulnerability Scan Issue ---
+  auto-vulnerability-scan:
+    # This job only runs on a schedule
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      id-token: write
+    steps:
+      - name: Create vulnerability scan issue as user
+        uses: actions/github-script@v7
+        with:
+          # Also use a user's PAT to create the issue as a human
+          github-token: ${{ secrets.USER_PAT }}
+          script: |
+            const now = new Date();
+            const jstTime = now.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `【Automatic】Monthly Vulnerability Scan Report (${now.getFullYear()}/${now.getMonth() + 1})`,
+              body: `@claude Please run the scheduled vulnerability scan.\n\n## Execution Time\n${jstTime}\n\nPlease follow the "Vulnerability Scan Guidelines" in CLAUDE.md for detailed scan criteria and output format.\nAppend the scan results as a comment to this issue.`,
+              labels: ['security', 'vulnerability-scan', 'automated']
+            });
+
+  # --- Job 3: Job to Trigger Claude in Response to @claude Mentions ---
+  claude-code-action:
+    # Runs when a comment or issue containing "@claude" is created
+    if: |
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
+      (github.event_name == 'issues' && contains(github.event.issue.body, '@claude'))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch only the latest code, not the entire history, for speed
+          fetch-depth: 1
+
+      - name: Run Claude PR Action
+        uses: anthropics/claude-code-action@beta
+        with:
+          # Read the Anthropic API key from secrets
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Set a longer timeout to avoid issues with large codebases
+          timeout_minutes: "60"
+        id: claude-action

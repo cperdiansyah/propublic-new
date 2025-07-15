@@ -10,13 +10,15 @@ const TopComunitiesSection: React.FC<ITopComunitiesSection> = ({
   communities,
 }) => {
   return (
-    <div className="bg-black relative geometric-bg pt-20 pb-5">
+    <section className="bg-black relative geometric-bg pt-20 pb-5 min-h-screen lg:min-h-fit py-24 lg:py-0">
       <div className="pt-44 px-5 z-10 relative">
         <SectionTitle
           title={
             <>
               Top Popular{' '}
-              <span className="section-title-underline">Comunities!</span>
+              <span className="section-title-underline font-teko">
+                Comunities!
+              </span>
             </>
           }
           withButton
@@ -28,7 +30,7 @@ const TopComunitiesSection: React.FC<ITopComunitiesSection> = ({
         {/* List of Communities */}
         <ComunitySlider communities={communities} />
       </div>
-    </div>
+    </section>
   )
 }
 export default TopComunitiesSection

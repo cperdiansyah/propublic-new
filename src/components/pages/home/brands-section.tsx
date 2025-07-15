@@ -1,12 +1,11 @@
 'use client'
-import React, { useState } from 'react'
 import type { Brand } from '@/types/home.types'
+import { useState } from 'react'
 
-import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
-import SectionTitle from '@/components/common/section-title'
-import GradientBackground from '@/components/blocks/background/GradientBackground'
 import RadialGradient from '@/components/blocks/background/radialGradient'
+import SectionTitle from '@/components/common/section-title'
+import { AnimatePresence, motion } from 'framer-motion'
+import Image from 'next/image'
 
 const brands: Brand[] = [
   {
@@ -104,20 +103,22 @@ const BrandSection = () => {
       : brands.filter((brand) => brand.category === selectedCategory)
 
   return (
-    <section className="bg-black text-white px-4 ">
+    <section className="bg-black text-white px-4 min-h-screen md:min-h-[200px]  2xl:min-h-fit ">
       <RadialGradient
         x={70}
         y={50}
         primaryOpacity={0.2}
-        className=" py-16 min-h-screen relative"
+        className=" py-16 relative"
       >
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <SectionTitle
             title={
               <>
-                <span className="section-title-underline">BRANDS</span> WE'VE
-                WORKED WITH
+                <span className="section-title-underline font-teko">
+                  BRANDS
+                </span>{' '}
+                WE'VE WORKED WITH
               </>
             }
             center
@@ -150,7 +151,7 @@ const BrandSection = () => {
               {filteredBrands.map((brand, index) => (
                 <motion.div
                   key={`${selectedCategory}-${brand.id}`}
-                  className="bg-gray-500/50 border border-gray-400 rounded backdrop-blur-sm p-6 flex flex-col items-center  md:min-h-[200px] hover:bg-gray-800 transition-colors duration-300 group justify-between flex-1/3 md:flex-none"
+                  className="bg-gray-500/50 border border-gray-400 rounded backdrop-blur-sm p-6 flex flex-col items-center  hover:bg-gray-800 transition-colors duration-300 group justify-between flex-1/3 md:flex-none"
                   variants={itemVariants}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{

@@ -1,5 +1,4 @@
-import ShopContent from '@/pages/Shop'
-import React from 'react'
+import ShopContent from '@/components/pages/shop'
 
 const page = () => {
   return <ShopContent />
