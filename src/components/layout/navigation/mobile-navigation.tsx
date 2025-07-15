@@ -46,9 +46,9 @@ function NavigationItem({
     <Link
       key={href}
       href={href}
-      className={`relative flex flex-col items-center justify-center p-4 w-10 h-10 rounded-lg transition-all duration-200 ${
+      className={`relative flex flex-col items-center justify-center p-4 w-10 h-10 !rounded-lg transition-all duration-200 ${
         isActive
-          ? 'bg-blue-100 text-custom-primary'
+          ? 'bg-blue-100 text-custom-primary '
           : 'text-white hover:text-gray-700 hover:bg-gray-50'
       }`}
     >

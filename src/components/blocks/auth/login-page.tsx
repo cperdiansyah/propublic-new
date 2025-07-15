@@ -16,6 +16,7 @@ import {
   AlertCircle,
 } from 'lucide-react'
 import { loginSchema, type LoginInput } from '@/lib/validations/auth'
+import BackgroundEffects from '@/components/blocks/effects/grid-glow'
 
 export default function LoginContent() {
   const [showPassword, setShowPassword] = useState(false)
@@ -58,8 +59,10 @@ export default function LoginContent() {
   }
 
   return (
-    <div className="min-h-screen hero-pattern flex items-center justify-center px-4 py-12 mt-14">
-      <div className="max-w-6xl mx-auto w-full">
+    <div className="min-h-screen relative flex items-center justify-center px-4 py-12 mt-14">
+      <BackgroundEffects className="overflow-hidden" />
+
+      <div className="max-w-6xl mx-auto w-full relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Branding */}
           <div className="hidden lg:block space-y-8">
@@ -79,21 +82,21 @@ export default function LoginContent() {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-6">
               <div className="text-center">
-                <div className="w-12 h-12 bg-custom-primary/20 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <div className="w-12 h-12 bg-custom-primary/20 border-radius-propublic flex items-center justify-center mx-auto mb-3">
                   <Users className="w-6 h-6 text-custom-primary" />
                 </div>
                 <div className="text-2xl font-bold gradient-text">28K+</div>
                 <div className="text-cream/60 text-sm">Active Gamers</div>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 bg-custom-accent/20 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <div className="w-12 h-12 bg-custom-accent/20 border-radius-propublic flex items-center justify-center mx-auto mb-3">
                   <Trophy className="w-6 h-6 text-custom-accent" />
                 </div>
                 <div className="text-2xl font-bold gradient-text">1.2K+</div>
                 <div className="text-cream/60 text-sm">Pro Coaches</div>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 bg-custom-secondary/20 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <div className="w-12 h-12 bg-custom-secondary/20 border-radius-propublic flex items-center justify-center mx-auto mb-3">
                   <GamepadIcon className="w-6 h-6 text-custom-secondary" />
                 </div>
                 <div className="text-2xl font-bold gradient-text">50+</div>
@@ -102,7 +105,7 @@ export default function LoginContent() {
             </div>
 
             {/* Testimonial */}
-            <div className="testimonial-card rounded-2xl p-6 border border-custom-primary/20">
+            <div className="testimonial-card border-radius-propublic p-6 border border-custom-primary/20">
               <div className="flex items-center space-x-3 mb-4">
                 <div className="w-12 h-12 bg-custom-accent rounded-full flex items-center justify-center">
                   <span className="text-dark-primary font-bold">🏆</span>
@@ -120,8 +123,8 @@ export default function LoginContent() {
           </div>
 
           {/* Right Side - Login Form */}
-          <div className="w-full max-w-md mx-auto lg:mx-0">
-            <div className="enhanced-card rounded-3xl p-8 md:p-10">
+          <div className="w-full max-w-md mx-auto lg:mx-0 border-radius-propublic">
+            <div className="enhanced-card border-radius-propublic p-8 md:p-10">
               <div className="text-center mb-8">
                 <h2 className="text-3xl font-bold mb-2">Welcome Back</h2>
                 <p className="text-cream/70">
@@ -140,7 +143,7 @@ export default function LoginContent() {
                     <input
                       {...register('email')}
                       type="email"
-                      className={`input-field w-full pl-12 pr-4 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none ${
+                      className={`input-field w-full pl-12 pr-4 py-4  text-cream placeholder-cream/50 focus:outline-none border-radius-propublic ${
                         errors.email
                           ? 'border-red-500 focus:border-red-500'
                           : ''
@@ -171,7 +174,7 @@ export default function LoginContent() {
                     <input
                       {...register('password')}
                       type={showPassword ? 'text' : 'password'}
-                      className={`input-field w-full pl-12 pr-12 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none ${
+                      className={`input-field w-full pl-12 pr-12 py-4 border-radius-propublic text-cream placeholder-cream/50 focus:outline-none ${
                         errors.password
                           ? 'border-red-500 focus:border-red-500'
                           : ''
@@ -220,7 +223,7 @@ export default function LoginContent() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-custom-primary to-custom-secondary text-cream py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  className="w-full bg-gradient-to-r from-custom-primary to-custom-secondary text-cream  border-radius-propublic font-bold text-lg hover:shadow-lg transition-all glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 propublic-button"
                 >
                   {isSubmitting ? (
                     <>
@@ -251,7 +254,7 @@ export default function LoginContent() {
                 <div className="grid grid-cols-2 gap-4">
                   <button
                     type="button"
-                    className="flex items-center justify-center space-x-2 border border-cream/20 hover:border-custom-accent text-cream/80 hover:text-custom-accent py-3 rounded-xl transition-all"
+                    className="flex items-center justify-center space-x-2 border border-cream/20 hover:border-custom-accent text-cream/80 hover:text-custom-accent py-3 border-radius-propublic propublic-button transition-all"
                   >
                     <svg
                       className="w-5 h-5"
@@ -267,7 +270,7 @@ export default function LoginContent() {
                   </button>
                   <button
                     type="button"
-                    className="flex items-center justify-center space-x-2 border border-cream/20 hover:border-custom-accent text-cream/80 hover:text-custom-accent py-3 rounded-xl transition-all"
+                    className="flex items-center justify-center space-x-2 border border-cream/20 hover:border-custom-accent text-cream/80 hover:text-custom-accent py-3 border-radius-propublic propublic-button transition-all"
                   >
                     <svg
                       className="w-5 h-5"

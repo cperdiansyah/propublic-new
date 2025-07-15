@@ -17,6 +17,7 @@ import {
   forgotPasswordSchema,
   type ForgotPasswordInput,
 } from '@/lib/validations/auth'
+import BackgroundEffects from '@/components/blocks/effects/grid-glow'
 
 export default function ForgotPasswordContent() {
   const [isEmailSent, setIsEmailSent] = useState(false)
@@ -82,9 +83,11 @@ export default function ForgotPasswordContent() {
 
   if (isEmailSent) {
     return (
-      <div className="min-h-screen hero-pattern flex items-center justify-center px-4 py-12">
-        <div className="max-w-md mx-auto w-full">
-          <div className="enhanced-card rounded-3xl p-8 md:p-10 text-center">
+      <div className="min-h-screen relative flex items-center justify-center px-4 py-12">
+        <BackgroundEffects className="overflow-hidden" />
+
+        <div className="max-w-md mx-auto w-full relative">
+          <div className="enhanced-card border-radius-propublic p-8 md:p-10 text-center">
             {/* Success Icon */}
             <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6 animate-fadeIn">
               <CheckCircle className="w-10 h-10 text-green-400" />
@@ -99,7 +102,7 @@ export default function ForgotPasswordContent() {
             </p>
 
             {/* Instructions */}
-            <div className="bg-dark-primary/50 rounded-xl p-6 mb-8 text-left">
+            <div className="bg-dark-primary/50 border-radius-propublic p-6 mb-8 text-left">
               <h3 className="font-bold text-lg mb-4 flex items-center">
                 <Shield className="w-5 h-5 text-custom-accent mr-2" />
                 Next Steps:
@@ -127,7 +130,7 @@ export default function ForgotPasswordContent() {
             </div>
 
             {/* Timer and Resend */}
-            <div className="bg-custom-accent/10 border border-custom-accent/20 rounded-xl p-4 mb-6">
+            <div className="bg-custom-accent/10 border border-custom-accent/20 border-radius-propublic p-4 mb-6">
               <div className="flex items-center justify-center space-x-2 text-custom-accent mb-2">
                 <Clock className="w-4 h-4" />
                 <span className="text-sm font-medium">
@@ -145,7 +148,7 @@ export default function ForgotPasswordContent() {
               <button
                 onClick={handleResendEmail}
                 disabled={isResending}
-                className="w-full border border-custom-accent hover:bg-custom-accent hover:text-dark-primary text-custom-accent py-3 rounded-xl font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                className="w-full border border-custom-accent hover:bg-custom-accent hover:text-dark-primary text-custom-accent py-3 border-radius-propublic font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
               >
                 {isResending ? (
                   <>
@@ -162,7 +165,7 @@ export default function ForgotPasswordContent() {
 
               <Link
                 href="/auth/login"
-                className="w-full bg-gradient-to-r from-custom-primary to-custom-secondary text-cream py-3 rounded-xl font-semibold hover:shadow-lg transition-all glow flex items-center justify-center space-x-2"
+                className="w-full bg-gradient-to-r from-custom-primary to-custom-secondary text-cream py-3 border-radius-propublic font-semibold hover:shadow-lg transition-all glow flex items-center justify-center space-x-2"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Back to Login</span>
@@ -188,8 +191,10 @@ export default function ForgotPasswordContent() {
   }
 
   return (
-    <div className="min-h-screen hero-pattern flex items-center justify-center px-4 py-12 mt-14">
-      <div className="max-w-6xl mx-auto w-full">
+    <div className="min-h-screen relative flex items-center justify-center px-4 py-12 mt-14">
+      <BackgroundEffects className="overflow-hidden" />
+
+      <div className="max-w-6xl mx-auto w-full relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Branding */}
           <div className="hidden lg:block space-y-8">
@@ -210,7 +215,7 @@ export default function ForgotPasswordContent() {
               <h3 className="text-2xl font-bold">Secure Reset Process</h3>
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-custom-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-custom-primary/20 border-radius-propublic flex items-center justify-center flex-shrink-0">
                     <Shield className="w-6 h-6 text-custom-primary" />
                   </div>
                   <div>
@@ -222,7 +227,7 @@ export default function ForgotPasswordContent() {
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-custom-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-custom-accent/20 border-radius-propublic flex items-center justify-center flex-shrink-0">
                     <Clock className="w-6 h-6 text-custom-accent" />
                   </div>
                   <div>
@@ -234,7 +239,7 @@ export default function ForgotPasswordContent() {
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-custom-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-custom-secondary/20 border-radius-propublic flex items-center justify-center flex-shrink-0">
                     <CheckCircle className="w-6 h-6 text-custom-secondary" />
                   </div>
                   <div>
@@ -248,7 +253,7 @@ export default function ForgotPasswordContent() {
             </div>
 
             {/* Gaming Motivation */}
-            <div className="testimonial-card rounded-2xl p-6 border border-custom-primary/20">
+            <div className="testimonial-card border-radius-propublic p-6 border border-custom-primary/20">
               <div className="flex items-center space-x-3 mb-4">
                 <div className="w-12 h-12 bg-custom-accent rounded-full flex items-center justify-center">
                   <span className="text-dark-primary font-bold">🎮</span>
@@ -267,11 +272,11 @@ export default function ForgotPasswordContent() {
 
           {/* Right Side - Reset Form */}
           <div className="w-full max-w-md mx-auto lg:mx-0">
-            <div className="enhanced-card rounded-3xl p-8 md:p-10">
+            <div className="enhanced-card border-radius-propublic p-8 md:p-10">
               {/* Mobile Logo */}
               <div className="lg:hidden text-center mb-8">
                 <Link href="/" className="inline-flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-custom-primary to-custom-secondary rounded-xl flex items-center justify-center animate-glow">
+                  <div className="w-12 h-12 bg-gradient-to-br from-custom-primary to-custom-secondary border-radius-propublic flex items-center justify-center animate-glow">
                     <span className="logo-p text-cream">P</span>
                   </div>
                   <span className="font-bold text-2xl text-cream">
@@ -298,7 +303,7 @@ export default function ForgotPasswordContent() {
                     <input
                       {...register('email')}
                       type="email"
-                      className={`input-field w-full pl-12 pr-4 py-4 rounded-xl text-cream placeholder-cream/50 focus:outline-none ${
+                      className={`input-field w-full pl-12 pr-4 py-4 border-radius-propublic text-cream placeholder-cream/50 focus:outline-none ${
                         errors.email
                           ? 'border-red-500 focus:border-red-500'
                           : ''
@@ -328,7 +333,7 @@ export default function ForgotPasswordContent() {
                 <button
                   type="submit"
                   disabled={isSubmitting || !isValid}
-                  className="w-full bg-gradient-to-r from-custom-primary to-custom-secondary text-cream py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  className="w-full bg-gradient-to-r from-custom-primary to-custom-secondary text-cream py-4 border-radius-propublic font-bold text-lg hover:shadow-lg transition-all glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2  propublic-button"
                 >
                   {isSubmitting ? (
                     <>
@@ -344,7 +349,7 @@ export default function ForgotPasswordContent() {
                 </button>
 
                 {/* Security Notice */}
-                <div className="bg-custom-accent/10 border border-custom-accent/20 rounded-xl p-4">
+                <div className="bg-custom-accent/10 border border-custom-accent/20 border-radius-propublic p-4">
                   <div className="flex items-start space-x-3">
                     <Shield className="w-5 h-5 text-custom-accent flex-shrink-0 mt-0.5" />
                     <div>

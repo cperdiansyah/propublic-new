@@ -23,6 +23,8 @@ export const navigation: NavItem[] = [
   { label: 'Replay', href: '/replay', icon: SquarePlay },
 ]
 
+export const DELAY_AUTOPLAY_MS: number = 3000
+
 export const COLORS = {
   redPrimary: '#FE0037',
   limeGreenSecondary: '#ffcc00',

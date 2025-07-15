@@ -23,3 +23,20 @@ export interface ICourseItem {
   order_count: string
   course_rating: string
 }
+
+export type TypeCommunityItem = {
+  id: number
+  name: string
+  description: string
+  author: string
+  members: number
+  posts: number
+  sessions: number
+  guides: number
+  category: string
+  avatar: string
+  isVerified: boolean
+  color: string
+  headerImage?: string
+  isFeatured?: boolean
+}

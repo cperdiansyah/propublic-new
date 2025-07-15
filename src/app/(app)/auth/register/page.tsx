@@ -1,4 +1,4 @@
-import RegisterContent from '@/components/auth/register-page'
+import RegisterContent from '@/components/blocks/auth/register-page'
 
 export const metadata = {
   title: 'Register - Propublic',

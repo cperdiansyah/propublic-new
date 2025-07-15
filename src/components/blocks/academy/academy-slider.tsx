@@ -1,6 +1,6 @@
 'use client'
 
-import GameCard from '@/components/common/GameCard'
+import AcademyCard from '@/components/blocks/academy/academy-card'
 import {
   InfiniteCarouselContent,
   InfiniteCarouselItem,
@@ -13,30 +13,31 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/common/infinite-carousel/carousel-controls'
-import type { CarouselGameItem } from '@/types/home.types'
+import { DELAY_AUTOPLAY_MS } from '@/config/const'
+import type { ICourseItem } from '@/types/home.types'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-interface IGameSlider {
-  games?: CarouselGameItem[]
+interface IAcademySlider {
+  academies: ICourseItem[]
   showControlButton?: boolean
   autoPlay?: CarouselProviderProps['autoplay']
   autoplayDelay?: CarouselProviderProps['autoplayDelay']
   className?: string
 }
-const GameSlider = ({
-  games,
+const AcademySlider = ({
+  academies,
   showControlButton = false,
   autoPlay = true,
-  autoplayDelay = 4000,
+  autoplayDelay = DELAY_AUTOPLAY_MS,
   className,
-}: IGameSlider) => {
-  if (games?.length === 0 || !games) return
+}: IAcademySlider) => {
+  if (academies?.length === 0 || !academies) return
   return (
     <CarouselProvider
-      itemCount={games.length}
+      itemCount={academies.length}
       autoplay={autoPlay}
       autoplayDelay={autoplayDelay}
-      visibleItems={{ mobile: 2, tablet: 4, desktop: 6 }}
+      visibleItems={{ mobile: 1, tablet: 4 }}
     >
       <div className={`carousel-container ${className}`}>
         {/* Controls */}
@@ -60,12 +61,17 @@ const GameSlider = ({
           </div>
         )}
         <InfiniteCarouselContent>
-          {games.map((game) => (
-            <InfiniteCarouselItem
-              key={game.id}
-              // customBasis="basis-1/2 md:basis-1/4 lg:basis-1/6"
-            >
-              <GameCard game={game} />
+          {academies.map((academy) => (
+            <InfiniteCarouselItem key={academy.course_id}>
+              <AcademyCard
+                key={academy.course_id}
+                id={academy.course_id}
+                name={academy.course_title}
+                rating={Number(academy.course_rating)}
+                image={academy.course_image_url}
+                price={Number(academy.course_price)}
+                description={academy.course_description}
+              />
             </InfiniteCarouselItem>
           ))}
         </InfiniteCarouselContent>
@@ -74,4 +80,4 @@ const GameSlider = ({
   )
 }
 
-export default GameSlider
+export default AcademySlider
