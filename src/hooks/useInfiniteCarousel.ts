@@ -68,7 +68,6 @@ export function useInfiniteCarousel({
     },
     [api],
   )
-
   return {
     api,
     setApi,

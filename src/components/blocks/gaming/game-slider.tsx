@@ -35,7 +35,7 @@ const GameSlider = ({
       itemCount={games.length}
       autoplay={autoPlay}
       autoplayDelay={autoplayDelay}
-      visibleItems={{ mobile: 2, tablet: 4, desktop: 6 }}
+      visibleItems={{ mobile: 2, tablet: 3, desktop: 5, desktopExtraLarge: 6 }}
     >
       <div className={`carousel-container ${className}`}>
         {/* Controls */}

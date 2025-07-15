@@ -12,9 +12,7 @@ const HomePage = () => {
       <HeroSection games={GAMELIST} />
       <TopComunitiesSection communities={COMMUNITIES} />
       <AcademiesSection courses={COURSES} />
-      {/* <GameSection games={GAMELIST} /> */}
       <BrandSection />
-      {/* <PricingSection /> */}
       <PricingPlan />
     </div>
   )
