@@ -1,10 +1,10 @@
 'use client'
 
-import CustomerInfo from '@/components/replay/customer-info'
-import FileUpload from '@/components/replay/file-upload'
-import HowItWorks from '@/components/replay/how-it-works'
-import OrderSummary from '@/components/replay/order-summary'
-import PackageSelection from '@/components/replay/package-selection'
+import CustomerInfo from '@/components/pages/replay/customer-info'
+import FileUpload from '@/components/pages/replay/file-upload'
+import HowItWorks from '@/components/pages/replay/how-it-works'
+import OrderSummary from '@/components/pages/replay/order-summary'
+import PackageSelection from '@/components/pages/replay/package-selection'
 import { useState } from 'react'
 
 export default function ReplayContent() {

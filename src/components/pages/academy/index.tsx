@@ -1,8 +1,8 @@
 'use client'
 
-import CategoryFilters from '@/components/academy/category-filters'
-import CourseGrid from '@/components/academy/course-grid'
-import FeaturedCourse from '@/components/academy/featured-course'
+import CategoryFilters from '@/components/pages/academy/category-filters'
+import CourseGrid from '@/components/pages/academy/course-grid'
+import FeaturedCourse from '@/components/pages/academy/featured-course'
 import { useState } from 'react'
 
 export default function AcademyContent() {
