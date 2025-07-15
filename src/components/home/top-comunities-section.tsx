@@ -16,7 +16,9 @@ const TopComunitiesSection: React.FC<ITopComunitiesSection> = ({
           title={
             <>
               Top Popular{' '}
-              <span className="section-title-underline">Comunities!</span>
+              <span className="section-title-underline font-teko">
+                Comunities!
+              </span>
             </>
           }
           withButton

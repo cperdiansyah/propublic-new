@@ -18,12 +18,12 @@ export default function HeroSection({ games }: IGameSection) {
         <div className=" gap-12 items-center text-center">
           <div className="space-y-5 ">
             <div className="space-y-6 lg:w-2/3 mx-auto">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight capitalize">
+              <h1 className="text-5xl md:text-6xl lg:text-6xl font-black leading-tight capitalize">
                 We're changing how
                 <span className="gradient-text"> gaming communities</span> are
                 built
               </h1>
-              <p className="text-2xl md:text-2xl text-cream/80 leading-relaxed">
+              <p className="text-lg md:text-lg text-cream/80 leading-relaxed">
                 {/* Connect with the best players, learn from pros, and build
                 lasting relationships in the ultimate gaming community platform. */}
                 The all-in-one platform for Southeast Asia’s gamers and coaches

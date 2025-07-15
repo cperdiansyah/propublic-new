@@ -1,11 +1,8 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
 import { scrollToTop } from '@/utils/helpers'
-import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
 
 const Footer = () => {
   const footerLinks = {
@@ -50,23 +47,13 @@ const Footer = () => {
               <li key={link.name}>
                 <Link
                   href={link.href}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-white text-lg transition-colors"
                 >
                   {link.name}
                 </Link>
               </li>
             ))}
           </ul>
-          <Button
-            onClick={handleScroll}
-            className={cn(
-              'bg-white text-dark-primary hidden md:block mt-6',
-              'hover:bg-amber-300 transition-200s',
-              'cursor-pointer',
-            )}
-          >
-            Back To Top
-          </Button>
         </div>
       </div>
     </footer>

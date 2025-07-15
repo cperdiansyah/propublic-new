@@ -1,12 +1,11 @@
 'use client'
-import React, { useState } from 'react'
 import type { Brand } from '@/types/home.types'
+import { useState } from 'react'
 
-import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
-import SectionTitle from '@/components/common/section-title'
-import GradientBackground from '@/components/blocks/background/GradientBackground'
 import RadialGradient from '@/components/blocks/background/radialGradient'
+import SectionTitle from '@/components/common/section-title'
+import { AnimatePresence, motion } from 'framer-motion'
+import Image from 'next/image'
 
 const brands: Brand[] = [
   {
@@ -116,8 +115,10 @@ const BrandSection = () => {
           <SectionTitle
             title={
               <>
-                <span className="section-title-underline">BRANDS</span> WE'VE
-                WORKED WITH
+                <span className="section-title-underline font-teko">
+                  BRANDS
+                </span>{' '}
+                WE'VE WORKED WITH
               </>
             }
             center
