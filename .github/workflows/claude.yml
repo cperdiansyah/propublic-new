@@ -1,19 +1,12 @@
 name: Claude PR Assistant
 
 on:
-  # Trigger for responding to @claude mentions
-  issue_comment:
-    types: [created]
-  pull_request_review_comment:
-    types: [created]
-  issues:
-    types: [opened, assigned]
-  pull_request_review:
-    types: [submitted]
-
-  # Trigger for automatic pull request reviews
   pull_request:
     types: [opened, synchronize, reopened]
+  issue_comment:
+    types: [created]
+  issues:
+    types: [opened]
 
   # Trigger for monthly vulnerability scans (cron format)
   schedule:
@@ -93,7 +86,7 @@ jobs:
           fetch-depth: 1
 
       - name: Run Claude PR Action
-        uses: anthropics/claude-code-action@beta # Thanks for this amazing Action!
+        uses: anthropics/claude-code-action@beta
         with:
           # Read the Anthropic API key from secrets
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
