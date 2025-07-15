@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { Search } from 'lucide-react'
-import PopularGames from '@/components/game/popular-games'
-import GameCard from '@/components/game/game-card'
+import PopularGames from '@/components/pages/game/popular-games'
+import GameCard from '@/components/pages/game/game-card'
 // import GameCard from './game-card'
 // import PopularGames from './popular-games'
 

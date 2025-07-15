@@ -1,4 +1,4 @@
-import GameContent from '@/pages/Game'
+import GameContent from '@/components/pages/game'
 import React from 'react'
 
 const page = () => {
