@@ -1,10 +1,7 @@
 'use client'
 
 import GameCard from '@/components/blocks/gaming/game-card'
-import {
-  InfiniteCarouselContent,
-  InfiniteCarouselItem,
-} from '@/components/common/infinite-carousel'
+import { InfiniteCarouselContent } from '@/components/common/infinite-carousel/carousel-content'
 import {
   CarouselProvider,
   type CarouselProviderProps,
@@ -13,6 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/common/infinite-carousel/carousel-controls'
+import { InfiniteCarouselItem } from '@/components/common/infinite-carousel/carousel-item'
 import { DELAY_AUTOPLAY_MS } from '@/config/const'
 import type { CarouselGameItem } from '@/types/home.types'
 import { ChevronLeft, ChevronRight } from 'lucide-react'

@@ -32,30 +32,6 @@ export default function HeroSection({ games }: IGameSection) {
             </div>
 
             <GameSlider games={games} />
-
-            {/* <div className="flex flex-col sm:flex-row gap-4 justify-center ">
-              <button
-                className="bg-gradient-to-r from-custom-primary to-custom-secondary text-cream  rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all glow text-xl propublic-button glow-pulse"
-                type="button"
-              >
-                Join Community
-              </button>
-            </div>
-
-            <div className="flex items-center justify-center  space-x-8 pt-4">
-              <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-custom-accent rounded-full animate-pulse"></div>
-                <span className="text-cream/60 font-medium text-lg">
-                  28,000+ Active Gamers
-                </span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-custom-primary rounded-full animate-pulse"></div>
-                <span className="text-cream/60 font-medium text-lg">
-                  1,200+ Pro Coaches
-                </span>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
