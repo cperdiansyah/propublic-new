@@ -1,11 +1,10 @@
 import MobileBottomNav from '@/components/layout/navigation/mobile-navigation'
-import Footer from '@/components/layout/footer'
 import AppProviders from '@/providers/AppProviders'
 // import '@/styles/globals.css';
 // import '@/styles/styles.css'
 import '@/styles/styles.scss'
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Inter } from 'next/font/google'
+import { Inter } from 'next/font/google'
 
 const interSans = Inter({
   variable: '--font-inter-sans',
