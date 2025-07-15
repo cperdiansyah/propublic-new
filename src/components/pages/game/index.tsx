@@ -2,7 +2,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Plus, Search } from 'lucide-react'
+import { Search } from 'lucide-react'
 import { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -26,11 +26,10 @@ import {
   useFilteredCommunities,
   useSavedGames,
 } from '@/components/pages/game/hooks'
-import type { SavedGame, SearchGameForm } from '@/types/game.types'
+import { MyGamesSection } from '@/components/pages/game/my-games-section'
+import type { SearchGameForm } from '@/types/game.types'
 import type { CarouselGameItem, TypeCommunityItem } from '@/types/home.types'
 import { searchGameSchema } from '@/validation/games'
-import { MyGameCard } from '@/components/pages/game/game-card'
-import { MyGamesSection } from '@/components/pages/game/my-games-section'
 
 // Custom Hooks
 // Main Component
@@ -73,6 +72,7 @@ export default function GameContent() {
           savedGames={savedGames}
           onRemoveGame={removeGame}
           onOpenModal={() => setIsModalOpen(true)}
+          textAddGame="Search Game"
         />
 
         <CommunitiesSection

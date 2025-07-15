@@ -10,12 +10,14 @@ interface MyGamesSectionProps {
   savedGames: SavedGame[]
   onRemoveGame: (gameId: number) => void
   onOpenModal: () => void
+  textAddGame?: string
 }
 
 export function MyGamesSection({
   savedGames,
   onRemoveGame,
   onOpenModal,
+  textAddGame,
 }: MyGamesSectionProps) {
   return (
     <section className="mb-16">
@@ -32,7 +34,7 @@ export function MyGamesSection({
           <MyGameCard key={game.id} game={game} onRemove={onRemoveGame} />
         ))}
 
-        {/* <AddGamePlaceholder onClick={onOpenModal} /> */}
+        <AddGamePlaceholder onClick={onOpenModal} text={textAddGame} />
       </div>
     </section>
   )

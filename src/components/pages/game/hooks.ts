@@ -41,6 +41,14 @@ export const useSavedGames = () => {
       imageSrc: '/images/game-covers/tekken-8.jpg',
       dateAdded: '2024-01-05',
     },
+    {
+      id: 5,
+      name: 'Dota 2',
+      slug: 'dota-2',
+      path: '/games/dota-2',
+      imageSrc: '/images/game-covers/dota-2.jpg',
+      dateAdded: '2024-01-05',
+    },
   ])
 
   const addGame = useCallback(

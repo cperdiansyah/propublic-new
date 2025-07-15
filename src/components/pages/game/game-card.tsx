@@ -25,7 +25,7 @@ export function MyGameCard({ game, onRemove }: MyGameCardProps) {
 
   return (
     <Card
-      className="relative group cursor-pointer border-2 border-transparent hover:border-custom-primary transition-all overflow-hidden p-0 border-radius-propublic"
+      className="relative bg-white/5 backdrop-blur-sm border-white/10 p-2 group cursor-pointer border-2 hover:border-custom-primary transition-all overflow-hidden border-radius-propublic"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -46,11 +46,9 @@ export function MyGameCard({ game, onRemove }: MyGameCardProps) {
             <h3 className="font-bold text-lg truncate">{game.name}</h3>
           </div>
         </div>
-        <div className="button-wrapper p-[2]">
-          {/* <Button className="border-radius-propublic w-full">Join</Button> */}
-
+        <div className="button-wrapper pt-2">
           <Link href="/auth/login" className="hidden md:block">
-            <button className="w-full bg-gradient-to-r from-red-900 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold  transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-red-500/30 border-radius-propublic propublic-button  ">
+            <button className="w-full bg-gradient-to-r from-red-900 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold  transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-red-500/30 border-radius-propublic propublic-button  !px-2 !py-1">
               Join
             </button>
           </Link>
@@ -62,18 +60,23 @@ export function MyGameCard({ game, onRemove }: MyGameCardProps) {
 
 interface AddGamePlaceholderProps {
   onClick: () => void
+  text?: string
 }
 
-export function AddGamePlaceholder({ onClick }: AddGamePlaceholderProps) {
+export function AddGamePlaceholder({
+  onClick,
+  text = 'Add Game',
+}: AddGamePlaceholderProps) {
   return (
     <Card
       onClick={onClick}
-      className="aspect-[3/4] border-2 border-dashed border-gray-600 hover:border-custom-primary cursor-pointer transition-all group border-radius-propublic "
+      className="h-full border-2 border-dashed  hover:border-custom-primary cursor-pointer transition-all group border-radius-propublic 
+      bg-white/5 backdrop-blur-sm border-white/10"
     >
       <CardContent className="h-full flex flex-col items-center justify-center p-4">
         <Plus className="w-8 h-8 text-gray-400 group-hover:text-custom-primary mb-2 transition-colors" />
         <span className="text-gray-400 group-hover:text-custom-primary text-sm font-medium text-center transition-colors">
-          Add Game
+          {text}
         </span>
       </CardContent>
     </Card>
