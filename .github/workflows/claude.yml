@@ -38,7 +38,7 @@ jobs:
           github-token: ${{ secrets.USER_PAT }}
           script: |
             await github.rest.issues.createComment({
-              issue_number: context.payload.pull_request.number,
+              issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: '@claude Please review this pull request.'
@@ -70,29 +70,6 @@ jobs:
               body: `@claude Please run the scheduled vulnerability scan.\n\n## Execution Time\n${jstTime}\n\nPlease follow the "Vulnerability Scan Guidelines" in CLAUDE.md for detailed scan criteria and output format.\nAppend the scan results as a comment to this issue.`,
               labels: ['security', 'vulnerability-scan', 'automated']
             });
-
-  debug-events:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Debug Event Info
-        uses: actions/github-script@v7
-        with:
-          script: |
-            console.log('=== EVENT DEBUG ===');
-            console.log('Event:', context.eventName);
-            console.log('Action:', context.payload.action);
-
-            if (context.payload.comment) {
-              console.log('Comment body:', context.payload.comment.body);
-              console.log('Contains @claude:', context.payload.comment.body.includes('@claude'));
-              console.log('Comment author:', context.payload.comment.user.login);
-            }
-
-            // Test the condition
-            const shouldTrigger = context.eventName === 'issue_comment' &&
-                                 context.payload.comment &&
-                                 context.payload.comment.body.includes('@claude');
-            console.log('Should trigger claude-code-action:', shouldTrigger);
 
   # --- Job 3: Job to Trigger Claude in Response to @claude Mentions ---
   claude-code-action:
