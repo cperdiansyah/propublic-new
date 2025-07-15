@@ -17,7 +17,7 @@ export function InfiniteCarouselItem({
   customBasis,
 }: InfiniteCarouselItemProps) {
   const { visibleItems, orientation } = useCarouselContext()
-
+  console.log(visibleItems)
   const basisClasses = React.useMemo(
     () =>
       cn(

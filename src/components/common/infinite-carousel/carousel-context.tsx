@@ -47,6 +47,7 @@ export function CarouselProvider({
       ...carousel,
       orientation,
       autoplayPlugin,
+      visibleItems: carousel.visibleItems,
     }),
     [carousel, orientation],
   )
