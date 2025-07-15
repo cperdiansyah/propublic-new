@@ -1,5 +1,4 @@
-'use client'
-import ComunitiesCard from '@/components/blocks/community/community-card'
+import ComunitySlider from '@/components/blocks/community/comunity-slider'
 import SectionTitle from '@/components/common/section-title'
 import type { TypeCommunityItem } from '@/types/home.types'
 import type React from 'react'
@@ -27,15 +26,7 @@ const TopComunitiesSection: React.FC<ITopComunitiesSection> = ({
         />
 
         {/* List of Communities */}
-        <div className="relative container mx-auto">
-          <div className="overflow-x-auto pb-4 scrollbar-hide">
-            <div className="flex gap-6 m-5">
-              {communities.map((item, i) => (
-                <ComunitiesCard community={item} index={i} key={item.id} />
-              ))}
-            </div>
-          </div>
-        </div>
+        <ComunitySlider communities={communities} />
       </div>
     </div>
   )
