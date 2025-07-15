@@ -8,7 +8,7 @@ export const addGameSchema = z.object({
     .max(100, 'Game name too long'),
   slug: z.string().min(1, 'Game slug is required'),
   path: z.string().min(1, 'Game path is required'),
-  imageSrc: z.string().url('Invalid image URL').optional(),
+  imageSrc: z.string().optional(),
 })
 
 export const searchGameSchema = z.object({

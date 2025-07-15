@@ -18,7 +18,7 @@ export const useSavedGames = () => {
       dateAdded: '2024-01-15',
     },
     {
-      id: 2,
+      id: 6,
       name: 'League of Legends',
       slug: 'league-of-legends',
       path: '/games/league-of-legends',
@@ -26,28 +26,12 @@ export const useSavedGames = () => {
       dateAdded: '2024-01-10',
     },
     {
-      id: 3,
+      id: 7,
       name: 'Fortnite',
       slug: 'fortnite',
       path: '/games/fortnite',
       imageSrc: '/images/game-covers/fortnite.jpg',
       dateAdded: '2024-01-08',
-    },
-    {
-      id: 4,
-      name: 'Tekken 8',
-      slug: 'tekken-8',
-      path: '/games/tekken-8',
-      imageSrc: '/images/game-covers/tekken-8.jpg',
-      dateAdded: '2024-01-05',
-    },
-    {
-      id: 5,
-      name: 'Dota 2',
-      slug: 'dota-2',
-      path: '/games/dota-2',
-      imageSrc: '/images/game-covers/dota-2.jpg',
-      dateAdded: '2024-01-05',
     },
   ])
 
@@ -122,7 +106,6 @@ export const useAvailableGames = (
     const available = GAMELIST.filter(
       (game) => !savedGames.some((savedGame) => savedGame.id === game.id),
     )
-
     if (!searchTerm.trim()) return available
 
     return available.filter((game) =>
