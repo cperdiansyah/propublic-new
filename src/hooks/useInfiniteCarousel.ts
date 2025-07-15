@@ -11,6 +11,7 @@ export interface UseInfiniteCarouselProps {
     mobile?: number
     tablet?: number
     desktop?: number
+    desktopLarge?: number
   }
 }
 
@@ -18,7 +19,7 @@ export function useInfiniteCarousel({
   itemCount,
   autoplay = false,
   autoplayDelay = 3000,
-  visibleItems = { mobile: 1, tablet: 2, desktop: 4 },
+  visibleItems = { mobile: 1, tablet: 2, desktop: 4, desktopLarge: 6 },
 }: UseInfiniteCarouselProps) {
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)

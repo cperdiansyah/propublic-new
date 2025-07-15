@@ -110,6 +110,7 @@ export function InfiniteCarouselItem({
         visibleItems.mobile && `basis-1/${visibleItems.mobile}`,
         visibleItems.tablet && `md:basis-1/${visibleItems.tablet}`,
         visibleItems.desktop && `lg:basis-1/${visibleItems.desktop}`,
+        visibleItems.desktopLarge && `xl:basis-1/${visibleItems.desktopLarge}`,
       ),
     [visibleItems],
   )

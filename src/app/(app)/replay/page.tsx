@@ -1,4 +1,4 @@
-import ReplayContent from '@/pages/Replay'
+import ReplayContent from '@/components/pages/replay'
 import React from 'react'
 
 const page = () => {

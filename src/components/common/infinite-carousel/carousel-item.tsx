@@ -24,6 +24,7 @@ export function InfiniteCarouselItem({
       'basis-full',
       visibleItems.tablet && `sm:basis-1/${visibleItems.tablet}`,
       visibleItems.desktop && `lg:basis-1/${visibleItems.desktop}`,
+      visibleItems.desktopLarge && `xl:basis-1/${visibleItems.desktopLarge}`,
     )
 
   return (
