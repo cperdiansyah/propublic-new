@@ -1,0 +1,51 @@
+name: Slack Vulnerability Monitor
+
+on:
+  issue_comment:
+    # Triggers when a comment is created or edited on an issue
+    types: [created, edited]
+
+# Concurrency control
+concurrency:
+  # Prevents multiple notification workflows for the same issue from running simultaneously
+  group: ${{ github.workflow }}-${{ github.event.issue.number }}
+  # If a new trigger occurs while one is running, cancel the old one and run the new one
+  cancel-in-progress: true
+
+jobs:
+  vulnerability-notify:
+    # Runs if the comment contains the "scan complete keyword" from CLAUDE.md,
+    # the issue has the 'vulnerability-scan' label,
+    # and has not yet been notified to Slack (no 'slack-notified' label).
+    if: >
+      contains(github.event.comment.body, 'VULNERABILITY_SCAN_RESULT:') &&
+      !contains(github.event.issue.labels.*.name, 'slack-notified') &&
+      contains(github.event.issue.labels.*.name, 'vulnerability-scan')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write # 'write' permission is needed to add a label after notification
+    steps:
+      - name: Notify Slack
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "text": "🔒 Vulnerability scan for `${{ github.repository }}` is complete. Please check the issue for results.\n<${{ github.event.comment.html_url }}|${{ github.event.issue.title }}>"
+            }
+        env:
+          # Read the Slack Webhook URL from secrets
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Add 'slack-notified' label to issue
+        # Add a label after Slack notification to prevent duplicate notifications
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['slack-notified']
+            });
