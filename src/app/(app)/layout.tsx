@@ -10,7 +10,7 @@ export default function AppLayout({
     <>
       {/* Header */}
       <Header />
-      {/* Cotnent */}
+      {/* Content */}
       <main className="">{children}</main>
       {/* Footer */}
       <Footer />

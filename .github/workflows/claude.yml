@@ -1,9 +1,12 @@
 name: Claude PR Assistant
 
 on:
-  # Trigger for automatic pull request reviews
   pull_request:
     types: [opened, synchronize, reopened]
+  issue_comment:
+    types: [created]
+  issues:
+    types: [opened]
 
   # Trigger for monthly vulnerability scans (cron format)
   schedule:

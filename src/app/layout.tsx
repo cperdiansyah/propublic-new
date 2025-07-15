@@ -32,7 +32,7 @@ export default function RootLayout({
       >
         <AppProviders>
           {/* Header */}
-          {/* Cotnent */}
+          {/* Content */}
           {children}
           {/* Footer */}
 
