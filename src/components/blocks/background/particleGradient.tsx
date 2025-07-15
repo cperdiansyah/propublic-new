@@ -12,7 +12,7 @@ const ParticleGradient: React.FC<ParticleGradientProps> = ({
 }) => {
   return (
     <section
-      className={`relative min-h-screen flex items-center justify-center overflow-hidden  ${className} ${isGeomtericBg && 'geometric-bg'}`}
+      className={`relative  flex items-center justify-center overflow-hidden  ${className} ${isGeomtericBg && 'geometric-bg'}`}
     >
       {/* <!-- Particle Background --> */}
       {/* <div className="particles fixed z-10"> */}

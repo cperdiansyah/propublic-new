@@ -11,7 +11,7 @@ interface IGameSection {
 }
 export default function HeroSection({ games }: IGameSection) {
   return (
-    <section className="bg-black pt-28 pb-20 min-h-screen flex flex-col items-center hero-section max-w-screen relative ">
+    <section className="bg-black flex flex-col items-center hero-section max-w-screen min-h-screen lg:min-h-fit py-32 relative ">
       <BackgroundEffects className="z-1 overflow-hidden" />
 
       <div className="max-w-7xl m-auto w-full z-1  px-4 ">
