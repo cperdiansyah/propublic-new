@@ -3,7 +3,6 @@
 import { navigation } from '@/config/const'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React from 'react'
 
 const Desktopnavigation = () => {
   const pathname = usePathname()
@@ -16,11 +15,13 @@ const Desktopnavigation = () => {
         return (
           <li
             key={link.label}
-            className="p-3 hover:text-custom-secondary transition-200s "
+            className="p-3 hover:text-custom-secondary transition-200s"
           >
             <Link
               href={link.href}
-              className={`text-xl ${isActive ? 'text-custom-secondary' : ''}`}
+              className={`text-xl font-teko ${
+                isActive ? 'text-custom-secondary' : ''
+              }`}
             >
               {link.label}
             </Link>

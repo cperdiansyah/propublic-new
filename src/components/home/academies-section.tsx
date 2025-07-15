@@ -31,7 +31,9 @@ const AcademiesSection: React.FC<IAcademiesSection> = ({ courses }) => {
           title={
             <>
               Top Popular{' '}
-              <span className="section-title-underline">Academies!</span>
+              <span className="section-title-underline font-teko">
+                Academies!
+              </span>
             </>
           }
           withButton

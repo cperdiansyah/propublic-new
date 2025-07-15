@@ -4,7 +4,7 @@ import type { TypeCommunityItem } from '@/types/home.types'
 import { ArrowRight, Calendar, FileText } from 'lucide-react'
 import Image from 'next/image'
 
-const ComunitiesCard = ({
+const CommunitiesCard = ({
   community,
   index,
 }: {
@@ -14,7 +14,7 @@ const ComunitiesCard = ({
   return (
     <div
       key={community.id}
-      className="group relative bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm border border-white rounded-2xl  hover:border-red-500/40 transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 w-90 flex-shrink-0 border-radius-propublic   "
+      className="group relative bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm border border-white rounded-2xl  hover:border-red-500/40 transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 w-90 flex-shrink-0 border-radius-propublic"
       style={{
         animationDelay: `${index * 200}ms`,
         animation: 'fadeInUp 0.8s ease-out forwards',
@@ -22,7 +22,7 @@ const ComunitiesCard = ({
     >
       <div className="content-wrapper relative ">
         {/* Bg image header */}
-        <div className="image-header-wrapper relative overflow-hidden">
+        <div className="image-header-wrapper relative overflow-hidden border-radius-propublic">
           <Image
             src={community.headerImage || '/placeholder.png'}
             alt={community.name}
@@ -73,7 +73,7 @@ const ComunitiesCard = ({
                     </div>
                   )}
                 </div>
-                <p className="text-gray-400 text-base  flex items-center justify-between gap-2">
+                <p className="text-gray-400 text-base  flex items-center justify-between gap-2 font-inter">
                   @{community.author}
                   {/* Category Badge */}
                   <div className="">
@@ -85,7 +85,7 @@ const ComunitiesCard = ({
               </div>
             </div>
             <div className="community-desc py-3">
-              <p className="text-gray-400 text-base leading-relaxed line-clamp-2">
+              <p className="text-gray-400 text-base leading-relaxed line-clamp-2 font-inter">
                 {community.description}
               </p>
             </div>
@@ -120,11 +120,13 @@ const ComunitiesCard = ({
             <div className="flex justify-between items-center text-base text-gray-400 mb-3">
               <div className="flex items-center gap-1">
                 <Calendar size={12} />
-                <span>{community.sessions} Sessions</span>
+                <span className="font-inter">
+                  {community.sessions} Sessions
+                </span>
               </div>
               <div className="flex items-center gap-1">
                 <FileText size={12} />
-                <span>{community.guides} Guides</span>
+                <span className="font-inter">{community.guides} Guides</span>
               </div>
             </div>
           </div>
@@ -142,4 +144,4 @@ const ComunitiesCard = ({
   )
 }
 
-export default ComunitiesCard
+export default CommunitiesCard
