@@ -40,6 +40,27 @@ export const GAMELIST: CarouselGameItem[] = [
     path: '/games/eafc',
     imageSrc: '/images/game-covers/eafc.jpg',
   },
+  {
+    id: 6,
+    name: 'League of Legends',
+    slug: 'league-of-legends',
+    path: '/games/league-of-legends',
+    imageSrc: '/images/game-covers/league-of-legends.jpg',
+  },
+  {
+    id: 7,
+    name: 'Fortnite',
+    slug: 'fortnite',
+    path: '/games/fortnite',
+    imageSrc: '/images/game-covers/fortnite.jpg',
+  },
+  {
+    id: 8,
+    name: 'Tekken 8',
+    slug: 'tekken-8',
+    path: '/games/tekken-8',
+    imageSrc: '/images/game-covers/tekken-8.jpg',
+  },
 ] as const
 
 export const COURSES: ICourseItem[] = [
