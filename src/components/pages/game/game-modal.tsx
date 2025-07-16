@@ -122,7 +122,7 @@ function GameOption({ game, onSelect }: GameOptionProps) {
           className="w-full bg-gradient-to-r from-red-900 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold  transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-red-500/30 border-radius-propublic propublic-button  !px-2 !py-1"
           onClick={handleSelect}
         >
-          Join
+          Favorite
         </button>
       </div>
     </Card>
