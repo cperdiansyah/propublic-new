@@ -1,10 +1,7 @@
 'use client'
 
 import GameCard from '@/components/blocks/gaming/game-card'
-import {
-  InfiniteCarouselContent,
-  InfiniteCarouselItem,
-} from '@/components/common/infinite-carousel'
+import { InfiniteCarouselContent } from '@/components/common/infinite-carousel/carousel-content'
 import {
   CarouselProvider,
   type CarouselProviderProps,
@@ -13,6 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/common/infinite-carousel/carousel-controls'
+import { InfiniteCarouselItem } from '@/components/common/infinite-carousel/carousel-item'
 import { DELAY_AUTOPLAY_MS } from '@/config/const'
 import type { CarouselGameItem } from '@/types/home.types'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
@@ -37,7 +35,7 @@ const GameSlider = ({
       itemCount={games.length}
       autoplay={autoPlay}
       autoplayDelay={autoplayDelay}
-      visibleItems={{ mobile: 2, tablet: 4, desktop: 6 }}
+      visibleItems={{ mobile: 2, tablet: 3, desktop: 5, desktopExtraLarge: 6 }}
     >
       <div className={`carousel-container ${className}`}>
         {/* Controls */}

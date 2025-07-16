@@ -7,14 +7,16 @@ import Image from 'next/image'
 const CommunitiesCard = ({
   community,
   index,
+  className,
 }: {
   community: TypeCommunityItem
   index: number
+  className?: string
 }) => {
   return (
     <div
       key={community.id}
-      className="group relative bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm border border-white rounded-2xl  hover:border-red-500/40 transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 w-90 flex-shrink-0 border-radius-propublic"
+      className={`group relative bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm border border-white rounded-2xl  hover:border-red-500/40 transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 w-90 flex-shrink-0 border-radius-propublic ${className}`}
       style={{
         animationDelay: `${index * 200}ms`,
         animation: 'fadeInUp 0.8s ease-out forwards',
@@ -89,32 +91,6 @@ const CommunitiesCard = ({
                 {community.description}
               </p>
             </div>
-
-            {/* Stats */}
-            {/* <div className="grid grid-cols-2 gap-4 mb-6">
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-1 text-red-400 mb-1">
-                <Users size={14} />
-                <span className="text-xl font-bold text-white">
-                  {community.members}
-                </span>
-              </div>
-              <span className="text-gray-400 text-xs uppercase tracking-wider">
-                Members
-              </span>
-            </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-1 text-yellow-400 mb-1">
-                <MessageSquare size={14} />
-                <span className="text-xl font-bold text-white">
-                  {community.posts}
-                </span>
-              </div>
-              <span className="text-gray-400 text-xs uppercase tracking-wider">
-                Posts
-              </span>
-            </div>
-          </div> */}
 
             {/* Additional Stats */}
             <div className="flex justify-between items-center text-base text-gray-400 mb-3">
