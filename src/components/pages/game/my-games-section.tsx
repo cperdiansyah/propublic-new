@@ -27,13 +27,17 @@ export function MyGamesSection({
         </h2>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+      <div className="flex gap-6 overflow-x-auto pb-4 md:grid md:grid-cols-4 lg:grid-cols-6 md:overflow-x-visible md:pb-0">
         {/* Condition for not login */}
         {savedGames.map((game) => (
-          <MyGameCard key={game.id} game={game} onRemove={onRemoveGame} />
+          <div key={game.id} className="flex-shrink-0 w-40 md:w-auto">
+            <MyGameCard game={game} onRemove={onRemoveGame} />
+          </div>
         ))}
 
-        <AddGamePlaceholder onClick={onOpenModal} text={textAddGame} />
+        <div className="flex-shrink-0 w-40 md:w-auto">
+          <AddGamePlaceholder onClick={onOpenModal} text={textAddGame} />
+        </div>
       </div>
     </section>
   )

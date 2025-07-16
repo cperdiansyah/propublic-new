@@ -18,9 +18,11 @@ export function BenefitsSection({ benefits }: BenefitsSectionProps) {
         </h2>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+      <div className="flex gap-6 overflow-x-auto pb-4 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 md:overflow-x-visible md:pb-0">
         {benefits.map((benefit) => (
-          <BenefitCard key={benefit.id} benefit={benefit} />
+          <div key={benefit.id} className="flex-shrink-0 w-64 md:w-auto">
+            <BenefitCard benefit={benefit} />
+          </div>
         ))}
       </div>
     </section>

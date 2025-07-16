@@ -10,6 +10,7 @@ import {
 import { Input } from '@/components/ui/input'
 import type { CarouselGameItem } from '@/types/home.types'
 import { Search } from 'lucide-react'
+import Link from 'next/link'
 import { useCallback } from 'react'
 
 // Add Game Modal Component
@@ -65,7 +66,7 @@ export function AddGameModal({
           </div>
 
           {/* Games Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 overflow-y-auto max-h-96">
+          <div className="grid grid-cols-2 md:grid-cols-3  gap-4 overflow-y-auto max-h-96 px-3">
             {availableGames.map((game) => (
               <GameOption key={game.id} game={game} onSelect={onAddGame} />
             ))}
@@ -103,14 +104,14 @@ function GameOption({ game, onSelect }: GameOptionProps) {
   return (
     <Card
       onClick={handleSelect}
-      className="cursor-pointer border-2 border-transparent hover:border-custom-primary transition-all group overflow-hidden p-0 rounded-sm"
+      className="cursor-pointer border-2  hover:border-custom-primary transition-all group overflow-hidden p-0 rounded-sm relative gap-0 bg-white/5 backdrop-blur-sm border-white/10 "
     >
-      <CardContent className="p-0">
-        <div className="aspect-[9/16] relative">
+      <CardContent className="p-0 overflow-hidden">
+        <div className="aspect-[3/4] relative">
           <div
             className="w-full h-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
             style={{
-              backgroundImage: `url(${game.imageSrc || `/placeholder.svg?height=320&width=280&text=${encodeURIComponent(game.name)}`})`,
+              backgroundImage: `url(${game.imageSrc || `/images/placeholder.png`})`,
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -119,6 +120,13 @@ function GameOption({ game, onSelect }: GameOptionProps) {
           </div>
         </div>
       </CardContent>
+      <div className="button-wrapper pt-1">
+        <Link href="/auth/login" className="">
+          <button className="w-full bg-gradient-to-r from-red-900 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold  transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-red-500/30 border-radius-propublic propublic-button  !px-2 !py-1">
+            Join
+          </button>
+        </Link>
+      </div>
     </Card>
   )
 }
