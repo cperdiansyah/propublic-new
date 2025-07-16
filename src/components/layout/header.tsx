@@ -20,6 +20,7 @@ const Header = () => {
                   height={50}
                   alt="logo"
                   placeholder="blur"
+                  blurDataURL={'/svg/logo.svg'}
                 />
               </Link>
             </div>
