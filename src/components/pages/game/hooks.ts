@@ -7,13 +7,15 @@ interface SavedGame extends CarouselGameItem {
   readonly dateAdded: string
 }
 
+const MAX_GAMES = 10
+
 export const useSavedGames = () => {
   const [savedGames, setSavedGames] = useState<SavedGame[]>([
     {
       id: 1,
       name: 'Valorant',
       slug: 'valorant',
-      path: '/games/valorant',
+      path: '/game/valorant',
       imageSrc: '/images/game-covers/valorant.jpg',
       dateAdded: '2024-01-15',
     },
@@ -21,7 +23,7 @@ export const useSavedGames = () => {
       id: 6,
       name: 'League of Legends',
       slug: 'league-of-legends',
-      path: '/games/league-of-legends',
+      path: '/game/league-of-legends',
       imageSrc: '/images/game-covers/league-of-legends.jpg',
       dateAdded: '2024-01-10',
     },
@@ -29,7 +31,7 @@ export const useSavedGames = () => {
       id: 7,
       name: 'Fortnite',
       slug: 'fortnite',
-      path: '/games/fortnite',
+      path: '/game/fortnite',
       imageSrc: '/images/game-covers/fortnite.jpg',
       dateAdded: '2024-01-08',
     },
@@ -37,6 +39,12 @@ export const useSavedGames = () => {
 
   const addGame = useCallback(
     (game: CarouselGameItem) => {
+      // Check if maximum games reached
+      if (savedGames.length >= MAX_GAMES) {
+        console.warn(`Maximum ${MAX_GAMES} games allowed`)
+        return false
+      }
+
       // Validate game data
       const result = addGameSchema.safeParse({
         gameId: game.id,
@@ -75,10 +83,23 @@ export const useSavedGames = () => {
     setSavedGames((prev) => prev.filter((game) => game.id !== gameId))
   }, [])
 
+  // Additional helper functions
+  const canAddMore = useMemo(
+    () => savedGames.length < MAX_GAMES,
+    [savedGames.length],
+  )
+  const remainingSlots = useMemo(
+    () => MAX_GAMES - savedGames.length,
+    [savedGames.length],
+  )
+
   return {
     savedGames,
     addGame,
     removeGame,
+    canAddMore,
+    remainingSlots,
+    maxGames: MAX_GAMES,
   }
 }
 

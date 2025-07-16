@@ -9,7 +9,7 @@ import { GAMELIST, COURSES, COMMUNITIES } from '@/config/exampleData'
 const HomePage = () => {
   return (
     <div className="homepage-wrapper ">
-      <HeroSection games={GAMELIST} />
+      <HeroSection games={GAMELIST.slice(0, 8)} />
       <TopComunitiesSection communities={COMMUNITIES} />
       <AcademiesSection courses={COURSES} />
       <BrandSection />
