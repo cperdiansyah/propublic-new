@@ -14,9 +14,8 @@ import {
   useSavedGames,
 } from '@/components/pages/game/hooks'
 import { MyGamesSection } from '@/components/pages/game/my-games-section'
-import type { SearchGameForm } from '@/types/game.types'
 import type { CarouselGameItem } from '@/types/home.types'
-import { searchGameSchema } from '@/validation/games'
+import { searchGameSchema, type SearchGameForm } from '@/schema/games'
 import { CommunitiesSection } from '@/components/pages/game/community-section'
 
 // Main Component

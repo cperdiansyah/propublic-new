@@ -14,3 +14,6 @@ export const addGameSchema = z.object({
 export const searchGameSchema = z.object({
   searchTerm: z.string().min(0).max(50, 'Search term too long'),
 })
+
+export type SearchGameForm = z.infer<typeof searchGameSchema>
+export type AddGameForm = z.infer<typeof addGameSchema>

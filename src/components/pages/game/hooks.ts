@@ -1,6 +1,6 @@
 import { COMMUNITIES, GAMELIST } from '@/config/exampleData'
 import type { CarouselGameItem } from '@/types/home.types'
-import { addGameSchema } from '@/validation/games'
+import { addGameSchema } from '@/schema/games'
 import { useCallback, useMemo, useState } from 'react'
 
 interface SavedGame extends CarouselGameItem {
