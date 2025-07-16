@@ -33,7 +33,7 @@ export function MyGameCard({ game, onRemove }: MyGameCardProps) {
           <div
             className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
             style={{
-              backgroundImage: `url(${game.imageSrc || `/placeholder.svg?height=320&width=280&text=${encodeURIComponent(game.name)}`})`,
+              backgroundImage: `url(${game.imageSrc || `/images/placeholder.png`})`,
             }}
           />
 
@@ -46,7 +46,7 @@ export function MyGameCard({ game, onRemove }: MyGameCardProps) {
           </div>
         </div>
         <div className="button-wrapper pt-2">
-          <Link href="/auth/login" className="hidden md:block">
+          <Link href="/auth/login" className="">
             <button className="w-full bg-gradient-to-r from-red-900 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold  transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-red-500/30 border-radius-propublic propublic-button  !px-2 !py-1">
               Join
             </button>

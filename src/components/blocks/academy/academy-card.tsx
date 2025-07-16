@@ -36,6 +36,7 @@ const AcademyCard: React.FC<IAcademyCard> = ({
           width={500}
           height={500}
           blurDataURL={'/images/placeholder.png'}
+          placeholder="blur"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
       </div>
