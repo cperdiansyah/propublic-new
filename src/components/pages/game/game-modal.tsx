@@ -38,7 +38,7 @@ export function AddGameModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[80vh] bg-dark-secondary/90 rounded-sm backdrop-blur-sm border-custom-primary/30">
+      <DialogContent className="lg:max-w-[70%] max-h-[80vh] bg-dark-secondary/90 rounded-sm backdrop-blur-sm border-custom-primary/30">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-white">
             {title}
@@ -66,7 +66,7 @@ export function AddGameModal({
           </div>
 
           {/* Games Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3  gap-4 overflow-y-auto max-h-96 px-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6  gap-4 overflow-y-auto max-h-96 px-3">
             {availableGames.map((game) => (
               <GameOption key={game.id} game={game} onSelect={onAddGame} />
             ))}

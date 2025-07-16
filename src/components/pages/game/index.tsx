@@ -17,6 +17,7 @@ import { MyGamesSection } from '@/components/pages/game/my-games-section'
 import type { CarouselGameItem } from '@/types/home.types'
 import { searchGameSchema, type SearchGameForm } from '@/schema/games'
 import { CommunitiesSection } from '@/components/pages/game/community-section'
+import RadialGradient from '@/components/blocks/background/radialGradient'
 
 // Main Component
 export default function GameContent() {
@@ -53,28 +54,35 @@ export default function GameContent() {
 
   return (
     <div className="pt-28 pb-20 px-4 min-h-screen bg-black">
-      <div className="max-w-7xl mx-auto">
-        <MyGamesSection
-          savedGames={savedGames}
-          onRemoveGame={removeGame}
-          onOpenModal={() => setIsModalOpen(true)}
-          textAddGame="Search Game"
-        />
+      <RadialGradient
+        x={70}
+        y={50}
+        primaryOpacity={0.2}
+        className=" py-16 relative"
+      >
+        <div className="max-w-7xl mx-auto">
+          <MyGamesSection
+            savedGames={savedGames}
+            onRemoveGame={removeGame}
+            onOpenModal={() => setIsModalOpen(true)}
+            textAddGame="Search Game"
+          />
 
-        <CommunitiesSection
-          communities={filteredCommunities}
-          onOpenModal={() => setIsModalOpen(true)}
-        />
+          <CommunitiesSection
+            communities={filteredCommunities}
+            onOpenModal={() => setIsModalOpen(true)}
+          />
 
-        <AddGameModal
-          isOpen={isModalOpen}
-          onClose={handleModalClose}
-          availableGames={availableGames}
-          searchForm={searchForm}
-          onAddGame={handleAddGame}
-          title="Search Game"
-        />
-      </div>
+          <AddGameModal
+            isOpen={isModalOpen}
+            onClose={handleModalClose}
+            availableGames={availableGames}
+            searchForm={searchForm}
+            onAddGame={handleAddGame}
+            title="Search Game"
+          />
+        </div>
+      </RadialGradient>
     </div>
   )
 }
