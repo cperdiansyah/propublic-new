@@ -1,7 +1,6 @@
 'use client'
 import RadialGradient from '@/components/blocks/background/radialGradient'
 import { Crown, ShoppingBag, Sparkles, Star, Zap } from 'lucide-react'
-// import ShopeeImage from '@/p'
 
 export default function ShopContent() {
   return (

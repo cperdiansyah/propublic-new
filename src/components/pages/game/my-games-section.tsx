@@ -23,7 +23,6 @@ export function MyGamesSection({
     <section className="mb-16">
       <div className="flex items-center justify-between mb-8">
         <h2 className="text-3xl font-bold text-white flex items-center">
-          {/* <span className="mr-3">🎮</span> */}
           Find your game
         </h2>
       </div>
