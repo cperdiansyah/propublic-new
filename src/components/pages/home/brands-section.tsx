@@ -24,10 +24,10 @@ const containerVariants = {
     },
   },
 }
-
 const BrandSection = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [isMobile, setIsMobile] = useState(false)
+  const [isInitialLoad, setIsInitialLoad] = useState(true)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(false)
@@ -36,6 +36,14 @@ const BrandSection = () => {
     selectedCategory === 'all'
       ? brands
       : brands.filter((brand) => brand.category === selectedCategory)
+
+  // Handle category change with proper animation reset
+  const handleCategoryChange = (category: string) => {
+    if (category !== selectedCategory) {
+      setSelectedCategory(category)
+      setIsInitialLoad(false)
+    }
+  }
 
   // Check if device is mobile
   useEffect(() => {
@@ -96,7 +104,7 @@ const BrandSection = () => {
         x={70}
         y={50}
         primaryOpacity={0.2}
-        className="md:py-16 relative"
+        className="py-16 relative"
       >
         <div className="max-w-7xl mx-auto">
           {/* Header */}
@@ -115,17 +123,25 @@ const BrandSection = () => {
           {/* Filter Buttons */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             {categories.map((category) => (
-              <button
+              <motion.button
                 key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
+                onClick={() => handleCategoryChange(category.id)}
                 className={`px-6 py-3 border-radius-propublic font-semibold text-sm transition-all duration-300 font-teko backdrop-blur-sm border ${
                   selectedCategory === category.id
                     ? 'bg-custom-primary text-white border-custom-primary shadow-lg shadow-custom-primary/25'
                     : 'bg-white/5 text-white hover:bg-white/10 border-white/20 hover:border-custom-primary/50'
                 }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay:
+                    0.1 * categories.findIndex((cat) => cat.id === category.id),
+                }}
               >
                 {category.label}
-              </button>
+              </motion.button>
             ))}
           </div>
 
@@ -172,7 +188,8 @@ const BrandSection = () => {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            key={selectedCategory}
+            exit="exit"
+            key={`${selectedCategory}-${isInitialLoad}`}
           >
             <div
               ref={scrollContainerRef}
@@ -192,7 +209,7 @@ const BrandSection = () => {
             >
               <AnimatePresence mode="wait">
                 {filteredBrands.map((brand, index) => (
-                  <div
+                  <motion.div
                     key={`${selectedCategory}-${brand.id}`}
                     className={`${
                       isMobile
@@ -200,13 +217,39 @@ const BrandSection = () => {
                         : 'flex-1 min-w-[200px] max-w-[250px]'
                     }`}
                     style={isMobile ? { scrollSnapAlign: 'start' } : {}}
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{
+                      delay: index * 0.1,
+                      duration: 0.5,
+                      type: 'spring',
+                      stiffness: 300,
+                      damping: 25,
+                    }}
                   >
                     <BrandCard brand={brand} index={index} />
-                  </div>
+                  </motion.div>
                 ))}
               </AnimatePresence>
             </div>
           </motion.div>
+
+          {/* Mobile Scroll Indicator */}
+          {/* {isMobile && filteredBrands.length > 2 && (
+            <div className="flex justify-center mt-6">
+              <div className="flex items-center gap-2">
+                {Array.from({
+                  length: Math.ceil(filteredBrands.length / 2),
+                }).map((_, index) => (
+                  <div
+                    key={index}
+                    className="w-2 h-2 rounded-full bg-white/20 transition-all duration-300"
+                  />
+                ))}
+              </div>
+            </div>
+          )} */}
         </div>
       </RadialGradient>
     </section>
