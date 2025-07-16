@@ -1,8 +1,7 @@
 'use client'
 import { Card, CardContent } from '@/components/ui/card'
 import type { SavedGame } from '@/types/game.types'
-import { Plus } from 'lucide-react'
-import Link from 'next/link'
+import { Plus, X } from 'lucide-react'
 import { useCallback, useState } from 'react'
 
 // My Game Card Component
@@ -24,7 +23,7 @@ export function MyGameCard({ game, onRemove }: MyGameCardProps) {
 
   return (
     <Card
-      className="relative bg-white/5 backdrop-blur-sm border-white/10 p-2 group cursor-pointer border-2 hover:border-custom-primary transition-all overflow-hidden border-radius-propublic"
+      className="relative bg-white/5 backdrop-blur-sm !border-white/10 p-2 group cursor-pointer border-2 hover:!border-custom-primary transition-all overflow-hidden border-radius-propublic"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -40,17 +39,20 @@ export function MyGameCard({ game, onRemove }: MyGameCardProps) {
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/90 group-hover:via-black/50 transition-all duration-500" />
 
+          {/* Remove Button */}
+          <button
+            onClick={handleRemove}
+            className={`absolute top-2 right-2 w-8 h-8 bg-black/50 hover:bg-red-500 rounded-full flex items-center justify-center transition-all duration-200 ${
+              isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+            }`}
+          >
+            <X className="w-4 h-4 text-white" />
+          </button>
+
           {/* Game Name */}
           <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
             <h3 className="font-bold text-lg truncate">{game.name}</h3>
           </div>
-        </div>
-        <div className="button-wrapper pt-2">
-          <Link href="/auth/login" className="">
-            <button className="w-full bg-gradient-to-r from-red-900 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold  transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-red-500/30 border-radius-propublic propublic-button  !px-2 !py-1">
-              Join
-            </button>
-          </Link>
         </div>
       </CardContent>
     </Card>

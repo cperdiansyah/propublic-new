@@ -102,10 +102,7 @@ function GameOption({ game, onSelect }: GameOptionProps) {
   }, [game, onSelect])
 
   return (
-    <Card
-      onClick={handleSelect}
-      className="cursor-pointer border-2  hover:border-custom-primary transition-all group overflow-hidden p-0 rounded-sm relative gap-0 bg-white/5 backdrop-blur-sm border-white/10 "
-    >
+    <Card className="cursor-pointer border-2  hover:border-custom-primary transition-all group overflow-hidden p-0 rounded-sm relative gap-0 bg-white/5 backdrop-blur-sm border-white/10 ">
       <CardContent className="p-0 overflow-hidden">
         <div className="aspect-[3/4] relative">
           <div
@@ -121,11 +118,12 @@ function GameOption({ game, onSelect }: GameOptionProps) {
         </div>
       </CardContent>
       <div className="button-wrapper pt-1">
-        <Link href="/auth/login" className="">
-          <button className="w-full bg-gradient-to-r from-red-900 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold  transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-red-500/30 border-radius-propublic propublic-button  !px-2 !py-1">
-            Join
-          </button>
-        </Link>
+        <button
+          className="w-full bg-gradient-to-r from-red-900 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold  transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-red-500/30 border-radius-propublic propublic-button  !px-2 !py-1"
+          onClick={handleSelect}
+        >
+          Join
+        </button>
       </div>
     </Card>
   )
