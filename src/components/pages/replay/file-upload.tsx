@@ -47,7 +47,7 @@ export default function FileUpload({
         <p className="text-sm text-cream/50 mb-6">
           Supports: .dem, .rofl, .replay, .rec files (Max 500MB)
         </p>
-        <button className="premium-gradient text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+        <button className="premium-gradient font-teko text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
           Select Replay File
         </button>
       </div>
