@@ -1,32 +1,37 @@
+import { Button } from '@/components/ui/button'
+import type { CategoryFilter } from '@/types/academy.types'
+
+// Category Filters Component
 interface CategoryFiltersProps {
+  categories: CategoryFilter[]
   activeCategory: string
-  setActiveCategory: (category: string) => void
+  onCategoryChange: (category: string) => void
 }
 
 export default function CategoryFilters({
+  categories,
   activeCategory,
-  setActiveCategory,
+  onCategoryChange,
 }: CategoryFiltersProps) {
-  const categories = [
-    'All Courses',
-    'Beginner',
-    'Intermediate',
-    'Advanced',
-    'Pro Level',
-  ]
-
   return (
-    <div className="flex flex-wrap gap-4 justify-center mb-12">
+    <div className="flex flex-wrap gap-3">
       {categories.map((category) => (
-        <button
-          key={category}
-          onClick={() => setActiveCategory(category)}
-          className={`filter-btn px-6 py-3 rounded-xl text-cream/80 font-medium ${
-            activeCategory === category ? 'active' : ''
-          }`}
+        <Button
+          key={category.id}
+          variant={activeCategory === category.id ? 'default' : 'outline'}
+          size="sm"
+          onClick={() => onCategoryChange(category.id)}
+          className={`
+            ${
+              activeCategory === category.id
+                ? 'bg-red-500 text-white hover:bg-red-600'
+                : 'border-red-500/30 text-cream/80 hover:border-red-500 hover:bg-red-500/10 bg-transparent hover:text-white'
+            }
+            transition-all duration-200 rounded-sm
+          `}
         >
-          {category}
-        </button>
+          {category.label}
+        </Button>
       ))}
     </div>
   )
