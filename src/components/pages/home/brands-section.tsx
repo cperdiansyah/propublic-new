@@ -1,62 +1,11 @@
 'use client'
-import type { Brand } from '@/types/home.types'
-import { useState } from 'react'
-
 import RadialGradient from '@/components/blocks/background/radialGradient'
+import BrandCard from '@/components/blocks/brand/brand-card'
 import SectionTitle from '@/components/common/section-title'
+import { brands } from '@/config/exampleData'
 import { AnimatePresence, motion } from 'framer-motion'
-import Image from 'next/image'
-
-const brands: Brand[] = [
-  {
-    id: Math.random(),
-    logo: 'https://propublic-academy.s3.ap-southeast-1.amazonaws.com/partner/Bebek+Carok_Long.png',
-    name: 'BEBEK CAROK',
-    category: 'food',
-  },
-  {
-    id: Math.random(),
-    logo: 'https://propublic-academy.s3.ap-southeast-1.amazonaws.com/partner/ESL+FACEIT_White.png',
-    name: 'ESL FACEIT',
-    category: 'esports',
-  },
-  {
-    id: Math.random(),
-    logo: 'https://propublic-academy.s3.ap-southeast-1.amazonaws.com/partner/Sekuya.png',
-    name: 'SEKUYA',
-    category: 'services',
-  },
-  {
-    id: Math.random(),
-    logo: 'https://propublic-academy.s3.ap-southeast-1.amazonaws.com/partner/T1_Red.png',
-    name: 'T1',
-    category: 'esports',
-  },
-  {
-    id: Math.random(),
-    logo: 'https://propublic-academy.s3.ap-southeast-1.amazonaws.com/partner/Team+Falcon.png',
-    name: 'TEAM FALCONS',
-    category: 'esports',
-  },
-  {
-    id: Math.random(),
-    logo: 'https://propublic-academy.s3.ap-southeast-1.amazonaws.com/partner/Team+Flash.png',
-    name: 'TEAM FLASH',
-    category: 'esports',
-  },
-  {
-    id: Math.random(),
-    logo: 'https://propublic-academy.s3.ap-southeast-1.amazonaws.com/partner/Top+Up+No+Limit.png',
-    name: 'TOPUP NO LIMIT',
-    category: 'services',
-  },
-  {
-    id: Math.random(),
-    logo: 'https://propublic-academy.s3.ap-southeast-1.amazonaws.com/partner/W3GG.png',
-    name: 'W3GG',
-    category: 'services',
-  },
-]
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 
 const categories = [
   { id: 'all', label: 'ALL' },
@@ -65,7 +14,7 @@ const categories = [
   { id: 'services', label: 'SERVICES' },
 ]
 
-// Simplified animation variants
+// Animation variants for the container
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -76,39 +25,78 @@ const containerVariants = {
   },
 }
 
-const itemVariants = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-    },
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: 0.2,
-    },
-  },
-}
-
 const BrandSection = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
+  const [isMobile, setIsMobile] = useState(false)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(false)
 
   const filteredBrands =
     selectedCategory === 'all'
       ? brands
       : brands.filter((brand) => brand.category === selectedCategory)
 
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Check scroll position for mobile slider
+  const checkScrollPosition = () => {
+    if (!scrollContainerRef.current || !isMobile) return
+
+    const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current
+    setCanScrollLeft(scrollLeft > 0)
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1)
+  }
+
+  useEffect(() => {
+    if (isMobile) {
+      checkScrollPosition()
+      const container = scrollContainerRef.current
+      if (container) {
+        container.addEventListener('scroll', checkScrollPosition)
+        return () =>
+          container.removeEventListener('scroll', checkScrollPosition)
+      }
+    }
+  }, [isMobile, filteredBrands])
+
+  // Mobile scroll functions
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      const cardWidth = 200 + 16 // card width + gap
+      scrollContainerRef.current.scrollBy({
+        left: -cardWidth * 2,
+        behavior: 'smooth',
+      })
+    }
+  }
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      const cardWidth = 200 + 16 // card width + gap
+      scrollContainerRef.current.scrollBy({
+        left: cardWidth * 2,
+        behavior: 'smooth',
+      })
+    }
+  }
+
   return (
-    <section className="bg-black text-white px-4 min-h-screen md:min-h-[200px]  2xl:min-h-fit ">
+    <section className="bg-black text-white px-4 min-h-screen md:min-h-[200px] 2xl:min-h-fit">
       <RadialGradient
         x={70}
         y={50}
         primaryOpacity={0.2}
-        className=" py-16 relative"
+        className="md:py-16 relative"
       >
         <div className="max-w-7xl mx-auto">
           {/* Header */}
@@ -123,67 +111,101 @@ const BrandSection = () => {
             }
             center
           />
+
           {/* Filter Buttons */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`px-6 py-3 border-radius-propublic font-semibold text-sm transition-all duration-300 font-teko ${
+                className={`px-6 py-3 border-radius-propublic font-semibold text-sm transition-all duration-300 font-teko backdrop-blur-sm border ${
                   selectedCategory === category.id
-                    ? 'bg-white text-black'
-                    : 'bg-gray-700/50 text-white hover:bg-gray-700'
+                    ? 'bg-custom-primary text-white border-custom-primary shadow-lg shadow-custom-primary/25'
+                    : 'bg-white/5 text-white hover:bg-white/10 border-white/20 hover:border-custom-primary/50'
                 }`}
               >
                 {category.label}
               </button>
             ))}
           </div>
-          {/* Brand Grid */}
+
+          {/* Mobile Navigation Controls */}
+          {isMobile && filteredBrands.length > 2 && (
+            <div className="flex justify-between items-center mb-6">
+              <button
+                onClick={scrollLeft}
+                disabled={!canScrollLeft}
+                className={`w-10 h-10 rounded-full border backdrop-blur-sm flex items-center justify-center transition-all duration-300 ${
+                  canScrollLeft
+                    ? 'border-custom-primary/50 text-custom-primary hover:bg-custom-primary hover:text-white'
+                    : 'border-white/20 text-white/30 cursor-not-allowed'
+                }`}
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              <div className="text-sm text-white/60">
+                {filteredBrands.length} brands
+              </div>
+
+              <button
+                onClick={scrollRight}
+                disabled={!canScrollRight}
+                className={`w-10 h-10 rounded-full border backdrop-blur-sm flex items-center justify-center transition-all duration-300 ${
+                  canScrollRight
+                    ? 'border-custom-primary/50 text-custom-primary hover:bg-custom-primary hover:text-white'
+                    : 'border-white/20 text-white/30 cursor-not-allowed'
+                }`}
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          )}
+
+          {/* Brand Grid/Slider */}
           <motion.div
-            className="flex flex-row justify-center gap-4 justify-items-center flex-wrap md:max-w-[50vw] mx-auto"
+            className={`relative ${
+              isMobile
+                ? 'overflow-hidden'
+                : 'flex flex-row justify-center gap-4 justify-items-center flex-wrap md:max-w-[50vw] mx-auto'
+            }`}
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             key={selectedCategory}
           >
-            <AnimatePresence mode="wait">
-              {filteredBrands.map((brand, index) => (
-                <motion.div
-                  key={`${selectedCategory}-${brand.id}`}
-                  className="bg-gray-500/50 border border-gray-400 rounded backdrop-blur-sm p-6 flex flex-col items-center  hover:bg-gray-800 transition-colors duration-300 group justify-between flex-1/3 md:flex-none"
-                  variants={itemVariants}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  exit="exit"
-                  transition={{
-                    type: 'spring',
-                    stiffness: 300,
-                    damping: 20,
-                    delay: index * 0.1,
-                    ease: 'easeIn',
-                  }}
-                >
-                  <div className="mb-4 group-hover:scale-110 transition-transform duration-300 h-[130px] justify-center items-center flex">
-                    <Image
-                      src={brand.logo || '/images/placeholder.png'}
-                      alt={brand.name}
-                      width={100}
-                      height={180}
-                      className="object-contain"
-                      blurDataURL={brand.logo}
-                      placeholder="blur"
-                    />
+            <div
+              ref={scrollContainerRef}
+              className={`${
+                isMobile
+                  ? 'flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth pb-4'
+                  : 'contents'
+              }`}
+              style={
+                isMobile
+                  ? {
+                      scrollSnapType: 'x mandatory',
+                      scrollBehavior: 'smooth',
+                    }
+                  : {}
+              }
+            >
+              <AnimatePresence mode="wait">
+                {filteredBrands.map((brand, index) => (
+                  <div
+                    key={`${selectedCategory}-${brand.id}`}
+                    className={`${
+                      isMobile
+                        ? 'flex-shrink-0 w-48'
+                        : 'flex-1 min-w-[200px] max-w-[250px]'
+                    }`}
+                    style={isMobile ? { scrollSnapAlign: 'start' } : {}}
+                  >
+                    <BrandCard brand={brand} index={index} />
                   </div>
-                  <h3 className="text-center font-bold text-sm text-gray-300 group-hover:text-white transition-colors duration-300">
-                    {brand.name}
-                  </h3>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+                ))}
+              </AnimatePresence>
+            </div>
           </motion.div>
         </div>
       </RadialGradient>

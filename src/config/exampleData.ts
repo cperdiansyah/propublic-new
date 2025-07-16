@@ -1,4 +1,5 @@
 import type {
+  Brand,
   CarouselGameItem,
   ICourseItem,
   TypeCommunityItem,
@@ -516,5 +517,56 @@ export const COMMUNITIES: TypeCommunityItem[] = [
     color: 'from-indigo-600 to-indigo-700',
     headerImage:
       'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop',
+  },
+]
+
+export const brands: Brand[] = [
+  {
+    id: Math.random(),
+    logo: 'https://propublic-academy.s3.ap-southeast-1.amazonaws.com/partner/Bebek+Carok_Long.png',
+    name: 'BEBEK CAROK',
+    category: 'food',
+  },
+  {
+    id: Math.random(),
+    logo: 'https://propublic-academy.s3.ap-southeast-1.amazonaws.com/partner/ESL+FACEIT_White.png',
+    name: 'ESL FACEIT',
+    category: 'esports',
+  },
+  {
+    id: Math.random(),
+    logo: 'https://propublic-academy.s3.ap-southeast-1.amazonaws.com/partner/Sekuya.png',
+    name: 'SEKUYA',
+    category: 'services',
+  },
+  {
+    id: Math.random(),
+    logo: 'https://propublic-academy.s3.ap-southeast-1.amazonaws.com/partner/T1_Red.png',
+    name: 'T1',
+    category: 'esports',
+  },
+  {
+    id: Math.random(),
+    logo: 'https://propublic-academy.s3.ap-southeast-1.amazonaws.com/partner/Team+Falcon.png',
+    name: 'TEAM FALCONS',
+    category: 'esports',
+  },
+  {
+    id: Math.random(),
+    logo: 'https://propublic-academy.s3.ap-southeast-1.amazonaws.com/partner/Team+Flash.png',
+    name: 'TEAM FLASH',
+    category: 'esports',
+  },
+  {
+    id: Math.random(),
+    logo: 'https://propublic-academy.s3.ap-southeast-1.amazonaws.com/partner/Top+Up+No+Limit.png',
+    name: 'TOPUP NO LIMIT',
+    category: 'services',
+  },
+  {
+    id: Math.random(),
+    logo: 'https://propublic-academy.s3.ap-southeast-1.amazonaws.com/partner/W3GG.png',
+    name: 'W3GG',
+    category: 'services',
   },
 ]
