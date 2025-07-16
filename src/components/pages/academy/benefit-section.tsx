@@ -36,7 +36,7 @@ export function BenefitCard({ benefit }: BenefitCardProps) {
   const IconComponent = benefit.icon
 
   return (
-    <Card className="group relative bg-dark-secondary/50 border border-red-500/20 hover:border-red-500/50 transition-all duration-300 hover:transform hover:scale-105 overflow-hidden">
+    <Card className="group relative bg-dark-secondary/50 border border-red-500/20 hover:border-red-500/50 transition-all duration-300 hover:transform hover:scale-105 overflow-hidden rounded-sm">
       <CardContent className="p-6 text-center space-y-4">
         {/* Icon */}
         <div
@@ -50,9 +50,9 @@ export function BenefitCard({ benefit }: BenefitCardProps) {
           <h3 className="text-white font-bold text-sm leading-tight uppercase tracking-wide">
             {benefit.title}
           </h3>
-          <p className="text-cream/70 text-xs leading-relaxed">
+          {/* <p className="text-cream/70 text-xs leading-relaxed">
             {benefit.description}
-          </p>
+          </p> */}
         </div>
 
         {/* Hover Glow Effect */}
