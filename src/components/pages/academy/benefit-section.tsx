@@ -13,7 +13,7 @@ export function BenefitsSection({ benefits }: BenefitsSectionProps) {
       <div className="absolute inset-0 bg-gradient-to-r from-red-950/20 via-transparent to-red-950/20 rounded-3xl blur-3xl -z-10" />
 
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
           WHY GET THESE ACADEMY?
         </h2>
       </div>

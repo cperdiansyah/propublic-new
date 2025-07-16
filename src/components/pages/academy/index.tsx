@@ -112,15 +112,11 @@ function AcademyHeader() {
   return (
     <header className="text-center mb-16">
       <div className="space-y-6">
-        <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+        <h1 className="text-xl md:text-5xl font-bold text-white leading-tight">
           GET PROFESSIONAL & QUALITY
           <br />
           <span className="gradient-text">ACADEMY FOR YOUR GAMING CAREER</span>
         </h1>
-        <p className="text-xl text-cream/70 max-w-3xl mx-auto leading-relaxed">
-          Master your favorite games with expert-crafted courses from
-          professional players and world-class coaches.
-        </p>
       </div>
     </header>
   )
