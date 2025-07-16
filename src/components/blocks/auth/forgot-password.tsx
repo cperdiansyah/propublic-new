@@ -338,11 +338,11 @@ export default function ForgotPasswordContent() {
                   {isSubmitting ? (
                     <>
                       <div className="w-5 h-5 border-2 border-cream/30 border-t-cream rounded-full animate-spin"></div>
-                      <span>Sending Reset Link...</span>
+                      <span className="font-teko">Sending Reset Link...</span>
                     </>
                   ) : (
                     <>
-                      <span>Send Reset Link</span>
+                      <span className="font-teko">Send Reset Link</span>
                       <ArrowRight className="w-5 h-5" />
                     </>
                   )}

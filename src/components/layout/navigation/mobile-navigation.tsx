@@ -48,7 +48,7 @@ function NavigationItem({
       href={href}
       className={`relative flex flex-col items-center justify-center p-4 w-12 h-12 !rounded-md transition-all duration-200 ${
         isActive
-          ? 'bg-blue-100 text-custom-primary'
+          ? 'bg-gray-50 text-custom-primary'
           : 'text-white hover:text-gray-700 hover:bg-gray-50'
       }`}
     >
