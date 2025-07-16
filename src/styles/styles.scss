@@ -32,13 +32,17 @@
 button,
 a {
   border-radius: var(--propublic-border-radius);
-  font-family: "Teko", sans-serif;
   @apply cursor-pointer;
 
   &.propublic-button {
+    font-family: "Teko", sans-serif;
     border-radius: var(--propublic-border-radius);
     @apply px-3 py-2;
   }
+}
+
+.propublic-button a {
+  font-family: inherit !important;
 }
 
 .border-radius-propublic {

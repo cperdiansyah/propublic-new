@@ -39,7 +39,7 @@ const AcademiesSection: React.FC<IAcademiesSection> = ({ courses }) => {
           withButton
           btnText="Explore More Course"
           href="/academy"
-          buttonClassname="bg-custom-accent text-black hover:bg-custom-accent/90"
+          buttonClassname="bg-custom-accent text-black !font-teko hover:bg-custom-accent/90"
         />
 
         <div className="academies-wrapper container">

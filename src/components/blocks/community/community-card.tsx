@@ -31,7 +31,8 @@ const CommunitiesCard = ({
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             width={400}
             height={200}
-            blurDataURL={community.headerImage || '/placeholder.png'}
+            blurDataURL={community.headerImage || '/images/placeholder.png'}
+            placeholder="blur"
           />
           {/* Gradient Overlay */}{' '}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent  group-hover:scale-125 transition-transform duration-700"></div>

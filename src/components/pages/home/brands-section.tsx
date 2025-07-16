@@ -169,12 +169,13 @@ const BrandSection = () => {
                 >
                   <div className="mb-4 group-hover:scale-110 transition-transform duration-300 h-[130px] justify-center items-center flex">
                     <Image
-                      src={brand.logo || '/placeholder.svg'}
+                      src={brand.logo || '/images/placeholder.png'}
                       alt={brand.name}
                       width={100}
                       height={180}
                       className="object-contain"
-                      blurDataURL={brand.logo || '/images/placeholder.png'}
+                      blurDataURL={brand.logo}
+                      placeholder="blur"
                     />
                   </div>
                   <h3 className="text-center font-bold text-sm text-gray-300 group-hover:text-white transition-colors duration-300">

@@ -29,6 +29,7 @@ const Footer = () => {
                 height={100}
                 alt="logo"
                 blurDataURL={'/images/placeholder.png'}
+                placeholder="blur"
               />
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed capitalize">

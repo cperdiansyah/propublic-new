@@ -102,7 +102,7 @@ export default function ShopContent() {
                   rel="noopener noreferrer"
                 >
                   <ShoppingBag className="w-5 h-5 group-hover:animate-bounce" />
-                  <span className="text-lg">Shop on Shopee</span>
+                  <span className="text-lg font-teko">Shop on Shopee</span>
                 </a>
                 <a
                   className="group bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold px-10 py-4 rounded-xl border border-transparent hover:border-green-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-green-500/30 hover:-translate-y-1 cursor-pointer flex items-center justify-center space-x-3 min-w-[200px]"
@@ -111,7 +111,7 @@ export default function ShopContent() {
                   rel="noopener noreferrer"
                 >
                   <ShoppingBag className="w-5 h-5 group-hover:animate-bounce" />
-                  <span className="text-lg">Shop on Tokopedia</span>
+                  <span className="text-lg font-teko">Shop on Tokopedia</span>
                 </a>
               </div>
             </div>

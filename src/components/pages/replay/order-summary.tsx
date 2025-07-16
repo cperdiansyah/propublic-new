@@ -56,7 +56,7 @@ export default function OrderSummary({ selectedPackage }: OrderSummaryProps) {
       {/* Payment Button */}
       <button className="w-full premium-gradient text-white py-5 border-radius-propublic font-bold text-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center space-x-3">
         <Lock className="w-6 h-6" />
-        <span>Proceed to Secure Payment</span>
+        <span className="font-teko">Proceed to Secure Payment</span>
       </button>
       <p className="text-center text-sm text-cream/60 mt-4">
         🔒 Your payment is secured with 256-bit SSL encryption
