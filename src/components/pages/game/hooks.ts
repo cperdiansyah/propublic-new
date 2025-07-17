@@ -7,6 +7,8 @@ interface SavedGame extends CarouselGameItem {
   readonly dateAdded: string
 }
 
+const MAX_GAMES = 10
+
 export const useSavedGames = () => {
   const [savedGames, setSavedGames] = useState<SavedGame[]>([
     {
@@ -37,6 +39,12 @@ export const useSavedGames = () => {
 
   const addGame = useCallback(
     (game: CarouselGameItem) => {
+      // Check if maximum games reached
+      if (savedGames.length >= MAX_GAMES) {
+        console.warn(`Maximum ${MAX_GAMES} games allowed`)
+        return false
+      }
+
       // Validate game data
       const result = addGameSchema.safeParse({
         gameId: game.id,
@@ -75,10 +83,23 @@ export const useSavedGames = () => {
     setSavedGames((prev) => prev.filter((game) => game.id !== gameId))
   }, [])
 
+  // Additional helper functions
+  const canAddMore = useMemo(
+    () => savedGames.length < MAX_GAMES,
+    [savedGames.length],
+  )
+  const remainingSlots = useMemo(
+    () => MAX_GAMES - savedGames.length,
+    [savedGames.length],
+  )
+
   return {
     savedGames,
     addGame,
     removeGame,
+    canAddMore,
+    remainingSlots,
+    maxGames: MAX_GAMES,
   }
 }
 

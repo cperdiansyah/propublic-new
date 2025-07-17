@@ -21,7 +21,14 @@ import RadialGradient from '@/components/blocks/background/radialGradient'
 
 // Main Component
 export default function GameContent() {
-  const { savedGames, addGame, removeGame } = useSavedGames()
+  const {
+    savedGames,
+    addGame,
+    removeGame,
+    canAddMore,
+    remainingSlots,
+    maxGames,
+  } = useSavedGames()
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   // Form for search functionality
@@ -38,14 +45,29 @@ export default function GameContent() {
 
   const handleAddGame = useCallback(
     (game: CarouselGameItem) => {
+      if (!canAddMore) {
+        // Optional: Show a toast notification
+        console.warn(`Maximum ${maxGames} games allowed`)
+        return
+      }
+
       const success = addGame(game)
       if (success) {
         setIsModalOpen(false)
         searchForm.reset()
       }
     },
-    [addGame, searchForm],
+    [addGame, searchForm, canAddMore, maxGames],
   )
+
+  const handleModalOpen = useCallback(() => {
+    if (!canAddMore) {
+      // Optional: Show a toast notification
+      console.warn(`Maximum ${maxGames} games reached`)
+      return
+    }
+    setIsModalOpen(true)
+  }, [canAddMore, maxGames])
 
   const handleModalClose = useCallback(() => {
     setIsModalOpen(false)
@@ -57,20 +79,24 @@ export default function GameContent() {
       <RadialGradient
         x={70}
         y={50}
-        primaryOpacity={0.2}
+        primaryOpacity={0.3}
         className=" py-16 relative"
       >
         <div className="max-w-7xl mx-auto">
           <MyGamesSection
             savedGames={savedGames}
             onRemoveGame={removeGame}
-            onOpenModal={() => setIsModalOpen(true)}
-            textAddGame="Search Game"
+            onOpenModal={handleModalOpen}
+            textAddGame={
+              canAddMore
+                ? `Add Game (${remainingSlots} slots left)`
+                : 'Maximum Reached'
+            }
           />
 
           <CommunitiesSection
             communities={filteredCommunities}
-            onOpenModal={() => setIsModalOpen(true)}
+            onOpenModal={handleModalOpen}
           />
 
           <AddGameModal
@@ -79,7 +105,11 @@ export default function GameContent() {
             availableGames={availableGames}
             searchForm={searchForm}
             onAddGame={handleAddGame}
-            title="Search Game"
+            title={
+              canAddMore
+                ? `Add New Game (${remainingSlots} remaining)`
+                : 'Maximum Games Reached'
+            }
           />
         </div>
       </RadialGradient>
