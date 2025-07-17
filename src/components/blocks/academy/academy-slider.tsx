@@ -69,6 +69,7 @@ const AcademySlider = ({
                 image={academy.course_image_url}
                 price={Number(academy.course_price)}
                 description={academy.course_description}
+                slug={academy.course_slug}
               />
             </InfiniteCarouselItem>
           ))}

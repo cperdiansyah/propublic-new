@@ -24,6 +24,7 @@ export default function CoursesGrid({ courses }: CoursesGridProps) {
           image={course.course_image_url}
           price={Number(course.course_price)}
           description={course.course_description}
+          slug={course.course_slug}
         />
       ))}
     </div>
