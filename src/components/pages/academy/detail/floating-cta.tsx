@@ -26,7 +26,7 @@ export default function FloatingCTA({ price, onBookCourse }: FloatingCTAProps) {
   if (!isVisible) return null
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden">
+    <div className="fixed bottom-[4rem] md:bottom-0 left-0 right-0 z-40 lg:hidden">
       <div className="bg-dark-secondary/95 backdrop-blur-lg border-t border-custom-primary/30 p-4">
         <div className="flex items-center justify-between gap-4">
           <div>
