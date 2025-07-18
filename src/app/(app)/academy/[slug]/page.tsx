@@ -1,45 +1,65 @@
-// src/app/(app)/academy/[slug]/page.tsx
+import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
+
 import AcademyDetailContent from '@/components/pages/academy/detail'
 import { COURSES } from '@/config/exampleData'
-import { notFound } from 'next/navigation'
+import { findCourseBySlug, sanitizeDescription } from '@/lib/utils'
 
-// export async function generateStaticParams() {
-//   return COURSES.map((course) => ({
-//     slug: course.course_slug,
-//   }))
-// }
+interface Params {
+  slug: string
+}
 
-// export async function generateMetadata({
-//   params,
-// }: {
-//   params: { slug: string }
-// }) {
-//   const course = COURSES.find((c) => c.course_slug === params.slug)
+interface PageProps {
+  params: Promise<Params>
+}
 
-//   if (!course) {
-//     return {
-//       title: 'Course Not Found',
-//     }
-//   }
+export async function generateStaticParams(): Promise<Array<Params>> {
+  return COURSES.map((course) => ({
+    slug: course.course_slug,
+  }))
+}
 
-//   return {
-//     title: `${course.course_title} - ProPublic Academy`,
-//     description: course.course_description
-//       ?.replace(/<[^>]*>/g, '')
-//       .slice(0, 160),
-//   }
-// }
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  try {
+    const { slug } = await props.params
+    const course = findCourseBySlug(slug)
 
-export default function AcademyDetailPage({
-  params,
-}: {
-  params: { slug: string }
-}) {
-  const course = COURSES.find((c) => c.course_slug === params.slug)
+    if (!course) {
+      return {
+        title: 'Course Not Found',
+        description: 'The requested course could not be found.',
+      }
+    }
 
-  if (!course) {
+    return {
+      title: `${course.course_title} - ProPublic Academy`,
+      description: sanitizeDescription(course.course_description || ''),
+      openGraph: {
+        title: course.course_title,
+        description: sanitizeDescription(course.course_description || ''),
+      },
+    }
+  } catch (error) {
+    console.error('Error generating metadata:', error)
+    return {
+      title: 'Error Loading Course',
+      description: 'An error occurred while loading the course.',
+    }
+  }
+}
+
+export default async function AcademyDetailPage(props: PageProps) {
+  try {
+    const { slug } = await props.params
+    const course = findCourseBySlug(slug)
+
+    if (!course) {
+      notFound()
+    }
+
+    return <AcademyDetailContent course={course} />
+  } catch (error) {
+    console.error('Error loading academy page:', error)
     notFound()
   }
-
-  return <AcademyDetailContent course={course} />
 }
