@@ -1,5 +1,5 @@
-import { COURSES } from '@/config/exampleData'
-import type { ICourseItem } from '@/types/home.types'
+import { COURSES, GAMELIST } from '@/config/exampleData'
+import type { CarouselGameItem, ICourseItem } from '@/types/home.types'
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
@@ -16,4 +16,14 @@ export const findCourseBySlug = (slug: string): ICourseItem | undefined => {
 export const sanitizeDescription = (description?: string): string => {
   if (!description) return ''
   return description.replace(/<[^>]*>/g, '').slice(0, 160)
+}
+
+// Utility function for game lookup (DRY principle)
+export const findGameBySlug = (slug: string): CarouselGameItem | undefined => {
+  return GAMELIST.find((game) => game.slug === slug)
+}
+
+// Utility function for game description generation
+export const sanitizeGameDescription = (gameName: string): string => {
+  return `Master ${gameName} with ProPublic's expert coaching and gaming community. Find pro coaches, join tournaments, and level up your skills.`
 }
