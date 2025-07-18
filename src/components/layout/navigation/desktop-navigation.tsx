@@ -11,7 +11,7 @@ const Desktopnavigation = () => {
   return (
     <div className=" gap-3 text-white list-none capitalize font-semibold md:flex hidden p-5">
       {newNavigation.map((link) => {
-        const isActive = pathname === link.href
+        const isActive = pathname.includes(link.href)
         return (
           <li
             key={link.label}
