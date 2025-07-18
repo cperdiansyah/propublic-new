@@ -2,6 +2,7 @@
 import { Card, CardContent } from '@/components/ui/card'
 import type { SavedGame } from '@/types/game.types'
 import { Plus, X } from 'lucide-react'
+import Link from 'next/link'
 import { useCallback, useState } from 'react'
 
 // My Game Card Component
@@ -22,40 +23,42 @@ export function MyGameCard({ game, onRemove }: MyGameCardProps) {
   )
 
   return (
-    <Card
-      className="relative bg-white/5 backdrop-blur-sm !border-white/10 p-2 group cursor-pointer border-2 hover:!border-custom-primary transition-all overflow-hidden border-radius-propublic"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <CardContent className="p-0">
-        <div className="aspect-[3/4]  relative border-radius-propublic overflow-hidden">
-          <div
-            className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-            style={{
-              backgroundImage: `url(${game.imageSrc || `/images/placeholder.png`})`,
-            }}
-          />
+    <Link href={`/game/${game.slug}`}>
+      <Card
+        className="relative bg-white/5 backdrop-blur-sm !border-white/10 p-2 group cursor-pointer border-2 hover:!border-custom-primary transition-all overflow-hidden border-radius-propublic"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <CardContent className="p-0">
+          <div className="aspect-[3/4]  relative border-radius-propublic overflow-hidden">
+            <div
+              className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+              style={{
+                backgroundImage: `url(${game.imageSrc || `/images/placeholder.png`})`,
+              }}
+            />
 
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/90 group-hover:via-black/50 transition-all duration-500" />
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/90 group-hover:via-black/50 transition-all duration-500" />
 
-          {/* Remove Button */}
-          <button
-            onClick={handleRemove}
-            className={`absolute top-2 right-2 w-8 h-8 bg-black/50 hover:bg-red-500 rounded-full flex items-center justify-center transition-all duration-200 ${
-              isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-            }`}
-          >
-            <X className="w-4 h-4 text-white" />
-          </button>
+            {/* Remove Button */}
+            <button
+              onClick={handleRemove}
+              className={`absolute top-2 right-2 w-8 h-8 bg-black/50 hover:bg-red-500 rounded-full flex items-center justify-center transition-all duration-200 ${
+                isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+              }`}
+            >
+              <X className="w-4 h-4 text-white" />
+            </button>
 
-          {/* Game Name */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-            <h3 className="font-bold text-lg truncate">{game.name}</h3>
+            {/* Game Name */}
+            <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+              <h3 className="font-bold text-lg truncate">{game.name}</h3>
+            </div>
           </div>
-        </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </Link>
   )
 }
 
