@@ -1,4 +1,3 @@
-// src/components/pages/academy-detail/course-modules.tsx
 import type { ICourseItem } from '@/types/home.types'
 import type { CourseModule } from '@/types/academy-detail.types'
 import { Lock, PlayCircle, FileText, Clock } from 'lucide-react'

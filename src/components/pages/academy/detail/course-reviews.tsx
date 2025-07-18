@@ -1,4 +1,3 @@
-// src/components/pages/academy-detail/course-reviews.tsx
 import type { ICourseItem } from '@/types/home.types'
 import type { CourseReview } from '@/types/academy-detail.types'
 import renderStars from '@/utils/renderStars'

@@ -1,4 +1,3 @@
-// src/components/pages/academy-detail/course-overview.tsx
 import type { ICourseItem } from '@/types/home.types'
 import { Target, Clock, BarChart, Globe } from 'lucide-react'
 

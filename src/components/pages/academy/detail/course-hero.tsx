@@ -1,7 +1,6 @@
-// src/components/pages/academy-detail/course-hero.tsx
 import type { ICourseItem } from '@/types/home.types'
-import { Star, Users, PlayCircle, Award } from 'lucide-react'
 import renderStars from '@/utils/renderStars'
+import { Award, PlayCircle, Users } from 'lucide-react'
 
 interface CourseHeroProps {
   course: ICourseItem

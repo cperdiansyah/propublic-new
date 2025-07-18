@@ -1,4 +1,3 @@
-// src/components/pages/academy-detail/course-instructor.tsx
 import type { ICourseItem } from '@/types/home.types'
 import type { CourseInstructor as InstructorType } from '@/types/academy-detail.types'
 import { Trophy, Award, Star, Users } from 'lucide-react'

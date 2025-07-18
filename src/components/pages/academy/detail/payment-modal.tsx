@@ -1,4 +1,3 @@
-// src/components/pages/academy-detail/payment-modal.tsx
 'use client'
 
 import { useState } from 'react'

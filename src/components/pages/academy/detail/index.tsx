@@ -1,4 +1,3 @@
-// src/components/pages/academy-detail/index.tsx
 'use client'
 
 import { useState } from 'react'
@@ -11,6 +10,7 @@ import CourseInstructor from '@/components/pages/academy/detail/course-instructo
 import CourseReviews from '@/components/pages/academy/detail/course-reviews'
 import PaymentModal from '@/components/pages/academy/detail/payment-modal'
 import FloatingCTA from '@/components/pages/academy/detail/floating-cta'
+import { formatIDRCurrency } from '@/lib/formatCurrency'
 
 interface AcademyDetailContentProps {
   course: ICourseItem
@@ -85,11 +85,7 @@ function CourseCard({
 
       <div className="space-y-4">
         <div className="text-3xl font-bold gradient-text">
-          {new Intl.NumberFormat('id-ID', {
-            style: 'currency',
-            currency: 'IDR',
-            minimumFractionDigits: 0,
-          }).format(Number(course.course_price))}
+          {formatIDRCurrency(Number(course.course_price))}
         </div>
 
         <div className="space-y-3 text-cream/80">

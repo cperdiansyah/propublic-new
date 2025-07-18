@@ -1,4 +1,3 @@
-// src/components/pages/academy-detail/floating-cta.tsx
 'use client'
 
 import { useEffect, useState } from 'react'
