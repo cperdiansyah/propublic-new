@@ -27,23 +27,23 @@ export default function AcademyDetailContent({
   }
 
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden">
+    <div className="relative min-h-screen bg-black">
       <AcademyBackgroundEffects />
 
       <div className="relative z-10 pt-20">
         <CourseHero course={course} onBookCourse={handleBookCourse} />
 
         <div className="max-w-7xl mx-auto px-4 pb-20">
-          <div className="grid lg:grid-cols-3 gap-8 mt-12">
-            <div className="lg:col-span-2 space-y-12">
+          <div className="flex lg:flex-row flex-col gap-8 mt-12">
+            <div className="flex-1 lg:w-2/3 space-y-12">
               <CourseOverview course={course} />
               <CourseModules course={course} />
               <CourseInstructor course={course} />
               <CourseReviews course={course} />
             </div>
 
-            <div className="lg:col-span-1">
-              <div className="sticky top-0">
+            <div className="lg:w-1/3 w-full">
+              <div className="sticky top-24 z-10">
                 <CourseCard course={course} onBookCourse={handleBookCourse} />
               </div>
             </div>
