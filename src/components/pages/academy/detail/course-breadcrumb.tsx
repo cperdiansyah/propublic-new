@@ -16,7 +16,7 @@ const CourseBreadcrumb: React.FC<CourseBreadcrumbProps> = ({ course }) => {
         icon={<Home className="h-full w-full" />}
         label="Home"
       />
-      <span className="breadcrumb-separator text-cream/40 text-xs mx-1 sm:mx-3 hidden xs:inline">
+      <span className="breadcrumb-separator text-cream/40 text-xs mx-1 sm:mx-3  xs:inline">
         ▶
       </span>
       <BreadcrumbItem
@@ -24,7 +24,7 @@ const CourseBreadcrumb: React.FC<CourseBreadcrumbProps> = ({ course }) => {
         icon={<BookOpen className="h-full w-full" />}
         label="Academy"
       />
-      <span className="breadcrumb-separator text-cream/40 text-xs mx-1 sm:mx-3 hidden xs:inline">
+      <span className="breadcrumb-separator text-cream/40 text-xs mx-1 sm:mx-3  xs:inline">
         ▶
       </span>
       <BreadcrumbItem
