@@ -11,6 +11,7 @@ import CourseReviews from '@/components/pages/academy/detail/course-reviews'
 import PaymentModal from '@/components/pages/academy/detail/payment-modal'
 import FloatingCTA from '@/components/pages/academy/detail/floating-cta'
 import { formatIDRCurrency } from '@/lib/formatCurrency'
+import CoruseInfo from '@/components/pages/academy/detail/course-info'
 
 interface AcademyDetailContentProps {
   course: ICourseItem
@@ -32,14 +33,14 @@ export default function AcademyDetailContent({
 
       <div className="relative z-10 pt-20">
         <CourseHero course={course} onBookCourse={handleBookCourse} />
-
         <div className="max-w-7xl mx-auto px-4 pb-20">
+          <CoruseInfo />
           <div className="flex lg:flex-row flex-col gap-8 mt-12">
             <div className="flex-1 lg:w-2/3 space-y-12">
               <CourseOverview course={course} />
-              <CourseModules course={course} />
+              {/* <CourseModules course={course} /> */}
               <CourseInstructor course={course} />
-              <CourseReviews course={course} />
+              {/* <CourseReviews course={course} /> */}
             </div>
 
             <div className="lg:w-1/3 w-full">
@@ -49,12 +50,10 @@ export default function AcademyDetailContent({
             </div>
           </div>
         </div>
-
         <FloatingCTA
           price={course.course_price}
           onBookCourse={handleBookCourse}
         />
-
         <PaymentModal
           isOpen={isPaymentModalOpen}
           onClose={() => setIsPaymentModalOpen(false)}

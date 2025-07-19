@@ -40,30 +40,6 @@ export default function CourseOverview({ course }: CourseOverviewProps) {
       </div>
 
       {/* Course Info */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 border-t border-cream/10">
-        <div className="text-center">
-          <Clock className="w-8 h-8 text-custom-accent mx-auto mb-2" />
-          <div className="font-bold text-lg">24 Hours</div>
-          <div className="text-cream/60 text-sm">Total Content</div>
-        </div>
-        <div className="text-center">
-          <BarChart className="w-8 h-8 text-custom-accent mx-auto mb-2" />
-          <div className="font-bold text-lg">All Levels</div>
-          <div className="text-cream/60 text-sm">Skill Level</div>
-        </div>
-        <div className="text-center">
-          <Globe className="w-8 h-8 text-custom-accent mx-auto mb-2" />
-          <div className="font-bold text-lg">English</div>
-          <div className="text-cream/60 text-sm">Language</div>
-        </div>
-        <div className="text-center">
-          <div className="w-8 h-8 text-custom-accent mx-auto mb-2 text-2xl">
-            ∞
-          </div>
-          <div className="font-bold text-lg">Lifetime</div>
-          <div className="text-cream/60 text-sm">Access</div>
-        </div>
-      </div>
     </div>
   )
 }
