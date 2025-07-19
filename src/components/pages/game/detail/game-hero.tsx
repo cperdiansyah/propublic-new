@@ -1,5 +1,9 @@
 import type { CarouselGameItem } from '@/types/home.types'
-import { Users, Trophy, Star, Gamepad2 } from 'lucide-react'
+import { Users, Trophy, Star, Gamepad2, Home, Gamepad } from 'lucide-react'
+import {
+  Breadcrumb,
+  type BreadcrumbItemData,
+} from '@/components/common/breadcrumb'
 
 interface GameDetailHeroProps {
   game: CarouselGameItem
@@ -18,6 +22,24 @@ export default function GameDetailHero({
     totalCommunities: 24,
   }
 
+  const breadcrumbItems: BreadcrumbItemData[] = [
+    {
+      href: '/',
+      icon: <Home className="h-full w-full" />,
+      label: 'Home',
+    },
+    {
+      href: '/game',
+      icon: <Gamepad className="h-full w-full" />,
+      label: 'Games',
+    },
+    {
+      icon: <Gamepad2 className="h-full w-full" />,
+      label: game.name,
+      isActive: true,
+    },
+  ]
+
   return (
     <div className="relative min-h-[50vh] sm:min-h-[60vh] flex items-center">
       {/* Background Image with Overlay */}
@@ -35,17 +57,7 @@ export default function GameDetailHero({
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         <div className="max-w-3xl">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-cream/60 mb-4 sm:mb-6 text-sm sm:text-base">
-            <a href="/" className="hover:text-cream transition-colors">
-              Home
-            </a>
-            <span>/</span>
-            <a href="/game" className="hover:text-cream transition-colors">
-              Games
-            </a>
-            <span>/</span>
-            <span className="text-cream">{game.name}</span>
-          </nav>
+          <Breadcrumb items={breadcrumbItems} />
 
           {/* Title */}
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-4 sm:mb-6 uppercase">
