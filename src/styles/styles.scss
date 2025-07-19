@@ -1,30 +1,30 @@
 @use "sass:map";
-@import "config";
-@import "mixins";
+@use "config";
+@use "mixins";
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Teko:wght@300..700&display=swap");
+@use './fonts.css';
+@use "./mockup.css";
+@use "./common.scss";
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@use "./pages/home.styles.scss";
+
+/* global css need last use */
+@use "./globals.css";
+
 
 :root {
   --propublic-border-radius: 5px;
 }
-@import "./mockup.css";
-@import "./common.scss";
 
-@import "./pages/home.styles.scss";
-
-/* global css need last import */
-@import "./globals.css";
-
-// main.scss
 
 // Generate utility classes like .font-inter-regular, .font-inter-bold, etc.
-@each $font-name, $font-config in $fonts {
+
+
+@each $font-name, $font-config in config.$fonts { // Access $fonts via the 'config' namespace
   $weights-map: map.get($font-config, "weights");
   @each $weight-name, $weight-value in $weights-map {
     .font-#{$font-name}-#{$weight-name} {
-      @include apply-font($font-name, $weight-name);
+      @include mixins.apply-font($font-name, $weight-name); // Access apply-font via the 'mixins' namespace
     }
   }
 }
@@ -71,7 +71,7 @@ h4 {
 }
 
 .font-inter {
-  @include apply-font("inter", "regular");
+  @include mixins.apply-font("inter", "regular");
   font-family: "Inter", system-ui, sans-serif;
   font-size: 0.9rem;
 }

@@ -1,10 +1,7 @@
 $fonts: (
   'inter': (
-    'family': '"Inter", sans-serif',
+    'family': 'Inter',
     'weights': (
-      'thin': 100,
-      'extralight': 200,
-      'light': 300,
       'regular': 400,
       'medium': 500,
       'semibold': 600,
@@ -13,4 +10,15 @@ $fonts: (
       'black': 900,
     ),
   ),
+  'teko': (
+    'family': 'Teko',
+    'weights': (
+      'light': 300,
+      'regular': 400,
+      'medium': 500,
+      'semibold': 600,
+      'bold': 700,
+    ),
+  ),
+  // Add any other fonts you use here
 );
