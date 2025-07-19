@@ -60,36 +60,40 @@ const mockModules: CourseModule[] = [
 
 export default function CourseModules({ course }: CourseModulesProps) {
   return (
-    <div className="enhanced-card border-radius-propublic p-8">
-      <h2 className="text-3xl font-bold mb-6">Course Content</h2>
+    <div className="enhanced-card border-radius-propublic p-4 sm:p-6 md:p-8">
+      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6">
+        Course Content
+      </h2>
 
-      <Accordion type="single" collapsible className="space-y-4">
+      <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
         {mockModules.map((module, index) => (
           <AccordionItem
             key={module.id}
             value={module.id}
             className="border border-cream/20 border-radius-propublic overflow-hidden data-[state=open]:border-custom-primary"
           >
-            <AccordionTrigger className="w-full p-6 flex items-center justify-between hover:bg-cream/5 transition-colors [&[data-state=open]>svg]:rotate-180">
-              <div className="flex items-center gap-4">
+            <AccordionTrigger className="w-full p-3 sm:p-4 md:p-6 flex items-center justify-between hover:bg-cream/5 transition-colors [&[data-state=open]>svg]:rotate-180">
+              <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
                 <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                  className={`w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center ${
                     module.isLocked ? 'bg-cream/10' : 'bg-custom-primary'
                   }`}
                 >
                   {module.isLocked ? (
-                    <Lock className="w-5 h-5" />
+                    <Lock className="w-4 h-4 sm:w-5 sm:h-5" />
                   ) : index === 0 ? (
-                    <PlayCircle className="w-5 h-5" />
+                    <PlayCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                   ) : (
-                    <FileText className="w-5 h-5" />
+                    <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
                   )}
                 </div>
                 <div className="text-left">
-                  <h4 className="font-bold text-lg">{module.title}</h4>
-                  <div className="flex items-center gap-4 text-sm text-cream/60">
+                  <h4 className="font-bold text-sm sm:text-base md:text-lg">
+                    {module.title}
+                  </h4>
+                  <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-cream/60">
                     <span className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
+                      <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
                       {module.duration}
                     </span>
                     {!module.isLocked && (
@@ -101,15 +105,17 @@ export default function CourseModules({ course }: CourseModulesProps) {
                 </div>
               </div>
             </AccordionTrigger>
-            <AccordionContent className="px-6 pb-6 border-t border-cream/10">
-              <p className="text-cream/70 mt-4">{module.description}</p>
+            <AccordionContent className="px-3 sm:px-4 md:px-6 pb-3 sm:pb-4 md:pb-6 border-t border-cream/10">
+              <p className="text-sm sm:text-base text-cream/70 mt-2 sm:mt-3 md:mt-4">
+                {module.description}
+              </p>
             </AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>
 
-      <div className="mt-6 p-4 bg-custom-accent/10 border border-custom-accent/20 border-radius-propublic">
-        <p className="text-sm text-center">
+      <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-custom-accent/10 border border-custom-accent/20 border-radius-propublic">
+        <p className="text-xs sm:text-sm text-center">
           <span className="text-custom-accent font-bold">6 modules</span> •
           <span className="text-custom-accent font-bold"> 4+ hours</span> of
           content •

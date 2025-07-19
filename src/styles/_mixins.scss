@@ -1,7 +1,8 @@
 @use 'sass:map';
+@use 'config';
 
 @mixin apply-font($font-name: 'inter', $weight-name: 'regular') {
-  $font-map: map.get($fonts, $font-name);
+  $font-map: map.get(config.$fonts, $font-name);
 
   @if not $font-map {
     @error "Font '#{$font-name}' not found in the $fonts map.";
@@ -12,13 +13,12 @@
   $weight: map.get($font-weights, $weight-name);
 
   @if not $weight {
-    @error "Weight '#{$weight-name}' for font '#{$font-name}' not found.";
+    @error "Weight '#{$weight-name}' for font '#{$font-name}' not given.";
   }
 
   font-family: $font-family;
   font-weight: $weight;
 
-  // These properties are specific to the Inter font family
   @if $font-name == 'inter' {
     font-optical-sizing: auto;
     font-style: normal;

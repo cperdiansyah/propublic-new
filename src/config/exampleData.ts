@@ -365,7 +365,7 @@ export const COURSES: ICourseItem[] = [
     course_title: ' path to pro, jakarta - offline',
     course_slug: 'path-to-pro-jakarta-offline',
     course_description:
-      '<p>Level up your esports career in just 4 intensive lessons (6 hours each)—just like how the pros do it. Train with access to pro scrims, deep match analysis, monthly performance reviews, career coaching, and real tryout opportunities with MPL/MDL teams.</p><p><br></p><h3><strong>Disclaimer</strong></h3><ol><li>Minimum Quota Requirement: A minimum of 10 students is required for the class to commence. If the quota is not met, the class may be rescheduled or canceled.</li><li>Refund or Credit Clause: In the event of cancellation due to low enrollment, participants will receive a full refund or credit towards a future class of equal value.</li><li>Tentative Schedule: Class schedule and session dates are tentative and subject to change based on participant count and coach availability.</li><li>Notification Clause: Participants will be notified at least 5 days in advance if the class will not proceed due to unmet minimum requirements.</li></ol>',
+      '<p>Level up your esports career in just 4 intensive lessons (6 hours each)—just like how the pros do it. Train with access to pro scrims, deep match analysis, monthly performance reviews, career coaching, and real tryout opportunities with MPL/MDL teams.</p><p><br></p><h3><strong>',
     course_image_url:
       'https://propublic-academy.s3.amazonaws.com/course/1747323402_Scarletto.png',
     course_price: '4000000.00',

@@ -1,6 +1,6 @@
 /* Dark mode colors */
 html.dark,
-[data-mode='dark'] {
+[data-mode="dark"] {
   /* Define dark mode specific variables here, overriding light mode */
   --background: 222.2 84% 4.9%;
   --foreground: 210 40% 98%;
@@ -19,8 +19,8 @@ html.dark,
 
 /* Define your custom fonts */
 @font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter-Regular.woff2') format('woff2'); /* Adjust path as needed */
+  font-family: "Inter";
+  src: url("/fonts/Inter-Regular.woff2") format("woff2"); /* Adjust path as needed */
   font-weight: 400;
   font-display: swap;
 }
@@ -132,7 +132,9 @@ html.dark,
     box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
   }
   50% {
-    box-shadow: 0 0 40px rgba(220, 38, 38, 0.6), 0 0 60px rgba(220, 38, 38, 0.4);
+    box-shadow:
+      0 0 40px rgba(220, 38, 38, 0.6),
+      0 0 60px rgba(220, 38, 38, 0.4);
   }
 }
 
@@ -147,7 +149,8 @@ html.dark,
 
 /* Hexagonal patterns */
 .hex-pattern {
-  background-image: radial-gradient(
+  background-image:
+    radial-gradient(
       circle at 30% 40%,
       rgba(220, 38, 38, 0.1) 0%,
       transparent 50%
@@ -161,7 +164,8 @@ html.dark,
 }
 
 .geometric-bg {
-  background-image: radial-gradient(
+  background-image:
+    radial-gradient(
       circle at 25% 25%,
       rgba(220, 38, 38, 0.1) 0%,
       transparent 50%
@@ -284,7 +288,8 @@ html.dark,
 }
 
 .hero-pattern {
-  background-image: radial-gradient(
+  background-image:
+    radial-gradient(
       circle at 20% 80%,
       rgba(255, 0, 56, 0.1) 0%,
       transparent 50%
@@ -362,7 +367,7 @@ html.dark,
 }
 
 .course-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -429,7 +434,7 @@ html.dark,
 }
 
 .nav-link.active::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -8px;
   left: 0;
@@ -559,4 +564,203 @@ html.dark,
 }
 .bg-dark-tertiary {
   background-color: #3a3a3a;
+}
+
+/* Course Detail Enhanced Styles */
+
+/* Utility Classes */
+.border-radius-propublic {
+  border-radius: 12px;
+}
+
+.propublic-button {
+  transition: all 0.3s ease;
+}
+
+.propublic-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 0, 56, 0.3);
+}
+
+.enhanced-card {
+  background: linear-gradient(
+    135deg,
+    rgba(44, 44, 44, 0.9) 0%,
+    rgba(23, 18, 18, 0.9) 100%
+  );
+  border: 1px solid rgba(255, 0, 56, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.premium-gradient {
+  background: linear-gradient(135deg, #ff0038 0%, #e53935 50%, #ffcc00 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #ff0038 0%, #e53935 50%, #ffcc00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glow {
+  box-shadow: 0 0 20px rgba(255, 0, 56, 0.5);
+}
+
+.transition-200s {
+  transition: all 0.2s ease;
+}
+
+/* Animation Classes */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce 3s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin 8s linear infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Enhanced Breadcrumb Styles */
+.breadcrumb-container {
+  background: linear-gradient(
+    135deg,
+    rgba(44, 44, 44, 0.8) 0%,
+    rgba(23, 18, 18, 0.8) 100%
+  );
+  border: 1px solid rgba(255, 0, 56, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 12px 24px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.breadcrumb-item:hover {
+  color: #ff0038;
+  transform: translateY(-1px);
+}
+
+.breadcrumb-separator {
+  color: rgba(255, 252, 251, 0.4);
+  font-size: 12px;
+  margin: 0 12px;
+}
+
+.breadcrumb-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+}
+
+.breadcrumb-current {
+  color: #ffcc00;
+  font-weight: 600;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 204, 0, 0.1) 0%,
+    rgba(255, 204, 0, 0.05) 100%
+  );
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 204, 0, 0.2);
+}
+
+/* Enhanced Hero Section */
+.hero-enhanced {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-enhanced::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(255, 0, 56, 0.1) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Enhanced Course Stats */
+.course-stat-item {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 56, 0.1) 0%,
+    rgba(44, 44, 44, 0.3) 100%
+  );
+  border: 1px solid rgba(255, 0, 56, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.course-stat-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(255, 0, 56, 0.2);
+  border-color: #ff0038;
+}
+
+.course-stat-icon {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto 8px;
+  color: #ffcc00;
+}
+
+/* Dark mode compatibility for Tailwind colors used in components */
+:root {
+  --custom-primary: #ff0038;
+  --custom-secondary: #e53935;
+  --custom-accent: #ffcc00;
+  --cream: #fffcfb;
+  --dark-primary: #171212;
+  --dark-secondary: #2c2c2c;
+  --dark-tertiary: #3a3a3a;
 }
