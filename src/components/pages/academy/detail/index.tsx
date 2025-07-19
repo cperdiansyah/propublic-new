@@ -28,15 +28,15 @@ export default function AcademyDetailContent({
   }
 
   return (
-    <div className="relative min-h-screen bg-black">
+    <div className="relative min-h-screen bg-black overflow-hidden">
       <AcademyBackgroundEffects />
 
-      <div className="relative z-10 pt-20">
+      <div className="relative z-10 pt-16 sm:pt-20">
         <CourseHero course={course} onBookCourse={handleBookCourse} />
-        <div className="max-w-7xl mx-auto px-4 pb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-20">
           <CoruseInfo />
-          <div className="flex lg:flex-row flex-col gap-8 mt-12">
-            <div className="flex-1 lg:w-2/3 space-y-12">
+          <div className="flex lg:flex-row flex-col gap-6 lg:gap-8 mt-8 sm:mt-12">
+            <div className="flex-1 lg:w-2/3 space-y-8 lg:space-y-12">
               <CourseOverview course={course} />
               {/* <CourseModules course={course} /> */}
               <CourseInstructor course={course} />
@@ -44,7 +44,7 @@ export default function AcademyDetailContent({
             </div>
 
             <div className="lg:w-1/3 w-full">
-              <div className="sticky top-24 z-10">
+              <div className="lg:sticky lg:top-24 z-10">
                 <CourseCard course={course} onBookCourse={handleBookCourse} />
               </div>
             </div>
@@ -73,8 +73,8 @@ function CourseCard({
   onBookCourse: () => void
 }) {
   return (
-    <div className="enhanced-card border-radius-propublic p-6 space-y-6">
-      <div className="aspect-video rounded-xl overflow-hidden mb-6">
+    <div className="enhanced-card border-radius-propublic p-4 sm:p-6 space-y-4 sm:space-y-6">
+      <div className="aspect-video rounded-xl overflow-hidden mb-4 sm:mb-6">
         <img
           src={course.course_image_url}
           alt={course.course_title}
@@ -83,11 +83,11 @@ function CourseCard({
       </div>
 
       <div className="space-y-4">
-        <div className="text-3xl font-bold gradient-text">
+        <div className="text-2xl sm:text-3xl font-bold gradient-text">
           {formatIDRCurrency(Number(course.course_price))}
         </div>
 
-        <div className="space-y-3 text-cream/80">
+        <div className="space-y-2 sm:space-y-3 text-sm sm:text-base text-cream/80">
           <div className="flex items-center gap-2">
             <span>✅</span>
             <span>Lifetime access</span>
@@ -108,12 +108,12 @@ function CourseCard({
 
         <button
           onClick={onBookCourse}
-          className="w-full premium-gradient text-white py-4 border-radius-propublic font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] propublic-button"
+          className="w-full premium-gradient text-white py-3 sm:py-4 border-radius-propublic font-bold text-base sm:text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] propublic-button"
         >
-          <span className="font-teko text-xl">BOOK THIS COURSE</span>
+          <span className="font-teko text-lg sm:text-xl">BOOK THIS COURSE</span>
         </button>
 
-        <p className="text-center text-sm text-cream/60">
+        <p className="text-center text-xs sm:text-sm text-cream/60">
           30-day money-back guarantee
         </p>
       </div>

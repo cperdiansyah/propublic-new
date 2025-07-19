@@ -30,7 +30,7 @@ export default function CourseHero({ course, onBookCourse }: CourseHeroProps) {
 
       {/* Hero Content */}
       <div className="relative z-10">
-        <div className="relative min-h-[60vh] flex items-center">
+        <div className="relative min-h-[50vh] sm:min-h-[60vh] flex items-center">
           {/* Background Image with Enhanced Overlay */}
           <div className="absolute inset-0">
             <img
@@ -44,50 +44,54 @@ export default function CourseHero({ course, onBookCourse }: CourseHeroProps) {
           </div>
 
           {/* Content */}
-          <div className="relative z-10 max-w-7xl mx-auto px-4 py-20 hero-content">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 hero-content">
             <div className="max-w-3xl">
               {/* Enhanced Breadcrumb */}
               <CourseBreadcrumb course={course} />
               {/* Title with Gradient */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 uppercase gradient-text">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-4 sm:mb-6 uppercase gradient-text">
                 {course.course_title}
               </h1>
               {/* Meta Info */}
-              <div className="flex flex-wrap items-center gap-6 mb-8">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
                 <div className="flex items-center gap-2">
                   <div className="flex items-center gap-1">
                     {renderStars(rating)}
                   </div>
-                  <span className="text-lg font-semibold">{rating}</span>
-                  <span className="text-cream/60">({students} students)</span>
+                  <span className="text-base sm:text-lg font-semibold">
+                    {rating}
+                  </span>
+                  <span className="text-sm sm:text-base text-cream/60">
+                    ({students} students)
+                  </span>
                 </div>
 
-                <div className="flex items-center gap-2 text-custom-accent">
-                  <Users className="w-5 h-5" />
+                <div className="flex items-center gap-2 text-custom-accent text-sm sm:text-base">
+                  <Users className="w-4 h-4 sm:w-5 sm:h-5" />
                   <span>Live Sessions Available</span>
                 </div>
 
-                <div className="flex items-center gap-2 text-custom-accent">
-                  <Award className="w-5 h-5" />
+                <div className="flex items-center gap-2 text-custom-accent text-sm sm:text-base">
+                  <Award className="w-4 h-4 sm:w-5 sm:h-5" />
                   <span>Certificate Included</span>
                 </div>
               </div>
               {/* CTA Buttons */}
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
                 <button
                   onClick={onBookCourse}
-                  className="bg-gradient-to-r from-custom-primary to-custom-secondary text-cream px-8 py-4 rounded-xl font-bold text-lg shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(255,0,56,0.3)] glow propublic-button"
+                  className="bg-gradient-to-r from-custom-primary to-custom-secondary text-cream px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(255,0,56,0.3)] glow propublic-button w-full sm:w-auto"
                   aria-label="Book this course now"
                 >
-                  <span className="font-teko text-xl">BOOK NOW</span>
+                  <span className="font-teko text-lg sm:text-xl">BOOK NOW</span>
                 </button>
 
                 <button
-                  className="border border-cream/30 text-cream px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:bg-cream/10 flex items-center gap-2"
+                  className="border border-cream/30 text-cream px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg transition-all duration-300 hover:bg-cream/10 flex items-center justify-center gap-2 w-full sm:w-auto"
                   aria-label="Preview course content"
                 >
-                  <PlayCircle className="w-5 h-5" />
-                  <span className="font-teko text-xl">PREVIEW</span>
+                  <PlayCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <span className="font-teko text-lg sm:text-xl">PREVIEW</span>
                 </button>
               </div>
             </div>
