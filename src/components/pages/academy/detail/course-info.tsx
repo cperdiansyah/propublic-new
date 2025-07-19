@@ -70,7 +70,7 @@ interface CourseStatProps {
   label: string
 }
 const CourseStat = ({ icon, value, label }: CourseStatProps) => (
-  <div className="course-stat-item bg-gradient-to-br from-custom-primary/10 to-dark-secondary/30 border border-custom-primary/20 rounded-xl p-4 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-custom-primary/20 hover:border-custom-primary">
+  <div className="course-stat-item bg-gradient-to-br from-custom-primary/10 to-dark-secondary/30 border border-custom-primary/20 !rounded-sm p-4 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-custom-primary/20 hover:border-custom-primary">
     <div className="course-stat-icon w-8 h-8 mx-auto mb-2 text-custom-accent">
       {icon}
     </div>

@@ -49,7 +49,7 @@ export default function CourseOverview({ course }: CourseOverviewProps) {
   ]
 
   return (
-    <div className="enhanced-card bg-gradient-to-br from-dark-secondary/90 to-dark-primary/90 border border-custom-primary/20 backdrop-blur-[10px] rounded-xl p-4 sm:p-6 md:p-8">
+    <div className="enhanced-card bg-gradient-to-br from-dark-secondary/90 to-dark-primary/90 border border-custom-primary/20 backdrop-blur-[10px] rounded-sm p-4 sm:p-6 md:p-8">
       <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 gradient-text">
         Course Overview
       </h2>
@@ -62,7 +62,7 @@ export default function CourseOverview({ course }: CourseOverviewProps) {
         />
 
         {/* Important Disclaimer Box */}
-        <div className="bg-custom-primary/10 border border-custom-primary/20 rounded-xl p-3 sm:p-4 my-4 sm:my-6">
+        <div className="bg-custom-primary/10 border border-custom-primary/20 rounded-sm p-3 sm:p-4 my-4 sm:my-6">
           <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-custom-accent flex items-center gap-2">
             <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5" />
             Important Disclaimer
