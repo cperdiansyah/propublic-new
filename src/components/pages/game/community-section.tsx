@@ -23,14 +23,14 @@ export function CommunitiesSection({
 
   return (
     <section>
-      <div className="flex items-center justify-between mb-8">
-        <h2 className="text-3xl font-bold text-white flex items-center">
+      <div className="flex items-center justify-between mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white flex items-center">
           {/* <span className="mr-3">👥</span> */}
           Related Communities
         </h2>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {communities.map((community, index) => (
           <ComunitiesCard
             key={community.id}
@@ -54,18 +54,20 @@ export function EmptyCommunitiesState({
 }: EmptyCommunitiesStateProps) {
   return (
     <section>
-      <h2 className="text-3xl font-bold text-white flex items-center mb-8">
+      <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white flex items-center mb-6 sm:mb-8">
         <span className="mr-3">👥</span>
         Related Communities
       </h2>
 
       <Card className="border-dashed border-2 border-gray-600">
-        <CardContent className="text-center py-16">
-          <div className="text-6xl mb-4">🎯</div>
-          <h3 className="text-2xl font-bold text-white mb-2">
+        <CardContent className="text-center py-8 sm:py-12 lg:py-16 px-4 sm:px-6">
+          <div className="text-4xl sm:text-5xl lg:text-6xl mb-3 sm:mb-4">
+            🎯
+          </div>
+          <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2">
             No Communities Yet
           </h3>
-          <p className="text-cream/70 mb-6">
+          <p className="text-cream/70 text-sm sm:text-base mb-4 sm:mb-6">
             Add some games to discover related communities
           </p>
           <Button

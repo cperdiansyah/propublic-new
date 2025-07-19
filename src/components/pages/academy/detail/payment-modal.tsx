@@ -96,25 +96,27 @@ export default function PaymentModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl bg-dark-secondary border border-custom-primary/30 max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl w-[95vw] sm:w-full bg-dark-secondary border border-custom-primary/30 max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold">
+          <DialogTitle className="text-xl sm:text-2xl font-bold">
             Complete Your Purchase
           </DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-6 mt-6">
+        <div className="space-y-4 sm:space-y-6 mt-4 sm:mt-6">
           {/* Course Summary */}
-          <div className="bg-dark-primary/50 border-radius-propublic p-4 border border-cream/10">
-            <div className="flex gap-4">
+          <div className="bg-dark-primary/50 border-radius-propublic p-3 sm:p-4 border border-cream/10">
+            <div className="flex gap-3 sm:gap-4">
               <img
                 src={course.course_image_url}
                 alt={course.course_title}
-                className="w-20 h-20 rounded-lg object-cover"
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg object-cover flex-shrink-0"
               />
               <div className="flex-1">
-                <h3 className="font-bold text-lg">{course.course_title}</h3>
-                <p className="text-cream/60 text-sm">
+                <h3 className="font-bold text-base sm:text-lg">
+                  {course.course_title}
+                </h3>
+                <p className="text-cream/60 text-xs sm:text-sm">
                   Lifetime Access • Certificate Included
                 </p>
               </div>
@@ -122,7 +124,7 @@ export default function PaymentModal({
           </div>
 
           {/* Price Breakdown */}
-          <div className="space-y-3">
+          <div className="space-y-2 sm:space-y-3">
             <div className="flex justify-between">
               <span className="text-cream/80">Course Price</span>
               <span className="font-semibold">
@@ -159,13 +161,15 @@ export default function PaymentModal({
 
           {/* Payment Methods */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Select Payment Method</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <h3 className="font-bold text-base sm:text-lg mb-3 sm:mb-4">
+              Select Payment Method
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
               {paymentMethods.map((method) => (
                 <button
                   key={method.id}
                   onClick={() => setSelectedMethod(method.id)}
-                  className={`p-4 border-radius-propublic border-2 transition-all ${
+                  className={`p-3 sm:p-4 border-radius-propublic border-2 transition-all ${
                     selectedMethod === method.id
                       ? 'border-custom-primary bg-custom-primary/10'
                       : 'border-cream/20 hover:border-cream/40'
@@ -226,26 +230,26 @@ export default function PaymentModal({
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <button
               onClick={onClose}
-              className="flex-1 border border-cream/30 text-cream py-3 border-radius-propublic font-semibold hover:bg-cream/10 transition-all"
+              className="flex-1 border border-cream/30 text-cream py-2.5 sm:py-3 border-radius-propublic font-semibold text-sm sm:text-base hover:bg-cream/10 transition-all"
             >
               Cancel
             </button>
             <button
               onClick={handlePayment}
               disabled={!agreeToTerms || isProcessing}
-              className="flex-1 premium-gradient text-white py-3 border-radius-propublic font-bold hover:shadow-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="flex-1 premium-gradient text-white py-2.5 sm:py-3 border-radius-propublic font-bold text-sm sm:text-base hover:shadow-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {isProcessing ? (
                 <>
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                   <span>Processing...</span>
                 </>
               ) : (
                 <>
-                  <Lock className="w-4 h-4" />
+                  <Lock className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span>Complete Purchase</span>
                 </>
               )}

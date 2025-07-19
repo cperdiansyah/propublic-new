@@ -43,22 +43,26 @@ export default function CourseReviews({ course }: CourseReviewsProps) {
   const totalReviews = mockReviews.length
 
   return (
-    <div className="enhanced-card border-radius-propublic p-8">
-      <h2 className="text-3xl font-bold mb-6">Student Reviews</h2>
+    <div className="enhanced-card border-radius-propublic p-4 sm:p-6 lg:p-8">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">
+        Student Reviews
+      </h2>
 
       {/* Rating Summary */}
-      <div className="flex items-center gap-8 mb-8 pb-8 border-b border-cream/10">
-        <div className="text-center">
-          <div className="text-5xl font-bold gradient-text">{rating}</div>
+      <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-cream/10">
+        <div className="text-center flex-shrink-0">
+          <div className="text-3xl sm:text-4xl lg:text-5xl font-bold gradient-text">
+            {rating}
+          </div>
           <div className="flex justify-center my-2">{renderStars(rating)}</div>
           <p className="text-cream/60">Course Rating</p>
         </div>
 
-        <div className="flex-1">
+        <div className="flex-1 w-full">
           <div className="space-y-2">
             {[5, 4, 3, 2, 1].map((stars) => (
-              <div key={stars} className="flex items-center gap-3">
-                <span className="w-3">{stars}</span>
+              <div key={stars} className="flex items-center gap-2 sm:gap-3">
+                <span className="w-2 sm:w-3 text-sm sm:text-base">{stars}</span>
                 <div className="flex">{renderStars(stars)}</div>
                 <div className="flex-1 h-2 bg-cream/10 rounded-full overflow-hidden">
                   <div
@@ -68,7 +72,7 @@ export default function CourseReviews({ course }: CourseReviewsProps) {
                     }}
                   />
                 </div>
-                <span className="text-cream/60 text-sm w-10 text-right">
+                <span className="text-cream/60 text-xs sm:text-sm w-8 sm:w-10 text-right">
                   {stars === 5 ? '70%' : stars === 4 ? '30%' : '0%'}
                 </span>
               </div>
@@ -78,40 +82,42 @@ export default function CourseReviews({ course }: CourseReviewsProps) {
       </div>
 
       {/* Individual Reviews */}
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {mockReviews.map((review) => (
           <div
             key={review.id}
-            className="pb-6 border-b border-cream/10 last:border-0"
+            className="pb-4 sm:pb-6 border-b border-cream/10 last:border-0"
           >
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-3 sm:gap-4">
               <img
                 src={review.userAvatar}
                 alt={review.userName}
-                className="w-12 h-12 rounded-full"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex-shrink-0"
               />
               <div className="flex-1">
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-1 sm:gap-0">
                   <div>
-                    <h4 className="font-bold">{review.userName}</h4>
+                    <h4 className="font-bold text-sm sm:text-base">
+                      {review.userName}
+                    </h4>
                     <div className="flex items-center gap-2">
                       <div className="flex">{renderStars(review.rating)}</div>
-                      <span className="text-cream/60 text-sm">
+                      <span className="text-cream/60 text-xs sm:text-sm">
                         {review.date}
                       </span>
                     </div>
                   </div>
                 </div>
-                <p className="text-cream/80 leading-relaxed">
+                <p className="text-cream/80 leading-relaxed text-sm sm:text-base">
                   {review.comment}
                 </p>
-                <div className="flex items-center gap-4 mt-4">
-                  <button className="flex items-center gap-2 text-cream/60 hover:text-cream text-sm transition-colors">
-                    <ThumbsUp className="w-4 h-4" />
+                <div className="flex items-center gap-3 sm:gap-4 mt-3 sm:mt-4">
+                  <button className="flex items-center gap-1 sm:gap-2 text-cream/60 hover:text-cream text-xs sm:text-sm transition-colors">
+                    <ThumbsUp className="w-3 h-3 sm:w-4 sm:h-4" />
                     Helpful
                   </button>
-                  <button className="flex items-center gap-2 text-cream/60 hover:text-cream text-sm transition-colors">
-                    <MessageSquare className="w-4 h-4" />
+                  <button className="flex items-center gap-1 sm:gap-2 text-cream/60 hover:text-cream text-xs sm:text-sm transition-colors">
+                    <MessageSquare className="w-3 h-3 sm:w-4 sm:h-4" />
                     Reply
                   </button>
                 </div>
@@ -121,7 +127,7 @@ export default function CourseReviews({ course }: CourseReviewsProps) {
         ))}
       </div>
 
-      <button className="w-full mt-6 border border-cream/30 text-cream py-3 border-radius-propublic font-semibold hover:bg-cream/10 transition-all">
+      <button className="w-full mt-4 sm:mt-6 border border-cream/30 text-cream py-2 sm:py-3 border-radius-propublic font-semibold text-sm sm:text-base hover:bg-cream/10 transition-all">
         Show More Reviews
       </button>
     </div>
