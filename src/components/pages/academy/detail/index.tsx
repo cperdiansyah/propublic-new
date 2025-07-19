@@ -28,7 +28,7 @@ export default function AcademyDetailContent({
   }
 
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden">
+    <div className="relative min-h-screen bg-black">
       <AcademyBackgroundEffects />
 
       <div className="relative z-10 pt-16 sm:pt-20">
@@ -44,7 +44,7 @@ export default function AcademyDetailContent({
             </div>
 
             <div className="lg:w-1/3 w-full">
-              <div className="lg:sticky lg:top-24 z-10">
+              <div className="md:sticky md:top-24 z-10">
                 <CourseCard course={course} onBookCourse={handleBookCourse} />
               </div>
             </div>
