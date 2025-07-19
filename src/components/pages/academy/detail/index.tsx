@@ -28,7 +28,7 @@ export default function AcademyDetailContent({
   }
 
   return (
-    <div className="relative min-h-screen bg-black">
+    <div className="relative min-h-screen bg-black overflow-hidden">
       <AcademyBackgroundEffects />
 
       <div className="relative z-10 pt-16 sm:pt-20">
