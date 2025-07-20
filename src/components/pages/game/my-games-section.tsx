@@ -78,7 +78,7 @@ export function MyGamesSection({
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
           <h2 className="text-3xl font-bold text-white flex items-center">
-            Find your game
+            My game
           </h2>
           {isMaxReached && (
             <span className="text-sm text-cream/60 bg-dark-secondary/50 px-3 py-1 rounded-full border border-custom-primary/30">

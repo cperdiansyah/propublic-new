@@ -110,7 +110,9 @@ function CourseCard({
           onClick={onBookCourse}
           className="w-full premium-gradient text-white py-3 sm:py-4 border-radius-propublic font-bold text-base sm:text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] propublic-button"
         >
-          <span className="font-teko text-lg sm:text-xl">BOOK THIS COURSE</span>
+          <span className="font-teko text-lg sm:text-xl">
+            BOOK THIS ACADEMY
+          </span>
         </button>
 
         <p className="text-center text-xs sm:text-sm text-cream/60">

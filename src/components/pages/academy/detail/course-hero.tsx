@@ -81,14 +81,14 @@ export default function CourseHero({ course, onBookCourse }: CourseHeroProps) {
                 <button
                   onClick={onBookCourse}
                   className="bg-gradient-to-r from-custom-primary to-custom-secondary text-cream px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(255,0,56,0.3)] glow propublic-button w-full sm:w-auto"
-                  aria-label="Book this course now"
+                  aria-label="Book this academy now"
                 >
                   <span className="font-teko text-lg sm:text-xl">BOOK NOW</span>
                 </button>
 
                 <button
                   className="border border-cream/30 text-cream px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg transition-all duration-300 hover:bg-cream/10 flex items-center justify-center gap-2 w-full sm:w-auto"
-                  aria-label="Preview course content"
+                  aria-label="Preview academy content"
                 >
                   <PlayCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                   <span className="font-teko text-lg sm:text-xl">PREVIEW</span>

@@ -30,7 +30,7 @@ const ACADEMY_BENEFITS: AcademyBenefit[] = [
   {
     id: 2,
     icon: Target,
-    title: 'SHARPEN SPECIFIC SKILLS WITH THE PERFECT COURSE.',
+    title: 'SHARPEN SPECIFIC SKILLS WITH THE PERFECT ACADEMY.',
     description:
       'Focused curriculum designed to improve specific aspects of your gameplay with precision.',
     gradient: 'from-red-600 to-red-700',

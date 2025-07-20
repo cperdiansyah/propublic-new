@@ -47,7 +47,7 @@ export function AcademyCoursesSection({
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-cream/40 " />
           <Input
             {...register('searchTerm')}
-            placeholder="Search courses..."
+            placeholder="Search academies..."
             className="pl-10 bg-dark-secondary/50 border-red-500/20 text-cream placeholder-cream/40 focus:border-red-500 rounded-sm"
           />
           {errors.searchTerm && (
@@ -75,7 +75,7 @@ export function AcademyCoursesSection({
             variant="outline"
             className="border-red-500/50 text-red-500/80 hover:bg-red-500 hover:text-white bg-transparent"
           >
-            Load More Courses
+            Load More Academies
           </Button>
         </div>
       )}
