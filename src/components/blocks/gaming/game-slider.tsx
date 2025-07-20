@@ -58,7 +58,7 @@ const GameSlider = ({
             </div>
           </div>
         )}
-        <InfiniteCarouselContent>
+        <InfiniteCarouselContent showFlyingControls>
           {games.map((game) => (
             <InfiniteCarouselItem
               key={game.id}
