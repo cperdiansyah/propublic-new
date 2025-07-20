@@ -98,7 +98,7 @@ export default function GameDetailHero({
 
             <button className="border border-cream/30 text-cream px-6 sm:px-8 py-3 sm:py-4 border-radius-propublic font-bold text-base sm:text-lg hover:bg-cream/10 transition-all w-full sm:w-auto">
               <span className="font-teko text-lg sm:text-xl">
-                Find Communities
+                FIND COMMUNITIES
               </span>
             </button>
           </div>
