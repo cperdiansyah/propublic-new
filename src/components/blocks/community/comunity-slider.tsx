@@ -13,7 +13,12 @@ const ComunitySlider: React.FC<IComunitySlider> = ({ communities }) => {
       <div className="overflow-x-auto pb-4 scrollbar-hide">
         <div className="flex gap-6 m-5">
           {communities.map((item, i) => (
-            <CommunitiesCard community={item} index={i} key={item.id} />
+            <CommunitiesCard
+              community={item}
+              index={i}
+              key={item.id}
+              showJoinCommunityButton={true}
+            />
           ))}
         </div>
       </div>
