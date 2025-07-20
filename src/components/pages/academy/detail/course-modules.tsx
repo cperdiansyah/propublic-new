@@ -16,9 +16,9 @@ interface CourseModulesProps {
 const mockModules: CourseModule[] = [
   {
     id: '1',
-    title: 'Introduction & Course Overview',
+    title: 'Introduction & Academy Overview',
     duration: '15 min',
-    description: "Welcome to the course and what you'll learn",
+    description: "Welcome to the academy and what you'll learn",
     isLocked: false,
   },
   {

@@ -15,7 +15,7 @@ export const useAcademyFilters = () => {
   const categories: CategoryFilter[] = useMemo(() => {
     const allCourses = COURSES.length
     return [
-      { id: 'All Courses', label: 'All Courses', count: allCourses },
+      { id: 'All Courses', label: 'All', count: allCourses },
       {
         id: 'Beginner',
         label: 'Beginner',

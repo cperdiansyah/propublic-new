@@ -4,14 +4,18 @@ import type { TypeCommunityItem } from '@/types/home.types'
 import { ArrowRight, Calendar, FileText } from 'lucide-react'
 import Image from 'next/image'
 
-const CommunitiesCard = ({
-  community,
-  index,
-  className,
-}: {
+interface CommunitiesCardProps {
   community: TypeCommunityItem
   index: number
   className?: string
+  showJoinCommunityButton?: boolean
+}
+
+const CommunitiesCard: React.FC<CommunitiesCardProps> = ({
+  community,
+  index,
+  className,
+  showJoinCommunityButton,
 }) => {
   return (
     <div
@@ -108,13 +112,15 @@ const CommunitiesCard = ({
             </div>
           </div>
           {/* Join Button */}
-          <button className="w-full bg-gradient-to-r from-red-900 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold  transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-red-500/30 border-radius-propublic propublic-button  ">
-            Join Community
-            <ArrowRight
-              size={14}
-              className="group-hover:translate-x-1 transition-transform"
-            />
-          </button>
+          {showJoinCommunityButton && (
+            <button className="w-full bg-gradient-to-r from-red-900 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold  transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-red-500/30 border-radius-propublic propublic-button  ">
+              Join Community
+              <ArrowRight
+                size={14}
+                className="group-hover:translate-x-1 transition-transform"
+              />
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -51,7 +51,7 @@ export default function CourseOverview({ course }: CourseOverviewProps) {
   return (
     <div className="enhanced-card bg-gradient-to-br from-dark-secondary/90 to-dark-primary/90 border border-custom-primary/20 backdrop-blur-[10px] rounded-sm p-4 sm:p-6 md:p-8">
       <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 gradient-text">
-        Course Overview
+        Academy Overview
       </h2>
 
       {/* Course Description */}
