@@ -1,4 +1,5 @@
 'use client'
+import { CarouselDemo } from '@/components/common/carousel-demo'
 import AcademiesSection from '@/components/pages/home/academies-section'
 import BrandSection from '@/components/pages/home/brands-section'
 import HeroSection from '@/components/pages/home/hero-section'
@@ -14,6 +15,7 @@ const HomePage = () => {
       <AcademiesSection courses={COURSES} />
       <BrandSection />
       <PricingPlan />
+      {/* <CarouselDemo /> */}
     </div>
   )
 }

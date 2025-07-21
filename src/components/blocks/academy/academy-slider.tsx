@@ -35,30 +35,15 @@ const AcademySlider = ({
       itemCount={academies.length}
       autoplay={autoPlay}
       autoplayDelay={autoplayDelay}
-      // visibleItems={{ mobile: 1, tablet: 2, desktop: 3, desktopExtraLarge: 4 }}
-      visibleItems={{ mobile: 2, tablet: 3, desktop: 5 }}
+      visibleItems={{
+        mobile: 2,
+        tablet: 3,
+        desktop: 4,
+        desktopExtraLarge: 5,
+      }}
     >
       <div className={`carousel-container ${className}`}>
         {/* Controls */}
-        {/* {showControlButton && (
-          <div className="relative flex justify-end items-center mb-4 mt-5 z-10">
-            <div className="flex items-center gap-2">
-              <CarouselPrevious
-                className="text-black hover:bg-custom-accent"
-                size="sm"
-              >
-                <ChevronLeft />
-              </CarouselPrevious>
-
-              <CarouselNext
-                className="text-black hover:bg-custom-accent"
-                size="sm"
-              >
-                <ChevronRight />
-              </CarouselNext>
-            </div>
-          </div>
-        )} */}
         <InfiniteCarouselContent>
           {academies.map((academy) => (
             <InfiniteCarouselItem key={academy.course_id}>

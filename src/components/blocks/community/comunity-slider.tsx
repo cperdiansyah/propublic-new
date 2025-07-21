@@ -1,28 +1,50 @@
 'use client'
 
 import CommunitiesCard from '@/components/blocks/community/community-card'
+import type { CarouselProviderProps } from '@/components/common/infinite-carousel/carousel-context'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselFlyingControls,
+  CarouselItem,
+} from '@/components/ui/carousel'
 import type { TypeCommunityItem } from '@/types/home.types'
 import type React from 'react'
 
 interface IComunitySlider {
   communities: TypeCommunityItem[]
+  autoPlay?: CarouselProviderProps['autoplay']
+  autoplayDelay?: CarouselProviderProps['autoplayDelay']
+  className?: string
 }
+
 const ComunitySlider: React.FC<IComunitySlider> = ({ communities }) => {
+  if (communities?.length === 0 || !communities) return null
   return (
-    <div className="relative container mx-auto">
-      <div className="overflow-x-auto pb-4 scrollbar-hide">
-        <div className="flex gap-6 m-5">
-          {communities.map((item, i) => (
+    <Carousel
+      opts={{
+        align: 'start',
+        loop: false,
+      }}
+      className="w-full"
+    >
+      <CarouselContent>
+        {communities.map((item, index) => (
+          <CarouselItem
+            key={item.id}
+            className="basis-1/2 md:basis-1/3 lg:basis-1/4 2xl:basis-1/5"
+          >
             <CommunitiesCard
               community={item}
-              index={i}
-              key={item.id}
+              index={index}
               showJoinCommunityButton={true}
+              className="h-full"
             />
-          ))}
-        </div>
-      </div>
-    </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselFlyingControls />
+    </Carousel>
   )
 }
 

@@ -340,7 +340,7 @@ function CarouselFlyingControls({
               variant={variant}
               size={size}
               className={cn(
-                'pointer-events-auto bg-black/70 hover:bg-black/90 text-white border-none',
+                'pointer-events-auto bg-white/80 hover:bg-white/95 text-black border-none',
                 'shadow-lg backdrop-blur-sm size-10 transition-colors duration-200',
               )}
               onClick={handlePrevClick}
@@ -376,7 +376,7 @@ function CarouselFlyingControls({
               variant={variant}
               size={size}
               className={cn(
-                'pointer-events-auto bg-black/70 hover:bg-black/90 text-white border-none',
+                'pointer-events-auto bg-white/80 hover:bg-white/95 text-black border-none',
                 'shadow-lg backdrop-blur-sm size-10 transition-colors duration-200',
               )}
               onClick={handleNextClick}
