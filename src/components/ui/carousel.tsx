@@ -3,6 +3,7 @@ import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from 'embla-carousel-react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -117,7 +118,7 @@ function Carousel({
       }}
     >
       <div
-        onKeyDownCapture={handleKeyDown}
+        onKeyDown={handleKeyDown}
         className={cn('relative', className)}
         role="region"
         aria-roledescription="carousel"
@@ -229,6 +230,167 @@ function CarouselNext({
   )
 }
 
+// Flying Controls Component for regular carousel (Netflix-style with conditional visibility)
+interface CarouselFlyingControlsProps {
+  className?: string
+  variant?: 'default' | 'outline' | 'ghost' | 'secondary'
+  size?: 'default' | 'sm' | 'lg' | 'icon'
+}
+
+function CarouselFlyingControls({
+  className,
+  variant = 'ghost',
+  size = 'icon',
+}: CarouselFlyingControlsProps) {
+  const {
+    orientation,
+    scrollPrev,
+    scrollNext,
+    canScrollPrev,
+    canScrollNext,
+    api,
+  } = useCarousel()
+  const [isHovered, setIsHovered] = React.useState(false)
+  const [totalSlides, setTotalSlides] = React.useState(0)
+  const [visibleSlides, setVisibleSlides] = React.useState(1)
+
+  React.useEffect(() => {
+    if (!api) return
+
+    const updateSlideInfo = () => {
+      setTotalSlides(api.slideNodes().length)
+      // Get number of slides in view
+      const slidesInView = api.slidesInView().length
+      setVisibleSlides(slidesInView)
+    }
+
+    updateSlideInfo()
+    api.on('init', updateSlideInfo)
+    api.on('resize', updateSlideInfo)
+
+    return () => {
+      api.off('init', updateSlideInfo)
+      api.off('resize', updateSlideInfo)
+    }
+  }, [api])
+
+  const handlePrevClick = React.useCallback(() => {
+    scrollPrev()
+  }, [scrollPrev])
+
+  const handleNextClick = React.useCallback(() => {
+    scrollNext()
+  }, [scrollNext])
+
+  // Show next button only if there are more slides than what's visible and can scroll
+  const shouldShowNextButton = React.useMemo(() => {
+    if (totalSlides <= visibleSlides) return false
+    return canScrollNext
+  }, [totalSlides, visibleSlides, canScrollNext])
+
+  const slideVariants = {
+    left: {
+      initial: { opacity: 0, x: -20 },
+      animate: { opacity: isHovered ? 1 : 0.7, x: 0 },
+      exit: { opacity: 0, x: -20 },
+    },
+    right: {
+      initial: { opacity: 0, x: 20 },
+      animate: { opacity: isHovered ? 1 : 0.7, x: 0 },
+      exit: { opacity: 0, x: 20 },
+    },
+    up: {
+      initial: { opacity: 0, y: -20 },
+      animate: { opacity: isHovered ? 1 : 0.7, y: 0 },
+      exit: { opacity: 0, y: -20 },
+    },
+    down: {
+      initial: { opacity: 0, y: 20 },
+      animate: { opacity: isHovered ? 1 : 0.7, y: 0 },
+      exit: { opacity: 0, y: 20 },
+    },
+  }
+
+  return (
+    <section
+      className={cn('absolute inset-0 pointer-events-none', className)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      aria-label="Carousel navigation controls"
+    >
+      {/* Previous Button - Show only when can scroll previous */}
+      <AnimatePresence>
+        {canScrollPrev && (
+          <motion.div
+            variants={
+              orientation === 'vertical' ? slideVariants.up : slideVariants.left
+            }
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className={cn(
+              'absolute z-10',
+              orientation === 'vertical'
+                ? 'top-2 left-1/2 -translate-x-1/2'
+                : 'top-1/2 -translate-y-1/2 left-2',
+            )}
+          >
+            <Button
+              variant={variant}
+              size={size}
+              className={cn(
+                'pointer-events-auto bg-white/80 hover:bg-white/95 text-black border-none',
+                'shadow-lg backdrop-blur-sm size-10 transition-colors duration-200',
+              )}
+              onClick={handlePrevClick}
+            >
+              <ArrowLeft className="h-5 w-5" />
+              <span className="sr-only">Previous slide</span>
+            </Button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Next Button - Show only when there are more slides than visible and can scroll */}
+      <AnimatePresence>
+        {shouldShowNextButton && (
+          <motion.div
+            variants={
+              orientation === 'vertical'
+                ? slideVariants.down
+                : slideVariants.right
+            }
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className={cn(
+              'absolute z-10',
+              orientation === 'vertical'
+                ? 'bottom-2 left-1/2 -translate-x-1/2'
+                : 'top-1/2 -translate-y-1/2 right-2',
+            )}
+          >
+            <Button
+              variant={variant}
+              size={size}
+              className={cn(
+                'pointer-events-auto bg-white/80 hover:bg-white/95 text-black border-none',
+                'shadow-lg backdrop-blur-sm size-10 transition-colors duration-200',
+              )}
+              onClick={handleNextClick}
+            >
+              <ArrowRight className="h-5 w-5" />
+              <span className="sr-only">Next slide</span>
+            </Button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  )
+}
+
 export {
   type CarouselApi,
   Carousel,
@@ -236,4 +398,5 @@ export {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
+  CarouselFlyingControls,
 }

@@ -36,7 +36,8 @@ export function CommunitiesSection({
             key={community.id}
             community={community}
             index={index}
-            className="w-full "
+            className="w-full"
+            showJoinCommunityButton={true}
           />
         ))}
       </div>

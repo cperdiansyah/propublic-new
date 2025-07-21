@@ -375,7 +375,7 @@ export const COURSES: ICourseItem[] = [
   {
     course_id: 1,
     course_title: '1:1 vip coaching - head instuctor: zeys ',
-    course_slug: '1:1-vip-coaching-head-instuctor:-zeys',
+    course_slug: '1-1-vip-coaching-head-instuctor-zeys',
     course_description:
       '<p>Train with a world-class coach, world champion, and former national team head coach. Get personalized insights, pro-level gameplay analysis, and tailored strategies to reach your goals. Perfect for players serious about leveling up.</p>',
     course_image_url:

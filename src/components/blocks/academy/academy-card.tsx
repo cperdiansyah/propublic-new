@@ -31,7 +31,7 @@ const AcademyCard: React.FC<IAcademyCard> = ({
         className="group relative bg-gradient-to-br from-slate-900/95 to-slate-800/95 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700/50 hover:border-red-500/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 cursor-pointer border-radius-propublic"
         // onClick={() => onSelect(id)}
       >
-        <div className="relative h-80 overflow-hidden">
+        <div className="relative aspect-square overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 via-transparent to-black/60"></div>
           <Image
             src={image}
@@ -67,7 +67,7 @@ const AcademyCard: React.FC<IAcademyCard> = ({
         <div className="absolute inset-0 backdrop-blur-0 group-hover:backdrop-blur-sm transition-all duration-500" />
 
         {/* Hover visible - Additional content */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 transform  translate-y-4 hover:block opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-100 ">
+        <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 hover:block opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-100">
           <p
             className="text-base text-gray-200 mb-3 line-clamp-3"
             dangerouslySetInnerHTML={{ __html: description || '' }}

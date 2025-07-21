@@ -20,7 +20,7 @@ const CommunitiesCard: React.FC<CommunitiesCardProps> = ({
   return (
     <div
       key={community.id}
-      className={`group relative bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm border border-white rounded-2xl  hover:border-red-500/40 transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 w-90 flex-shrink-0 border-radius-propublic ${className}`}
+      className={`group relative bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm border border-white rounded-2xl hover:border-red-500/40 transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 w-full max-w-sm mx-auto border-radius-propublic ${className}`}
       style={{
         animationDelay: `${index * 200}ms`,
         animation: 'fadeInUp 0.8s ease-out forwards',
