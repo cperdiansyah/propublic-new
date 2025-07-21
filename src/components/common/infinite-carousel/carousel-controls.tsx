@@ -132,7 +132,7 @@ export function FlyingControls({
         size={size}
         className={cn(
           'absolute z-10 pointer-events-auto transition-all duration-300 ease-in-out',
-          'bg-black/70 hover:bg-black/90 text-white border-none',
+          'bg-white/80 hover:bg-white/95 text-black border-none',
           'shadow-lg backdrop-blur-sm size-10',
           orientation === 'vertical'
             ? cn(
@@ -160,7 +160,7 @@ export function FlyingControls({
         size={size}
         className={cn(
           'absolute z-10 pointer-events-auto transition-all duration-300 ease-in-out',
-          'bg-black/70 hover:bg-black/90 text-white border-none',
+          'bg-white/80 hover:bg-white/95 text-black border-none',
           'shadow-lg backdrop-blur-sm size-10',
           orientation === 'vertical'
             ? cn(
