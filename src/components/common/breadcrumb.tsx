@@ -18,7 +18,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 }) => {
   return (
     <nav
-      className={`breadcrumb-container inline-flex items-center text-xs sm:text-sm bg-gradient-to-r from-dark-secondary/80 to-dark-primary/80 border border-custom-primary/20 backdrop-blur-[10px] rounded-full px-3 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-8 shadow-lg w-full overflow-x-auto ${className}`}
+      className={`breadcrumb-container inline-flex items-center text-xs sm:text-sm bg-gradient-to-r from-dark-secondary/80 to-dark-primary/80 border border-custom-primary/20 backdrop-blur-[10px] rounded-full px-3 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-8 shadow-lg  overflow-x-auto ${className} flex-wrap w-full`}
       aria-label="Breadcrumb"
     >
       {items.map((item, index) => (
