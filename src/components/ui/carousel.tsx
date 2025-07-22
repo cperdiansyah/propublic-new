@@ -2,7 +2,7 @@ import * as React from 'react'
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from 'embla-carousel-react'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 import { cn } from '@/lib/utils'
@@ -340,12 +340,15 @@ function CarouselFlyingControls({
               variant={variant}
               size={size}
               className={cn(
-                'pointer-events-auto bg-white/80 hover:bg-white/95 text-black border-none',
-                'shadow-lg backdrop-blur-sm size-10 transition-colors duration-200',
+                'pointer-events-auto w-10 h-10 rounded-full border backdrop-blur-sm flex items-center justify-center transition-all duration-300',
+                canScrollPrev
+                  ? 'border-custom-primary/50 text-custom-primary hover:bg-custom-primary hover:text-white'
+                  : 'border-white/20 text-white/30 cursor-not-allowed',
               )}
               onClick={handlePrevClick}
+              disabled={!canScrollPrev}
             >
-              <ArrowLeft className="h-5 w-5" />
+              <ChevronLeft className="w-5 h-5" />
               <span className="sr-only">Previous slide</span>
             </Button>
           </motion.div>
@@ -376,12 +379,15 @@ function CarouselFlyingControls({
               variant={variant}
               size={size}
               className={cn(
-                'pointer-events-auto bg-white/80 hover:bg-white/95 text-black border-none',
-                'shadow-lg backdrop-blur-sm size-10 transition-colors duration-200',
+                'pointer-events-auto w-10 h-10 rounded-full border backdrop-blur-sm flex items-center justify-center transition-all duration-300',
+                shouldShowNextButton
+                  ? 'border-custom-primary/50 text-custom-primary hover:bg-custom-primary hover:text-white'
+                  : 'border-white/20 text-white/30 cursor-not-allowed',
               )}
               onClick={handleNextClick}
+              disabled={!shouldShowNextButton}
             >
-              <ArrowRight className="h-5 w-5" />
+              <ChevronRight className="w-5 h-5" />
               <span className="sr-only">Next slide</span>
             </Button>
           </motion.div>

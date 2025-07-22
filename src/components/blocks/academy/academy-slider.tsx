@@ -25,7 +25,7 @@ interface IAcademySlider {
 const AcademySlider = ({
   academies,
   showControlButton = false,
-  autoPlay = true,
+  autoPlay = false,
   autoplayDelay = DELAY_AUTOPLAY_MS,
   className,
 }: IAcademySlider) => {
@@ -36,17 +36,20 @@ const AcademySlider = ({
       autoplay={autoPlay}
       autoplayDelay={autoplayDelay}
       visibleItems={{
-        mobile: 2,
+        mobile: 1,
         tablet: 3,
         desktop: 4,
-        desktopExtraLarge: 5,
+        // desktopExtraLarge: 5,
       }}
     >
       <div className={`carousel-container ${className}`}>
         {/* Controls */}
         <InfiniteCarouselContent>
           {academies.map((academy) => (
-            <InfiniteCarouselItem key={academy.course_id}>
+            <InfiniteCarouselItem
+              key={academy.course_id}
+              className="academy-card-item"
+            >
               <AcademyCard
                 key={academy.course_id}
                 id={academy.course_id}

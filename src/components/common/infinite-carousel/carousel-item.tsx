@@ -4,6 +4,7 @@ import * as React from 'react'
 import { CarouselItem } from '@/components/ui/carousel'
 import { useCarouselContext } from './carousel-context'
 import { cn } from '@/lib/utils'
+import { number } from 'zod'
 
 // Item Component
 interface InfiniteCarouselItemProps {
@@ -22,7 +23,9 @@ export function InfiniteCarouselItem({
   const basisClasses = React.useMemo(
     () =>
       cn(
-        visibleItems.mobile && `basis-1/${visibleItems.mobile}`,
+        visibleItems.mobile !== 'full'
+          ? `basis-1/${visibleItems.mobile}`
+          : 'basis-full',
         visibleItems.tablet && `md:basis-1/${visibleItems.tablet}`,
         visibleItems.desktop && `lg:basis-1/${visibleItems.desktop}`,
         visibleItems.desktopExtraLarge &&

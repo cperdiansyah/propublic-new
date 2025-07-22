@@ -132,8 +132,8 @@ export function FlyingControls({
         size={size}
         className={cn(
           'absolute z-10 pointer-events-auto transition-all duration-300 ease-in-out',
-          'bg-white/80 hover:bg-white/95 text-black border-none',
-          'shadow-lg backdrop-blur-sm size-10',
+          'w-10 h-10 rounded-full border backdrop-blur-sm flex items-center justify-center',
+          'border-custom-primary/50 text-custom-primary hover:bg-custom-primary hover:text-white',
           orientation === 'vertical'
             ? cn(
                 'top-2 left-1/2 -translate-x-1/2',
@@ -160,8 +160,8 @@ export function FlyingControls({
         size={size}
         className={cn(
           'absolute z-10 pointer-events-auto transition-all duration-300 ease-in-out',
-          'bg-white/80 hover:bg-white/95 text-black border-none',
-          'shadow-lg backdrop-blur-sm size-10',
+          'w-10 h-10 rounded-full border backdrop-blur-sm flex items-center justify-center',
+          'border-custom-primary/50 text-custom-primary hover:bg-custom-primary hover:text-white',
           orientation === 'vertical'
             ? cn(
                 'bottom-2 left-1/2 -translate-x-1/2',

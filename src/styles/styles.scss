@@ -75,3 +75,7 @@ h4 {
   font-family: "Inter", system-ui, sans-serif;
   font-size: 0.9rem;
 }
+
+.academy-card-item{
+  @apply aspect-square w-full 
+}

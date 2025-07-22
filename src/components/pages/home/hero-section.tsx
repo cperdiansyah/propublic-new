@@ -18,7 +18,7 @@ export default function HeroSection({ games }: IGameSection) {
         <div className=" gap-12 items-center text-center">
           <div className="space-y-5 ">
             <div className="space-y-6 lg:w-2/3 mx-auto">
-              <h1 className="text-5xl md:text-6xl lg:text-6xl font-black leading-tight capitalize">
+              <h1 className="text-4xl md:text-6xl lg:text-6xl font-black leading-tight capitalize">
                 We're changing how
                 <span className="gradient-text"> gaming communities</span> are
                 built
