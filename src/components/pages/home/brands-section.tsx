@@ -183,7 +183,7 @@ const BrandSection = () => {
             className={`relative ${
               isMobile
                 ? 'overflow-hidden'
-                : 'flex flex-row justify-center gap-4 justify-items-center flex-wrap md:max-w-[50vw] mx-auto'
+                : 'flex flex-row justify-center gap-4 justify-items-center flex-wrap lg:max-w-[50vw] mx-auto'
             }`}
             variants={containerVariants}
             initial="hidden"
