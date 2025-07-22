@@ -25,7 +25,7 @@ interface IAcademySlider {
 const AcademySlider = ({
   academies,
   showControlButton = false,
-  autoPlay = false,
+  autoPlay = true,
   autoplayDelay = DELAY_AUTOPLAY_MS,
   className,
 }: IAcademySlider) => {
