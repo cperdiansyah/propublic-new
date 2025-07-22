@@ -32,7 +32,7 @@ const ComunitySlider: React.FC<IComunitySlider> = ({ communities }) => {
         {communities.map((item, index) => (
           <CarouselItem
             key={item.id}
-            className="basis-1/2 md:basis-1/3 lg:basis-1/4 2xl:basis-1/5"
+            className="basis-full md:basis-1/3 lg:basis-1/4 2xl:basis-1/5"
           >
             <CommunitiesCard
               community={item}
