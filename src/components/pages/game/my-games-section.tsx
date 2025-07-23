@@ -88,32 +88,32 @@ export function MyGamesSection({
         </div>
 
         {/* Navigation Controls */}
-        {needsNavigation && (
-          <div className="flex items-center gap-2">
-            <button
-              onClick={scrollLeft}
-              disabled={!canScrollLeft}
-              className={`w-10 h-10 rounded-full border border-custom-primary/30 flex items-center justify-center transition-all duration-300 ${
-                canScrollLeft
-                  ? 'text-custom-primary hover:bg-custom-primary hover:text-white'
-                  : 'text-cream/30 cursor-not-allowed'
-              }`}
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={scrollRight}
-              disabled={!canScrollRight}
-              className={`w-10 h-10 rounded-full border border-custom-primary/30 flex items-center justify-center transition-all duration-300 ${
-                canScrollRight
-                  ? 'text-custom-primary hover:bg-custom-primary hover:text-white'
-                  : 'text-cream/30 cursor-not-allowed'
-              }`}
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-        )}
+        {/* {needsNavigation && (
+        )} */}
+        <div className="flex items-center gap-2">
+          <button
+            onClick={scrollLeft}
+            disabled={!canScrollLeft}
+            className={`w-10 h-10 rounded-full border border-custom-primary/30 flex items-center justify-center transition-all duration-300 ${
+              canScrollLeft
+                ? 'text-custom-primary hover:bg-custom-primary hover:text-white'
+                : 'text-cream/30 cursor-not-allowed'
+            }`}
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={scrollRight}
+            disabled={!canScrollRight}
+            className={`w-10 h-10 rounded-full border border-custom-primary/30 flex items-center justify-center transition-all duration-300 ${
+              canScrollRight
+                ? 'text-custom-primary hover:bg-custom-primary hover:text-white'
+                : 'text-cream/30 cursor-not-allowed'
+            }`}
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
       </div>
 
       {/* Games Slider Container */}

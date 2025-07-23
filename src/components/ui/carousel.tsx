@@ -340,10 +340,9 @@ function CarouselFlyingControls({
               variant={variant}
               size={size}
               className={cn(
-                'pointer-events-auto w-10 h-10 rounded-full border backdrop-blur-sm flex items-center justify-center transition-all duration-300',
-                canScrollPrev
-                  ? 'border-custom-primary/50 text-custom-primary hover:bg-custom-primary hover:text-white'
-                  : 'border-white/20 text-white/30 cursor-not-allowed',
+                'pointer-events-auto w-7 h-10 rounded-full border backdrop-blur-sm flex items-center justify-center transition-all duration-300 bg-white/10 left-[-2] flying-button-carousel left',
+                !canScrollPrev &&
+                  'border-white/20 text-white/30 cursor-not-allowed',
               )}
               onClick={handlePrevClick}
               disabled={!canScrollPrev}
@@ -379,10 +378,9 @@ function CarouselFlyingControls({
               variant={variant}
               size={size}
               className={cn(
-                'pointer-events-auto w-10 h-10 rounded-full border backdrop-blur-sm flex items-center justify-center transition-all duration-300',
-                shouldShowNextButton
-                  ? 'border-custom-primary/50 text-custom-primary hover:bg-custom-primary hover:text-white'
-                  : 'border-white/20 text-white/30 cursor-not-allowed',
+                'pointer-events-auto w-7 h-10 rounded-full border backdrop-blur-sm flex items-center justify-center transition-all duration-300 flying-button-carousel right',
+                !shouldShowNextButton &&
+                  'border-white/20 text-white/30 cursor-not-allowed',
               )}
               onClick={handleNextClick}
               disabled={!shouldShowNextButton}
