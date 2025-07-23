@@ -11,7 +11,7 @@ const TopComunitiesSection: React.FC<ITopComunitiesSection> = ({
 }) => {
   return (
     <section className="bg-black relative geometric-bg pt-20 pb-5 min-h-screen lg:min-h-fit py-24 lg:py-0">
-      <div className="pt-44 px-5 z-10 relative">
+      <div className="pt-24 md:pt-44 px-5 z-10 relative">
         <SectionTitle
           title={
             <>

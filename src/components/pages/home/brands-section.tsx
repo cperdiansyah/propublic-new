@@ -4,8 +4,13 @@ import BrandCard from '@/components/blocks/brand/brand-card'
 import SectionTitle from '@/components/common/section-title'
 import { brands } from '@/config/exampleData'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselFlyingControls,
+} from '@/components/ui/carousel'
 
 const categories = [
   { id: 'all', label: 'ALL' },
@@ -28,9 +33,6 @@ const BrandSection = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [isMobile, setIsMobile] = useState(false)
   const [isInitialLoad, setIsInitialLoad] = useState(true)
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(false)
 
   const filteredBrands =
     selectedCategory === 'all'
@@ -55,48 +57,6 @@ const BrandSection = () => {
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
-
-  // Check scroll position for mobile slider
-  const checkScrollPosition = () => {
-    if (!scrollContainerRef.current || !isMobile) return
-
-    const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current
-    setCanScrollLeft(scrollLeft > 0)
-    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1)
-  }
-
-  useEffect(() => {
-    if (isMobile) {
-      checkScrollPosition()
-      const container = scrollContainerRef.current
-      if (container) {
-        container.addEventListener('scroll', checkScrollPosition)
-        return () =>
-          container.removeEventListener('scroll', checkScrollPosition)
-      }
-    }
-  }, [isMobile, filteredBrands])
-
-  // Mobile scroll functions
-  const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      const cardWidth = 200 + 16 // card width + gap
-      scrollContainerRef.current.scrollBy({
-        left: -cardWidth * 2,
-        behavior: 'smooth',
-      })
-    }
-  }
-
-  const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      const cardWidth = 200 + 16 // card width + gap
-      scrollContainerRef.current.scrollBy({
-        left: cardWidth * 2,
-        behavior: 'smooth',
-      })
-    }
-  }
 
   return (
     <section className="bg-black text-white px-4 min-h-screen md:min-h-[200px] 2xl:min-h-fit">
@@ -145,78 +105,57 @@ const BrandSection = () => {
             ))}
           </div>
 
-          {/* Mobile Navigation Controls */}
-          {isMobile && filteredBrands.length > 2 && (
-            <div className="flex justify-between items-center mb-6">
-              <button
-                onClick={scrollLeft}
-                disabled={!canScrollLeft}
-                className={`w-10 h-10 rounded-full border backdrop-blur-sm flex items-center justify-center transition-all duration-300 ${
-                  canScrollLeft
-                    ? 'border-custom-primary/50 text-custom-primary hover:bg-custom-primary hover:text-white'
-                    : 'border-white/20 text-white/30 cursor-not-allowed'
-                }`}
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-
-              <div className="text-sm text-white/60">
-                {filteredBrands.length} brands
-              </div>
-
-              <button
-                onClick={scrollRight}
-                disabled={!canScrollRight}
-                className={`w-10 h-10 rounded-full border backdrop-blur-sm flex items-center justify-center transition-all duration-300 ${
-                  canScrollRight
-                    ? 'border-custom-primary/50 text-custom-primary hover:bg-custom-primary hover:text-white'
-                    : 'border-white/20 text-white/30 cursor-not-allowed'
-                }`}
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
-          )}
-
           {/* Brand Grid/Slider */}
-          <motion.div
-            className={`relative ${
-              isMobile
-                ? 'overflow-hidden'
-                : 'flex flex-row justify-center gap-4 justify-items-center flex-wrap lg:max-w-[50vw] mx-auto'
-            }`}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            key={`${selectedCategory}-${isInitialLoad}`}
-          >
-            <div
-              ref={scrollContainerRef}
-              className={`${
-                isMobile
-                  ? 'flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth pb-4'
-                  : 'contents'
-              }`}
-              style={
-                isMobile
-                  ? {
-                      scrollSnapType: 'x mandatory',
-                      scrollBehavior: 'smooth',
-                    }
-                  : {}
-              }
+          {isMobile ? (
+            <Carousel
+              opts={{
+                align: 'start',
+                loop: false,
+                slidesToScroll: 'auto',
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                <AnimatePresence mode="wait">
+                  {filteredBrands.map((brand, index) => (
+                    <CarouselItem
+                      key={`${selectedCategory}-${brand.id}`}
+                      className="pl-2 md:pl-4 basis-48"
+                    >
+                      <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{
+                          delay: index * 0.1,
+                          duration: 0.5,
+                          type: 'spring',
+                          stiffness: 300,
+                          damping: 25,
+                        }}
+                      >
+                        <BrandCard brand={brand} index={index} />
+                      </motion.div>
+                    </CarouselItem>
+                  ))}
+                </AnimatePresence>
+              </CarouselContent>
+              <CarouselFlyingControls />
+            </Carousel>
+          ) : (
+            <motion.div
+              className="flex flex-row justify-center gap-4 justify-items-center flex-wrap lg:max-w-[50vw] mx-auto"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              key={`${selectedCategory}-${isInitialLoad}`}
             >
               <AnimatePresence mode="wait">
                 {filteredBrands.map((brand, index) => (
                   <motion.div
                     key={`${selectedCategory}-${brand.id}`}
-                    className={`${
-                      isMobile
-                        ? 'flex-shrink-0 w-48'
-                        : 'flex-1 min-w-[200px] max-w-[250px]'
-                    }`}
-                    style={isMobile ? { scrollSnapAlign: 'start' } : {}}
+                    className="flex-1 min-w-[200px] max-w-[250px]"
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
@@ -232,24 +171,8 @@ const BrandSection = () => {
                   </motion.div>
                 ))}
               </AnimatePresence>
-            </div>
-          </motion.div>
-
-          {/* Mobile Scroll Indicator */}
-          {/* {isMobile && filteredBrands.length > 2 && (
-            <div className="flex justify-center mt-6">
-              <div className="flex items-center gap-2">
-                {Array.from({
-                  length: Math.ceil(filteredBrands.length / 2),
-                }).map((_, index) => (
-                  <div
-                    key={index}
-                    className="w-2 h-2 rounded-full bg-white/20 transition-all duration-300"
-                  />
-                ))}
-              </div>
-            </div>
-          )} */}
+            </motion.div>
+          )}
         </div>
       </RadialGradient>
     </section>
