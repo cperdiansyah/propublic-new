@@ -80,7 +80,7 @@ const CommunitiesCard: React.FC<CommunitiesCardProps> = ({
                     </div>
                   )}
                 </div>
-                <p className="text-gray-400 text-base  flex items-center justify-between gap-2 font-inter">
+                <p className="text-gray-400 text-base  flex  flex-wrap items-center justify-between gap-2 font-inter">
                   @{community.author}
                   {/* Category Badge */}
                   <div className="">

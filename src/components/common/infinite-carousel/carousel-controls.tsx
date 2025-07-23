@@ -133,7 +133,7 @@ export function FlyingControls({
         className={cn(
           'absolute z-10 pointer-events-auto transition-all duration-300 ease-in-out',
           'w-10 h-10 rounded-full border backdrop-blur-sm flex items-center justify-center',
-          'border-custom-primary/50 text-custom-primary hover:bg-custom-primary hover:text-white',
+          'flying-button-carousel left',
           orientation === 'vertical'
             ? cn(
                 'top-2 left-1/2 -translate-x-1/2',
@@ -161,7 +161,7 @@ export function FlyingControls({
         className={cn(
           'absolute z-10 pointer-events-auto transition-all duration-300 ease-in-out',
           'w-10 h-10 rounded-full border backdrop-blur-sm flex items-center justify-center',
-          'border-custom-primary/50 text-custom-primary hover:bg-custom-primary hover:text-white',
+          ' flying-button-carousel right',
           orientation === 'vertical'
             ? cn(
                 'bottom-2 left-1/2 -translate-x-1/2',
