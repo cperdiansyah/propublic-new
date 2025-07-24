@@ -81,7 +81,7 @@ h4 {
   @apply aspect-square w-full;
 }
 .flying-button-carousel {
-  @apply pointer-events-auto w-7 h-10 rounded-full border backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:bg-custom-primary border-custom-primary/50  bg-custom-primary/80 text-white absolute ;
+  @apply pointer-events-auto w-10 h-10 rounded-full border backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:bg-custom-primary border-custom-primary/50  bg-custom-primary/80 text-white absolute ;
   border-radius: var(--propublic-border-radius);
   &.left {
     @apply -left-2;
