@@ -1,6 +1,7 @@
 'use client'
 import { Card, CardContent } from '@/components/ui/card'
 import type { CarouselGameItem } from '@/types/home.types'
+import Image from 'next/image'
 import Link from 'next/link'
 
 interface IGameCard {
@@ -12,12 +13,16 @@ const GameCard: React.FC<IGameCard> = ({ game }) => {
       <Card className="overflow-hidden group cursor-pointer  hover:shadow-lg transition-shadow p-0 border-radius-propublic outline-card h-full">
         <div className="relative border-none aspect-[3/4]">
           {/* Background Image */}
-          <div
-            className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110 "
-            style={{
-              backgroundImage: `url(${game.imageSrc || `/images/placeholder.png`})`,
-            }}
-          />
+          <div className="absolute inset-0 overflow-hidden">
+            <Image
+              src={game.imageSrc || `/images/placeholder.png`}
+              alt={game.name}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
+              sizes="(max-width: 768px) 50vw, 33vw"
+              priority={false}
+            />
+          </div>
 
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/90 group-hover:via-black/50 transition-all duration-500" />

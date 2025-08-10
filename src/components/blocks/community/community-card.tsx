@@ -55,6 +55,7 @@ const CommunitiesCard: React.FC<CommunitiesCardProps> = ({
           <div
             className={`w-14 h-14  border-propublic bg-[#E8E1EF] flex items-center justify-center text-xl group-hover:scale-110 transition-transform duration-300 overflow-hidden  border-radius-propublic`}
           >
+            {/* For developer purpose still using basic image element */}
             <img
               src={`${community.avatar}/${community.id}`}
               alt={community.name}
