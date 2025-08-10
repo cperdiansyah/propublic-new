@@ -13,7 +13,6 @@ export default async function CommunityLayout({
 }: CommunityLayoutProps) {
   const { slug } = await params
   const community = await getCommunityData(slug)
-  console.log(community)
   if (!community) {
     notFound()
   }

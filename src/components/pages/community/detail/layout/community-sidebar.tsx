@@ -19,8 +19,8 @@ export default function CommunitySidebar({
   const [showNotification, setShowNotification] = useState(true)
 
   return (
-    <div className="lg:w-64 bg-gray-900/90 backdrop-blur-sm border-r border-gray-700">
-      <div className="p-6 space-y-6">
+    <div className="lg:w-64 bg-gray-900/90 backdrop-blur-sm border-r border-gray-700 m-3 rounded-sm scrollbar-hide overflow-scroll relative">
+      <div className="p-6 space-y-6 ">
         {/* Community Header */}
         <div>
           <div className="relative mb-4 rounded-xl overflow-hidden">
@@ -119,12 +119,14 @@ export default function CommunitySidebar({
                 There's money to be made in these digital hills.
               </p>
               <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg text-sm transition-all duration-300">
-                Start selling on Metaly
+                Start selling on Propublic
               </button>
             </div>
           </div>
         )}
       </div>
+      <div className="bg-ondark-base pb-2 mt-auto sm:sticky sm:bottom-0 sm:shadow-negative sm:shadow-neutral-900 animate-pop-in"></div>
+      <div className="from-ondark-base bg-linear-to-t pointer-events-none sticky bottom-0 left-0 z-10 h-20 w shrink-0"></div>
     </div>
   )
 }

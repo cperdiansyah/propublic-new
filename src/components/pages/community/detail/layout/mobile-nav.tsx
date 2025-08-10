@@ -40,7 +40,7 @@ export default function MobileNav({ community, currentPath }: MobileNavProps) {
                     {item.count}
                   </span>
                 )}
-                Active Page Indicator
+                {/* Active Page Indicator */}
                 {isActive && (
                   <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-red-400" />
                 )}
