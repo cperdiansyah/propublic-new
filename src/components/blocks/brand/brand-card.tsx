@@ -1,3 +1,4 @@
+import OptimizedImageWithFallback from '@/components/common/optimized-image-with-fallback'
 import type { Brand } from '@/types/home.types'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
@@ -37,9 +38,10 @@ const BrandCard = ({ brand, index }: BrandCardProps) => {
         {/* Logo container */}
         <div className="mb-4 group-hover:scale-110 transition-transform duration-300 h-[130px] w-full flex justify-center items-center">
           <div className="relative w-full h-full flex items-center justify-center">
-            <Image
-              src={brand.logo || '/images/placeholder.png'}
+            <OptimizedImageWithFallback
+              src={brand.logo}
               alt={brand.name}
+              fallback="/images/placeholder.png"
               width={120}
               height={80}
               className="object-contain filter group-hover:brightness-110 transition-all duration-300"

@@ -1,4 +1,5 @@
 'use client'
+import OptimizedImageWithFallback from '@/components/common/optimized-image-with-fallback'
 import { Card, CardContent } from '@/components/ui/card'
 import type { CarouselGameItem } from '@/types/home.types'
 import Image from 'next/image'
@@ -14,13 +15,14 @@ const GameCard: React.FC<IGameCard> = ({ game }) => {
         <div className="relative border-none aspect-[3/4]">
           {/* Background Image */}
           <div className="absolute inset-0 overflow-hidden">
-            <Image
-              src={game.imageSrc || `/images/placeholder.png`}
+            <OptimizedImageWithFallback
+              src={game.imageSrc}
               alt={game.name}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-110"
               sizes="(max-width: 768px) 50vw, 33vw"
               priority={false}
+              fallback="/images/placeholder.png"
             />
           </div>
 

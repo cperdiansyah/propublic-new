@@ -15,6 +15,7 @@ import type React from 'react'
 import Image from 'next/image'
 import { InfiniteCarouselContent } from '@/components/common/infinite-carousel/carousel-content'
 import { InfiniteCarouselItem } from '@/components/common/infinite-carousel/carousel-item'
+import OptimizedImageWithFallback from '@/components/common/optimized-image-with-fallback'
 
 interface IGameSection {
   games: CarouselGameItem[]
@@ -95,13 +96,15 @@ const GameCard: React.FC<IGameCard> = ({ game }) => {
       <div className="relative border-none ">
         {/* Background Image */}
         <div className="absolute inset-0 overflow-hidden">
-          <Image
+          <OptimizedImageWithFallback
             src={game.imageSrc || `/images/placeholder.png`}
             alt={game.name}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-110"
             sizes="(max-width: 768px) 50vw, 25vw"
             priority={false}
+            fallback="/images/placeholder.png"
+            placeholder="blur"
           />
         </div>
 
