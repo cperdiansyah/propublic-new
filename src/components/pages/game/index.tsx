@@ -80,7 +80,7 @@ export default function GameContent() {
         x={70}
         y={50}
         primaryOpacity={0.3}
-        className=" py-16 relative"
+        className="py-5 md:py-16 relative"
       >
         <div className="max-w-7xl mx-auto">
           <MyGamesSection

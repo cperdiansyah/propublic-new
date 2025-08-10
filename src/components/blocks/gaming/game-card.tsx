@@ -1,6 +1,7 @@
 'use client'
 import OptimizedImageWithFallback from '@/components/common/optimized-image-with-fallback'
 import { Card, CardContent } from '@/components/ui/card'
+import ROUTE from '@/config/pages'
 import type { CarouselGameItem } from '@/types/home.types'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,7 +11,7 @@ interface IGameCard {
 }
 const GameCard: React.FC<IGameCard> = ({ game }) => {
   return (
-    <Link href={`/game/${game.slug}`}>
+    <Link href={ROUTE.PUBLIC.GAME.DETAIL(game.slug)}>
       <Card className="overflow-hidden group cursor-pointer  hover:shadow-lg transition-shadow p-0 border-radius-propublic outline-card h-full">
         <div className="relative border-none aspect-[3/4]">
           {/* Background Image */}

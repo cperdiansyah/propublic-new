@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useCallback, useState } from 'react'
 import OptimizedImageWithFallback from '@/components/common/optimized-image-with-fallback'
+import ROUTE from '@/config/pages'
 
 // My Game Card Component
 interface MyGameCardProps {
@@ -25,7 +26,7 @@ export function MyGameCard({ game, onRemove }: MyGameCardProps) {
   )
 
   return (
-    <Link href={`/game/${game.slug}`}>
+    <Link href={ROUTE.PUBLIC.GAME.DETAIL(game.slug)}>
       <Card
         className="relative bg-white/5 backdrop-blur-sm !border-white/10 p-2 group cursor-pointer border-2 hover:!border-custom-primary transition-all overflow-hidden border-radius-propublic"
         onMouseEnter={() => setIsHovered(true)}
