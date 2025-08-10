@@ -17,6 +17,7 @@ import {
 } from 'lucide-react'
 import { registerSchema, type RegisterInput } from '@/lib/validations/auth'
 import BackgroundEffects from '@/components/blocks/effects/grid-glow'
+import ROUTE from '@/config/pages'
 
 export default function RegisterContent() {
   const [showPassword, setShowPassword] = useState(false)
@@ -372,7 +373,7 @@ export default function RegisterContent() {
                 <p className="text-cream/70">
                   Already have an account?{' '}
                   <Link
-                    href="/auth/login"
+                    href={ROUTE.PUBLIC.AUTH.LOGIN}
                     className="text-custom-accent hover:text-custom-accent/80 font-semibold transition-colors"
                   >
                     Sign in

@@ -1,6 +1,7 @@
 /** biome-ignore-all lint/security/noDangerouslySetInnerHtml: <explanation> */
 
 import OptimizedImageWithFallback from '@/components/common/optimized-image-with-fallback'
+import ROUTE from '@/config/pages'
 import { formatIDRCurrency } from '@/lib/formatCurrency'
 import renderStars from '@/utils/renderStars'
 import Image from 'next/image'
@@ -27,7 +28,7 @@ const AcademyCard: React.FC<IAcademyCard> = ({
   slug,
 }) => {
   return (
-    <Link href={`/academy/${slug}`}>
+    <Link href={ROUTE.PUBLIC.ACADEMY.DETAIL(slug)}>
       <div
         className="group relative bg-gradient-to-br from-slate-900/95 to-slate-800/95 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700/50 hover:border-red-500/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 cursor-pointer border-radius-propublic"
         // onClick={() => onSelect(id)}

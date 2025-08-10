@@ -1,15 +1,19 @@
 'use client'
 
 import OptimizedImageWithFallback from '@/components/common/optimized-image-with-fallback'
+import { Button } from '@/components/ui/button'
 import type { TypeCommunityItem } from '@/types/home.types'
-import { ArrowRight, Calendar, FileText } from 'lucide-react'
+import { ArrowRight, Calendar, FileText, Loader2Icon } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface CommunitiesCardProps {
   community: TypeCommunityItem
   index: number
   className?: string
   showJoinCommunityButton?: boolean
+  onClickJoin?: () => void
+  loading?: boolean
 }
 
 const CommunitiesCard: React.FC<CommunitiesCardProps> = ({
@@ -17,6 +21,7 @@ const CommunitiesCard: React.FC<CommunitiesCardProps> = ({
   index,
   className,
   showJoinCommunityButton,
+  loading,
 }) => {
   return (
     <div
@@ -116,13 +121,17 @@ const CommunitiesCard: React.FC<CommunitiesCardProps> = ({
           </div>
           {/* Join Button */}
           {showJoinCommunityButton && (
-            <button className="w-full bg-gradient-to-r from-red-900 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold  transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-red-500/30 border-radius-propublic propublic-button  ">
+            <Button
+              className="w-full bg-gradient-to-r from-red-900 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold  transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-lg group-hover:shadow-red-500/30 border-radius-propublic propublic-button"
+              disabled={loading}
+            >
+              {loading && <Loader2Icon className="animate-spin" />}
               Join Community
               <ArrowRight
                 size={14}
                 className="group-hover:translate-x-1 transition-transform"
               />
-            </button>
+            </Button>
           )}
         </div>
       </div>

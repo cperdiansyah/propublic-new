@@ -18,6 +18,7 @@ import {
   type ForgotPasswordInput,
 } from '@/lib/validations/auth'
 import BackgroundEffects from '@/components/blocks/effects/grid-glow'
+import ROUTE from '@/config/pages'
 
 export default function ForgotPasswordContent() {
   const [isEmailSent, setIsEmailSent] = useState(false)
@@ -164,7 +165,7 @@ export default function ForgotPasswordContent() {
               </button>
 
               <Link
-                href="/auth/login"
+                href={ROUTE.PUBLIC.AUTH.LOGIN}
                 className="w-full bg-gradient-to-r from-custom-primary to-custom-secondary text-cream py-3 border-radius-propublic font-semibold hover:shadow-lg transition-all glow flex items-center justify-center space-x-2"
               >
                 <ArrowLeft className="w-4 h-4" />
@@ -275,7 +276,10 @@ export default function ForgotPasswordContent() {
             <div className="enhanced-card border-radius-propublic p-8 md:p-10">
               {/* Mobile Logo */}
               <div className="lg:hidden text-center mb-8">
-                <Link href="/" className="inline-flex items-center space-x-3">
+                <Link
+                  href={ROUTE.PUBLIC.HOME}
+                  className="inline-flex items-center space-x-3"
+                >
                   <div className="w-12 h-12 bg-gradient-to-br from-custom-primary to-custom-secondary border-radius-propublic flex items-center justify-center animate-glow">
                     <span className="logo-p text-cream">P</span>
                   </div>
@@ -368,7 +372,7 @@ export default function ForgotPasswordContent() {
               {/* Back to Login */}
               <div className="text-center mt-8">
                 <Link
-                  href="/auth/login"
+                  href={ROUTE.PUBLIC.AUTH.LOGIN}
                   className="inline-flex items-center space-x-2 text-cream/70 hover:text-custom-accent transition-colors"
                 >
                   <ArrowLeft className="w-4 h-4" />
@@ -382,7 +386,7 @@ export default function ForgotPasswordContent() {
                   Don't have an account yet?
                 </p>
                 <Link
-                  href="/auth/register"
+                  href={ROUTE.PUBLIC.AUTH.REGISTER}
                   className="text-custom-accent hover:text-custom-accent/80 font-semibold transition-colors"
                 >
                   Sign up for free

@@ -17,6 +17,7 @@ import {
 } from 'lucide-react'
 import { loginSchema, type LoginInput } from '@/lib/validations/auth'
 import BackgroundEffects from '@/components/blocks/effects/grid-glow'
+import ROUTE from '@/config/pages'
 
 export default function LoginContent() {
   const [showPassword, setShowPassword] = useState(false)
@@ -212,7 +213,7 @@ export default function LoginContent() {
                     <span className="text-cream/70 text-sm">Remember me</span>
                   </label>
                   <Link
-                    href="/auth/forgot-password"
+                    href={ROUTE.PUBLIC.AUTH.FORGOT_PASSWORD}
                     className="text-custom-accent hover:text-custom-accent/80 text-sm font-medium transition-colors"
                   >
                     Forgot password?
@@ -289,7 +290,7 @@ export default function LoginContent() {
                 <p className="text-cream/70">
                   Don't have an account?{' '}
                   <Link
-                    href="/auth/register"
+                    href={ROUTE.PUBLIC.AUTH.REGISTER}
                     className="text-custom-accent hover:text-custom-accent/80 font-semibold transition-colors"
                   >
                     Sign up for free

@@ -1,6 +1,7 @@
 import Desktopnavigation from '@/components/layout/navigation/desktop-navigation'
 import { Button } from '@/components/ui/button'
 import { navigation } from '@/config/const'
+import ROUTE from '@/config/pages'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -13,7 +14,10 @@ const Header = () => {
           <div className="nav-left flex items-center justify-between gap-5">
             {/* Logo */}
             <div className="flex items-center mr-5">
-              <Link href="/" className="flex items-center space-x-2 ">
+              <Link
+                href={ROUTE.PUBLIC.HOME}
+                className="flex items-center space-x-2 "
+              >
                 <Image
                   src={'/svg/logo.svg'}
                   width={120}
@@ -39,7 +43,7 @@ function HeaderUser() {
   /* need improve for state management in this section for login and logout*/
   return (
     <div className="flex items-center gap-3">
-      <Link href="/auth/login">
+      <Link href={ROUTE.PUBLIC.AUTH.LOGIN}>
         <Button
           variant="outline"
           className=" transition-200s bg-transparent text-white hover:bg-custom-secondary-dark hover:text-white propublic-button text-base font-semibold cursor-pointer"
@@ -47,7 +51,7 @@ function HeaderUser() {
           Join
         </Button>
       </Link>
-      <Link href="/auth/register" className="hidden md:block">
+      <Link href={ROUTE.PUBLIC.AUTH.REGISTER} className="hidden md:block">
         <Button className="bg-custom-primary text-white propublic-button  hover:bg-custom-secondary-dark transition-200s text-base font-semibold hover:bg-custom-primary/80 cursor-pointer">
           Get Started
         </Button>
