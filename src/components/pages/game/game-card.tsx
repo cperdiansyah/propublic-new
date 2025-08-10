@@ -3,7 +3,9 @@ import { Card, CardContent } from '@/components/ui/card'
 import type { SavedGame } from '@/types/game.types'
 import { Plus, X } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useCallback, useState } from 'react'
+import OptimizedImageWithFallback from '@/components/common/optimized-image-with-fallback'
 
 // My Game Card Component
 interface MyGameCardProps {
@@ -31,11 +33,14 @@ export function MyGameCard({ game, onRemove }: MyGameCardProps) {
       >
         <CardContent className="p-0">
           <div className="aspect-[3/4]  relative border-radius-propublic overflow-hidden">
-            <div
-              className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-              style={{
-                backgroundImage: `url(${game.imageSrc || `/images/placeholder.png`})`,
-              }}
+            <OptimizedImageWithFallback
+              src={game.imageSrc}
+              alt={game.name}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-110"
+              sizes="(max-width: 768px) 50vw, 16vw"
+              priority={false}
+              fallback="/images/placeholder.png"
             />
 
             {/* Gradient Overlay */}

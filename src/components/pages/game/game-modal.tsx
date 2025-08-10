@@ -10,7 +10,7 @@ import {
 import { Input } from '@/components/ui/input'
 import type { CarouselGameItem } from '@/types/home.types'
 import { Search } from 'lucide-react'
-import Link from 'next/link'
+import OptimizedImageWithFallback from '@/components/common/optimized-image-with-fallback'
 import { useCallback } from 'react'
 
 // Add Game Modal Component
@@ -105,12 +105,17 @@ function GameOption({ game, onSelect }: GameOptionProps) {
     <Card className="cursor-pointer border-2  hover:border-custom-primary transition-all group overflow-hidden p-0 rounded-sm relative gap-0 bg-white/5 backdrop-blur-sm border-white/10 ">
       <CardContent className="p-0 overflow-hidden">
         <div className="aspect-[3/4] relative">
-          <div
-            className="w-full h-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
-            style={{
-              backgroundImage: `url(${game.imageSrc || `/images/placeholder.png`})`,
-            }}
-          />
+          <div className="absolute inset-0 overflow-hidden">
+            <OptimizedImageWithFallback
+              src={game.imageSrc}
+              alt={game.name}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-110"
+              sizes="(max-width: 768px) 50vw, 16vw"
+              priority={false}
+              fallback="/images/placeholder.png"
+            />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-3 text-white">
             <h4 className="font-bold text-sm truncate">{game.name}</h4>

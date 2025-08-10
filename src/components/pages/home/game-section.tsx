@@ -12,8 +12,10 @@ import { Card, CardContent } from '@/components/ui/card'
 import type { CarouselGameItem } from '@/types/home.types'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import type React from 'react'
+import Image from 'next/image'
 import { InfiniteCarouselContent } from '@/components/common/infinite-carousel/carousel-content'
 import { InfiniteCarouselItem } from '@/components/common/infinite-carousel/carousel-item'
+import OptimizedImageWithFallback from '@/components/common/optimized-image-with-fallback'
 
 interface IGameSection {
   games: CarouselGameItem[]
@@ -93,12 +95,18 @@ const GameCard: React.FC<IGameCard> = ({ game }) => {
     <Card className="overflow-hidden group cursor-pointer  hover:shadow-lg transition-shadow p-0 border-radius-propublic outline-card">
       <div className="relative border-none ">
         {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110 "
-          style={{
-            backgroundImage: `url(${game.imageSrc || `/images/placeholder.png`})`,
-          }}
-        />
+        <div className="absolute inset-0 overflow-hidden">
+          <OptimizedImageWithFallback
+            src={game.imageSrc || `/images/placeholder.png`}
+            alt={game.name}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
+            sizes="(max-width: 768px) 50vw, 25vw"
+            priority={false}
+            fallback="/images/placeholder.png"
+            placeholder="blur"
+          />
+        </div>
 
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/90 group-hover:via-black/50 transition-all duration-500" />

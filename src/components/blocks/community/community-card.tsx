@@ -1,5 +1,6 @@
 'use client'
 
+import OptimizedImageWithFallback from '@/components/common/optimized-image-with-fallback'
 import type { TypeCommunityItem } from '@/types/home.types'
 import { ArrowRight, Calendar, FileText } from 'lucide-react'
 import Image from 'next/image'
@@ -29,7 +30,7 @@ const CommunitiesCard: React.FC<CommunitiesCardProps> = ({
       <div className="content-wrapper relative ">
         {/* Bg image header */}
         <div className="image-header-wrapper relative overflow-hidden border-radius-propublic">
-          <Image
+          <OptimizedImageWithFallback
             src={community.headerImage || '/placeholder.png'}
             alt={community.name}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
@@ -37,6 +38,7 @@ const CommunitiesCard: React.FC<CommunitiesCardProps> = ({
             height={200}
             blurDataURL={community.headerImage || '/images/placeholder.png'}
             placeholder="blur"
+            fallback="/placeholder.png"
           />
           {/* Gradient Overlay */}{' '}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent  group-hover:scale-125 transition-transform duration-700"></div>
@@ -55,6 +57,7 @@ const CommunitiesCard: React.FC<CommunitiesCardProps> = ({
           <div
             className={`w-14 h-14  border-propublic bg-[#E8E1EF] flex items-center justify-center text-xl group-hover:scale-110 transition-transform duration-300 overflow-hidden  border-radius-propublic`}
           >
+            {/* For developer purpose still using basic image element */}
             <img
               src={`${community.avatar}/${community.id}`}
               alt={community.name}

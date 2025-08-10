@@ -1,5 +1,6 @@
 /** biome-ignore-all lint/security/noDangerouslySetInnerHtml: <explanation> */
 
+import OptimizedImageWithFallback from '@/components/common/optimized-image-with-fallback'
 import { formatIDRCurrency } from '@/lib/formatCurrency'
 import renderStars from '@/utils/renderStars'
 import Image from 'next/image'
@@ -33,12 +34,14 @@ const AcademyCard: React.FC<IAcademyCard> = ({
       >
         <div className="relative aspect-square overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 via-transparent to-black/60"></div>
-          <Image
+          <OptimizedImageWithFallback
             src={image}
             alt={name}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             width={500}
             height={500}
+            priority={false}
+            fallback="/images/placeholder.png"
             blurDataURL={'/images/placeholder.png'}
             placeholder="blur"
           />
