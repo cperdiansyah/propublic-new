@@ -14,6 +14,10 @@ const ROUTE = {
       _: '/game',
       DETAIL: (slug: string) => `/game/${slug}`,
     },
+    COMMUNIY: {
+      _: '/community',
+      DETAIL: (slug: string) => `/community/${slug}`,
+    },
     REPLAY: '/replay',
     SHOP: '/shop',
   },

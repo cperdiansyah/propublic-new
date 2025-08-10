@@ -2,6 +2,7 @@
 
 import OptimizedImageWithFallback from '@/components/common/optimized-image-with-fallback'
 import { Button } from '@/components/ui/button'
+import ROUTE from '@/config/pages'
 import type { TypeCommunityItem } from '@/types/home.types'
 import { ArrowRight, Calendar, FileText, Loader2Icon } from 'lucide-react'
 import Image from 'next/image'
@@ -75,50 +76,52 @@ const CommunitiesCard: React.FC<CommunitiesCardProps> = ({
 
         <div className="main-content p-6 flex flex-wrap flex-row justify-between gap-3">
           {/* Community Header */}
-          <div className="community-wrappper w-full">
-            <div className="flex items-start gap-4 mb-2 ">
-              <div className="flex-1 min-w-0 ">
-                <div className="flex items-center gap-2 mb-1">
-                  <h3 className="text-lg font-bold text-white group-hover:text-red-400 transition-colors truncate">
-                    {community.name}
-                  </h3>
-                  {community.isVerified && (
-                    <div className="w-4 h-4 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-black text-xs">✓</span>
-                    </div>
-                  )}
-                </div>
-                <p className="text-gray-400 text-base  flex  flex-wrap items-center justify-between gap-2 font-inter">
-                  @{community.author}
-                  {/* Category Badge */}
-                  <div className="">
-                    <span className="border-radius-propublic bg-transparent border border-custom-primary text-custom-primary px-2 py-1 text-sm">
-                      {community.category}
-                    </span>
+          <Link href={ROUTE.PUBLIC.COMMUNIY.DETAIL(community.author)}>
+            <div className="community-wrappper w-full">
+              <div className="flex items-start gap-4 mb-2 ">
+                <div className="flex-1 min-w-0 ">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="text-lg font-bold text-white group-hover:text-red-400 transition-colors truncate">
+                      {community.name}
+                    </h3>
+                    {community.isVerified && (
+                      <div className="w-4 h-4 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-black text-xs">✓</span>
+                      </div>
+                    )}
                   </div>
+                  <p className="text-gray-400 text-base  flex  flex-wrap items-center justify-between gap-2 font-inter">
+                    @{community.author}
+                    {/* Category Badge */}
+                    <div className="">
+                      <span className="border-radius-propublic bg-transparent border border-custom-primary text-custom-primary px-2 py-1 text-sm">
+                        {community.category}
+                      </span>
+                    </div>
+                  </p>
+                </div>
+              </div>
+              <div className="community-desc py-3">
+                <p className="text-gray-400 text-base leading-relaxed line-clamp-2 font-inter">
+                  {community.description}
                 </p>
               </div>
-            </div>
-            <div className="community-desc py-3">
-              <p className="text-gray-400 text-base leading-relaxed line-clamp-2 font-inter">
-                {community.description}
-              </p>
-            </div>
 
-            {/* Additional Stats */}
-            <div className="flex justify-between items-center text-base text-gray-400 mb-3">
-              <div className="flex items-center gap-1">
-                <Calendar size={12} />
-                <span className="font-inter">
-                  {community.sessions} Sessions
-                </span>
-              </div>
-              <div className="flex items-center gap-1">
-                <FileText size={12} />
-                <span className="font-inter">{community.guides} Guides</span>
+              {/* Additional Stats */}
+              <div className="flex justify-between items-center text-base text-gray-400 mb-3">
+                <div className="flex items-center gap-1">
+                  <Calendar size={12} />
+                  <span className="font-inter">
+                    {community.sessions} Sessions
+                  </span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <FileText size={12} />
+                  <span className="font-inter">{community.guides} Guides</span>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
           {/* Join Button */}
           {showJoinCommunityButton && (
             <Button

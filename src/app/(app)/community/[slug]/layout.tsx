@@ -1,0 +1,42 @@
+import { notFound } from 'next/navigation'
+import { getCommunityData } from '@/lib/community-data'
+import CommunityLayoutClient from '@/components/pages/community/detail/layout/community-layout-client'
+
+interface CommunityLayoutProps {
+  children: React.ReactNode
+  params: Promise<{ slug: string }>
+}
+
+export default async function CommunityLayout({
+  children,
+  params,
+}: CommunityLayoutProps) {
+  const { slug } = await params
+  const community = await getCommunityData(slug)
+  console.log(community)
+  if (!community) {
+    notFound()
+  }
+
+  return (
+    <CommunityLayoutClient community={community}>
+      {children}
+    </CommunityLayoutClient>
+  )
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const community = await getCommunityData(slug)
+
+  if (!community) return {}
+
+  return {
+    title: `${community.name} | Community`,
+    description: community.description,
+  }
+}
