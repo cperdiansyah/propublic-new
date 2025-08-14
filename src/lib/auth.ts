@@ -40,7 +40,7 @@ export const authOptions: NextAuthOptions = {
               name: email.split('@')[0], // Use email prefix as name
               image: null,
               accessToken: token,
-              userData: null, // OAuth user data would be stored differently
+              userData: undefined, // OAuth user data would be stored differently
             }
           }
 
@@ -101,7 +101,7 @@ export const authOptions: NextAuthOptions = {
         session.accessToken = (token.accessToken as string) || ''
         session.user = {
           ...session.user,
-          id: token.sub,
+          id: token.sub || '',
           userData: token.userData as User,
         }
       }
