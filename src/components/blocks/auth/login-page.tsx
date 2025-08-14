@@ -18,11 +18,11 @@ import {
 import { loginSchema, type LoginInput } from '@/lib/validations/auth'
 import BackgroundEffects from '@/components/blocks/effects/grid-glow'
 import ROUTE from '@/config/pages'
-import { useAuth } from '@/hooks/useAuth'
+import { useAuthNext } from '@/hooks/useAuthNext'
 
 export default function LoginContent() {
   const [showPassword, setShowPassword] = useState(false)
-  const { login, isLoading, error, clearError } = useAuth()
+  const { login, isLoading, error, clearError } = useAuthNext()
 
   const {
     register,

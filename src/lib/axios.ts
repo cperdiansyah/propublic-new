@@ -1,4 +1,5 @@
 import axios, { type AxiosError, type AxiosResponse } from 'axios'
+import { getSession, signOut } from 'next-auth/react'
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
 
@@ -12,19 +13,11 @@ const axiosInstance = axios.create({
 })
 
 axiosInstance.interceptors.request.use(
-  (config) => {
+  async (config) => {
     if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('persist:root')
-      if (token) {
-        try {
-          const persistedState = JSON.parse(token)
-          const authState = JSON.parse(persistedState.auth)
-          if (authState?.token) {
-            config.headers.Authorization = `Bearer ${authState.token}`
-          }
-        } catch (error) {
-          console.warn('Error parsing persisted auth state:', error)
-        }
+      const session = await getSession()
+      if (session?.accessToken) {
+        config.headers.Authorization = `Bearer ${session.accessToken}`
       }
     }
     return config
@@ -36,10 +29,10 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => response,
-  (error: AxiosError) => {
+  async (error: AxiosError) => {
     if (error.response?.status === 401) {
       if (typeof window !== 'undefined') {
-        localStorage.removeItem('persist:root')
+        await signOut({ redirect: false })
         window.location.href = '/auth/login'
       }
     }

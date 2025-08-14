@@ -4,6 +4,7 @@ import type React from 'react'
 import { ReduxProvider } from '@/providers/ReduxProvider'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { SessionProvider } from 'next-auth/react'
 import { useState } from 'react'
 
 interface AppProvidersProps {
@@ -39,12 +40,14 @@ const AppProviders = ({ children }: AppProvidersProps) => {
       }),
   )
   return (
-    <ReduxProvider>
-      <QueryClientProvider client={queryClient}>
-        {children}
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </ReduxProvider>
+    <SessionProvider>
+      <ReduxProvider>
+        <QueryClientProvider client={queryClient}>
+          {children}
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </ReduxProvider>
+    </SessionProvider>
   )
 }
 
