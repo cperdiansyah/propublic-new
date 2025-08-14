@@ -74,7 +74,7 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       // Send properties to the client
       if (token) {
-        session.accessToken = token.accessToken as string
+        session.accessToken = (token.accessToken as string) || ''
         session.user = {
           ...session.user,
           id: token.sub,
@@ -95,5 +95,5 @@ export const authOptions: NextAuthOptions = {
   jwt: {
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET || 'fallback-secret-key',
 }

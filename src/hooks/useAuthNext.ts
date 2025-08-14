@@ -1,7 +1,8 @@
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import type { LoginInput } from '@/lib/validations/auth'
+import type { LoginInput, RegisterInput } from '@/lib/validations/auth'
+import { signupUser } from '@/services/auth'
 
 export const useAuthNext = () => {
   const { data: session, status } = useSession()
@@ -48,6 +49,49 @@ export const useAuthNext = () => {
     }
   }
 
+  const signup = async (userData: RegisterInput) => {
+    try {
+      setIsLoading(true)
+      setError(null)
+
+      // First, create the user account
+      await signupUser(userData)
+
+      // Then automatically log them in using NextAuth
+      const result = await signIn('credentials', {
+        email: userData.email,
+        password: userData.password,
+        redirect: false,
+      })
+
+      if (result?.error) {
+        setError(
+          'Account created but login failed. Please try logging in manually.',
+        )
+        throw new Error(result.error)
+      }
+
+      if (result?.ok) {
+        router.push('/dashboard')
+      }
+    } catch (error) {
+      console.error('Signup failed:', error)
+      const errorMessage =
+        error instanceof Error ? error.message : 'Signup failed'
+
+      // Try to parse validation errors
+      try {
+        const errors = JSON.parse(errorMessage)
+        setError(Object.values(errors).flat().join(', '))
+      } catch {
+        setError(errorMessage)
+      }
+      throw error
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   const clearError = () => {
     setError(null)
   }
@@ -62,6 +106,7 @@ export const useAuthNext = () => {
 
     // Actions
     login,
+    signup,
     logout,
     clearError,
 
