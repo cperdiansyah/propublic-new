@@ -5,17 +5,12 @@ const STORAGE_KEY = 'redux-app-state'
 
 // Custom persistence middleware
 export const persistenceMiddleware: Middleware<{}, RootState> =
-  (store) => (next) => (action) => {
+  () => (next) => (action) => {
     const result = next(action)
 
     // Save state to localStorage after each action
     try {
-      const state = store.getState()
-      const persistedState = {
-        // counter: state.,
-        // user: state.user,
-      }
-
+      const persistedState = {}
       localStorage.setItem(STORAGE_KEY, JSON.stringify(persistedState))
     } catch (error) {
       console.warn('Failed to persist state:', error)

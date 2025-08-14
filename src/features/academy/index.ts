@@ -10,7 +10,6 @@ export { default as BenefitSection } from './components/benefit-section'
 export { default as CategoryFilters } from './components/category-filters'
 export { default as CourseGrid } from './components/course-grid'
 
-// Re-export detail components as named exports
 export * from './components/detail'
 
 // Hooks

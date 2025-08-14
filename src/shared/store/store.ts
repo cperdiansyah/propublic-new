@@ -33,7 +33,6 @@ export const store = configureStore({
     }),
 })
 
-// const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const persistor = persistStore(store)
 
 import {

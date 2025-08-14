@@ -1,5 +1,3 @@
-// import OverviewContent from '@shared/components/community/overview/overview-content'
-
 import OverviewContent from '@features/community/components/detail/posts/overview/overview-content'
 
 export default async function OverviewPage() {

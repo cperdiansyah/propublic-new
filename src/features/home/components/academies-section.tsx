@@ -8,7 +8,6 @@ import type React from 'react'
 
 import AcademySlider from '@features/academy/components/academy-slider'
 
-// import Plac
 interface IAcademiesSection {
   courses: ICourseItem[]
 }
@@ -49,7 +48,5 @@ const AcademiesSection: React.FC<IAcademiesSection> = ({ courses }) => {
     </ParticleGradient>
   )
 }
-
-// export default CoachCard
 
 export default AcademiesSection
