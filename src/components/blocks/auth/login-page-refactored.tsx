@@ -135,9 +135,9 @@ const BrandingSection = () => (
 
 // Form component - following SRP and proper props interface
 interface LoginFormProps {
-  register: ReturnType<typeof useForm<LoginInput>>['register']
+  register: ReturnType<typeof useForm<typeof loginSchema>>['register']
   onSubmit: () => void
-  errors: ReturnType<typeof useForm<LoginInput>>['formState']['errors']
+  errors: ReturnType<typeof useForm<typeof loginSchema>>['formState']['errors']
   isValid: boolean
   isLoading: boolean
   showPassword: boolean
@@ -161,11 +161,11 @@ const LoginForm = ({
     <FormHeader />
 
     <form onSubmit={onSubmit} className="space-y-6">
-      <EmailField register={register} error={errors.email?.message} />
+      <EmailField register={register} error={errors.email?.message as string} />
 
       <PasswordField
         register={register}
-        error={errors.password?.message}
+        error={errors.password?.message as string}
         showPassword={showPassword}
         onTogglePassword={onTogglePassword}
       />
@@ -200,7 +200,7 @@ const EmailField = ({
   register,
   error,
 }: {
-  register: ReturnType<typeof useForm<LoginInput>>['register']
+  register: ReturnType<typeof useForm<typeof loginSchema>>['register']
   error?: string
 }) => (
   <FormField
@@ -220,7 +220,7 @@ const PasswordField = ({
   showPassword,
   onTogglePassword,
 }: {
-  register: ReturnType<typeof useForm<LoginInput>>['register']
+  register: ReturnType<typeof useForm<typeof loginSchema>>['register']
   error?: string
   showPassword: boolean
   onTogglePassword: () => void

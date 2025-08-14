@@ -1,32 +1,29 @@
 'use client'
 
-import {
-  useForm as useReactHookForm,
-  type UseFormProps,
-  type FieldValues,
-  type Resolver,
-} from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import type { ZodType, ZodTypeDef } from 'zod'
 import { useCallback, useEffect } from 'react'
+import { useForm as useReactHookForm, type UseFormProps } from 'react-hook-form'
+import type { z, ZodTypeAny } from 'zod'
 
-interface UseFormOptions<T extends FieldValues>
-  extends Omit<UseFormProps<T>, 'resolver'> {
-  schema: ZodType<T, ZodTypeDef, T>
-  onSubmit: (data: T) => Promise<void> | void
+type InferFromSchema<S extends ZodTypeAny> = z.infer<S>
+
+interface UseFormOptions<S extends ZodTypeAny>
+  extends Omit<UseFormProps<InferFromSchema<S>>, 'resolver'> {
+  schema: S
+  onSubmit: (data: InferFromSchema<S>) => Promise<void> | void
   externalError?: string | null
   onErrorChange?: (error: string | null) => void
 }
 
-export function useForm<T extends FieldValues>({
+export function useForm<S extends ZodTypeAny>({
   schema,
   onSubmit,
   externalError,
   onErrorChange,
   ...options
-}: UseFormOptions<T>) {
-  const form = useReactHookForm<T>({
-    resolver: zodResolver(schema) as Resolver<T>,
+}: UseFormOptions<S>) {
+  const form = useReactHookForm<InferFromSchema<S>>({
+    resolver: zodResolver(schema),
     mode: 'onChange',
     ...options,
   })
@@ -40,12 +37,15 @@ export function useForm<T extends FieldValues>({
         type: 'manual',
         message: externalError,
       })
+    } else {
+      // Clear root error when it goes away
+      clearErrors('root')
     }
-  }, [externalError, setError])
+  }, [externalError, setError, clearErrors])
 
   // Enhanced submit handler with error handling
   const onSubmitHandler = useCallback(
-    async (data: T) => {
+    async (data: InferFromSchema<S>) => {
       try {
         clearErrors()
         onErrorChange?.(null)
@@ -53,10 +53,7 @@ export function useForm<T extends FieldValues>({
       } catch (error) {
         const message =
           error instanceof Error ? error.message : 'An error occurred'
-        setError('root', {
-          type: 'manual',
-          message,
-        })
+        setError('root', { type: 'manual', message })
         onErrorChange?.(message)
       }
     },
