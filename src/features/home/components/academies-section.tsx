@@ -2,11 +2,11 @@
 'use client'
 
 import ParticleGradient from '@shared/components/effects/particleGradient'
-import SectionTitle from '@shared/components/common/section-title'
+import SectionTitle from '@shared/components/section-title'
 import type { ICourseItem } from '@shared/types/home.types'
 import type React from 'react'
 
-import AcademySlider from '@shared/components/blocks/academy/academy-slider'
+import AcademySlider from '@features/academy/components/academy-slider'
 
 // import Plac
 interface IAcademiesSection {

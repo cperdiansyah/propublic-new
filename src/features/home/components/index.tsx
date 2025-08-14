@@ -1,10 +1,10 @@
 'use client'
-import { CarouselDemo } from '@shared/components/common/carousel-demo'
-import AcademiesSection from '@shared/components/pages/home/academies-section'
-import BrandSection from '@shared/components/pages/home/brands-section'
-import HeroSection from '@shared/components/pages/home/hero-section'
-import PricingPlan from '@shared/components/pages/home/pricing-plan-section'
-import TopComunitiesSection from '@shared/components/pages/home/top-comunities-section'
+import { CarouselDemo } from '@shared/components/carousel-demo'
+import AcademiesSection from './academies-section'
+import BrandSection from './brands-section'
+import HeroSection from './hero-section'
+import PricingPlan from './pricing-plan-section'
+import TopComunitiesSection from './top-comunities-section'
 import { GAMELIST, COURSES, COMMUNITIES } from '@shared/config/exampleData'
 
 const HomePage = () => {

@@ -1,6 +1,6 @@
-import AcademyCard from '@shared/components/blocks/academy/academy-card'
-import { Button } from '@/shared/components/ui/button'
-import { Card, CardContent } from '@/shared/components/ui/card'
+import AcademyCard from './academy-card'
+import { Button } from '@shared/components/ui/button'
+import { Card, CardContent } from '@shared/components/ui/card'
 import type { ICourseItem } from '@shared/types/home.types'
 
 // Courses Grid Component

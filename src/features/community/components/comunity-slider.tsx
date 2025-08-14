@@ -1,7 +1,7 @@
 'use client'
 
 import CommunitiesCard from '@features/community/components/community-card'
-import type { CarouselProviderProps } from '@shared/components/common/infinite-carousel/carousel-context'
+import type { CarouselProviderProps } from '@shared/components/infinite-carousel/carousel-context'
 import {
   Carousel,
   CarouselContent,

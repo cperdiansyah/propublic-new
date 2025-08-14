@@ -1,16 +1,16 @@
 'use client'
 
-import { InfiniteCarouselContent } from '@shared/components/common/infinite-carousel/carousel-content'
+import { InfiniteCarouselContent } from '@shared/components/infinite-carousel/carousel-content'
 import {
   CarouselProvider,
   useCarouselContext,
-} from '@shared/components/common/infinite-carousel/carousel-context'
+} from '@shared/components/infinite-carousel/carousel-context'
 import {
   CarouselIndicators,
   CarouselNext,
   CarouselPrevious,
-} from '@shared/components/common/infinite-carousel/carousel-controls'
-import { InfiniteCarouselItem } from '@shared/components/common/infinite-carousel/carousel-item'
+} from '@shared/components/infinite-carousel/carousel-controls'
+import { InfiniteCarouselItem } from '@shared/components/infinite-carousel/carousel-item'
 import { Badge } from '@/shared/components/ui/badge'
 import {
   Card,

@@ -1,6 +1,9 @@
 // Game Stats feature public API
 // Export only what other features need
 
+// Main component (for page routing)
+export { default } from './components/index'
+
 // Game Components
 export { default as GameCard } from './components/game-card'
 export { default as GameModal } from './components/game-modal'

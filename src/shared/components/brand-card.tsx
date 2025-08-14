@@ -1,4 +1,4 @@
-import OptimizedImageWithFallback from '@shared/components/common/optimized-image-with-fallback'
+import OptimizedImageWithFallback from '@shared/components/optimized-image-with-fallback'
 import type { Brand } from '@shared/types/home.types'
 import { motion } from 'framer-motion'
 import Image from 'next/image'

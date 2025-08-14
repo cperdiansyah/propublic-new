@@ -28,8 +28,8 @@ import { LoadingButton } from '@/shared/components/ui/loading-button'
 import { ErrorMessage } from '@/shared/components/ui/error-message'
 import { SocialButton } from '@/shared/components/ui/social-button'
 import { PasswordToggle } from './password-toggle'
-import { AuthStats } from '@shared/components/auth/auth-stats'
-import { Testimonial } from '@shared/components/auth/testimonial'
+import { AuthStats } from './auth-stats'
+import { Testimonial } from './testimonial'
 
 // Config and constants
 import ROUTE from '@shared/config/pages'

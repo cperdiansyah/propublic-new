@@ -1,21 +1,21 @@
 'use client'
 
-import { CarouselProvider } from '@shared/components/common/infinite-carousel/carousel-context'
+import { CarouselProvider } from '@shared/components/infinite-carousel/carousel-context'
 import BackgroundEffects from '@shared/components/effects/grid-glow'
 
 import {
   CarouselNext,
   CarouselPrevious,
-} from '@shared/components/common/infinite-carousel/carousel-controls'
-import SectionTitle from '@shared/components/common/section-title'
+} from '@shared/components/infinite-carousel/carousel-controls'
+import SectionTitle from '@shared/components/section-title'
 import { Card, CardContent } from '@/shared/components/ui/card'
 import type { CarouselGameItem } from '@shared/types/home.types'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import type React from 'react'
 import Image from 'next/image'
-import { InfiniteCarouselContent } from '@shared/components/common/infinite-carousel/carousel-content'
-import { InfiniteCarouselItem } from '@shared/components/common/infinite-carousel/carousel-item'
-import OptimizedImageWithFallback from '@shared/components/common/optimized-image-with-fallback'
+import { InfiniteCarouselContent } from '@shared/components/infinite-carousel/carousel-content'
+import { InfiniteCarouselItem } from '@shared/components/infinite-carousel/carousel-item'
+import OptimizedImageWithFallback from '@shared/components/optimized-image-with-fallback'
 
 interface IGameSection {
   games: CarouselGameItem[]

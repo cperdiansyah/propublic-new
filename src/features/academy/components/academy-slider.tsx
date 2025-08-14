@@ -1,16 +1,16 @@
 'use client'
 
-import AcademyCard from '@shared/components/blocks/academy/academy-card'
-import { InfiniteCarouselContent } from '@shared/components/common/infinite-carousel/carousel-content'
+import AcademyCard from './academy-card'
+import { InfiniteCarouselContent } from '@shared/components/infinite-carousel/carousel-content'
 import {
   CarouselProvider,
   type CarouselProviderProps,
-} from '@shared/components/common/infinite-carousel/carousel-context'
+} from '@shared/components/infinite-carousel/carousel-context'
 import {
   CarouselNext,
   CarouselPrevious,
-} from '@shared/components/common/infinite-carousel/carousel-controls'
-import { InfiniteCarouselItem } from '@shared/components/common/infinite-carousel/carousel-item'
+} from '@shared/components/infinite-carousel/carousel-controls'
+import { InfiniteCarouselItem } from '@shared/components/infinite-carousel/carousel-item'
 import { DELAY_AUTOPLAY_MS } from '@shared/config/const'
 import type { ICourseItem } from '@shared/types/home.types'
 import { ChevronLeft, ChevronRight } from 'lucide-react'

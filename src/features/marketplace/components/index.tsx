@@ -1,15 +1,15 @@
 // /shop/page.tsx
 'use client'
 import RadialGradient from '@shared/components/effects/radialGradient'
-import MarketplaceLink from '@shared/components/pages/shop/marketplace-link'
+import MarketplaceLink from './marketplace-link'
 import {
   defaultMarketplaceStyle,
   featureItems,
   marketplaceLinks,
   marketplaceStyles,
-} from '@shared/components/pages/shop/shop-data'
-import ShopFeatureCard from '@shared/components/pages/shop/shop-feature-card'
-import useShops from '@shared/components/pages/shop/useShop'
+} from './shop-data'
+import ShopFeatureCard from './shop-feature-card'
+import useShops from './useShop'
 import { Crown, Loader2, Sparkles, Star } from 'lucide-react'
 
 export default function ShopPage() {

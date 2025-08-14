@@ -1,5 +1,5 @@
-import ComunitySlider from '@shared/components/blocks/community/comunity-slider'
-import SectionTitle from '@shared/components/common/section-title'
+import ComunitySlider from '@features/community/components/comunity-slider'
+import SectionTitle from '@shared/components/section-title'
 import type { TypeCommunityItem } from '@shared/types/home.types'
 import type React from 'react'
 

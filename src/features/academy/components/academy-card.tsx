@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/security/noDangerouslySetInnerHtml: <explanation> */
 
-import OptimizedImageWithFallback from '@shared/components/common/optimized-image-with-fallback'
+import OptimizedImageWithFallback from '@shared/components/optimized-image-with-fallback'
 import ROUTE from '@shared/config/pages'
 import { formatIDRCurrency } from '@shared/utils/formatCurrency'
 import renderStars from '@shared/utils/renderStars'

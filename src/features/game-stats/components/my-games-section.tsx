@@ -1,8 +1,5 @@
 'use client'
-import {
-  AddGamePlaceholder,
-  MyGameCard,
-} from '@shared/components/pages/game/game-card'
+import { AddGamePlaceholder, MyGameCard } from './game-card'
 import type { SavedGame } from '@shared/types/game.types'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRef, useState, useEffect } from 'react'

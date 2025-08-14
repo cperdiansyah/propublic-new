@@ -1,8 +1,8 @@
 'use client'
 
-import { useCarouselContext } from '@shared/components/common/infinite-carousel/carousel-context'
-import { useAutoplayControl } from '@shared/components/common/infinite-carousel/carousel-hooks'
-import { FlyingControls } from '@shared/components/common/infinite-carousel/carousel-controls'
+import { useCarouselContext } from '@shared/components/infinite-carousel/carousel-context'
+import { useAutoplayControl } from '@shared/components/infinite-carousel/carousel-hooks'
+import { FlyingControls } from '@shared/components/infinite-carousel/carousel-controls'
 import { Carousel, CarouselContent } from '@/shared/components/ui/carousel'
 import { cn } from '@shared/utils/utils'
 import * as React from 'react'

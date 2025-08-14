@@ -1,4 +1,4 @@
-import HomePage from '@shared/components/pages/home'
+import HomePage from '@features/home'
 
 export default function Home() {
   return (

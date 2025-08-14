@@ -1,6 +1,9 @@
 // Academy feature public API
 // Export only what other features need
 
+// Main component (for page routing)
+export { default } from './components/index'
+
 // Components
 export { default as AcademyCoursesSection } from './components/academy-courses-section'
 export { default as BenefitSection } from './components/benefit-section'

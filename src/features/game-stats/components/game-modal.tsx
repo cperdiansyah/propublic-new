@@ -10,7 +10,7 @@ import {
 import { Input } from '@/shared/components/ui/input'
 import type { CarouselGameItem } from '@shared/types/home.types'
 import { Search } from 'lucide-react'
-import OptimizedImageWithFallback from '@shared/components/common/optimized-image-with-fallback'
+import OptimizedImageWithFallback from '@shared/components/optimized-image-with-fallback'
 import { useCallback } from 'react'
 
 // Add Game Modal Component

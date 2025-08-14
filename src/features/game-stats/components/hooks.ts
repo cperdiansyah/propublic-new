@@ -1,6 +1,8 @@
+'use client'
+
 import { COMMUNITIES, GAMELIST } from '@shared/config/exampleData'
 import type { CarouselGameItem } from '@shared/types/home.types'
-import { addGameSchema } from '@/schema/games'
+import { addGameSchema } from '@shared/games'
 import { useCallback, useMemo, useState } from 'react'
 
 interface SavedGame extends CarouselGameItem {

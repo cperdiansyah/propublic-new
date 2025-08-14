@@ -1,5 +1,5 @@
-import CategoryFilters from '@shared/components/pages/academy/category-filters'
-import CoursesGrid from '@shared/components/pages/academy/course-grid'
+import CategoryFilters from './category-filters'
+import CoursesGrid from './course-grid'
 import { Button } from '@/shared/components/ui/button'
 import { Input } from '@/shared/components/ui/input'
 import type { CategoryFilter } from '@shared/types/academy.types'

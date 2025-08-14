@@ -1,8 +1,8 @@
 'use client'
 
-import { CarouselProvider } from '@shared/components/common/infinite-carousel/carousel-context'
-import { InfiniteCarouselContent } from '@shared/components/common/infinite-carousel/carousel-content'
-import { InfiniteCarouselItem } from '@shared/components/common/infinite-carousel/carousel-item'
+import { CarouselProvider } from '@shared/components/infinite-carousel/carousel-context'
+import { InfiniteCarouselContent } from '@shared/components/infinite-carousel/carousel-content'
+import { InfiniteCarouselItem } from '@shared/components/infinite-carousel/carousel-item'
 import {
   Carousel,
   CarouselContent,

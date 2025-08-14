@@ -1,6 +1,9 @@
 // Marketplace feature public API
 // Export only what other features need
 
+// Main component (for page routing)
+export { default } from './components/index'
+
 // Components
 export { default as ShopFeatureCard } from './components/shop-feature-card'
 export { default as MarketplaceLink } from './components/marketplace-link'

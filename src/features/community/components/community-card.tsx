@@ -1,6 +1,6 @@
 'use client'
 
-import OptimizedImageWithFallback from '@shared/components/common/optimized-image-with-fallback'
+import OptimizedImageWithFallback from '@shared/components/optimized-image-with-fallback'
 import { Button } from '@/shared/components/ui/button'
 import ROUTE from '@shared/config/pages'
 import type { TypeCommunityItem } from '@shared/types/home.types'
