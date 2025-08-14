@@ -1,10 +1,12 @@
+'use client'
+
 import Desktopnavigation from '@/components/layout/navigation/desktop-navigation'
+import UserDropdown from '@/components/layout/navigation/user-dropdown'
 import { Button } from '@/components/ui/button'
-import { navigation } from '@/config/const'
 import ROUTE from '@/config/pages'
+import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
 
 const Header = () => {
   return (
@@ -40,19 +42,36 @@ const Header = () => {
 }
 
 function HeaderUser() {
-  /* need improve for state management in this section for login and logout*/
+  const { data: session, status } = useSession()
+
+  // Show loading state
+  if (status === 'loading') {
+    return (
+      <div className="flex items-center gap-3">
+        <div className="w-20 h-10 bg-gray-700/50 rounded animate-pulse"></div>
+        <div className="w-24 h-10 bg-gray-700/50 rounded animate-pulse hidden md:block"></div>
+      </div>
+    )
+  }
+
+  // Show user dropdown if logged in
+  if (session) {
+    return <UserDropdown />
+  }
+
+  // Show login/signup buttons if not logged in
   return (
     <div className="flex items-center gap-3">
       <Link href={ROUTE.PUBLIC.AUTH.LOGIN}>
         <Button
           variant="outline"
-          className=" transition-200s bg-transparent text-white hover:bg-custom-secondary-dark hover:text-white propublic-button text-base font-semibold cursor-pointer"
+          className="transition-200s bg-transparent text-white hover:bg-custom-secondary-dark hover:text-white propublic-button text-base font-semibold cursor-pointer"
         >
           Join
         </Button>
       </Link>
       <Link href={ROUTE.PUBLIC.AUTH.REGISTER} className="hidden md:block">
-        <Button className="bg-custom-primary text-white propublic-button  hover:bg-custom-secondary-dark transition-200s text-base font-semibold hover:bg-custom-primary/80 cursor-pointer">
+        <Button className="bg-custom-primary text-white propublic-button hover:bg-custom-secondary-dark transition-200s text-base font-semibold hover:bg-custom-primary/80 cursor-pointer">
           Get Started
         </Button>
       </Link>

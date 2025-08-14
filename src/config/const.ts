@@ -14,6 +14,8 @@ export interface NavItem {
   badge?: number
 }
 
+export const { NODE_ENV, NEXT_PUBLIC_API_URL } = process.env
+
 export const navigation: NavItem[] = [
   { label: 'Home', href: '/', icon: Home },
   { label: 'Academy', href: '/academy', icon: Compass },

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -18,44 +18,39 @@ import {
 import { loginSchema, type LoginInput } from '@/lib/validations/auth'
 import BackgroundEffects from '@/components/blocks/effects/grid-glow'
 import ROUTE from '@/config/pages'
+import { useAuthNext } from '@/hooks/useAuthNext'
 
 export default function LoginContent() {
   const [showPassword, setShowPassword] = useState(false)
+  const { login, isLoading, error, clearError } = useAuthNext()
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid },
+    formState: { errors, isValid },
     setError,
+    clearErrors,
   } = useForm<LoginInput>({
     resolver: zodResolver(loginSchema),
     mode: 'onChange',
   })
 
+  useEffect(() => {
+    if (error) {
+      setError('root', {
+        type: 'manual',
+        message: error,
+      })
+    }
+  }, [error, setError])
+
   const onSubmit = async (data: LoginInput) => {
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-
-      // Here you would make the actual API call
-      // const response = await fetch('/api/auth/login', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(data),
-      // });
-
-      // if (!response.ok) {
-      //   throw new Error('Invalid credentials');
-      // }
-
-      // Handle successful login (redirect, etc.)
-      console.log('Login successful:', data)
+      clearErrors()
+      clearError()
+      await login(data)
     } catch (error) {
-      // Handle API errors
-      setError('email', {
-        type: 'manual',
-        message: 'Invalid email or password. Please try again.',
-      })
+      console.error('Login failed:', error)
     }
   }
 
@@ -220,13 +215,23 @@ export default function LoginContent() {
                   </Link>
                 </div>
 
+                {/* Error Display */}
+                {errors.root && (
+                  <div className="bg-red-500/10 border border-red-500/20 border-radius-propublic p-4 flex items-center space-x-3">
+                    <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
+                    <p className="text-red-400 text-sm">
+                      {errors.root.message}
+                    </p>
+                  </div>
+                )}
+
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isLoading || !isValid}
                   className="w-full bg-gradient-to-r from-custom-primary to-custom-secondary text-cream  border-radius-propublic font-bold text-lg hover:shadow-lg transition-all glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 propublic-button"
                 >
-                  {isSubmitting ? (
+                  {isLoading ? (
                     <>
                       <div className="font-teko w-5 h-5 border-2 border-cream/30 border-t-cream rounded-full animate-spin"></div>
                       <span>Signing In...</span>

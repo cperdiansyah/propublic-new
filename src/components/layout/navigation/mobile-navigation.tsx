@@ -2,9 +2,12 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import type React from 'react'
+import { User, LogIn } from 'lucide-react'
+import { useSession } from 'next-auth/react'
 
 import { cn } from '@/lib/utils'
 import { navigation } from '@/config/const'
+import ROUTE from '@/config/pages'
 
 interface NavItem {
   href: string
@@ -15,6 +18,27 @@ interface NavItem {
 
 const MobileBottomNav = () => {
   const pathname = usePathname()
+  const { data: session } = useSession()
+
+  // Create user/auth navigation item
+  const authNavItem = session
+    ? {
+        href: '/dashboard',
+        icon: User,
+        label: 'Profile',
+        isUserProfile: true,
+      }
+    : {
+        href: ROUTE.PUBLIC.AUTH.LOGIN,
+        icon: LogIn,
+        label: 'Login',
+        isUserProfile: false,
+      }
+
+  // Limit main navigation to prevent overcrowding and add auth item
+  const limitedNavigation = navigation.slice(0, 4) // Take first 4 items
+  const allNavItems = [...limitedNavigation, authNavItem]
+
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 bg-gray border-t border-gray-200/ md:hidden">
       <div
@@ -23,7 +47,7 @@ const MobileBottomNav = () => {
           'bg-dark-primary',
         )}
       >
-        {navigation.map((item) => {
+        {allNavItems.map((item) => {
           const isActive = pathname === item.href
           return (
             <NavigationItem key={item.label} {...item} isActive={isActive} />
@@ -40,8 +64,15 @@ function NavigationItem({
   icon,
   isActive,
   notificationCount,
-}: NavItem & { isActive: boolean; notificationCount?: number }) {
+  isUserProfile,
+}: NavItem & {
+  isActive: boolean
+  notificationCount?: number
+  isUserProfile?: boolean
+}) {
   const Icon = icon
+  const { data: session } = useSession()
+
   return (
     <Link
       key={href}
@@ -59,26 +90,31 @@ function NavigationItem({
 
       {/* Icon container with badge */}
       <div className="relative z-10">
-        <Icon className={`h-6 w-6`} />
+        {isUserProfile && session?.user?.userData?.avatar_url ? (
+          <div className="relative">
+            <img
+              src={session.user.userData.avatar_url}
+              alt={session.user.userData?.username || 'User'}
+              className="w-6 h-6 rounded-full"
+            />
+            {session.user.userData?.is_active && (
+              <div className="absolute -bottom-0.5 -right-0.5 w-2 h-2 bg-green-500 border border-dark-primary rounded-full"></div>
+            )}
+          </div>
+        ) : (
+          <Icon
+            className={`h-6 w-6 ${isUserProfile && session ? 'text-custom-accent' : ''}`}
+          />
+        )}
 
         {notificationCount && (
           <div className="indicator">
             <span className="indicator-item badge badge-secondary">
-              {' '}
               {notificationCount > 9 ? '9+' : notificationCount}
             </span>
           </div>
         )}
       </div>
-
-      {/* Label */}
-      {/* <span
-        className={`text-xs font-medium z-10 ${
-          isActive ? 'text-primary' : 'text-gray-500'
-        }`}
-      >
-        {label}
-      </span> */}
     </Link>
   )
 }
