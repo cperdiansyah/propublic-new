@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button'
+import { Button } from '@/shared/components/ui/button'
 import type { CategoryFilter } from '@/types/academy.types'
 
 // Category Filters Component

@@ -1,8 +1,8 @@
 'use client'
 
-import Desktopnavigation from '@/components/layout/navigation/desktop-navigation'
-import UserDropdown from '@/components/layout/navigation/user-dropdown'
-import { Button } from '@/components/ui/button'
+import Desktopnavigation from '@/shared/components/layout/navigation/desktop-navigation'
+import UserDropdown from '@/shared/components/layout/navigation/user-dropdown'
+import { Button } from '@/shared/components/ui/button'
 import ROUTE from '@/config/pages'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'

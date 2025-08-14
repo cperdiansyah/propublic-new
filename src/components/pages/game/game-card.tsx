@@ -1,5 +1,5 @@
 'use client'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent } from '@/shared/components/ui/card'
 import type { SavedGame } from '@/types/game.types'
 import { Plus, X } from 'lucide-react'
 import Link from 'next/link'

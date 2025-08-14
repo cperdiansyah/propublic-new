@@ -3,7 +3,7 @@
 import { useCarouselContext } from '@/components/common/infinite-carousel/carousel-context'
 import { useAutoplayControl } from '@/components/common/infinite-carousel/carousel-hooks'
 import { FlyingControls } from '@/components/common/infinite-carousel/carousel-controls'
-import { Carousel, CarouselContent } from '@/components/ui/carousel'
+import { Carousel, CarouselContent } from '@/shared/components/ui/carousel'
 import { cn } from '@/lib/utils'
 import * as React from 'react'
 

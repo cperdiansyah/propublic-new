@@ -1,4 +1,4 @@
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent } from '@/shared/components/ui/card'
 import type { AcademyBenefit } from '@/types/academy.types'
 
 // Benefits Section Component

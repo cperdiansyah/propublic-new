@@ -1,6 +1,6 @@
 'use client'
 import OptimizedImageWithFallback from '@/components/common/optimized-image-with-fallback'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent } from '@/shared/components/ui/card'
 import ROUTE from '@/config/pages'
 import type { CarouselGameItem } from '@/types/home.types'
 import Image from 'next/image'

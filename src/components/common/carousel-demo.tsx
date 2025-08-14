@@ -8,8 +8,8 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselFlyingControls,
-} from '@/components/ui/carousel'
-import { Card, CardContent } from '@/components/ui/card'
+} from '@/shared/components/ui/carousel'
+import { Card, CardContent } from '@/shared/components/ui/card'
 
 const demoItems = [
   { id: 1, title: 'Item 1', content: 'First item content' },

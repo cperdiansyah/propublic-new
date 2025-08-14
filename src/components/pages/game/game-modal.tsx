@@ -1,13 +1,13 @@
 'use client'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent } from '@/shared/components/ui/card'
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
+} from '@/shared/components/ui/dialog'
+import { Input } from '@/shared/components/ui/input'
 import type { CarouselGameItem } from '@/types/home.types'
 import { Search } from 'lucide-react'
 import OptimizedImageWithFallback from '@/components/common/optimized-image-with-fallback'

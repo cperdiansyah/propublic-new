@@ -1,7 +1,7 @@
 'use client'
 
 import OptimizedImageWithFallback from '@/components/common/optimized-image-with-fallback'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/shared/components/ui/button'
 import ROUTE from '@/config/pages'
 import type { TypeCommunityItem } from '@/types/home.types'
 import { ArrowRight, Calendar, FileText, Loader2Icon } from 'lucide-react'

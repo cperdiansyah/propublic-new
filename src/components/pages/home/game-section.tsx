@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from '@/components/common/infinite-carousel/carousel-controls'
 import SectionTitle from '@/components/common/section-title'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent } from '@/shared/components/ui/card'
 import type { CarouselGameItem } from '@/types/home.types'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import type React from 'react'

@@ -11,8 +11,13 @@ import {
   CarouselPrevious,
 } from '@/components/common/infinite-carousel/carousel-controls'
 import { InfiniteCarouselItem } from '@/components/common/infinite-carousel/carousel-item'
-import { Badge } from '@/components/ui/badge'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/shared/components/ui/badge'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@/shared/components/ui/card'
 
 interface Product {
   id: number

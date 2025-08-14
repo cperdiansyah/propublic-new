@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 const Footer = () => {
   const footerLinks = {
-    ['quick-link']: [
+    'quick-link': [
       { name: 'Terms', href: '/' },
       { name: 'Privacy', href: '/' },
     ],
@@ -57,7 +57,6 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      {/* <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500 to-transparent animate-pulse"></div> */}
       <div
         className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-400 to-transparent animate-pulse"
         style={{ animationDelay: '1s' }}

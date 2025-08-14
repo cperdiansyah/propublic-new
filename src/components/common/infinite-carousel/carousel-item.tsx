@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { CarouselItem } from '@/components/ui/carousel'
+import { CarouselItem } from '@/shared/components/ui/carousel'
 import { useCarouselContext } from './carousel-context'
 import { cn } from '@/lib/utils'
 import { number } from 'zod'

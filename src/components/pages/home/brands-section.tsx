@@ -10,7 +10,7 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselFlyingControls,
-} from '@/components/ui/carousel'
+} from '@/shared/components/ui/carousel'
 
 const categories = [
   { id: 'all', label: 'ALL' },

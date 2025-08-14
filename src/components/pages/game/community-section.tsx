@@ -1,8 +1,8 @@
 'use client'
 
 // shadcn/ui components
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
+import { Button } from '@/shared/components/ui/button'
+import { Card, CardContent } from '@/shared/components/ui/card'
 
 // Existing components
 import ComunitiesCard from '@/components/blocks/community/community-card'

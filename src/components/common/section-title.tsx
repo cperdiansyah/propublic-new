@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button'
+import { Button } from '@/shared/components/ui/button'
 import type React from 'react'
 import { useState, useEffect } from 'react'
 

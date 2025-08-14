@@ -7,7 +7,7 @@ import {
   CarouselContent,
   CarouselFlyingControls,
   CarouselItem,
-} from '@/components/ui/carousel'
+} from '@/shared/components/ui/carousel'
 import type { TypeCommunityItem } from '@/types/home.types'
 import type React from 'react'
 

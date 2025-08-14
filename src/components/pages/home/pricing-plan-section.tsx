@@ -1,6 +1,6 @@
 import CornerDecorations from '@/components/blocks/effects/corner-decoration'
 import AnimatedBackground from '@/components/blocks/background/hexagon-background'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/shared/components/ui/button'
 import { cn } from '@/lib/utils'
 import {
   Gift,
