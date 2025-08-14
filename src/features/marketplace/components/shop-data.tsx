@@ -1,6 +1,5 @@
-// /shop/components/shop-data.ts
-
-import { Crown, Star, Zap, ShoppingBag, Sparkles } from 'lucide-react'
+import { Crown, Star, Zap } from 'lucide-react'
+import type { HeroConfig } from './hero-section'
 type MarketplaceStyle = {
   gradient: string
   hoverGradient: string
@@ -70,4 +69,36 @@ export const defaultMarketplaceStyle: MarketplaceStyle = {
   hoverGradient: 'hover:from-gray-500 hover:to-gray-600',
   hoverShadow: 'hover:shadow-gray-400/20',
   hoverBorder: 'hover:border-gray-400/50',
+}
+
+/**
+ * Hero Configuration
+ * Centralized configuration for hero section content
+ */
+export const HERO_CONFIG: HeroConfig = {
+  badge: {
+    text: 'OFFICIAL PROPUBLIC STORE',
+    leftIcon: Crown,
+    rightIcon: Star,
+  },
+  title: {
+    highlighted: 'GEAR UP',
+    normal: 'LEVEL UP',
+  },
+  subtitle: 'The Ultimate Gaming Merchandise Experience',
+  description: {
+    main: 'The Ultimate Gaming Merchandise Experience',
+    emphasized: 'dominate both in-game and in style.',
+    secondary:
+      "Join thousands of gamers who've already upgraded their arsenal.",
+  },
+}
+
+/**
+ * Social Proof Configuration
+ * Centralized configuration for social proof section
+ */
+export const SOCIAL_PROOF_CONFIG = {
+  userCount: '10,000+',
+  description: 'gamers worldwide',
 }
