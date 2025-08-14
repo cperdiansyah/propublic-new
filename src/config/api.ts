@@ -1,3 +1,186 @@
-const API = {}
-
+const API = {
+  AUTH: {
+    V1: {
+      _: '/v1/auth',
+      ME: '/v1/auth/me',
+      LOGIN: '/v1/auth/login',
+      REGISTER: '/v1/auth/signup',
+      FORGOT_PASSWORD: '/v1/auth/forgot-password',
+      RESET_PASSWORD: '/v1/auth/forgot-password',
+      LOGOUT: '/v1/auth/logout',
+      GOOGLE_LOGIN: '/v1/auth/google_oauth2',
+      GOOGLE_LOGIN_CALLBACK: '/v1/auth/google_oauth2/callback',
+      DISCORD_LOGIN: '/v1/auth/discord',
+      DISCORD_LOGIN_CALLBACK: '/v1/auth/discord/callback',
+    },
+  },
+  INTERNAL: {
+    ACADEMY: {
+      V1: {
+        LIST: '/v1/internal/academies',
+        GET: '/v1/internal/academies/:id',
+        CREATE: '/v1/internal/academies',
+        UPDATE: '/v1/internal/academies/:id',
+        TOGGLE_PUBLISHED: (id: string) =>
+          `/v1/internal/academies/${id}/toggle-published`,
+        DELETE: (id: string) => `/v1/internal/academies/${id}`,
+      },
+    },
+    ACADEMY_REVIEW: {
+      LIST: '/v1/internal/academy-reviews',
+      GET: '/v1/internal/academy-reviews/:id',
+      DELETE: '/v1/internal/academy-reviews/:id',
+    },
+    ACADEMY_ENROLLMENT: {
+      LIST: '/v1/internal/academy-enrollments',
+      GET: '/v1/internal/academy-enrollments/:id',
+      CHANGE_STATUS: '/v1/internal/academy-enrollments/:id/change-status',
+      MARK_COMPLETED: '/v1/internal/academy-enrollments/:id/mark-completed',
+    },
+    COACH_EARNING: {
+      LIST: '/v1/internal/coach-earnings',
+      GET: '/v1/internal/coach-earnings/:id',
+      CHANGE_STATUS: '/v1/internal/coach-earnings/:id/change-status',
+      MARK_PAID: '/v1/internal/coach-earnings/:id/mark-paid',
+    },
+    COACH_PROFILE: {
+      LIST: '/v1/internal/coach-profiles',
+      GET: '/v1/internal/coach-profiles/:id',
+      UPDATE: '/v1/internal/coach-profiles/:id',
+      TOGGLE_VERIFIED: '/v1/internal/coach-profiles/:id/toggle-verified',
+      TOGGLE_AVAILABLE: '/v1/internal/coach-profiles/:id/toggle-available',
+    },
+    COMMUNITY: {
+      LIST: '/v1/internal/communities',
+      GET: '/v1/internal/communities/:id',
+      CREATE: '/v1/internal/communities',
+      UPDATE: '/v1/internal/communities/:id',
+      TOGGLE_PRIVATE: '/v1/internal/communities/:id/toggle-private',
+      DELETE: '/v1/internal/communities/:id',
+    },
+    COMMUNITY_MEMBERSHIP: {
+      LIST: '/v1/internal/community-memberships',
+      GET: '/v1/internal/community-memberships/:id',
+      DELETE: '/v1/internal/community-memberships/:id',
+    },
+    COUNTRY: {
+      LIST: '/v1/internal/countries',
+      GET: '/v1/internal/countries/:id',
+      CREATE: '/v1/internal/countries',
+      UPDATE: '/v1/internal/countries/:id',
+      TOGGLE_STATUS: '/v1/internal/countries/:id/toggle-status',
+      DELETE: '/v1/internal/countries/:id',
+    },
+    GAME: {
+      LIST: '/v1/internal/games',
+      GET: '/v1/internal/games/:id',
+      CREATE: '/v1/internal/games',
+      UPDATE: '/v1/internal/games/:id',
+      TOGGLE_STATUS: '/v1/internal/games/:id/toggle-status',
+      DELETE: '/v1/internal/games/:id',
+    },
+    NOTIFICATION: {
+      LIST: '/v1/internal/notifications',
+      GET: '/v1/internal/notifications/:id',
+      BROADCAST: '/v1/internal/notifications/broadcast',
+      DELETE: '/v1/internal/notifications/:id',
+    },
+    PARTNER: {
+      LIST: '/v1/internal/partners',
+      GET: '/v1/internal/partners/:id',
+      CREATE: '/v1/internal/partners',
+      UPDATE: '/v1/internal/partners/:id',
+      TOGGLE_STATUS: '/v1/internal/partners/:id/toggle-status',
+      DELETE: '/v1/internal/partners/:id',
+    },
+    PAYMENT_GATEWAY: {
+      LIST: '/v1/internal/payment-gateways',
+      GET: '/v1/internal/payment-gateways/:id',
+      CREATE: '/v1/internal/payment-gateways',
+      UPDATE: '/v1/internal/payment-gateways/:id',
+      TOGGLE_STATUS: '/v1/internal/payment-gateways/:id/toggle-status',
+      TOGGLE_SANDBOX: '/v1/internal/payment-gateways/:id/toggle-sandbox',
+      DELETE: '/v1/internal/payment-gateways/:id',
+    },
+    PAYMENT_METHOD: {
+      LIST: '/v1/internal/payment-methods',
+      GET: '/v1/internal/payment-methods/:id',
+      CREATE: '/v1/internal/payment-methods',
+      UPDATE: '/v1/internal/payment-methods/:id',
+      TOGGLE_STATUS: '/v1/internal/payment-methods/:id/toggle-status',
+      TOGGLE_FEATURED: '/v1/internal/payment-methods/:id/toggle-featured',
+      DELETE: '/v1/internal/payment-methods/:id',
+    },
+    PAYMENT_TRANSACTION: {
+      LIST: '/v1/internal/payment-transactions',
+      GET: '/v1/internal/payment-transactions/:id',
+      REFUND: '/v1/internal/payment-transactions/:id/refund',
+    },
+    REPLAY_ANALYSIS_PACKAGE: {
+      LIST: '/v1/internal/replay-analysis-packages',
+      GET: '/v1/internal/replay-analysis-packages/:id',
+      CREATE: '/v1/internal/replay-analysis-packages',
+      UPDATE: '/v1/internal/replay-analysis-packages/:id',
+      TOGGLE_STATUS: '/v1/internal/replay-analysis-packages/:id/toggle-status',
+      TOGGLE_POPULAR:
+        '/v1/internal/replay-analysis-packages/:id/toggle-popular',
+      DELETE: '/v1/internal/replay-analysis-packages/:id',
+    },
+    REPLAY_ANALYSIS_REQUEST: {
+      LIST: '/v1/internal/replay-analysis-requests',
+      GET: '/v1/internal/replay-analysis-requests/:id',
+      CHANGE_STATUS: '/v1/internal/replay-analysis-requests/:id/change-status',
+      ASSIGN_ANALYST:
+        '/v1/internal/replay-analysis-requests/:id/assign-analyst',
+    },
+    SHOP: {
+      LIST: '/v1/internal/shops',
+      GET: '/v1/internal/shops/:id',
+      CREATE: '/v1/internal/shops',
+      UPDATE: '/v1/internal/shops/:id',
+      TOGGLE_STATUS: '/v1/internal/shops/:id/toggle-status',
+      DELETE: '/v1/internal/shops/:id',
+    },
+    SUBSCRIPTION_PLAN: {
+      LIST: '/v1/internal/subscription-plans',
+      GET: '/v1/internal/subscription-plans/:id',
+      CREATE: '/v1/internal/subscription-plans',
+      UPDATE: '/v1/internal/subscription-plans/:id',
+      TOGGLE_STATUS: '/v1/internal/subscription-plans/:id/toggle-status',
+      DELETE: '/v1/internal/subscription-plans/:id',
+    },
+    UPLOAD: {
+      UPLOAD: '/v1/internal/uploads',
+      CANCEL: '/v1/internal/uploads/:id',
+    },
+    USER_SUBSCRIPTION: {
+      LIST: '/v1/internal/user-subscriptions',
+      GET: '/v1/internal/user-subscriptions/:id',
+      EXTEND: '/v1/internal/user-subscriptions/:id/extend',
+      CANCEL: '/v1/internal/user-subscriptions/:id/cancel',
+    },
+    USER: {
+      LIST: '/v1/internal/users',
+      GET: '/v1/internal/users/:id',
+      CREATE: '/v1/internal/users',
+      UPDATE: '/v1/internal/users/:id',
+      TOGGLE_STATUS: '/v1/internal/users/:id/toggle-status',
+    },
+    WALLET_TRANSACTION: {
+      LIST: '/v1/internal/wallet-transactions',
+      GET: '/v1/internal/wallet-transactions/:id',
+    },
+  },
+  APP: {
+    _: '/v1/app',
+    SHOP: '/v1/shops',
+    POPULAR_GAMES: '/v1/games/popular',
+    POPULAR_COMMUNITIES: '/v1/communities/popular',
+    PARTNER: '/v1/partners',
+  },
+  V1: {},
+  HEALTH: {
+    _: '/up',
+  },
+}
 export default API
