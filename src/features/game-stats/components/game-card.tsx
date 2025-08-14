@@ -56,4 +56,50 @@ const GameCard: React.FC<IGameCard> = ({ game }) => {
     </Link>
   )
 }
+// MyGameCard component for saved games
+export function MyGameCard({
+  game,
+  onRemove,
+}: {
+  game: any
+  onRemove: (id: number) => void
+}) {
+  return (
+    <div className="relative group">
+      <GameCard game={game} />
+      <button
+        onClick={(e) => {
+          e.preventDefault()
+          onRemove(game.id)
+        }}
+        className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        aria-label="Remove game"
+      >
+        ×
+      </button>
+    </div>
+  )
+}
+
+// AddGamePlaceholder component
+export function AddGamePlaceholder({
+  onClick,
+  text = 'Add Game',
+}: {
+  onClick: () => void
+  text?: string
+}) {
+  return (
+    <Card
+      className="overflow-hidden cursor-pointer border-2 border-dashed border-gray-300 hover:border-gray-400 transition-colors aspect-[3/4] h-full flex items-center justify-center"
+      onClick={onClick}
+    >
+      <div className="text-center p-4">
+        <div className="text-4xl mb-2">+</div>
+        <p className="text-sm text-gray-600">{text}</p>
+      </div>
+    </Card>
+  )
+}
+
 export default GameCard

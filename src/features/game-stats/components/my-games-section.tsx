@@ -12,7 +12,7 @@ interface MyGamesSectionProps {
   textAddGame?: string
 }
 
-export function MyGamesSection({
+export default function MyGamesSection({
   savedGames,
   onRemoveGame,
   onOpenModal,

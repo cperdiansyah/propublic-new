@@ -133,3 +133,5 @@ function GameOption({ game, onSelect }: GameOptionProps) {
     </Card>
   )
 }
+
+export default AddGameModal

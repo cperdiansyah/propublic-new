@@ -22,7 +22,7 @@ import { startOAuthLogin } from '../services/oauth'
 import { loginSchema, type LoginInput } from '@shared/utils/validations/auth'
 
 // Reusable components
-import { AuthLayout } from './auth-layout'
+import AuthLayout from './auth-layout'
 import { FormField } from '@/shared/components/ui/form-field'
 import { LoadingButton } from '@/shared/components/ui/loading-button'
 import { ErrorMessage } from '@/shared/components/ui/error-message'

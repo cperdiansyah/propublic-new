@@ -1,10 +1,10 @@
-import type { AppStore } from '@shared/store/store'
+import type { RootState } from '@shared/store/store'
 import type { Middleware } from '@reduxjs/toolkit'
 
 const STORAGE_KEY = 'redux-app-state'
 
 // Custom persistence middleware
-export const persistenceMiddleware: Middleware<{}, AppStore> =
+export const persistenceMiddleware: Middleware<{}, RootState> =
   (store) => (next) => (action) => {
     const result = next(action)
 
@@ -25,7 +25,7 @@ export const persistenceMiddleware: Middleware<{}, AppStore> =
   }
 
 // Function to load persisted state
-export const loadPersistedState = (): Partial<AppStore> | undefined => {
+export const loadPersistedState = (): Partial<RootState> | undefined => {
   try {
     const serializedState = localStorage.getItem(STORAGE_KEY)
     if (serializedState === null) {

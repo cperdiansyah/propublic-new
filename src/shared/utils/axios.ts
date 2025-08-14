@@ -3,7 +3,7 @@ import { getSession, signOut } from 'next-auth/react'
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
 
-const axiosInstance = axios.create({
+const api = axios.create({
   baseURL: API_BASE_URL,
   timeout: 30000,
   headers: {
@@ -12,7 +12,7 @@ const axiosInstance = axios.create({
   },
 })
 
-axiosInstance.interceptors.request.use(
+api.interceptors.request.use(
   async (config) => {
     if (typeof window !== 'undefined') {
       const session = await getSession()
@@ -27,7 +27,7 @@ axiosInstance.interceptors.request.use(
   },
 )
 
-axiosInstance.interceptors.response.use(
+api.interceptors.response.use(
   (response: AxiosResponse) => response,
   async (error: AxiosError) => {
     if (error.response?.status === 401) {
@@ -48,4 +48,4 @@ axiosInstance.interceptors.response.use(
   },
 )
 
-export default axiosInstance
+export default api

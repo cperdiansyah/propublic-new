@@ -1,6 +1,6 @@
 'use client'
 
-import axiosInstance from '@shared/services/axios'
+import { api } from '@shared/services/axios'
 import API from '@shared/config/api'
 import type { ApiResponse } from '@shared/types/api'
 
@@ -20,7 +20,7 @@ export interface OAuthCallbackData {
  */
 export const initiateGoogleLogin = async (): Promise<string> => {
   try {
-    const response = await axiosInstance.get<ApiResponse<OAuthInitResponse>>(
+    const response = await api.get<ApiResponse<OAuthInitResponse>>(
       API.AUTH.V1.GOOGLE_LOGIN,
     )
     return response.data.data.authorization_url
@@ -36,7 +36,7 @@ export const initiateGoogleLogin = async (): Promise<string> => {
  */
 export const handleGoogleCallback = async (callbackData: OAuthCallbackData) => {
   try {
-    const response = await axiosInstance.post(
+    const response = await api.post(
       API.AUTH.V1.GOOGLE_LOGIN_CALLBACK,
       callbackData,
     )
@@ -62,7 +62,7 @@ export const handleGoogleCallback = async (callbackData: OAuthCallbackData) => {
  */
 export const initiateDiscordLogin = async (): Promise<string> => {
   try {
-    const response = await axiosInstance.get<ApiResponse<OAuthInitResponse>>(
+    const response = await api.get<ApiResponse<OAuthInitResponse>>(
       API.AUTH.V1.DISCORD_LOGIN,
     )
     return response.data.data.authorization_url
@@ -80,7 +80,7 @@ export const handleDiscordCallback = async (
   callbackData: OAuthCallbackData,
 ) => {
   try {
-    const response = await axiosInstance.post(
+    const response = await api.post(
       API.AUTH.V1.DISCORD_LOGIN_CALLBACK,
       callbackData,
     )

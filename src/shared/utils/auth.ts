@@ -1,6 +1,6 @@
 import type { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import axiosInstance from '@shared/services/axios'
+import { api } from '@shared/services/axios'
 import API from '@shared/config/api'
 import { loginSchema } from '@shared/utils/validations/auth'
 import type { ApiResponse } from '@shared/types/api'
@@ -51,7 +51,7 @@ export const authOptions: NextAuthOptions = {
           })
 
           // Make API call to your backend
-          const response = await axiosInstance.post<ApiResponse<User>>(
+          const response = await api.post<ApiResponse<User>>(
             API.AUTH.V1.LOGIN,
             {
               email: validatedData.email,

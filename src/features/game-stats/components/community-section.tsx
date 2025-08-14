@@ -13,7 +13,7 @@ interface CommunitiesSectionProps {
   onOpenModal: () => void
 }
 
-export function CommunitiesSection({
+export default function CommunitiesSection({
   communities,
   onOpenModal,
 }: CommunitiesSectionProps) {

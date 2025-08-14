@@ -63,3 +63,5 @@ export function BenefitCard({ benefit }: BenefitCardProps) {
     </Card>
   )
 }
+
+export default BenefitsSection

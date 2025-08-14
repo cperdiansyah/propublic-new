@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react'
 import type { CarouselGameItem } from '@shared/types/home.types'
-import { CommunitiesSection } from '../community-section'
+import CommunitiesSection from '../community-section'
 import { COMMUNITIES } from '@shared/config/exampleData'
 
 interface RelatedCommunitiesProps {

@@ -9,11 +9,11 @@ interface AuthLayoutProps {
   className?: string
 }
 
-export const AuthLayout = ({
+export default function AuthLayout({
   children,
   sidebar,
   className = '',
-}: AuthLayoutProps) => {
+}: AuthLayoutProps) {
   return (
     <div
       className={`min-h-screen relative flex items-center justify-center px-4 py-12 mt-14 ${className}`}

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import axiosInstance from '@shared/services/axios'
+import { api } from '@shared/services/axios'
 import API from '@shared/config/api'
 import type { LoginInput } from '@shared/utils/validations/auth'
 import type { ApiResponse } from '@shared/types/api'
@@ -46,13 +46,10 @@ export const loginUser = createAsyncThunk(
   'auth/login',
   async (credentials: LoginInput, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.post<ApiResponse<User>>(
-        API.AUTH.V1.LOGIN,
-        {
-          email: credentials.email,
-          password: credentials.password,
-        },
-      )
+      const response = await api.post<ApiResponse<User>>(API.AUTH.V1.LOGIN, {
+        email: credentials.email,
+        password: credentials.password,
+      })
 
       const user = response.data.data
       const authHeader =
@@ -81,9 +78,7 @@ export const getCurrentUser = createAsyncThunk(
   'auth/getCurrentUser',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.get<ApiResponse<User>>(
-        API.AUTH.V1.ME,
-      )
+      const response = await api.get<ApiResponse<User>>(API.AUTH.V1.ME)
       return response.data.data
     } catch (error: unknown) {
       const errorResponse = error as {
@@ -98,7 +93,7 @@ export const getCurrentUser = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk('auth/logout', async () => {
   try {
-    await axiosInstance.post(API.AUTH.V1.LOGOUT)
+    await api.post(API.AUTH.V1.LOGOUT)
     return true
   } catch (error: unknown) {
     console.warn('Logout API call failed:', error)

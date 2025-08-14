@@ -1,5 +1,5 @@
 import API from '@shared/config/api'
-import axiosInstance from '@shared/services/axios'
+import { api } from '@shared/services/axios'
 import { useQuery, type QueryKey } from '@tanstack/react-query'
 
 type ApiEnvelope<Data> = {
@@ -26,7 +26,7 @@ const SHOP_QUERY_KEY: QueryKey = ['partners', 'shops']
 
 // Fetcher with axios instance
 const fetchShops = async (): Promise<ShopList> => {
-  const res = await axiosInstance.get<ApiEnvelope<unknown>>(API.APP.SHOP)
+  const res = await api.get<ApiEnvelope<unknown>>(API.APP.SHOP)
 
   if (!res.data?.success || !Array.isArray(res.data?.data)) {
     throw new Error('Unexpected API shape for /shops')

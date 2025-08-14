@@ -82,3 +82,5 @@ export function AcademyCoursesSection({
     </section>
   )
 }
+
+export default AcademyCoursesSection
