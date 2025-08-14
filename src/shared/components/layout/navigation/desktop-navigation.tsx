@@ -1,6 +1,6 @@
 'use client'
 
-import { navigation } from '@/config/const'
+import { navigation } from '@shared/config/const'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 

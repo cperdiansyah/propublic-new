@@ -1,4 +1,4 @@
-import ShopContent from '@/components/pages/shop'
+import ShopContent from '@shared/components/pages/shop'
 
 const page = () => {
   return <ShopContent />

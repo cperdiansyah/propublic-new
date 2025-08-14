@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 
-import AcademyDetailContent from '@/components/pages/academy/detail'
-import { COURSES } from '@/config/exampleData'
-import { findCourseBySlug, sanitizeDescription } from '@/lib/utils'
+import AcademyDetailContent from '@features/academy/components/detail'
+import { COURSES } from '@shared/config/exampleData'
+import { findCourseBySlug, sanitizeDescription } from '@shared/utils/utils'
 
 interface Params {
   slug: string

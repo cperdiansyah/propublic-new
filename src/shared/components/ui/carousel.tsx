@@ -5,7 +5,7 @@ import useEmblaCarousel, {
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-import { cn } from '@/lib/utils'
+import { cn } from '@shared/utils/utils'
 import { Button } from '@/shared/components/ui/button'
 
 type CarouselApi = UseEmblaCarouselType[1]

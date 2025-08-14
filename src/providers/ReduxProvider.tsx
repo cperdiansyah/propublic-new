@@ -1,6 +1,6 @@
 'use client'
-import LoadingSpinner from '@/components/Loading'
-import { persistor, store } from '@/redux/store'
+import LoadingSpinner from '@shared/components/feedback/Loading'
+import { persistor, store } from '@shared/store/store'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 

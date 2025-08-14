@@ -5,9 +5,9 @@ import type React from 'react'
 import { User, LogIn } from 'lucide-react'
 import { useSession } from 'next-auth/react'
 
-import { cn } from '@/lib/utils'
-import { navigation } from '@/config/const'
-import ROUTE from '@/config/pages'
+import { cn } from '@shared/utils/utils'
+import { navigation } from '@shared/config/const'
+import ROUTE from '@shared/config/pages'
 
 interface NavItem {
   href: string

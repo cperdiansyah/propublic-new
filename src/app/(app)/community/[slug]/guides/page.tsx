@@ -1,4 +1,4 @@
-import GuidesContent from '@/components/pages/community/detail/posts/guides/guides-content'
+import GuidesContent from '@features/community/components/detail/posts/guides/guides-content'
 
 export default async function GuidesPage() {
   return (

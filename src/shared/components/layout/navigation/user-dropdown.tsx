@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { useAuthNext } from '@/hooks/useAuthNext'
+import { useAuthNext } from '@shared/hooks/useAuthNext'
 import {
   User,
   LogOut,

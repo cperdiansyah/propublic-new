@@ -1,6 +1,6 @@
 'use client'
 
-import { scrollToTop } from '@/utils/helpers'
+import { scrollToTop } from '@shared/utils/helpers'
 import Image from 'next/image'
 import Link from 'next/link'
 
