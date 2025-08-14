@@ -3,7 +3,7 @@
 
 // Components
 export { default as AuthLayout } from './components/auth-layout'
-export { default as LoginPageRefactored } from './components/login-page-refactored'
+
 export { default as LoginPage } from './components/login-page'
 export { default as RegisterPage } from './components/register-page'
 export { default as ForgotPassword } from './components/forgot-password'
