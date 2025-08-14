@@ -1,18 +1,24 @@
 'use client'
 
-import { useForm as useReactHookForm, type UseFormProps } from 'react-hook-form'
+import {
+  useForm as useReactHookForm,
+  type UseFormProps,
+  type FieldValues,
+  type Resolver,
+} from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import type { ZodSchema } from 'zod'
+import type { ZodType, ZodTypeDef } from 'zod'
 import { useCallback, useEffect } from 'react'
 
-interface UseFormOptions<T> extends Omit<UseFormProps<T>, 'resolver'> {
-  schema: ZodSchema<T>
+interface UseFormOptions<T extends FieldValues>
+  extends Omit<UseFormProps<T>, 'resolver'> {
+  schema: ZodType<T, ZodTypeDef, T>
   onSubmit: (data: T) => Promise<void> | void
   externalError?: string | null
   onErrorChange?: (error: string | null) => void
 }
 
-export function useForm<T>({
+export function useForm<T extends FieldValues>({
   schema,
   onSubmit,
   externalError,
@@ -20,7 +26,7 @@ export function useForm<T>({
   ...options
 }: UseFormOptions<T>) {
   const form = useReactHookForm<T>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(schema) as Resolver<T>,
     mode: 'onChange',
     ...options,
   })
