@@ -15,6 +15,9 @@ import {
 import { useForm } from '@/hooks/useForm'
 import { useAuthNext } from '@/hooks/useAuthNext'
 
+// OAuth service
+import { startOAuthLogin } from '@/services/oauth'
+
 // Validation schema
 import { loginSchema, type LoginInput } from '@/lib/validations/auth'
 
@@ -82,9 +85,12 @@ export default function LoginPageRefactored() {
 
   // Event handlers - separated for better testability
   const togglePasswordVisibility = () => setShowPassword((prev) => !prev)
-  const handleSocialLogin = (provider: string) => {
-    // TODO: Implement social login
-    console.log(`Login with ${provider}`)
+  const handleSocialLogin = async (provider: 'google' | 'discord') => {
+    try {
+      await startOAuthLogin(provider)
+    } catch (error) {
+      console.error(`Social login error with ${provider}:`, error)
+    }
   }
 
   return (
@@ -136,7 +142,7 @@ interface LoginFormProps {
   isLoading: boolean
   showPassword: boolean
   onTogglePassword: () => void
-  onSocialLogin: (provider: string) => void
+  onSocialLogin: (provider: 'google' | 'discord') => void
   onClearError: () => void
 }
 
@@ -287,7 +293,7 @@ const FormDivider = () => (
 const SocialLoginSection = ({
   onSocialLogin,
 }: {
-  onSocialLogin: (provider: string) => void
+  onSocialLogin: (provider: 'google' | 'discord') => void
 }) => (
   <div className="grid grid-cols-2 gap-4">
     <SocialButton provider="google" onClick={() => onSocialLogin('google')}>

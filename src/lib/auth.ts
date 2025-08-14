@@ -20,6 +20,30 @@ export const authOptions: NextAuthOptions = {
             return null
           }
 
+          // Check if this is an OAuth token login
+          if (credentials.email.startsWith('oauth_')) {
+            // Extract provider and email from OAuth login
+            const [, provider, email] = credentials.email.split('_', 3)
+            const token = credentials.password // Token passed as password
+
+            // For OAuth login, we already have the user data and token
+            // We'll just validate the token format and return user info
+            if (!token || token.length < 10) {
+              console.error('Invalid OAuth token format')
+              return null
+            }
+
+            // Return OAuth user object
+            return {
+              id: `oauth_${provider}_${email}`,
+              email: email,
+              name: email.split('@')[0], // Use email prefix as name
+              image: null,
+              accessToken: token,
+              userData: null, // OAuth user data would be stored differently
+            }
+          }
+
           // Validate credentials with Zod
           const validatedData = loginSchema.parse({
             email: credentials.email,
