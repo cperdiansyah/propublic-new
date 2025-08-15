@@ -24,6 +24,10 @@ export default function RegisterContent() {
   const form = useForm<RegisterInput>({
     resolver: zodResolver(registerSchema),
     mode: 'onChange',
+    defaultValues: {
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      locale: navigator.language || 'en',
+    },
   })
 
   const { setError, clearErrors } = form

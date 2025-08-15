@@ -45,7 +45,7 @@ export default function ForgotPasswordContent() {
 
       setSentEmail(data.email)
       setIsEmailSent(true)
-    } catch (error) {
+    } catch {
       form.setError('email', {
         type: 'manual',
         message: 'Failed to send reset email. Please try again.',

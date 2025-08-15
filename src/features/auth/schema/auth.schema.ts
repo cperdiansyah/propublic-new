@@ -76,6 +76,8 @@ export const registerSchema = z
         'Password must contain at least one special character',
       ),
     confirmPassword: z.string().min(1, 'Please confirm your password'),
+    timezone: z.string().min(1, 'Timezone is required'),
+    locale: z.string().min(1, 'Locale is required'),
     agreeToTerms: z
       .boolean()
       .refine(
