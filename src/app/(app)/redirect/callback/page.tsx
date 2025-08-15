@@ -39,32 +39,38 @@ export default function RedirectCallbackPage() {
           tokenLength: token.length,
         })
 
+        // Always do complete OAuth flow - popup or direct navigation
+        console.log('OAuth callback: Calling me API with token')
+        const result = await dispatch(oauthLogin(token))
+
+        if (oauthLogin.rejected.match(result)) {
+          throw new Error(
+            (result.payload as string) ||
+              'Failed to authenticate with OAuth token',
+          )
+        }
+
+        console.log('OAuth authentication successful, Redux state updated')
+
         // Check if this is a popup window
         if (window.opener) {
-          // Popup window: Just pass token to main window, don't call me API here
-          console.log('Popup window: Sending token to main window')
+          // Popup window: Redux Persist has saved to localStorage, notify main window
+          console.log('Popup window: Notifying main window of auth completion')
           window.opener.postMessage(
             {
-              type: 'OAUTH_SUCCESS',
-              token,
+              type: 'OAUTH_COMPLETE',
+              success: true,
               provider,
             },
             window.location.origin,
           )
-          window.close()
+          // Small delay to ensure localStorage is written by Redux Persist
+          setTimeout(() => {
+            window.close()
+          }, 200)
         } else {
-          // Direct navigation: Call me API and redirect
-          console.log('Direct navigation: Calling me API')
-          const result = await dispatch(oauthLogin(token))
-
-          if (oauthLogin.rejected.match(result)) {
-            throw new Error(
-              (result.payload as string) ||
-                'Failed to authenticate with OAuth token',
-            )
-          }
-
-          console.log('OAuth authentication successful')
+          // Direct navigation: Redirect to home
+          console.log('Direct navigation: Redirecting to home')
           router.push(ROUTE.PUBLIC.HOME)
         }
       } catch (err) {
@@ -75,14 +81,18 @@ export default function RedirectCallbackPage() {
 
         if (window.opener) {
           // Notify parent window of error
+          console.log('Popup window: Notifying main window of auth error')
           window.opener.postMessage(
             {
-              type: 'OAUTH_ERROR',
+              type: 'OAUTH_COMPLETE',
+              success: false,
               error: errorMessage,
             },
             window.location.origin,
           )
-          window.close()
+          setTimeout(() => {
+            window.close()
+          }, 200)
         } else {
           // Direct navigation - show error
           setAuthError(errorMessage)
