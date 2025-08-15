@@ -444,6 +444,7 @@ const AcademyPage = dynamic(() => import('@/features/academy'), {
 - Never introduce breaking changes without clear approval.
 - Preserve existing conventions unless explicitly told to change them.
 - **Prioritize feature independence** and **team collaboration**.
+- For navigate the page, always using `src/shared/config/pages.ts` variables instead of hardcode
 
 ### MCP Tools
 - **Context7 MCP** - Use to update documentation for libraries and frameworks like Next.js, Tailwind CSS, Shadcn and Radix-UI

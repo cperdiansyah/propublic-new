@@ -10,6 +10,7 @@ import { GamepadIcon, Trophy, Users } from 'lucide-react'
 // Shared modules
 import { useAuthNext } from '@shared/hooks/useAuthNext'
 import { useOAuth } from '@shared/hooks/use-oauth'
+import ROUTE from '@shared/config/pages'
 
 // Feature modules
 import { loginSchema, type LoginInput } from '@/features/auth/schema'
@@ -87,7 +88,7 @@ export default function LoginPage() {
     try {
       await authenticateWithOAuth(provider)
       // Authentication successful - redirect will be handled by the auth system
-      window.location.href = '/dashboard'
+      window.location.href = ROUTE.PUBLIC.HOME
     } catch (error) {
       // Error is already set in the OAuth hook, but also set it in the form for consistency
       form.setError('root', {

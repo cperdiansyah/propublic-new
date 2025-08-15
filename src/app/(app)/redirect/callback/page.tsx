@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { signIn } from 'next-auth/react'
+import { useAppDispatch } from '@shared/store/hooks'
+import { oauthLogin } from '@shared/store/reducers/authReducer'
+import ROUTE from '@shared/config/pages'
 
 /**
  * OAuth Redirect Callback Page
@@ -11,6 +13,7 @@ import { signIn } from 'next-auth/react'
  */
 export default function RedirectCallbackPage() {
   const router = useRouter()
+  const dispatch = useAppDispatch()
   const [isProcessing, setIsProcessing] = useState(true)
   const [authError, setAuthError] = useState<string | null>(null)
 
@@ -36,15 +39,14 @@ export default function RedirectCallbackPage() {
           tokenLength: token.length,
         })
 
-        // Create NextAuth session using credentials provider with the OAuth token
-        const signInResult = await signIn('credentials', {
-          email: `oauth_${provider}_user`,
-          password: token, // Pass token as password
-          redirect: false,
-        })
+        // Use Redux OAuth login thunk to authenticate with token and fetch user data
+        const result = await dispatch(oauthLogin(token))
 
-        if (signInResult?.error) {
-          throw new Error('Failed to create authentication session')
+        if (oauthLogin.rejected.match(result)) {
+          throw new Error(
+            (result.payload as string) ||
+              'Failed to authenticate with OAuth token',
+          )
         }
 
         console.log('OAuth authentication successful')
@@ -62,8 +64,8 @@ export default function RedirectCallbackPage() {
           )
           window.close()
         } else {
-          // Direct navigation - redirect to dashboard
-          router.push('/dashboard')
+          // Direct navigation - redirect to home
+          router.push(ROUTE.PUBLIC.HOME)
         }
       } catch (err) {
         const errorMessage =
@@ -90,7 +92,7 @@ export default function RedirectCallbackPage() {
     }
 
     processCallback()
-  }, [router])
+  }, [router, dispatch])
 
   const handleRetry = () => {
     router.push('/auth/login')

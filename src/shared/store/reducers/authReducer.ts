@@ -99,6 +99,33 @@ export const getCurrentUser = createAsyncThunk(
   },
 )
 
+export const oauthLogin = createAsyncThunk(
+  'auth/oauthLogin',
+  async (token: string, { rejectWithValue }) => {
+    try {
+      // Create a temporary API instance with the OAuth token
+      const tempApi = api
+      tempApi.defaults.headers.Authorization = `Bearer ${token}`
+
+      // Get user data using the token
+      const response = await tempApi.get<ApiResponse<User>>(API.AUTH.V1.ME)
+      const user = response.data.data
+
+      return {
+        user,
+        token,
+      }
+    } catch (error: unknown) {
+      const errorResponse = error as {
+        response?: { data?: { message?: string } }
+      }
+      const message =
+        errorResponse.response?.data?.message || 'OAuth authentication failed'
+      return rejectWithValue(message)
+    }
+  },
+)
+
 export const logoutUser = createAsyncThunk('auth/logout', async () => {
   try {
     await api.post(API.AUTH.V1.LOGOUT)
@@ -150,6 +177,23 @@ export const authSlice = createSlice({
         state.error = action.payload as string
         state.user = null
         state.token = null
+        state.isAuthenticated = false
+      })
+
+      .addCase(oauthLogin.pending, (state) => {
+        state.isLoading = true
+        state.error = null
+      })
+      .addCase(oauthLogin.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.user = action.payload.user
+        state.token = action.payload.token
+        state.isAuthenticated = true
+        state.error = null
+      })
+      .addCase(oauthLogin.rejected, (state, action) => {
+        state.isLoading = false
+        state.error = action.payload as string
         state.isAuthenticated = false
       })
 
