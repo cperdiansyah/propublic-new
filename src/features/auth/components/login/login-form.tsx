@@ -31,6 +31,7 @@ interface LoginFormProps {
   isLoading: boolean
   onSubmit: (data: LoginInput) => Promise<void>
   onSocialLogin: (provider: 'google' | 'discord') => Promise<void>
+  borderless?: boolean
 }
 
 export const LoginForm = ({
@@ -38,6 +39,7 @@ export const LoginForm = ({
   isLoading,
   onSubmit,
   onSocialLogin,
+  borderless = true,
 }: LoginFormProps) => {
   const [showPassword, setShowPassword] = useState(false)
 
@@ -48,7 +50,9 @@ export const LoginForm = ({
   } = form
 
   return (
-    <div className="enhanced-card border-radius-propublic p-8 md:p-10">
+    <div
+      className={`${!borderless && 'enhanced-card border-radius-propublic p-8 md:p-10'}`}
+    >
       <FormHeader />
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">

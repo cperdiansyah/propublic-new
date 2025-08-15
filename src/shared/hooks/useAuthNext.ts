@@ -28,7 +28,7 @@ export const useAuthNext = () => {
       }
 
       if (result?.ok) {
-        router.push('/dashboard')
+        router.push(ROUTE.PUBLIC.HOME)
       }
     } catch (error) {
       console.error('Login failed:', error)
