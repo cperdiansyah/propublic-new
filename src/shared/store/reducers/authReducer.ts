@@ -103,24 +103,35 @@ export const oauthLogin = createAsyncThunk(
   'auth/oauthLogin',
   async (token: string, { rejectWithValue }) => {
     try {
+      console.log('Redux oauthLogin: Starting with token length:', token.length)
+
       // Create a temporary API instance with the OAuth token
       const tempApi = api
       tempApi.defaults.headers.Authorization = `Bearer ${token}`
 
+      console.log('Redux oauthLogin: Calling me API with token')
       // Get user data using the token
       const response = await tempApi.get<ApiResponse<User>>(API.AUTH.V1.ME)
       const user = response.data.data
+
+      console.log('Redux oauthLogin: Successfully got user data:', {
+        userId: user.id,
+        email: user.email,
+        username: user.username,
+      })
 
       return {
         user,
         token,
       }
     } catch (error: unknown) {
+      console.log('Redux oauthLogin: Error occurred:', error)
       const errorResponse = error as {
         response?: { data?: { message?: string } }
       }
       const message =
         errorResponse.response?.data?.message || 'OAuth authentication failed'
+      console.log('Redux oauthLogin: Rejecting with message:', message)
       return rejectWithValue(message)
     }
   },
@@ -181,10 +192,16 @@ export const authSlice = createSlice({
       })
 
       .addCase(oauthLogin.pending, (state) => {
+        console.log('Redux reducer: oauthLogin.pending')
         state.isLoading = true
         state.error = null
       })
       .addCase(oauthLogin.fulfilled, (state, action) => {
+        console.log('Redux reducer: oauthLogin.fulfilled with user:', {
+          userId: action.payload.user.id,
+          email: action.payload.user.email,
+          username: action.payload.user.username,
+        })
         state.isLoading = false
         state.user = action.payload.user
         state.token = action.payload.token
@@ -192,6 +209,10 @@ export const authSlice = createSlice({
         state.error = null
       })
       .addCase(oauthLogin.rejected, (state, action) => {
+        console.log(
+          'Redux reducer: oauthLogin.rejected with error:',
+          action.payload,
+        )
         state.isLoading = false
         state.error = action.payload as string
         state.isAuthenticated = false

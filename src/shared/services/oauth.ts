@@ -20,11 +20,13 @@ const openOAuthPopup = (
   return new Promise((resolve, reject) => {
     // Open popup directly to the API endpoint
     // Browser will include cookies automatically (same-site/credentials)
+    console.log('Main window: Opening OAuth popup to:', authUrl)
     const popup = window.open(
       authUrl,
       `${provider}_oauth`,
       'width=600,height=700,scrollbars=yes,resizable=yes',
     )
+    console.log('Main window: Popup opened:', !!popup)
 
     if (!popup) {
       reject(
@@ -37,11 +39,19 @@ const openOAuthPopup = (
 
     // Listen for messages from popup callback page
     const handleMessage = (event: MessageEvent) => {
+      console.log(
+        'Main window: Received message from origin:',
+        event.origin,
+        'data:',
+        event.data,
+      )
+
       // Security: verify origin matches our domain
       const allowedOrigins = [
         window.location.origin,
         'https://propublic.gg',
         'https://api-dev.propublic.gg',
+        'https://propublic-new.vercel.app/',
       ]
 
       if (
@@ -50,16 +60,29 @@ const openOAuthPopup = (
             event.origin === origin || event.origin.endsWith('.propublic.gg'),
         )
       ) {
+        console.log(
+          'Main window: Message rejected - origin not allowed:',
+          event.origin,
+        )
         return
       }
 
       if (event.data.type === 'OAUTH_SUCCESS') {
+        console.log('Main window: Received OAUTH_SUCCESS message:', {
+          hasToken: !!event.data.token,
+          tokenLength: event.data.token?.length,
+          provider: event.data.provider,
+        })
         cleanup()
         resolve({
           token: event.data.token,
           provider: event.data.provider,
         })
       } else if (event.data.type === 'OAUTH_ERROR') {
+        console.log(
+          'Main window: Received OAUTH_ERROR message:',
+          event.data.error,
+        )
         cleanup()
         reject(new Error(event.data.error || 'OAuth authentication failed'))
       }
@@ -83,6 +106,9 @@ const openOAuthPopup = (
     }
 
     // Listen for postMessage from callback page
+    console.log(
+      'Main window: Setting up message listener for popup communication',
+    )
     window.addEventListener('message', handleMessage)
 
     // Timeout after 5 minutes
