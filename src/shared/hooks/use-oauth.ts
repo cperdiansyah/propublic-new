@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAppDispatch, useAppSelector } from '@shared/store/hooks'
-import { oauthLogin } from '@shared/store/reducers/authReducer'
+import { store } from '@shared/store/store'
 import { startOAuthLogin, type OAuthResult } from '@shared/services/oauth'
 import ROUTE from '@shared/config/pages'
 
@@ -44,36 +44,52 @@ export const useOAuth = (): UseOAuthReturn => {
       const oAuthResult: OAuthResult = await startOAuthLogin(provider)
 
       console.log('Main window: Received OAuth result:', {
-        hasToken: !!oAuthResult.token,
-        tokenLength: oAuthResult.token?.length,
+        success: oAuthResult.success,
         provider: oAuthResult.provider,
+        error: oAuthResult.error,
       })
 
-      if (!oAuthResult.token) {
-        throw new Error('No authentication token received')
+      if (!oAuthResult.success) {
+        throw new Error(oAuthResult.error || 'OAuth authentication failed')
       }
 
-      // Use Redux OAuth login thunk to authenticate with token and fetch user data
-      console.log('Main window: Calling oauthLogin with token')
-      const result = await dispatch(oauthLogin(oAuthResult.token))
+      // Popup already completed OAuth flow and saved to localStorage
+      // Wait for Redux Persist to rehydrate the main window
+      console.log(
+        'Main window: Waiting for Redux rehydration from localStorage',
+      )
 
-      console.log('Main window: oauthLogin result:', {
-        fulfilled: oauthLogin.fulfilled.match(result),
-        rejected: oauthLogin.rejected.match(result),
-        payload: result.payload,
-      })
+      // Set up listener for auth state changes
+      const checkAuthState = () => {
+        return new Promise<void>((resolve) => {
+          const maxAttempts = 10
+          let attempts = 0
 
-      if (oauthLogin.rejected.match(result)) {
-        throw new Error(
-          (result.payload as string) ||
-            'Failed to authenticate with OAuth token',
-        )
+          const checkInterval = setInterval(() => {
+            attempts++
+            console.log(
+              `Main window: Checking auth state (attempt ${attempts})`,
+            )
+
+            // Check if user is now authenticated in Redux store
+            const state = store.getState()
+            if (state.auth.isAuthenticated && state.auth.user) {
+              console.log('Main window: Auth state rehydrated successfully!')
+              clearInterval(checkInterval)
+              resolve()
+            } else if (attempts >= maxAttempts) {
+              console.log('Main window: Auth state rehydration timeout')
+              clearInterval(checkInterval)
+              resolve() // Continue anyway, maybe it will work
+            }
+          }, 200)
+        })
       }
+
+      await checkAuthState()
 
       // OAuth authentication successful - redirect to home
-      console.log(
-        'Main window: OAuth authentication successful, redirecting to home',
-      )
+      console.log('Main window: Redirecting to home')
       router.push(ROUTE.PUBLIC.HOME)
       return
     } catch (err) {

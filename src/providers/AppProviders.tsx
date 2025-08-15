@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { SessionProvider } from 'next-auth/react'
 import { useState } from 'react'
 import { Toaster } from '@shared/components/ui/sonner'
+import { CrossWindowAuthSync } from './CrossWindowAuthSync'
 
 interface AppProvidersProps {
   children: React.ReactNode
@@ -43,6 +44,7 @@ const AppProviders = ({ children }: AppProvidersProps) => {
   return (
     <SessionProvider>
       <ReduxProvider>
+        <CrossWindowAuthSync />
         <QueryClientProvider client={queryClient}>
           {children}
           <ReactQueryDevtools initialIsOpen={false} />
