@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
     ],
     domains: ['images.unsplash.com', 'avatar.iran.liara.run'],
   },
+  distDir: 'build',
 }
 
 export default nextConfig
