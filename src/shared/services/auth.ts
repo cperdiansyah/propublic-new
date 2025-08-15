@@ -89,3 +89,28 @@ export const forgotPassword = async (email: string): Promise<void> => {
     throw apiError
   }
 }
+
+/**
+ * Reset password function
+ * Confirms password reset with token and new password
+ */
+export const resetPassword = async (
+  token: string,
+  password: string,
+  passwordConfirmation: string,
+): Promise<void> => {
+  try {
+    const requestData = {
+      user: {
+        reset_password_token: token,
+        password,
+        password_confirmation: passwordConfirmation,
+      },
+    }
+
+    await api.put(API.AUTH.V1.FORGOT_PASSWORD, requestData)
+  } catch (error: unknown) {
+    const apiError = handleApiError(error)
+    throw apiError
+  }
+}
