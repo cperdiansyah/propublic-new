@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { toast } from 'sonner'
 import type { LoginInput, RegisterInput } from '@/features/auth/schema'
-import { signupUser, logoutUser } from '@shared/services/auth'
+import { signupUser, logoutUser, forgotPassword } from '@shared/services/auth'
 import {
   type ApiError,
   getUserErrorMessage,
@@ -223,6 +223,74 @@ export const useAuthNext = () => {
     }
   }
 
+  const resetPassword = async (email: string) => {
+    try {
+      setIsLoading(true)
+      setError(null)
+
+      await forgotPassword(email)
+
+      toast.success('Reset email sent!', {
+        description: 'Please check your email for password reset instructions.',
+      })
+    } catch (error) {
+      console.error('Forgot password failed:', error)
+
+      // Handle ApiError from our custom error handler
+      if (error && typeof error === 'object' && 'isUserError' in error) {
+        const apiError = error as ApiError
+
+        if (shouldShowErrorToUser(apiError)) {
+          // Check if we have validation errors for multiple toasts
+          const individualErrors = getIndividualValidationErrors(apiError)
+
+          if (individualErrors.length > 0) {
+            // Show individual toast for each validation error with small delay
+            individualErrors.forEach((errorMsg, index) => {
+              setTimeout(() => {
+                toast.error('Reset Password Error', {
+                  description: errorMsg,
+                })
+              }, index * 200) // 200ms delay between each toast
+            })
+
+            // Set error state to combined message for form display
+            setError(individualErrors.join('\n'))
+          } else {
+            // Single error message
+            const userMessage = getUserErrorMessage(apiError)
+            toast.error('Reset password failed', {
+              description: userMessage,
+            })
+            setError(userMessage)
+          }
+        } else {
+          toast.error('Reset password failed', {
+            description:
+              'An unexpected error occurred. Please try again later.',
+          })
+          setError('An unexpected error occurred. Please try again later.')
+        }
+      } else if (error instanceof Error) {
+        // Fallback for other error types
+        const errorMessage = error.message || 'Reset password failed'
+        toast.error('Reset password failed', {
+          description: errorMessage,
+        })
+        setError(errorMessage)
+      } else {
+        toast.error('Reset password failed', {
+          description: 'An unexpected error occurred. Please try again later.',
+        })
+        setError('An unexpected error occurred. Please try again later.')
+      }
+
+      throw error
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   const clearError = () => {
     setError(null)
   }
@@ -239,6 +307,7 @@ export const useAuthNext = () => {
     login,
     signup,
     logout,
+    resetPassword,
     clearError,
 
     // Status

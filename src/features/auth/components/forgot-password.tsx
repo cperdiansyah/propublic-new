@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 // Shared modules
 import BackgroundEffects from '@shared/components/effects/grid-glow'
+import { useAuthNext } from '@shared/hooks/useAuthNext'
 
 // Feature modules
 import {
@@ -29,6 +30,8 @@ export default function ForgotPasswordContent() {
   const [isResending, setIsResending] = useState(false)
   const [sentEmail, setSentEmail] = useState('')
 
+  const { resetPassword, isLoading, error, clearError } = useAuthNext()
+
   const form = useForm<ForgotPasswordInput>({
     resolver: zodResolver(forgotPasswordSchema),
     mode: 'onChange',
@@ -37,31 +40,37 @@ export default function ForgotPasswordContent() {
   // Event handlers - separated for better testability
   const handlePasswordReset = async (data: ForgotPasswordInput) => {
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      // Clear any previous errors
+      clearError()
 
-      // TODO: Replace with actual API call
-      // const response = await passwordResetService.sendResetEmail(data.email)
+      // Call actual API through useAuthNext hook
+      await resetPassword(data.email)
 
+      // Success toast will be shown automatically by useAuthNext
       setSentEmail(data.email)
       setIsEmailSent(true)
-    } catch {
-      form.setError('email', {
-        type: 'manual',
-        message: 'Failed to send reset email. Please try again.',
-      })
+    } catch (apiError) {
+      // Error toasts will be shown automatically by useAuthNext
+      // Set form-specific error if needed
+      if (error) {
+        form.setError('email', {
+          type: 'manual',
+          message: error,
+        })
+      }
+      console.error('Password reset failed:', apiError)
     }
   }
 
   const handleResendEmail = async () => {
     setIsResending(true)
     try {
-      // Simulate API call for resending
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      // Call actual API through useAuthNext hook for resending
+      await resetPassword(sentEmail)
 
-      // TODO: Replace with actual API call
-      // await passwordResetService.sendResetEmail(sentEmail)
+      // Success toast will be shown automatically by useAuthNext
     } catch (error) {
+      // Error toasts will be shown automatically by useAuthNext
       console.error('Failed to resend email:', error)
     } finally {
       setIsResending(false)
@@ -85,7 +94,11 @@ export default function ForgotPasswordContent() {
       <div className="max-w-6xl mx-auto w-full relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <ForgotPasswordSidebar />
-          <ForgotPasswordForm form={form} onSubmit={handlePasswordReset} />
+          <ForgotPasswordForm
+            form={form}
+            onSubmit={handlePasswordReset}
+            isLoading={isLoading}
+          />
         </div>
       </div>
     </div>

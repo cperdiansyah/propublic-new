@@ -22,17 +22,22 @@ import type { ForgotPasswordInput } from '@/features/auth/schema'
 interface ForgotPasswordFormProps {
   form: UseFormReturn<ForgotPasswordInput>
   onSubmit: (data: ForgotPasswordInput) => Promise<void>
+  isLoading?: boolean
 }
 
 export const ForgotPasswordForm = ({
   form,
   onSubmit,
+  isLoading = false,
 }: ForgotPasswordFormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
   } = form
+
+  // Use external loading state or form's isSubmitting
+  const loading = isLoading || isSubmitting
 
   return (
     <div className="w-full max-w-md mx-auto lg:mx-0">
@@ -43,7 +48,7 @@ export const ForgotPasswordForm = ({
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <EmailField register={register} error={errors.email?.message} />
 
-          <SubmitButton isSubmitting={isSubmitting} isValid={isValid} />
+          <SubmitButton isSubmitting={loading} isValid={isValid} />
 
           <SecurityNotice />
         </form>

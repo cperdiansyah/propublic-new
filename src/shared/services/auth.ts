@@ -70,3 +70,22 @@ export const logoutUser = async (token: string): Promise<void> => {
     // even if backend logout fails
   }
 }
+
+/**
+ * Forgot password function
+ * Sends email for password reset
+ */
+export const forgotPassword = async (email: string): Promise<void> => {
+  try {
+    const requestData = {
+      user: {
+        email,
+      },
+    }
+
+    await api.post(API.AUTH.V1.FORGOT_PASSWORD, requestData)
+  } catch (error: unknown) {
+    const apiError = handleApiError(error)
+    throw apiError
+  }
+}
