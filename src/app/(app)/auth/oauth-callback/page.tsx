@@ -3,9 +3,12 @@
 import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { signIn } from 'next-auth/react'
-import { handleGoogleCallback, handleDiscordCallback } from '@/services/oauth'
-import { LoadingButton } from '@/components/ui/loading-button'
-import { ErrorMessage } from '@/components/ui/error-message'
+import {
+  handleGoogleCallback,
+  handleDiscordCallback,
+} from '@shared/services/oauth'
+import { LoadingButton } from '@shared/components/ui/loading-button'
+import { ErrorMessage } from '@shared/components/ui/error-message'
 
 export default function OAuthCallbackPage() {
   const router = useRouter()

@@ -1,6 +1,4 @@
-// import OverviewContent from '@/components/community/overview/overview-content'
-
-import OverviewContent from '@/components/pages/community/detail/posts/overview/overview-content'
+import OverviewContent from '@features/community/components/detail/posts/overview/overview-content'
 
 export default async function OverviewPage() {
   return (

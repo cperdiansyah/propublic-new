@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
-import { getCommunityData } from '@/lib/community-data'
-import CommunityLayoutClient from '@/components/pages/community/detail/layout/community-layout-client'
+import { getCommunityData } from '@shared/utils/community-data'
+import CommunityLayoutClient from '@features/community/components/detail/layout/community-layout-client'
 
 interface CommunityLayoutProps {
   children: React.ReactNode

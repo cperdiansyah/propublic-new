@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -125,7 +125,7 @@
 
   --animate-glow: glow 2s ease-in-out infinite alternate;
 
-  --font-display: 'Inter', 'system-ui', 'sans-serif';
+  --font-display: "Inter", "system-ui", "sans-serif";
 }
 
 @layer base {

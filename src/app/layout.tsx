@@ -1,4 +1,4 @@
-import MobileBottomNav from '@/components/layout/navigation/mobile-navigation'
+import MobileBottomNav from '@shared/components/layout/navigation/mobile-navigation'
 import AppProviders from '@/providers/AppProviders'
 // import '@/styles/globals.css';
 // import '@/styles/styles.css'

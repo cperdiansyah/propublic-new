@@ -1,4 +1,4 @@
-import SessionsContent from '@/components/pages/community/detail/posts/sessions/sessions-content'
+import SessionsContent from '@features/community/components/detail/posts/sessions/sessions-content'
 
 export default async function SessionsPage() {
   return (

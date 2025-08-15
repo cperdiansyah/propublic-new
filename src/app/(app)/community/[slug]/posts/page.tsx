@@ -1,4 +1,4 @@
-import PostsContent from '@/components/pages/community/detail/posts/posts-content'
+import PostsContent from '@features/community/components/detail/posts/posts-content'
 
 export default async function PostsPage() {
   return (

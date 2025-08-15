@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import GameDetailContent from '@/components/pages/game/detail'
-import { GAMELIST } from '@/config/exampleData'
-import { findGameBySlug, sanitizeGameDescription } from '@/lib/utils'
+import GameDetailContent from '@features/game-stats/components/detail'
+import { GAMELIST } from '@shared/config/exampleData'
+import { findGameBySlug, sanitizeGameDescription } from '@shared/utils/utils'
 
 interface Params {
   slug: string
