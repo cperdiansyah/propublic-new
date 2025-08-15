@@ -8,11 +8,25 @@ export interface ApiError {
   isUserError: boolean
 }
 
+export interface ValidationError {
+  field: string
+  message: string
+  code: string
+}
+
+export interface BackendError {
+  message: string
+  code: string
+  validation_errors?: ValidationError[]
+}
+
 export interface ErrorResponse {
+  success?: boolean
+  status_code?: number | null
+  error?: BackendError
   message?: string
-  errors?: Record<string, string[]>
-  error?: string
-  code?: string
+  code?: string // Legacy format
+  errors?: Record<string, string[]> // Legacy format
 }
 
 /**
@@ -27,10 +41,31 @@ export const handleApiError = (error: unknown): ApiError => {
 
     // User input errors (400, 422)
     if (status === 400 || status === 422) {
+      // Handle new backend format with validation_errors array
+      if (data?.error?.validation_errors) {
+        const validationErrors: Record<string, string[]> = {}
+
+        for (const validationError of data.error.validation_errors) {
+          if (!validationErrors[validationError.field]) {
+            validationErrors[validationError.field] = []
+          }
+          validationErrors[validationError.field].push(validationError.message)
+        }
+
+        return {
+          message: data.error.message || 'The submitted data contains errors',
+          status,
+          code: data.error.code,
+          errors: validationErrors,
+          isUserError: true,
+        }
+      }
+
+      // Handle legacy format
       return {
-        message: data?.message || 'Invalid input data',
+        message: data?.message || data?.error?.message || 'Invalid input data',
         status,
-        code: data?.code,
+        code: data?.code || data?.error?.code,
         errors: data?.errors,
         isUserError: true,
       }
@@ -184,4 +219,65 @@ export const getUserErrorMessage = (apiError: ApiError): string => {
  */
 export const shouldShowErrorToUser = (apiError: ApiError): boolean => {
   return apiError.isUserError
+}
+
+/**
+ * Translate NextAuth error codes to user-friendly messages
+ */
+export const getNextAuthErrorMessage = (error: string): string => {
+  switch (error) {
+    case 'CredentialsSignin':
+      return 'Invalid email or password. Please check your credentials and try again.'
+    case 'OAuthSignin':
+      return 'There was a problem signing you in with your social account.'
+    case 'OAuthCallback':
+      return 'There was a problem processing your social login.'
+    case 'OAuthCreateAccount':
+      return 'Could not create account with your social login.'
+    case 'EmailCreateAccount':
+      return 'Could not create account with this email.'
+    case 'Callback':
+      return 'There was a problem with the authentication callback.'
+    case 'OAuthAccountNotLinked':
+      return 'This email is already associated with another account. Please sign in with your original method.'
+    case 'SessionRequired':
+      return 'Please sign in to access this page.'
+    case 'AccessDenied':
+      return 'Access denied. You do not have permission to sign in.'
+    default:
+      return 'Authentication failed. Please try again.'
+  }
+}
+
+/**
+ * Extract individual validation errors for multiple toast display
+ * Returns array of formatted error messages for each field
+ */
+export const getIndividualValidationErrors = (apiError: ApiError): string[] => {
+  if (!apiError.errors) {
+    return []
+  }
+
+  const individualErrors: string[] = []
+
+  for (const [field, fieldErrors] of Object.entries(apiError.errors)) {
+    const fieldName = field
+      .replace(/_/g, ' ')
+      .replace(/\b\w/g, (l) => l.toUpperCase())
+
+    for (const error of fieldErrors) {
+      // Clean up error messages
+      let cleanError = error
+        .replace(/^The\s+/i, '') // Remove "The " prefix
+        .replace(new RegExp(`^${field}\\s+`, 'i'), '') // Remove field name prefix
+        .trim()
+
+      // Capitalize first letter
+      cleanError = cleanError.charAt(0).toUpperCase() + cleanError.slice(1)
+
+      individualErrors.push(`${fieldName}: ${cleanError}`)
+    }
+  }
+
+  return individualErrors
 }

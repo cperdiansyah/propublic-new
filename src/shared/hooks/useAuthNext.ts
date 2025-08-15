@@ -8,6 +8,8 @@ import {
   type ApiError,
   getUserErrorMessage,
   shouldShowErrorToUser,
+  getIndividualValidationErrors,
+  getNextAuthErrorMessage,
 } from '@shared/services/error-handler'
 import ROUTE from '@/shared/config/pages'
 
@@ -29,7 +31,14 @@ export const useAuthNext = () => {
       })
 
       if (result?.error) {
-        setError('Invalid credentials. Please try again.')
+        // Get user-friendly error message for NextAuth errors
+        const userFriendlyMessage = getNextAuthErrorMessage(result.error)
+        setError(userFriendlyMessage)
+
+        toast.error('Login failed', {
+          description: userFriendlyMessage,
+        })
+
         throw new Error(result.error)
       }
 
@@ -42,12 +51,54 @@ export const useAuthNext = () => {
     } catch (error) {
       console.error('Login failed:', error)
 
-      // Show user-friendly error message
-      if (error instanceof Error) {
+      // Handle ApiError from our custom error handler (for login validation errors)
+      if (error && typeof error === 'object' && 'isUserError' in error) {
+        const apiError = error as ApiError
+
+        if (shouldShowErrorToUser(apiError)) {
+          // Check if we have validation errors for multiple toasts
+          const individualErrors = getIndividualValidationErrors(apiError)
+
+          if (individualErrors.length > 0) {
+            // Show individual toast for each validation error with small delay
+            individualErrors.forEach((errorMsg, index) => {
+              setTimeout(() => {
+                toast.error('Login Error', {
+                  description: errorMsg,
+                })
+              }, index * 200) // 200ms delay between each toast
+            })
+
+            // Set error state to combined message for form display
+            setError(individualErrors.join('\n'))
+          } else {
+            // Single error message
+            const userMessage = getUserErrorMessage(apiError)
+            toast.error('Login failed', {
+              description: userMessage,
+            })
+            setError(userMessage)
+          }
+        } else {
+          toast.error('Login failed', {
+            description:
+              'An unexpected error occurred. Please try again later.',
+          })
+          setError('An unexpected error occurred. Please try again later.')
+        }
+      } else if (error instanceof Error) {
+        // Fallback for other error types (NextAuth errors, etc.)
+        const errorMessage =
+          error.message || 'Please check your credentials and try again'
         toast.error('Login failed', {
-          description:
-            error.message || 'Please check your credentials and try again',
+          description: errorMessage,
         })
+        setError(errorMessage)
+      } else {
+        toast.error('Login failed', {
+          description: 'An unexpected error occurred. Please try again later.',
+        })
+        setError('An unexpected error occurred. Please try again later.')
       }
 
       throw error
@@ -111,11 +162,29 @@ export const useAuthNext = () => {
         const apiError = error as ApiError
 
         if (shouldShowErrorToUser(apiError)) {
-          const userMessage = getUserErrorMessage(apiError)
-          toast.error('Registration failed', {
-            description: userMessage,
-          })
-          setError(userMessage)
+          // Check if we have validation errors for multiple toasts
+          const individualErrors = getIndividualValidationErrors(apiError)
+
+          if (individualErrors.length > 0) {
+            // Show individual toast for each validation error with small delay
+            individualErrors.forEach((errorMsg, index) => {
+              setTimeout(() => {
+                toast.error('Registration Error', {
+                  description: errorMsg,
+                })
+              }, index * 200) // 200ms delay between each toast
+            })
+
+            // Set error state to combined message for form display
+            setError(individualErrors.join('\n'))
+          } else {
+            // Single error message
+            const userMessage = getUserErrorMessage(apiError)
+            toast.error('Registration failed', {
+              description: userMessage,
+            })
+            setError(userMessage)
+          }
         } else {
           toast.error('Registration failed', {
             description:
