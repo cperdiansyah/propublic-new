@@ -9,7 +9,7 @@ import { GamepadIcon, Trophy, Users } from 'lucide-react'
 
 // Shared modules
 import { useAuthNext } from '@shared/hooks/useAuthNext'
-import { startOAuthLogin } from '@shared/services/oauth'
+import { useOAuth } from '@shared/hooks/use-oauth'
 
 // Feature modules
 import { loginSchema, type LoginInput } from '@/features/auth/schema'
@@ -57,6 +57,11 @@ const TESTIMONIAL_DATA = {
  */
 export default function LoginPage() {
   const { login, isLoading } = useAuthNext()
+  const {
+    authenticateWithOAuth,
+    isLoading: isOAuthLoading,
+    error: oAuthError,
+  } = useOAuth()
 
   // React Hook Form with Zod validation
   const form = useHookForm<LoginInput>({
@@ -80,11 +85,16 @@ export default function LoginPage() {
 
   const handleSocialLogin = async (provider: 'google' | 'discord') => {
     try {
-      await startOAuthLogin(provider)
+      await authenticateWithOAuth(provider)
+      // Authentication successful - redirect will be handled by the auth system
+      window.location.href = '/dashboard'
     } catch (error) {
-      console.error(`Social login error with ${provider}:`, error)
+      // Error is already set in the OAuth hook, but also set it in the form for consistency
       form.setError('root', {
-        message: `Failed to sign in with ${provider}`,
+        message:
+          error instanceof Error
+            ? error.message
+            : `Failed to sign in with ${provider}`,
       })
     }
   }
@@ -93,7 +103,7 @@ export default function LoginPage() {
     <AuthLayout sidebar={<LoginSidebar />}>
       <LoginForm
         form={form}
-        isLoading={isLoading}
+        isLoading={isLoading || isOAuthLoading}
         onSubmit={handleLogin}
         onSocialLogin={handleSocialLogin}
       />

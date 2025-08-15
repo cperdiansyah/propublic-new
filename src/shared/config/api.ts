@@ -9,9 +9,7 @@ const API = {
       RESET_PASSWORD: '/v1/auth/forgot-password',
       LOGOUT: '/v1/auth/logout',
       GOOGLE_LOGIN: '/v1/auth/google_oauth2',
-      GOOGLE_LOGIN_CALLBACK: '/v1/auth/google_oauth2/callback',
       DISCORD_LOGIN: '/v1/auth/discord',
-      DISCORD_LOGIN_CALLBACK: '/v1/auth/discord/callback',
     },
   },
   INTERNAL: {
