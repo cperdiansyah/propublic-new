@@ -1,7 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+import { useAppDispatch, useAppSelector } from '@shared/store/hooks'
+import { oauthLogin } from '@shared/store/reducers/authReducer'
 import { startOAuthLogin, type OAuthResult } from '@shared/services/oauth'
 
 export interface UseOAuthReturn {
@@ -16,6 +18,12 @@ export interface UseOAuthReturn {
  * Handles the popup-based OAuth flow with social link endpoints
  */
 export const useOAuth = (): UseOAuthReturn => {
+  const dispatch = useAppDispatch()
+  const router = useRouter()
+  const { isLoading: authLoading, error: authError } = useAppSelector(
+    (state) => state.auth,
+  )
+
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -37,18 +45,18 @@ export const useOAuth = (): UseOAuthReturn => {
         throw new Error('No authentication token received')
       }
 
-      // Create NextAuth session using credentials provider
-      const signInResult = await signIn('credentials', {
-        email: `oauth_${provider}_user`,
-        password: oAuthResult.token,
-        redirect: false,
-      })
+      // Use Redux OAuth login thunk to authenticate with token and fetch user data
+      const result = await dispatch(oauthLogin(oAuthResult.token))
 
-      if (signInResult?.error) {
-        throw new Error('Failed to create authentication session')
+      if (oauthLogin.rejected.match(result)) {
+        throw new Error(
+          (result.payload as string) ||
+            'Failed to authenticate with OAuth token',
+        )
       }
 
-      // OAuth authentication successful
+      // OAuth authentication successful - redirect to dashboard
+      router.push('/dashboard')
       return
     } catch (err) {
       const errorMessage =
@@ -61,8 +69,8 @@ export const useOAuth = (): UseOAuthReturn => {
   }
 
   return {
-    isLoading,
-    error,
+    isLoading: isLoading || authLoading,
+    error: error || authError,
     authenticateWithOAuth,
     clearError,
   }
