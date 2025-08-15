@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { handleOAuthCallback } from '@shared/services/oauth'
+import { signIn } from 'next-auth/react'
 
 /**
  * OAuth Redirect Callback Page
@@ -15,30 +15,75 @@ export default function RedirectCallbackPage() {
   const [authError, setAuthError] = useState<string | null>(null)
 
   useEffect(() => {
-    const processCallback = () => {
+    const processCallback = async () => {
       try {
-        const result = handleOAuthCallback()
+        // Extract token and provider from URL params
+        const urlParams = new URLSearchParams(window.location.search)
+        const token = urlParams.get('token')
+        const provider = urlParams.get('provider')
+        const error = urlParams.get('error')
 
-        if (result.success) {
-          // If direct navigation (fallback), redirect to homepage
-          if (!window.opener) {
-            router.push('/')
-          }
-          // Note: If popup, window closes automatically from handleOAuthCallback
+        if (error) {
+          throw new Error(`OAuth error: ${error}`)
+        }
+
+        if (!token || !provider) {
+          throw new Error('Missing token or provider in callback URL')
+        }
+
+        console.log('Processing OAuth callback:', {
+          provider,
+          tokenLength: token.length,
+        })
+
+        // Create NextAuth session using credentials provider with the OAuth token
+        const signInResult = await signIn('credentials', {
+          email: `oauth_${provider}_user`,
+          password: token, // Pass token as password
+          redirect: false,
+        })
+
+        if (signInResult?.error) {
+          throw new Error('Failed to create authentication session')
+        }
+
+        console.log('OAuth authentication successful')
+
+        // Authentication successful
+        if (window.opener) {
+          // Notify parent window of successful authentication
+          window.opener.postMessage(
+            {
+              type: 'OAUTH_SUCCESS',
+              token,
+              provider,
+            },
+            window.location.origin,
+          )
+          window.close()
         } else {
-          if (!window.opener) {
-            setAuthError('OAuth authentication failed')
-          }
-          // Error handling for popup is done in handleOAuthCallback
+          // Direct navigation - redirect to dashboard
+          router.push('/dashboard')
         }
       } catch (err) {
         const errorMessage =
           err instanceof Error ? err.message : 'Authentication failed'
-        if (!window.opener) {
+
+        console.error('OAuth callback error:', errorMessage)
+
+        if (window.opener) {
+          // Notify parent window of error
+          window.opener.postMessage(
+            {
+              type: 'OAUTH_ERROR',
+              error: errorMessage,
+            },
+            window.location.origin,
+          )
+          window.close()
+        } else {
+          // Direct navigation - show error
           setAuthError(errorMessage)
-        }
-      } finally {
-        if (!window.opener) {
           setIsProcessing(false)
         }
       }
