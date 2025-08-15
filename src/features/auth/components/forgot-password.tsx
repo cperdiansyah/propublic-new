@@ -16,7 +16,7 @@ import {
 import {
   forgotPasswordSchema,
   type ForgotPasswordInput,
-} from '@shared/utils/validations/auth'
+} from '@/features/auth/schema'
 import BackgroundEffects from '@shared/components/effects/grid-glow'
 import ROUTE from '@shared/config/pages'
 

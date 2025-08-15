@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { api } from '@shared/services/axios'
 import API from '@shared/config/api'
-import type { LoginInput } from '@shared/utils/validations/auth'
+import type { LoginInput } from '@/features/auth/schema'
 import type { ApiResponse } from '@shared/types/api'
 
 export interface User {

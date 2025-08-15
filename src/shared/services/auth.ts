@@ -2,7 +2,7 @@ import { api } from '@shared/services/axios'
 import API from '@shared/config/api'
 import type { ApiResponse } from '@shared/types/api'
 import type { User } from '@shared/store/reducers/authReducer'
-import type { RegisterInput } from '@shared/utils/validations/auth'
+import type { RegisterInput } from '@/features/auth/schema'
 
 export interface SignupResponse {
   user: User

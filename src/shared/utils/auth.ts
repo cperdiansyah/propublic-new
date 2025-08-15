@@ -2,7 +2,7 @@ import type { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { api } from '@shared/services/axios'
 import API from '@shared/config/api'
-import { loginSchema } from '@shared/utils/validations/auth'
+import { loginSchema } from '@/features/auth/schema'
 import type { ApiResponse } from '@shared/types/api'
 import type { User } from '@shared/store/reducers/authReducer'
 

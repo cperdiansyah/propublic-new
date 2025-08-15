@@ -3,10 +3,7 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import {
-  registerSchema,
-  type RegisterInput,
-} from '@shared/utils/validations/auth'
+import { registerSchema, type RegisterInput } from '@/features/auth/schema'
 import BackgroundEffects from '@shared/components/effects/grid-glow'
 import { useAuthNext } from '@shared/hooks/useAuthNext'
 

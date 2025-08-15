@@ -1,7 +1,7 @@
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import type { LoginInput, RegisterInput } from '@shared/utils/validations/auth'
+import type { LoginInput, RegisterInput } from '@/features/auth/schema'
 import { signupUser } from '@shared/services/auth'
 
 export const useAuthNext = () => {

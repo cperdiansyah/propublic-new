@@ -64,9 +64,12 @@ src/
 │   │   │   └── auth-selectors.ts
 │   │   ├── types/               # Auth-specific types
 │   │   │   └── auth.types.ts
+│   │   ├── schema/              # Zod validation schemas
+│   │   │   ├── auth.schema.ts
+│   │   │   ├── profile.schema.ts
+│   │   │   └── index.ts
 │   │   ├── utils/               # Auth utilities
-│   │   │   ├── token-manager.ts
-│   │   │   └── validation.ts
+│   │   │   └── token-manager.ts
 │   │   └── index.ts             # Public API exports
 │   │
 │   ├── academy/                 # Course & learning features
@@ -123,6 +126,9 @@ src/
 │   │   ├── services/
 │   │   │   ├── stats-api.ts
 │   │   │   └── replay-api.ts
+│   │   ├── schema/              # Zod validation schemas
+│   │   │   ├── replay.schema.ts
+│   │   │   └── index.ts
 │   │   ├── store/
 │   │   │   ├── game-stats-slice.ts
 │   │   │   └── game-stats-selectors.ts
@@ -191,11 +197,14 @@ src/
 │   │   ├── middleware.ts        # Custom middleware
 │   │   └── hooks.ts             # Typed Redux hooks
 │   │
+│   ├── schema/                  # Shared Zod schemas
+│   │   ├── contact.schema.ts    # Contact & feedback forms
+│   │   └── index.ts
+│   │
 │   ├── utils/                   # Shared utilities
 │   │   ├── date.ts              # Date formatting & manipulation
 │   │   ├── string.ts            # String utilities
 │   │   ├── number.ts            # Number formatting
-│   │   ├── validation.ts        # Common Zod schemas
 │   │   ├── constants.ts         # App constants
 │   │   └── env.ts               # Environment variables
 │   │
@@ -225,12 +234,26 @@ Each feature module follows this structure:
 - **Components**: UI components specific to the feature
 - **Hooks**: Business logic and state management
 - **Services**: API calls and external integrations
+- **Schema**: Zod validation schemas for feature-specific data
 - **Store**: Redux slices and selectors
 - **Types**: TypeScript definitions
 - **Utils**: Feature-specific utilities
 - **index.ts**: Public API that exports only what other modules need
 
-### 2. Dependency Management
+### 2. Schema Organization Strategy
+```typescript
+// ✅ Feature-specific schemas in feature directories
+import { loginSchema, registerSchema } from '@/features/auth/schema';
+import { replayAnalysisSchema } from '@/features/game-stats/schema';
+
+// ✅ Shared schemas for cross-cutting concerns
+import { contactFormSchema } from '@/shared/schema';
+
+// ❌ Avoid: Putting all schemas in shared utils
+import { loginSchema } from '@/shared/utils/validations'; // DON'T DO THIS
+```
+
+### 3. Dependency Management
 ```typescript
 // ✅ Good: Feature depends on shared
 import { Button } from '@/shared/components/ui';
@@ -240,12 +263,12 @@ import { useDebounce } from '@/shared/hooks';
 import { UserProfile } from '@/features/community'; // DON'T DO THIS
 ```
 
-### 3. State Management Strategy
+### 4. State Management Strategy
 - **Global State**: User authentication, app settings, shared data
 - **Feature State**: Domain-specific data that doesn't cross boundaries
 - **Local State**: Component-specific UI state
 
-### 4. Error Boundaries & Resilience
+### 5. Error Boundaries & Resilience
 ```typescript
 // Shared error boundary for consistent error handling
 <ErrorBoundary fallback={<ErrorFallback />}>
@@ -253,7 +276,7 @@ import { UserProfile } from '@/features/community'; // DON'T DO THIS
 </ErrorBoundary>
 ```
 
-### 5. API Layer Architecture
+### 6. API Layer Architecture
 ```typescript
 // Feature-specific API service
 export const courseApi = {

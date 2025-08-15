@@ -11,7 +11,7 @@ import { useAuthNext } from '@shared/hooks/useAuthNext'
 import { startOAuthLogin } from '../services/oauth'
 
 // Validation schema
-import { loginSchema, type LoginInput } from '@shared/utils/validations/auth'
+import { loginSchema, type LoginInput } from '@/features/auth/schema'
 
 // Refactored components
 import AuthLayout from './auth-layout'

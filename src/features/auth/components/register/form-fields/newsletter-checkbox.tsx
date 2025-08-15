@@ -1,7 +1,7 @@
 'use client'
 
 import type { UseFormReturn } from 'react-hook-form'
-import type { RegisterInput } from '@shared/utils/validations/auth'
+import type { RegisterInput } from '@/features/auth/schema'
 
 /**
  * Newsletter Checkbox Component

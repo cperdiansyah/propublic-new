@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { AlertCircle } from 'lucide-react'
 import type { UseFormReturn } from 'react-hook-form'
-import type { RegisterInput } from '@shared/utils/validations/auth'
+import type { RegisterInput } from '@/features/auth/schema'
 
 /**
  * Terms Checkbox Component

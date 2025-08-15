@@ -6,7 +6,7 @@ import {
   getCurrentUser,
   clearError,
 } from '@shared/store/reducers/authReducer'
-import type { LoginInput } from '@shared/utils/validations/auth'
+import type { LoginInput } from '@/features/auth/schema'
 import { useRouter } from 'next/navigation'
 
 export const AUTH_QUERY_KEYS = {
