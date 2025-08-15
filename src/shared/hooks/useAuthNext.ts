@@ -2,7 +2,8 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import type { LoginInput, RegisterInput } from '@/features/auth/schema'
-import { signupUser } from '@shared/services/auth'
+import { signupUser, logoutUser } from '@shared/services/auth'
+import ROUTE from '@/shared/config/pages'
 
 export const useAuthNext = () => {
   const { data: session, status } = useSession()
@@ -40,6 +41,13 @@ export const useAuthNext = () => {
   const logout = async () => {
     try {
       setIsLoading(true)
+
+      // Call backend logout first if we have a token
+      if (session?.accessToken) {
+        await logoutUser(session.accessToken)
+      }
+
+      // Then clear NextAuth session
       await signOut({ redirect: false })
       router.push('/auth/login')
     } catch (error) {
@@ -72,7 +80,7 @@ export const useAuthNext = () => {
       }
 
       if (result?.ok) {
-        router.push('/dashboard')
+        router.push(ROUTE.PUBLIC.HOME)
       }
     } catch (error) {
       console.error('Signup failed:', error)

@@ -58,3 +58,21 @@ export const signupUser = async (
     throw new Error(errors ? JSON.stringify(errors) : message)
   }
 }
+
+/**
+ * Backend logout function
+ * Sends DELETE request to backend to invalidate the token
+ */
+export const logoutUser = async (token: string): Promise<void> => {
+  try {
+    await api.delete(API.AUTH.V1.LOGOUT, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+  } catch (error: unknown) {
+    console.error('Backend logout error:', error)
+    // Don't throw error here - we want to continue with NextAuth signOut
+    // even if backend logout fails
+  }
+}
