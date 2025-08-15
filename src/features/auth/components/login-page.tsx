@@ -1,19 +1,20 @@
 'use client'
 
-import { GamepadIcon, Trophy, Users } from 'lucide-react'
+// React & Next.js
 import { useForm as useHookForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-// Custom hooks and utilities
+// External libraries
+import { GamepadIcon, Trophy, Users } from 'lucide-react'
+
+// Shared modules
 import { useAuthNext } from '@shared/hooks/useAuthNext'
 
-// OAuth service
+// Feature modules
 import { startOAuthLogin } from '../services/oauth'
-
-// Validation schema
 import { loginSchema, type LoginInput } from '@/features/auth/schema'
 
-// Refactored components
+// Relative imports
 import AuthLayout from './auth-layout'
 import { LoginForm } from './login/login-form'
 import { AuthStats } from './auth-stats'

@@ -1,12 +1,20 @@
 'use client'
 
+// React & Next.js
 import { useState } from 'react'
 import Link from 'next/link'
+import type { UseFormReturn, UseFormRegister } from 'react-hook-form'
+
+// External libraries
 import { AlertCircle } from 'lucide-react'
-import type { UseFormReturn } from 'react-hook-form'
-import type { LoginInput } from '@/features/auth/schema'
+
+// Shared modules
 import ROUTE from '@shared/config/pages'
 
+// Feature modules
+import type { LoginInput } from '@/features/auth/schema'
+
+// Relative imports
 import { EmailField } from '../shared-fields/email-field'
 import { PasswordField } from '../shared-fields/password-field'
 import { RememberMeCheckbox } from './form-fields/remember-me-checkbox'
@@ -59,7 +67,7 @@ export const LoginForm = ({
           showRequirements={false}
         />
 
-        <FormOptions />
+        <FormOptions register={register} />
 
         <ErrorDisplay error={errors.root?.message} />
 
@@ -90,9 +98,13 @@ const FormHeader = () => (
  * Form Options Component
  * Contains remember me checkbox and forgot password link
  */
-const FormOptions = () => (
+interface FormOptionsProps {
+  register: UseFormRegister<LoginInput>
+}
+
+const FormOptions = ({ register }: FormOptionsProps) => (
   <div className="flex items-center justify-between">
-    <RememberMeCheckbox />
+    <RememberMeCheckbox register={register} />
     <Link
       href={ROUTE.PUBLIC.AUTH.FORGOT_PASSWORD}
       className="text-custom-accent hover:text-custom-accent/80 text-sm font-medium transition-colors"
