@@ -13,13 +13,25 @@ export const signupUser = async (
   userData: RegisterInput,
 ): Promise<SignupResponse> => {
   try {
-    const response = await api.post<ApiResponse<User>>(API.AUTH.V1.REGISTER, {
-      email: userData.email,
-      password: userData.password,
-      username: userData.username,
-      agreeToTerms: userData.agreeToTerms,
-      subscribeNewsletter: userData.subscribeNewsletter,
-    })
+    // Transform frontend data to match backend API format
+    const requestData = {
+      user: {
+        email: userData.email,
+        password: userData.password,
+        password_confirmation: userData.confirmPassword,
+        username: userData.username,
+        timezone: userData.timezone || 'UTC',
+        locale: userData.locale || 'en',
+        // Backend might expect these as metadata, adjust if needed
+        agree_to_terms: userData.agreeToTerms,
+        subscribe_newsletter: userData.subscribeNewsletter || false,
+      },
+    }
+
+    const response = await api.post<ApiResponse<User>>(
+      API.AUTH.V1.REGISTER,
+      requestData,
+    )
 
     const user = response.data.data
     const authHeader =
