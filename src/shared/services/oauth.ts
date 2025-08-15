@@ -1,134 +1,170 @@
 'use client'
 
-import { api } from '@shared/services/axios'
+import { NEXT_PUBLIC_API_URL } from '@/shared/config'
 import API from '@shared/config/api'
-import type { ApiResponse } from '@shared/types/api'
 
-export interface OAuthInitResponse {
-  authorization_url: string
-  state?: string
-}
-
-export interface OAuthCallbackData {
-  code: string
-  state?: string
+export interface OAuthResult {
+  token: string
+  provider: string
 }
 
 /**
- * Initiate Google OAuth login
- * Returns the Google authorization URL to redirect user to
+ * Opens OAuth popup window and waits for token from redirect callback
+ * New flow: FE -> popup -> https://api-dev.propublic.gg/v1/auth/google_oauth2
+ * API handles OAuth with cookies -> redirects to callback with token
  */
-export const initiateGoogleLogin = async (): Promise<string> => {
-  try {
-    const response = await api.get<ApiResponse<OAuthInitResponse>>(
-      API.AUTH.V1.GOOGLE_LOGIN,
-    )
-    return response.data.data.authorization_url
-  } catch (error) {
-    console.error('Google OAuth initiation error:', error)
-    throw new Error('Failed to initiate Google login')
-  }
-}
-
-/**
- * Handle Google OAuth callback
- * Process the authorization code and get user token
- */
-export const handleGoogleCallback = async (callbackData: OAuthCallbackData) => {
-  try {
-    const response = await api.post(
-      API.AUTH.V1.GOOGLE_LOGIN_CALLBACK,
-      callbackData,
+const openOAuthPopup = (
+  authUrl: string,
+  provider: string,
+): Promise<OAuthResult> => {
+  return new Promise((resolve, reject) => {
+    // Open popup directly to the API endpoint
+    // Browser will include cookies automatically (same-site/credentials)
+    const popup = window.open(
+      authUrl,
+      `${provider}_oauth`,
+      'width=600,height=700,scrollbars=yes,resizable=yes',
     )
 
-    // Extract token from response headers (same pattern as login/signup)
-    const authHeader =
-      response.headers.authorization || response.headers.Authorization
-    const token = authHeader?.replace('Bearer ', '') || null
-
-    return {
-      user: response.data.data,
-      token,
+    if (!popup) {
+      reject(
+        new Error(
+          'Failed to open popup window. Please allow popups for this site.',
+        ),
+      )
+      return
     }
-  } catch (error) {
-    console.error('Google OAuth callback error:', error)
-    throw new Error('Failed to complete Google login')
-  }
-}
 
-/**
- * Initiate Discord OAuth login
- * Returns the Discord authorization URL to redirect user to
- */
-export const initiateDiscordLogin = async (): Promise<string> => {
-  try {
-    const response = await api.get<ApiResponse<OAuthInitResponse>>(
-      API.AUTH.V1.DISCORD_LOGIN,
-    )
-    return response.data.data.authorization_url
-  } catch (error) {
-    console.error('Discord OAuth initiation error:', error)
-    throw new Error('Failed to initiate Discord login')
-  }
-}
+    // Listen for messages from popup callback page
+    const handleMessage = (event: MessageEvent) => {
+      // Security: verify origin matches our domain
+      const allowedOrigins = [
+        window.location.origin,
+        'https://propublic.gg',
+        'https://api-dev.propublic.gg',
+      ]
 
-/**
- * Handle Discord OAuth callback
- * Process the authorization code and get user token
- */
-export const handleDiscordCallback = async (
-  callbackData: OAuthCallbackData,
-) => {
-  try {
-    const response = await api.post(
-      API.AUTH.V1.DISCORD_LOGIN_CALLBACK,
-      callbackData,
-    )
+      if (
+        !allowedOrigins.some(
+          (origin) =>
+            event.origin === origin || event.origin.endsWith('.propublic.gg'),
+        )
+      ) {
+        return
+      }
 
-    // Extract token from response headers (same pattern as login/signup)
-    const authHeader =
-      response.headers.authorization || response.headers.Authorization
-    const token = authHeader?.replace('Bearer ', '') || null
-
-    return {
-      user: response.data.data,
-      token,
+      if (event.data.type === 'OAUTH_SUCCESS') {
+        cleanup()
+        resolve({
+          token: event.data.token,
+          provider: event.data.provider,
+        })
+      } else if (event.data.type === 'OAUTH_ERROR') {
+        cleanup()
+        reject(new Error(event.data.error || 'OAuth authentication failed'))
+      }
     }
-  } catch (error) {
-    console.error('Discord OAuth callback error:', error)
-    throw new Error('Failed to complete Discord login')
-  }
+
+    // Poll only for popup closure
+    const pollInterval = setInterval(() => {
+      if (popup.closed) {
+        cleanup()
+        reject(new Error('OAuth popup was closed before completion'))
+        return
+      }
+    }, 1000)
+
+    const cleanup = () => {
+      clearInterval(pollInterval)
+      window.removeEventListener('message', handleMessage)
+      if (!popup.closed) {
+        popup.close()
+      }
+    }
+
+    // Listen for postMessage from callback page
+    window.addEventListener('message', handleMessage)
+
+    // Timeout after 5 minutes
+    setTimeout(() => {
+      cleanup()
+      reject(new Error('OAuth timeout - please try again'))
+    }, 300000)
+  })
 }
 
 /**
- * Generic OAuth login handler
- * Redirects to provider's authorization URL with callback configuration
+ * Initiates OAuth login with popup window
+ * Opens popup directly to API OAuth endpoint which handles cookies automatically
  */
-export const startOAuthLogin = async (provider: 'google' | 'discord') => {
+export const startOAuthLogin = async (
+  provider: 'google' | 'discord',
+): Promise<OAuthResult> => {
   try {
-    let authUrl: string
+    let apiOAuthUrl: string
 
     if (provider === 'google') {
-      authUrl = await initiateGoogleLogin()
+      apiOAuthUrl = `${NEXT_PUBLIC_API_URL}${API.AUTH.V1.GOOGLE_LOGIN}`
     } else if (provider === 'discord') {
-      authUrl = await initiateDiscordLogin()
+      apiOAuthUrl = `${NEXT_PUBLIC_API_URL}${API.AUTH.V1.DISCORD_LOGIN}`
     } else {
       throw new Error(`Unsupported OAuth provider: ${provider}`)
     }
 
-    // Add provider parameter to the callback URL
-    const callbackUrl = `/auth/oauth-callback?provider=${provider}`
+    console.log(`Starting OAuth flow for ${provider}:`, apiOAuthUrl)
 
-    // If the backend doesn't handle callback URL configuration automatically,
-    // we might need to modify the auth URL to include our callback
-    const finalAuthUrl = authUrl.includes('redirect_uri=')
-      ? authUrl
-      : `${authUrl}&redirect_uri=${encodeURIComponent(window.location.origin + callbackUrl)}`
-
-    // Redirect to provider's authorization URL
-    window.location.href = finalAuthUrl
+    // Open popup directly to API endpoint
+    // Browser will automatically include cookies for the API domain
+    const result = await openOAuthPopup(apiOAuthUrl, provider)
+    return result
   } catch (error) {
     console.error(`OAuth login error for ${provider}:`, error)
     throw error
+  }
+}
+
+/**
+ * Handles OAuth callback by extracting token and notifying parent window
+ * This function should be called on the callback page
+ */
+export const handleOAuthCallback = (): { success: boolean } => {
+  try {
+    const urlParams = new URLSearchParams(window.location.search)
+    const token = urlParams.get('token')
+    const provider = urlParams.get('provider')
+    const error = urlParams.get('error')
+
+    if (error) {
+      if (window.opener) {
+        window.opener.postMessage(
+          { type: 'OAUTH_ERROR', error },
+          window.location.origin,
+        )
+        window.close()
+      }
+      return { success: false }
+    }
+
+    if (!token || !provider) {
+      return { success: false }
+    }
+
+    // Notify parent window about successful OAuth
+    if (window.opener) {
+      window.opener.postMessage(
+        {
+          type: 'OAUTH_SUCCESS',
+          token,
+          provider,
+        },
+        window.location.origin,
+      )
+      window.close()
+    }
+
+    return { success: true }
+  } catch (error) {
+    console.error('Error processing OAuth callback:', error)
+    return { success: false }
   }
 }

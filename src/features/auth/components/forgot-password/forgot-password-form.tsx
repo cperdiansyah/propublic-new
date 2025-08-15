@@ -84,7 +84,7 @@ const MobileLogo = () => (
  */
 const FormHeader = () => (
   <div className="text-center mb-8">
-    <h2 className="text-3xl font-bold mb-2">Reset Password</h2>
+    <h2 className="text-3xl font-bold mb-2">Forgot Password</h2>
     <p className="text-cream/70">Enter your email to receive a reset link</p>
   </div>
 )
