@@ -1,8 +1,14 @@
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { toast } from 'sonner'
 import type { LoginInput, RegisterInput } from '@/features/auth/schema'
 import { signupUser, logoutUser } from '@shared/services/auth'
+import {
+  type ApiError,
+  getUserErrorMessage,
+  shouldShowErrorToUser,
+} from '@shared/services/error-handler'
 import ROUTE from '@/shared/config/pages'
 
 export const useAuthNext = () => {
@@ -28,10 +34,22 @@ export const useAuthNext = () => {
       }
 
       if (result?.ok) {
+        toast.success('Welcome back!', {
+          description: 'You have been logged in successfully.',
+        })
         router.push(ROUTE.PUBLIC.HOME)
       }
     } catch (error) {
       console.error('Login failed:', error)
+
+      // Show user-friendly error message
+      if (error instanceof Error) {
+        toast.error('Login failed', {
+          description:
+            error.message || 'Please check your credentials and try again',
+        })
+      }
+
       throw error
     } finally {
       setIsLoading(false)
@@ -80,20 +98,56 @@ export const useAuthNext = () => {
       }
 
       if (result?.ok) {
+        toast.success('Welcome!', {
+          description: 'Your account has been created successfully.',
+        })
         router.push(ROUTE.PUBLIC.HOME)
       }
     } catch (error) {
       console.error('Signup failed:', error)
-      const errorMessage =
-        error instanceof Error ? error.message : 'Signup failed'
 
-      // Try to parse validation errors
-      try {
-        const errors = JSON.parse(errorMessage)
-        setError(Object.values(errors).flat().join(', '))
-      } catch {
-        setError(errorMessage)
+      // Handle ApiError from our custom error handler
+      if (error && typeof error === 'object' && 'isUserError' in error) {
+        const apiError = error as ApiError
+
+        if (shouldShowErrorToUser(apiError)) {
+          const userMessage = getUserErrorMessage(apiError)
+          toast.error('Registration failed', {
+            description: userMessage,
+          })
+          setError(userMessage)
+        } else {
+          toast.error('Registration failed', {
+            description:
+              'An unexpected error occurred. Please try again later.',
+          })
+          setError('An unexpected error occurred. Please try again later.')
+        }
+      } else if (error instanceof Error) {
+        // Fallback for other error types
+        const errorMessage = error.message || 'Registration failed'
+
+        // Try to parse validation errors (legacy support)
+        try {
+          const errors = JSON.parse(errorMessage)
+          const formattedErrors = Object.values(errors).flat().join(', ')
+          toast.error('Registration failed', {
+            description: formattedErrors,
+          })
+          setError(formattedErrors)
+        } catch {
+          toast.error('Registration failed', {
+            description: errorMessage,
+          })
+          setError(errorMessage)
+        }
+      } else {
+        toast.error('Registration failed', {
+          description: 'An unexpected error occurred. Please try again later.',
+        })
+        setError('An unexpected error occurred. Please try again later.')
       }
+
       throw error
     } finally {
       setIsLoading(false)

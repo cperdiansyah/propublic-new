@@ -5,6 +5,7 @@ import API from '@shared/config/api'
 import { loginSchema } from '@/features/auth/schema'
 import type { ApiResponse } from '@shared/types/api'
 import type { User } from '@shared/store/reducers/authReducer'
+import { handleApiError } from '@shared/services/error-handler'
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -84,7 +85,8 @@ export const authOptions: NextAuthOptions = {
             userData: user,
           }
         } catch (error) {
-          console.error('Login error:', error)
+          const apiError = handleApiError(error)
+          console.error('Login error:', apiError)
           return null
         }
       },
