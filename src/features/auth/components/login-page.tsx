@@ -9,9 +9,9 @@ import { GamepadIcon, Trophy, Users } from 'lucide-react'
 
 // Shared modules
 import { useAuthNext } from '@shared/hooks/useAuthNext'
+import { startOAuthLogin } from '@shared/services/oauth'
 
 // Feature modules
-import { startOAuthLogin } from '../services/oauth'
 import { loginSchema, type LoginInput } from '@/features/auth/schema'
 
 // Relative imports
