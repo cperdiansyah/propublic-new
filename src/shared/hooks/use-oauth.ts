@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useAppDispatch, useAppSelector } from '@shared/store/hooks'
 import { oauthLogin } from '@shared/store/reducers/authReducer'
 import { startOAuthLogin, type OAuthResult } from '@shared/services/oauth'
+import ROUTE from '@shared/config/pages'
 
 export interface UseOAuthReturn {
   isLoading: boolean
@@ -55,8 +56,8 @@ export const useOAuth = (): UseOAuthReturn => {
         )
       }
 
-      // OAuth authentication successful - redirect to dashboard
-      router.push('/dashboard')
+      // OAuth authentication successful - redirect to home
+      router.push(ROUTE.PUBLIC.HOME)
       return
     } catch (err) {
       const errorMessage =

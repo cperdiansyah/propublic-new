@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAppDispatch } from '@shared/store/hooks'
 import { oauthLogin } from '@shared/store/reducers/authReducer'
+import ROUTE from '@shared/config/pages'
 
 /**
  * OAuth Redirect Callback Page
@@ -63,8 +64,8 @@ export default function RedirectCallbackPage() {
           )
           window.close()
         } else {
-          // Direct navigation - redirect to dashboard
-          router.push('/dashboard')
+          // Direct navigation - redirect to home
+          router.push(ROUTE.PUBLIC.HOME)
         }
       } catch (err) {
         const errorMessage =
@@ -91,7 +92,7 @@ export default function RedirectCallbackPage() {
     }
 
     processCallback()
-  }, [router])
+  }, [router, dispatch])
 
   const handleRetry = () => {
     router.push('/auth/login')
