@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build --outdir .next-build",
     "start": "next start",
     "prepare": "husky",
     "format": "biome format --write",
     "format:staged": "biome format --write ./src --staged -files-ignore-unknown=true --no-errors-on-unmatched",
     "lint": "biome lint --write",
     "lint:staged": "biome lint --write --staged --files-ignore-unknown=true --no-errors-on-unmatched ./src ",
-    "check": "biome check --reporter=summary"
+    "check": "biome check --reporter=summary --max-diagnostics=9999"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
