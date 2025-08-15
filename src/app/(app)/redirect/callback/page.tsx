@@ -39,21 +39,10 @@ export default function RedirectCallbackPage() {
           tokenLength: token.length,
         })
 
-        // Use Redux OAuth login thunk to authenticate with token and fetch user data
-        const result = await dispatch(oauthLogin(token))
-
-        if (oauthLogin.rejected.match(result)) {
-          throw new Error(
-            (result.payload as string) ||
-              'Failed to authenticate with OAuth token',
-          )
-        }
-
-        console.log('OAuth authentication successful')
-
-        // Authentication successful
+        // Check if this is a popup window
         if (window.opener) {
-          // Notify parent window of successful authentication
+          // Popup window: Just pass token to main window, don't call me API here
+          console.log('Popup window: Sending token to main window')
           window.opener.postMessage(
             {
               type: 'OAUTH_SUCCESS',
@@ -64,7 +53,18 @@ export default function RedirectCallbackPage() {
           )
           window.close()
         } else {
-          // Direct navigation - redirect to home
+          // Direct navigation: Call me API and redirect
+          console.log('Direct navigation: Calling me API')
+          const result = await dispatch(oauthLogin(token))
+
+          if (oauthLogin.rejected.match(result)) {
+            throw new Error(
+              (result.payload as string) ||
+                'Failed to authenticate with OAuth token',
+            )
+          }
+
+          console.log('OAuth authentication successful')
           router.push(ROUTE.PUBLIC.HOME)
         }
       } catch (err) {

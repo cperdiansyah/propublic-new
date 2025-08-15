@@ -40,14 +40,28 @@ export const useOAuth = (): UseOAuthReturn => {
 
     try {
       // Start OAuth flow with popup
+      console.log('Main window: Starting OAuth flow for provider:', provider)
       const oAuthResult: OAuthResult = await startOAuthLogin(provider)
+
+      console.log('Main window: Received OAuth result:', {
+        hasToken: !!oAuthResult.token,
+        tokenLength: oAuthResult.token?.length,
+        provider: oAuthResult.provider,
+      })
 
       if (!oAuthResult.token) {
         throw new Error('No authentication token received')
       }
 
       // Use Redux OAuth login thunk to authenticate with token and fetch user data
+      console.log('Main window: Calling oauthLogin with token')
       const result = await dispatch(oauthLogin(oAuthResult.token))
+
+      console.log('Main window: oauthLogin result:', {
+        fulfilled: oauthLogin.fulfilled.match(result),
+        rejected: oauthLogin.rejected.match(result),
+        payload: result.payload,
+      })
 
       if (oauthLogin.rejected.match(result)) {
         throw new Error(
@@ -57,6 +71,9 @@ export const useOAuth = (): UseOAuthReturn => {
       }
 
       // OAuth authentication successful - redirect to home
+      console.log(
+        'Main window: OAuth authentication successful, redirecting to home',
+      )
       router.push(ROUTE.PUBLIC.HOME)
       return
     } catch (err) {

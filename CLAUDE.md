@@ -9,9 +9,6 @@ Follow all commands, patterns, and standards exactly as stated.
 - **Prod server** → `npm start`
 
 ### Code Quality
-- **Format** → `npm run format` (Biome)
-- **Lint** → `npm run lint` (Biome, autofix)
-- **Check all** → `npm run check` (full Biome check + summary)
 - **Format staged** → `npm run format:staged`
 - **Lint staged** → `npm run lint:staged`
 
