@@ -46,10 +46,18 @@ export const loginUser = createAsyncThunk(
   'auth/login',
   async (credentials: LoginInput, { rejectWithValue }) => {
     try {
-      const response = await api.post<ApiResponse<User>>(API.AUTH.V1.LOGIN, {
-        email: credentials.email,
-        password: credentials.password,
-      })
+      // Transform frontend data to match backend API format
+      const requestData = {
+        user: {
+          email: credentials.email,
+          password: credentials.password,
+        },
+      }
+
+      const response = await api.post<ApiResponse<User>>(
+        API.AUTH.V1.LOGIN,
+        requestData,
+      )
 
       const user = response.data.data
       const authHeader =

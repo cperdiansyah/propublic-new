@@ -50,13 +50,17 @@ export const authOptions: NextAuthOptions = {
             password: credentials.password,
           })
 
-          // Make API call to your backend
-          const response = await api.post<ApiResponse<User>>(
-            API.AUTH.V1.LOGIN,
-            {
+          // Make API call to your backend with data wrapped in "user" object
+          const requestData = {
+            user: {
               email: validatedData.email,
               password: validatedData.password,
             },
+          }
+
+          const response = await api.post<ApiResponse<User>>(
+            API.AUTH.V1.LOGIN,
+            requestData,
           )
 
           const user = response.data.data
