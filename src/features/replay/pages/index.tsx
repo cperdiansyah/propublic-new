@@ -1,11 +1,12 @@
 'use client'
 
-import CustomerInfo from './customer-info'
-import FileUpload from './file-upload'
-import HowItWorks from './how-it-works'
-import OrderSummary from './order-summary'
-import PackageSelection from './package-selection'
 import { useState } from 'react'
+
+import CustomerInfo from '@/features/replay/components/customer-info'
+import FileUpload from '@/features/replay/components/file-upload'
+import HowItWorks from '@/features/replay/components/how-it-works'
+import OrderSummary from '@/features/replay/components/order-summary'
+import PackageSelection from '@/features/replay/components/package-selection'
 
 export default function ReplayContent() {
   const [selectedPackage, setSelectedPackage] = useState('pro')
@@ -29,22 +30,19 @@ export default function ReplayContent() {
         {/* Main Form Container */}
         <div className="enhanced-card border-radius-propublic p-8 md:p-12">
           {/* Step 1: Upload Replay */}
-          <FileUpload
-            uploadedFile={uploadedFile}
-            setUploadedFile={setUploadedFile}
-          />
 
           {/* Step 2: Choose Package */}
           <PackageSelection
             selectedPackage={selectedPackage}
             setSelectedPackage={setSelectedPackage}
+            order={1}
           />
 
           {/* Step 3: Customer Information */}
-          <CustomerInfo />
+          <CustomerInfo order={2} />
 
           {/* Step 4: Order Summary & Payment */}
-          <OrderSummary selectedPackage={selectedPackage} />
+          <OrderSummary selectedPackage={selectedPackage} order={3} />
         </div>
 
         {/* How It Works */}

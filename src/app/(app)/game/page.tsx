@@ -1,4 +1,4 @@
-import GameContent from '@features/game-stats'
+import GameContent from '@/features/game'
 import React from 'react'
 
 const page = () => {

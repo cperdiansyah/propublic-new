@@ -5,11 +5,13 @@ import { Check } from 'lucide-react'
 interface PackageSelectionProps {
   selectedPackage: string
   setSelectedPackage: (pkg: string) => void
+  order?: number
 }
 
 export default function PackageSelection({
   selectedPackage,
   setSelectedPackage,
+  order,
 }: PackageSelectionProps) {
   const packages = [
     {
@@ -54,7 +56,7 @@ export default function PackageSelection({
     <div className="mb-12">
       <h2 className="text-2xl md:text-3xl font-bold mb-8 flex items-center">
         <span className="w-8 h-8 bg-gradient-to-r from-custom-primary to-custom-secondary rounded-full flex items-center justify-center text-white font-bold mr-4 text-lg">
-          2
+          {order}
         </span>
         Choose Your Analysis Package
       </h2>

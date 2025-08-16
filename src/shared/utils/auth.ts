@@ -28,13 +28,10 @@ export const authOptions: NextAuthOptions = {
 
             // For OAuth login, call the "me" API to get actual user data
             if (!token || token.length < 10) {
-              console.error('Invalid OAuth token format')
               return null
             }
 
             try {
-              console.log('NextAuth OAuth: Calling me API with token')
-
               // Create temporary API instance with OAuth token
               const tempApi = api
               tempApi.defaults.headers.Authorization = `Bearer ${token}`
@@ -44,12 +41,6 @@ export const authOptions: NextAuthOptions = {
                 API.AUTH.V1.ME,
               )
               const user = response.data.data
-
-              console.log('NextAuth OAuth: Successfully got user data:', {
-                userId: user.id,
-                email: user.email,
-                username: user.username,
-              })
 
               // Return NextAuth user object with real user data
               return {
@@ -61,10 +52,6 @@ export const authOptions: NextAuthOptions = {
                 userData: user,
               }
             } catch (error) {
-              console.error(
-                'NextAuth OAuth: Failed to get user data with token:',
-                error,
-              )
               return null
             }
           }
@@ -94,7 +81,6 @@ export const authOptions: NextAuthOptions = {
           const token = authHeader?.replace('Bearer ', '') || null
 
           if (!token) {
-            console.error('No token received from server')
             return null
           }
 
@@ -109,8 +95,6 @@ export const authOptions: NextAuthOptions = {
             userData: user,
           }
         } catch (error) {
-          const apiError = handleApiError(error)
-          console.error('Login error:', apiError)
           return null
         }
       },

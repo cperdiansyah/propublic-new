@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import GameDetailContent from '@features/game-stats/components/detail'
+import GameDetailContent from '@/features/game/pages/detail'
 import { GAMELIST } from '@shared/config/exampleData'
 import { findGameBySlug, sanitizeGameDescription } from '@shared/utils/utils'
 

@@ -1,4 +1,4 @@
-import ReplayContent from '@features/game-stats'
+import ReplayContent from '@/features/replay'
 import React from 'react'
 
 const page = () => {

@@ -1,21 +1,20 @@
 'use client'
 
 import AcademyBackgroundEffects from '@shared/components/effects/academy-bacground'
-import CoachingSection from './coaching-section'
-import GameDetailHero from './game-hero'
-import RelatedCommunities from './related-communities'
 import type { CarouselGameItem } from '@shared/types/home.types'
-import { useState } from 'react'
+
+import GameDetailHero from '@/features/game/components/detail/game-hero'
+import CoachingSection from '@/features/game/components/detail/coaching-section'
+import RelatedCommunities from '@/features/game/components/detail/related-communities'
 
 interface GameDetailContentProps {
   game: CarouselGameItem
 }
 
 export default function GameDetailContent({ game }: GameDetailContentProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
   const handleFindCoach = () => {
-    setIsModalOpen(true)
+    // TODO: Implement find coach modal
+    console.log('Find coach clicked for:', game.name)
   }
 
   return (

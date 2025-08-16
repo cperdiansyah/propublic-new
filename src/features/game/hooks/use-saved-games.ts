@@ -1,8 +1,7 @@
 'use client'
 
-import { COMMUNITIES, GAMELIST } from '@shared/config/exampleData'
+import { addGameSchema } from '@/features/game/schema'
 import type { CarouselGameItem } from '@shared/types/home.types'
-import { addGameSchema } from '@shared/games'
 import { useCallback, useMemo, useState } from 'react'
 
 interface SavedGame extends CarouselGameItem {
@@ -111,36 +110,4 @@ export const useSavedGames = () => {
     remainingSlots,
     maxGames: MAX_GAMES,
   }
-}
-
-export const useFilteredCommunities = (savedGames: SavedGame[]) => {
-  return useMemo(() => {
-    if (savedGames.length === 0) return []
-
-    const gameNames = savedGames.map((game) => game.name.toLowerCase())
-    return COMMUNITIES.filter((community) =>
-      gameNames.some(
-        (gameName) =>
-          community.description.toLowerCase().includes(gameName) ||
-          community.name.toLowerCase().includes(gameName) ||
-          community.category.toLowerCase().includes('gaming'),
-      ),
-    )
-  }, [savedGames])
-}
-
-export const useAvailableGames = (
-  savedGames: SavedGame[],
-  searchTerm: string,
-) => {
-  return useMemo(() => {
-    const available = GAMELIST.filter(
-      (game) => !savedGames.some((savedGame) => savedGame.id === game.id),
-    )
-    if (!searchTerm.trim()) return available
-
-    return available.filter((game) =>
-      game.name.toLowerCase().includes(searchTerm.toLowerCase()),
-    )
-  }, [savedGames, searchTerm])
 }
