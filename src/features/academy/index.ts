@@ -13,7 +13,7 @@ export { default as CourseGrid } from './components/course-grid'
 export * from './components/detail'
 
 // Hooks
-export * from './components/hooks'
+export * from './hooks'
 
 // Types
 export * from '@shared/types/academy.types'
