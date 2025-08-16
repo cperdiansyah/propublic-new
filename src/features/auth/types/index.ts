@@ -1,2 +1,5 @@
-// Auth types will be exported from here
-export {}
+export type {
+  OAuthCallbackProps,
+  CallbackLoadingProps,
+  CallbackErrorProps,
+} from './oauth-callback.types'
