@@ -23,25 +23,49 @@ export const authOptions: NextAuthOptions = {
 
           // Check if this is an OAuth token login
           if (credentials.email.startsWith('oauth_')) {
-            // Extract provider and email from OAuth login
-            const [, provider, email] = credentials.email.split('_', 3)
+            const [, provider] = credentials.email.split('_', 2)
             const token = credentials.password // Token passed as password
 
-            // For OAuth login, we already have the user data and token
-            // We'll just validate the token format and return user info
+            // For OAuth login, call the "me" API to get actual user data
             if (!token || token.length < 10) {
               console.error('Invalid OAuth token format')
               return null
             }
 
-            // Return OAuth user object
-            return {
-              id: `oauth_${provider}_${email}`,
-              email: email,
-              name: email.split('@')[0], // Use email prefix as name
-              image: null,
-              accessToken: token,
-              userData: undefined, // OAuth user data would be stored differently
+            try {
+              console.log('NextAuth OAuth: Calling me API with token')
+
+              // Create temporary API instance with OAuth token
+              const tempApi = api
+              tempApi.defaults.headers.Authorization = `Bearer ${token}`
+
+              // Get user data using the token
+              const response = await tempApi.get<ApiResponse<User>>(
+                API.AUTH.V1.ME,
+              )
+              const user = response.data.data
+
+              console.log('NextAuth OAuth: Successfully got user data:', {
+                userId: user.id,
+                email: user.email,
+                username: user.username,
+              })
+
+              // Return NextAuth user object with real user data
+              return {
+                id: user.id.toString(),
+                email: user.email,
+                name: user.username,
+                image: user.avatar_url,
+                accessToken: token,
+                userData: user,
+              }
+            } catch (error) {
+              console.error(
+                'NextAuth OAuth: Failed to get user data with token:',
+                error,
+              )
+              return null
             }
           }
 

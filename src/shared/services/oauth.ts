@@ -4,9 +4,8 @@ import { NEXT_PUBLIC_API_URL } from '@/shared/config'
 import API from '@shared/config/api'
 
 export interface OAuthResult {
-  success: boolean
+  token: string
   provider: string
-  error?: string
 }
 
 /**
@@ -68,35 +67,24 @@ const openOAuthPopup = (
         return
       }
 
-      if (event.data.type === 'OAUTH_COMPLETE') {
-        console.log('Main window: Received OAUTH_COMPLETE message:', {
-          success: event.data.success,
+      if (event.data.type === 'OAUTH_SUCCESS') {
+        console.log('Main window: Received OAUTH_SUCCESS message:', {
+          hasToken: !!event.data.token,
+          tokenLength: event.data.token?.length,
           provider: event.data.provider,
-          error: event.data.error,
         })
         cleanup()
-
-        if (event.data.success) {
-          // Popup completed OAuth and saved to localStorage via Redux Persist
-          // Trigger localStorage change detection
-          console.log(
-            'Main window: OAuth successful, triggering localStorage rehydration',
-          )
-
-          // Dispatch custom event to trigger rehydration
-          window.dispatchEvent(
-            new CustomEvent('oauth-auth-updated', {
-              detail: { provider: event.data.provider },
-            }),
-          )
-
-          resolve({
-            success: true,
-            provider: event.data.provider,
-          })
-        } else {
-          reject(new Error(event.data.error || 'OAuth authentication failed'))
-        }
+        resolve({
+          token: event.data.token,
+          provider: event.data.provider,
+        })
+      } else if (event.data.type === 'OAUTH_ERROR') {
+        console.log(
+          'Main window: Received OAUTH_ERROR message:',
+          event.data.error,
+        )
+        cleanup()
+        reject(new Error(event.data.error || 'OAuth authentication failed'))
       }
     }
 
