@@ -20,13 +20,11 @@ const openOAuthPopup = (
   return new Promise((resolve, reject) => {
     // Open popup directly to the API endpoint
     // Browser will include cookies automatically (same-site/credentials)
-    console.log('Main window: Opening OAuth popup to:', authUrl)
     const popup = window.open(
       authUrl,
       `${provider}_oauth`,
       'width=600,height=700,scrollbars=yes,resizable=yes',
     )
-    console.log('Main window: Popup opened:', !!popup)
 
     if (!popup) {
       reject(
@@ -39,13 +37,6 @@ const openOAuthPopup = (
 
     // Listen for messages from popup callback page
     const handleMessage = (event: MessageEvent) => {
-      console.log(
-        'Main window: Received message from origin:',
-        event.origin,
-        'data:',
-        event.data,
-      )
-
       // Security: verify origin matches our domain
       const allowedOrigins = [
         window.location.origin,
@@ -60,29 +51,16 @@ const openOAuthPopup = (
             event.origin === origin || event.origin.endsWith('.propublic.gg'),
         )
       ) {
-        console.log(
-          'Main window: Message rejected - origin not allowed:',
-          event.origin,
-        )
         return
       }
 
       if (event.data.type === 'OAUTH_SUCCESS') {
-        console.log('Main window: Received OAUTH_SUCCESS message:', {
-          hasToken: !!event.data.token,
-          tokenLength: event.data.token?.length,
-          provider: event.data.provider,
-        })
         cleanup()
         resolve({
           token: event.data.token,
           provider: event.data.provider,
         })
       } else if (event.data.type === 'OAUTH_ERROR') {
-        console.log(
-          'Main window: Received OAUTH_ERROR message:',
-          event.data.error,
-        )
         cleanup()
         reject(new Error(event.data.error || 'OAuth authentication failed'))
       }
@@ -106,9 +84,6 @@ const openOAuthPopup = (
     }
 
     // Listen for postMessage from callback page
-    console.log(
-      'Main window: Setting up message listener for popup communication',
-    )
     window.addEventListener('message', handleMessage)
 
     // Timeout after 5 minutes
@@ -126,27 +101,20 @@ const openOAuthPopup = (
 export const startOAuthLogin = async (
   provider: 'google' | 'discord',
 ): Promise<OAuthResult> => {
-  try {
-    let apiOAuthUrl: string
+  let apiOAuthUrl: string
 
-    if (provider === 'google') {
-      apiOAuthUrl = `${NEXT_PUBLIC_API_URL}${API.AUTH.V1.GOOGLE_LOGIN}`
-    } else if (provider === 'discord') {
-      apiOAuthUrl = `${NEXT_PUBLIC_API_URL}${API.AUTH.V1.DISCORD_LOGIN}`
-    } else {
-      throw new Error(`Unsupported OAuth provider: ${provider}`)
-    }
-
-    console.log(`Starting OAuth flow for ${provider}:`, apiOAuthUrl)
-
-    // Open popup directly to API endpoint
-    // Browser will automatically include cookies for the API domain
-    const result = await openOAuthPopup(apiOAuthUrl, provider)
-    return result
-  } catch (error) {
-    console.error(`OAuth login error for ${provider}:`, error)
-    throw error
+  if (provider === 'google') {
+    apiOAuthUrl = `${NEXT_PUBLIC_API_URL}${API.AUTH.V1.GOOGLE_LOGIN}`
+  } else if (provider === 'discord') {
+    apiOAuthUrl = `${NEXT_PUBLIC_API_URL}${API.AUTH.V1.DISCORD_LOGIN}`
+  } else {
+    throw new Error(`Unsupported OAuth provider: ${provider}`)
   }
+
+  // Open popup directly to API endpoint
+  // Browser will automatically include cookies for the API domain
+  const result = await openOAuthPopup(apiOAuthUrl, provider)
+  return result
 }
 
 /**
@@ -189,8 +157,7 @@ export const handleOAuthCallback = (): { success: boolean } => {
     }
 
     return { success: true }
-  } catch (error) {
-    console.error('Error processing OAuth callback:', error)
+  } catch {
     return { success: false }
   }
 }

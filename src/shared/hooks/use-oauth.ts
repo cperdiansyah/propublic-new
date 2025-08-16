@@ -40,43 +40,20 @@ export const useOAuth = (): UseOAuthReturn => {
 
     try {
       // Start OAuth flow with popup
-      console.log('Main window: Starting OAuth flow for provider:', provider)
       const oAuthResult: OAuthResult = await startOAuthLogin(provider)
-
-      console.log('Main window: Received OAuth result:', {
-        hasToken: !!oAuthResult.token,
-        tokenLength: oAuthResult.token?.length,
-        provider: oAuthResult.provider,
-      })
 
       if (!oAuthResult.token) {
         throw new Error('No authentication token received')
       }
 
-      console.log(
-        'Main window: Popup completed OAuth with NextAuth, now populating Redux store',
-      )
-
       // The popup already created a NextAuth session, now we need to populate Redux for components that use it
       const result = await dispatch(oauthLogin(oAuthResult.token))
 
-      console.log('Main window: oauthLogin result:', {
-        fulfilled: oauthLogin.fulfilled.match(result),
-        rejected: oauthLogin.rejected.match(result),
-        payload: result.payload,
-      })
-
       if (oauthLogin.rejected.match(result)) {
-        console.warn(
-          'Main window: Redux OAuth failed, but NextAuth session should still work',
-        )
         // Don't throw error since NextAuth session is already created
-      } else {
-        console.log('Main window: Redux state populated successfully')
       }
 
       // OAuth authentication successful - redirect to home
-      console.log('Main window: Redirecting to home')
       router.push(ROUTE.PUBLIC.HOME)
       return
     } catch (err) {
