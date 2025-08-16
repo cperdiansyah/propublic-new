@@ -20,6 +20,11 @@ const MobileBottomNav = () => {
   const pathname = usePathname()
   const { data: session } = useSession()
 
+  // Hide navigation on callback pages
+  if (pathname?.startsWith('/redirect/callback')) {
+    return null
+  }
+
   // Create user/auth navigation item
   const authNavItem = session
     ? {

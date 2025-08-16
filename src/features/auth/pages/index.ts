@@ -1,2 +1,1 @@
-// Placeholder for future exports
-export {}
+export { default as OAuthCallbackPage } from './oauth-callback'
