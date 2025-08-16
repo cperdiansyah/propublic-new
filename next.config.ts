@@ -1,5 +1,7 @@
 import type { NextConfig } from 'next'
 
+const isDev = process.env.NODE_ENV === 'development'
+
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
@@ -11,7 +13,6 @@ const nextConfig: NextConfig = {
     ],
     domains: ['images.unsplash.com', 'avatar.iran.liara.run'],
   },
-  distDir: 'build',
 }
 
 export default nextConfig
