@@ -14,13 +14,17 @@ export const useCrossWindowAuthSync = () => {
 
   useEffect(() => {
     console.log('Cross-window auth sync: Setting up listeners')
+    console.log(
+      'Cross-window auth sync: Redux persist key:',
+      `persist:${REDUX_PERSIST_KEY}`,
+    )
 
     // Listen for localStorage changes from other windows/tabs
     const handleStorageChange = (event: StorageEvent) => {
       console.log(
         'Cross-window auth sync: localStorage changed:',
         event.key,
-        event.newValue?.substring(0, 100),
+        event.newValue?.substring(0, 200),
       )
 
       // Check if the Redux Persist key changed
@@ -29,12 +33,52 @@ export const useCrossWindowAuthSync = () => {
           'Cross-window auth sync: Redux persist key changed, triggering rehydration',
         )
 
-        // Force Redux Persist to rehydrate
-        persistor.purge().then(() => {
-          console.log('Cross-window auth sync: Purged persisted state')
-          persistor.persist()
-          console.log('Cross-window auth sync: Triggered rehydration')
-        })
+        try {
+          // Parse the new state and manually update Redux if it has auth data
+          if (event.newValue) {
+            const newState = JSON.parse(event.newValue)
+            const authData = newState.auth ? JSON.parse(newState.auth) : null
+
+            console.log('Cross-window auth sync: Parsed auth data:', {
+              isAuthenticated: authData?.isAuthenticated,
+              hasUser: !!authData?.user,
+              userId: authData?.user?.id,
+            })
+
+            if (
+              authData?.isAuthenticated &&
+              authData?.user &&
+              authData?.token
+            ) {
+              console.log(
+                'Cross-window auth sync: Found valid auth data, manually updating Redux',
+              )
+
+              // Manually dispatch the auth state to Redux
+              const action = {
+                type: 'auth/oauthLogin/fulfilled' as const,
+                payload: {
+                  user: authData.user,
+                  token: authData.token,
+                },
+              }
+              dispatch(action)
+            }
+          }
+        } catch (error) {
+          console.error(
+            'Cross-window auth sync: Error parsing localStorage:',
+            error,
+          )
+
+          // Fallback: Force Redux Persist rehydration
+          console.log(
+            'Cross-window auth sync: Falling back to persistor rehydration',
+          )
+          persistor.purge().then(() => {
+            persistor.persist()
+          })
+        }
       }
     }
 
@@ -48,24 +92,64 @@ export const useCrossWindowAuthSync = () => {
       // Delay to ensure localStorage is written by Redux Persist
       setTimeout(() => {
         console.log(
-          'Cross-window auth sync: Forcing Redux rehydration after OAuth',
+          'Cross-window auth sync: Checking localStorage after OAuth completion',
         )
 
-        // Get current localStorage value
+        // Get current localStorage value and manually sync
         const persistedState = localStorage.getItem(
           `persist:${REDUX_PERSIST_KEY}`,
         )
         if (persistedState) {
           console.log(
-            'Cross-window auth sync: Found persisted state, triggering rehydration',
+            'Cross-window auth sync: Found persisted state, manually syncing to Redux',
           )
 
-          // Force rehydration by purging and persisting again
-          persistor.purge().then(() => {
-            persistor.persist()
-          })
+          try {
+            const parsed = JSON.parse(persistedState)
+            const authData = parsed.auth ? JSON.parse(parsed.auth) : null
+
+            console.log('Cross-window auth sync: OAuth - Parsed auth data:', {
+              isAuthenticated: authData?.isAuthenticated,
+              hasUser: !!authData?.user,
+              userId: authData?.user?.id,
+            })
+
+            if (
+              authData?.isAuthenticated &&
+              authData?.user &&
+              authData?.token
+            ) {
+              console.log(
+                'Cross-window auth sync: OAuth - Manually updating Redux with auth data',
+              )
+
+              // Manually dispatch the auth state to Redux
+              const action = {
+                type: 'auth/oauthLogin/fulfilled' as const,
+                payload: {
+                  user: authData.user,
+                  token: authData.token,
+                },
+              }
+              dispatch(action)
+            }
+          } catch (error) {
+            console.error(
+              'Cross-window auth sync: Error parsing persisted state for OAuth:',
+              error,
+            )
+
+            // Fallback: Force rehydration
+            persistor.purge().then(() => {
+              persistor.persist()
+            })
+          }
+        } else {
+          console.log(
+            'Cross-window auth sync: No persisted state found after OAuth',
+          )
         }
-      }, 300)
+      }, 500) // Increased delay to ensure localStorage is written
     }
 
     // Listen for window focus (when popup closes, main window gains focus)
@@ -84,7 +168,7 @@ export const useCrossWindowAuthSync = () => {
           const authState = parsed.auth ? JSON.parse(parsed.auth) : null
           const currentState = store.getState().auth
 
-          console.log('Cross-window auth sync: Comparing states:', {
+          console.log('Cross-window auth sync: Focus - Comparing states:', {
             persistedAuth: authState?.isAuthenticated,
             currentAuth: currentState.isAuthenticated,
             persistedUser: authState?.user?.id,
@@ -92,17 +176,28 @@ export const useCrossWindowAuthSync = () => {
           })
 
           // If persisted state shows authentication but current state doesn't
-          if (authState?.isAuthenticated && !currentState.isAuthenticated) {
+          if (
+            authState?.isAuthenticated &&
+            authState?.user &&
+            authState?.token &&
+            !currentState.isAuthenticated
+          ) {
             console.log(
-              'Cross-window auth sync: Auth state mismatch detected, forcing rehydration',
+              'Cross-window auth sync: Focus - Auth state mismatch detected, manually updating Redux',
             )
-            persistor.purge().then(() => {
-              persistor.persist()
+
+            // Manually update Redux with persisted auth data
+            dispatch({
+              type: 'auth/oauthLogin/fulfilled',
+              payload: {
+                user: authState.user,
+                token: authState.token,
+              },
             })
           }
         } catch (error) {
           console.error(
-            'Cross-window auth sync: Error parsing persisted state:',
+            'Cross-window auth sync: Focus - Error parsing persisted state:',
             error,
           )
         }

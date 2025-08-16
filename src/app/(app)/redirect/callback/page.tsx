@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react'
 import { useAppDispatch } from '@shared/store/hooks'
 import { oauthLogin } from '@shared/store/reducers/authReducer'
 import ROUTE from '@shared/config/pages'
@@ -39,35 +40,46 @@ export default function RedirectCallbackPage() {
           tokenLength: token.length,
         })
 
-        // Always do complete OAuth flow - popup or direct navigation
-        console.log('OAuth callback: Calling me API with token')
-        const result = await dispatch(oauthLogin(token))
+        // Create NextAuth session using credentials provider with the OAuth token
+        console.log('OAuth callback: Creating NextAuth session with token')
+        const signInResult = await signIn('credentials', {
+          email: `oauth_${provider}_user`,
+          password: token, // Pass token as password
+          redirect: false,
+        })
 
-        if (oauthLogin.rejected.match(result)) {
-          throw new Error(
-            (result.payload as string) ||
-              'Failed to authenticate with OAuth token',
-          )
+        if (signInResult?.error) {
+          throw new Error('Failed to create authentication session')
         }
 
-        console.log('OAuth authentication successful, Redux state updated')
+        console.log('OAuth NextAuth session created successfully')
+
+        // Also populate Redux store for components that depend on it
+        console.log('OAuth callback: Also populating Redux store')
+        const reduxResult = await dispatch(oauthLogin(token))
+
+        if (oauthLogin.rejected.match(reduxResult)) {
+          console.warn('Redux OAuth login failed, but NextAuth succeeded')
+          // Continue anyway since NextAuth session is created
+        } else {
+          console.log('OAuth Redux state updated successfully')
+        }
 
         // Check if this is a popup window
         if (window.opener) {
-          // Popup window: Redux Persist has saved to localStorage, notify main window
-          console.log('Popup window: Notifying main window of auth completion')
+          // Popup window: NextAuth session is shared across windows automatically
+          console.log(
+            'Popup window: NextAuth session created, notifying main window',
+          )
           window.opener.postMessage(
             {
-              type: 'OAUTH_COMPLETE',
-              success: true,
+              type: 'OAUTH_SUCCESS',
+              token,
               provider,
             },
             window.location.origin,
           )
-          // Small delay to ensure localStorage is written by Redux Persist
-          setTimeout(() => {
-            window.close()
-          }, 200)
+          window.close()
         } else {
           // Direct navigation: Redirect to home
           console.log('Direct navigation: Redirecting to home')
@@ -84,15 +96,12 @@ export default function RedirectCallbackPage() {
           console.log('Popup window: Notifying main window of auth error')
           window.opener.postMessage(
             {
-              type: 'OAUTH_COMPLETE',
-              success: false,
+              type: 'OAUTH_ERROR',
               error: errorMessage,
             },
             window.location.origin,
           )
-          setTimeout(() => {
-            window.close()
-          }, 200)
+          window.close()
         } else {
           // Direct navigation - show error
           setAuthError(errorMessage)

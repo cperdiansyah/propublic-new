@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAppDispatch, useAppSelector } from '@shared/store/hooks'
-import { store } from '@shared/store/store'
+import { oauthLogin } from '@shared/store/reducers/authReducer'
 import { startOAuthLogin, type OAuthResult } from '@shared/services/oauth'
 import ROUTE from '@shared/config/pages'
 
@@ -44,49 +44,36 @@ export const useOAuth = (): UseOAuthReturn => {
       const oAuthResult: OAuthResult = await startOAuthLogin(provider)
 
       console.log('Main window: Received OAuth result:', {
-        success: oAuthResult.success,
+        hasToken: !!oAuthResult.token,
+        tokenLength: oAuthResult.token?.length,
         provider: oAuthResult.provider,
-        error: oAuthResult.error,
       })
 
-      if (!oAuthResult.success) {
-        throw new Error(oAuthResult.error || 'OAuth authentication failed')
+      if (!oAuthResult.token) {
+        throw new Error('No authentication token received')
       }
 
-      // Popup already completed OAuth flow and saved to localStorage
-      // Wait for Redux Persist to rehydrate the main window
       console.log(
-        'Main window: Waiting for Redux rehydration from localStorage',
+        'Main window: Popup completed OAuth with NextAuth, now populating Redux store',
       )
 
-      // Set up listener for auth state changes
-      const checkAuthState = () => {
-        return new Promise<void>((resolve) => {
-          const maxAttempts = 10
-          let attempts = 0
+      // The popup already created a NextAuth session, now we need to populate Redux for components that use it
+      const result = await dispatch(oauthLogin(oAuthResult.token))
 
-          const checkInterval = setInterval(() => {
-            attempts++
-            console.log(
-              `Main window: Checking auth state (attempt ${attempts})`,
-            )
+      console.log('Main window: oauthLogin result:', {
+        fulfilled: oauthLogin.fulfilled.match(result),
+        rejected: oauthLogin.rejected.match(result),
+        payload: result.payload,
+      })
 
-            // Check if user is now authenticated in Redux store
-            const state = store.getState()
-            if (state.auth.isAuthenticated && state.auth.user) {
-              console.log('Main window: Auth state rehydrated successfully!')
-              clearInterval(checkInterval)
-              resolve()
-            } else if (attempts >= maxAttempts) {
-              console.log('Main window: Auth state rehydration timeout')
-              clearInterval(checkInterval)
-              resolve() // Continue anyway, maybe it will work
-            }
-          }, 200)
-        })
+      if (oauthLogin.rejected.match(result)) {
+        console.warn(
+          'Main window: Redux OAuth failed, but NextAuth session should still work',
+        )
+        // Don't throw error since NextAuth session is already created
+      } else {
+        console.log('Main window: Redux state populated successfully')
       }
-
-      await checkAuthState()
 
       // OAuth authentication successful - redirect to home
       console.log('Main window: Redirecting to home')
