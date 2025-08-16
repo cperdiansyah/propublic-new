@@ -35,131 +35,32 @@ This is a Next.js 15 application following a **features-first architecture** wit
 - **Dependency Direction**: Features can depend on shared modules, but not on other features
 - **Scalability**: New features can be added without affecting existing ones
 - **Team Collaboration**: Teams can work independently on different features
-
+  
 ```
 src/
 ├── app/                          # Next.js App Router (routing only)
 │   ├── (app)/                   # Main app routes
 │   ├── (auth)/                  # Auth routes
-│   └── (main)/                  # Additional main routes
 │
 ├── features/                     # 🎯 Feature modules (business domains)
-│   ├── auth/                    # Authentication & user management
-│   │   ├── components/          # Auth-specific components
-│   │   │   ├── login-form.tsx
-│   │   │   ├── oauth-buttons.tsx
-│   │   │   └── password-reset.tsx
-│   │   ├── hooks/               # Auth-specific hooks
-│   │   │   ├── use-auth.ts
-│   │   │   ├── use-login.ts
-│   │   │   └── use-oauth.ts
-│   │   ├── services/            # Auth API calls
-│   │   │   ├── auth-api.ts
-│   │   │   └── oauth-api.ts
-│   │   ├── store/               # Auth Redux slice
-│   │   │   ├── auth-slice.ts
-│   │   │   └── auth-selectors.ts
-│   │   ├── types/               # Auth-specific types
-│   │   │   └── auth.types.ts
+│   ├── [features name]/         # Specific features
+│   │   ├── components/          # Specific components 
+│   │   ├── hooks/               # specific hooks
+│   │   ├── services/            # API calls
+│   │   ├── store/               # Redux slice
+│   │   │   ├── [features]-slice.ts
+│   │   │   └── [features]-selectors.ts
+│   │   ├── types/               # specific types
 │   │   ├── schema/              # Zod validation schemas
-│   │   │   ├── auth.schema.ts
-│   │   │   ├── profile.schema.ts
+│   │   │   ├── [detailed-features].schema.ts
+│   │   │   ├── [detailed-features].schema.ts
 │   │   │   └── index.ts
-│   │   ├── utils/               # Auth utilities
-│   │   │   └── token-manager.ts
+│   │   ├── utils/               # utilities
+│   │   ├── pages/               # main pages of the features, if has detail page (or any children features page) put on this folder
 │   │   └── index.ts             # Public API exports
-│   │
-│   ├── academy/                 # Course & learning features
-│   │   ├── components/
-│   │   │   ├── course-card.tsx
-│   │   │   ├── lesson-player.tsx
-│   │   │   ├── progress-tracker.tsx
-│   │   │   └── course-catalog.tsx
-│   │   ├── hooks/
-│   │   │   ├── use-course-progress.ts
-│   │   │   ├── use-lessons.ts
-│   │   │   └── use-course-enrollment.ts
-│   │   ├── services/
-│   │   │   ├── courses-api.ts
-│   │   │   └── progress-api.ts
-│   │   ├── store/
-│   │   │   ├── academy-slice.ts
-│   │   │   └── academy-selectors.ts
-│   │   ├── types/
-│   │   │   └── academy.types.ts
-│   │   └── index.ts
-│   │
-│   ├── marketplace/             # Shop & transactions
-│   │   ├── components/
-│   │   │   ├── product-card.tsx
-│   │   │   ├── shopping-cart.tsx
-│   │   │   ├── checkout-form.tsx
-│   │   │   └── order-history.tsx
-│   │   ├── hooks/
-│   │   │   ├── use-cart.ts
-│   │   │   ├── use-products.ts
-│   │   │   └── use-checkout.ts
-│   │   ├── services/
-│   │   │   ├── products-api.ts
-│   │   │   ├── cart-api.ts
-│   │   │   └── orders-api.ts
-│   │   ├── store/
-│   │   │   ├── marketplace-slice.ts
-│   │   │   └── marketplace-selectors.ts
-│   │   ├── types/
-│   │   │   └── marketplace.types.ts
-│   │   └── index.ts
-│   │
-│   ├── game-stats/              # Game analysis & statistics
-│   │   ├── components/
-│   │   │   ├── stats-dashboard.tsx
-│   │   │   ├── replay-uploader.tsx
-│   │   │   ├── match-analysis.tsx
-│   │   │   └── performance-charts.tsx
-│   │   ├── hooks/
-│   │   │   ├── use-stats.ts
-│   │   │   ├── use-replay-analysis.ts
-│   │   │   └── use-match-history.ts
-│   │   ├── services/
-│   │   │   ├── stats-api.ts
-│   │   │   └── replay-api.ts
-│   │   ├── schema/              # Zod validation schemas
-│   │   │   ├── replay.schema.ts
-│   │   │   └── index.ts
-│   │   ├── store/
-│   │   │   ├── game-stats-slice.ts
-│   │   │   └── game-stats-selectors.ts
-│   │   ├── types/
-│   │   │   └── game-stats.types.ts
-│   │   └── index.ts
-│   │
-│   └── community/               # Social features & forums
-│       ├── components/
-│       │   ├── forum-post.tsx
-│       │   ├── user-profile.tsx
-│       │   ├── discussion-thread.tsx
-│       │   └── member-list.tsx
-│       ├── hooks/
-│       │   ├── use-posts.ts
-│       │   ├── use-discussions.ts
-│       │   └── use-community.ts
-│       ├── services/
-│       │   ├── community-api.ts
-│       │   └── posts-api.ts
-│       ├── store/
-│       │   ├── community-slice.ts
-│       │   └── community-selectors.ts
-│       ├── types/
-│       │   └── community.types.ts
-│       └── index.ts
-│
-├── shared/                       # 🔧 Shared infrastructure
+├── shared/                      # 🔧 Shared infrastructure
 │   ├── components/              # Reusable UI components
 │   │   ├── ui/                  # Base components (Shadcn/ui)
-│   │   │   ├── button.tsx
-│   │   │   ├── input.tsx
-│   │   │   ├── dialog.tsx
-│   │   │   └── form.tsx
 │   │   ├── layout/              # Layout components
 │   │   │   ├── header.tsx
 │   │   │   ├── footer.tsx
@@ -176,11 +77,6 @@ src/
 │   │       └── form-wrapper.tsx
 │   │
 │   ├── hooks/                   # Shared custom hooks
-│   │   ├── use-local-storage.ts
-│   │   ├── use-debounce.ts
-│   │   ├── use-intersection-observer.ts
-│   │   ├── use-media-query.ts
-│   │   └── use-async.ts
 │   │
 │   ├── services/                # Shared API infrastructure
 │   │   ├── api-client.ts        # Axios instance & interceptors
@@ -223,6 +119,14 @@ src/
         ├── light.css
         └── dark.css
 ```
+### Current Features
+this is the features that we have in the project, use this for check grouped specific features or pages
+- auth             # Authentication & user 
+- academy          # Course & learning features
+- game             # Game analysis & statistics
+- marketplace      # Shop & transactions
+- community        # Social features & forums
+- replay           # Analysis replay game
 
 ## Architectural Patterns & Best Practices
 
@@ -443,6 +347,7 @@ const AcademyPage = dynamic(() => import('@/features/academy'), {
 - **Prioritize feature independence** and **team collaboration**.
 - For navigate the page, always using `src/shared/config/pages.ts` variables instead of hardcode
 - alywas build the project at the end for check error
+- alywas using non-relative import
 
 ### MCP Tools
 - **Context7 MCP** - Use to update documentation for libraries and frameworks like Next.js, Tailwind CSS, Shadcn and Radix-UI
