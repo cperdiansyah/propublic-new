@@ -3,12 +3,12 @@
 import { Suspense } from 'react'
 import RadialGradient from '@shared/components/effects/radialGradient'
 
-import { HERO_CONFIG, SOCIAL_PROOF_CONFIG } from './shop-data'
-import { MarketplaceSection } from './marketplace-section'
-import { FeaturesSection } from './features-section'
-import { HeroSection } from './hero-section'
-import { LoadingSpinner } from './loading-spinner'
-import { AnimatedBackground } from './animated-background'
+import { HERO_CONFIG, SOCIAL_PROOF_CONFIG } from '../components/shop-data'
+import { MarketplaceSection } from '../components/marketplace-section'
+import { FeaturesSection } from '../components/features-section'
+import { HeroSection } from '../components/hero-section'
+import { LoadingSpinner } from '../components/loading-spinner'
+import { AnimatedBackground } from '../components/animated-background'
 
 /**
  * ShopPage component following clean architecture principles:

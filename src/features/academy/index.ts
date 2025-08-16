@@ -2,7 +2,7 @@
 // Export only what other features need
 
 // Main component (for page routing)
-export { default } from './components/index'
+export { default } from './pages'
 
 // Components
 export { default as AcademyCoursesSection } from './components/academy-courses-section'
@@ -13,7 +13,7 @@ export { default as CourseGrid } from './components/course-grid'
 export * from './components/detail'
 
 // Hooks
-export * from './components/hooks'
+export * from './hooks'
 
 // Types
 export * from '@shared/types/academy.types'

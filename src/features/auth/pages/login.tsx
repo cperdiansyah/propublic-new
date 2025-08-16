@@ -16,10 +16,10 @@ import ROUTE from '@shared/config/pages'
 import { loginSchema, type LoginInput } from '@/features/auth/schema'
 
 // Relative imports
-import AuthLayout from './auth-layout'
-import { LoginForm } from './login/login-form'
-import { AuthStats } from './auth-stats'
-import { Testimonial } from './testimonial'
+import AuthLayout from '../components/auth-layout'
+import { LoginForm } from '../components/login/login-form'
+import { AuthStats } from '../components/auth-stats'
+import { Testimonial } from '../components/testimonial'
 
 // Constants - easily maintainable and testable
 const STATS_DATA = [

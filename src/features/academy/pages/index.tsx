@@ -7,9 +7,9 @@ import { useForm } from 'react-hook-form'
 
 // Existing components
 import AcademyBackgroundEffects from '@shared/components/effects/academy-bacground'
-import { AcademyCoursesSection } from './academy-courses-section'
-import { BenefitsSection } from './benefit-section'
-import { useAcademyFilters, useFilteredCourses } from './hooks'
+import { AcademyCoursesSection } from '../components/academy-courses-section'
+import { BenefitsSection } from '../components/benefit-section'
+import { useAcademyFilters, useFilteredCourses } from '../hooks'
 import { COURSES } from '@shared/config/exampleData'
 import { searchSchema, type SearchForm } from '@shared/academy'
 import type { AcademyBenefit } from '@shared/types/academy.types'

@@ -1,4 +1,4 @@
-import ForgotPasswordContent from '@features/auth/components/forgot-password'
+import ForgotPasswordContent from '@/features/auth/pages/forgot-password'
 
 export const metadata = {
   title: 'Forgot Password - ProPublic',

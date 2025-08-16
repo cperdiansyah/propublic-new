@@ -3,7 +3,7 @@
 import { Sparkles } from 'lucide-react'
 import MarketplaceLink from './marketplace-link'
 import { defaultMarketplaceStyle, marketplaceStyles } from './shop-data'
-import useShops from './useShop'
+import { useShops } from '../hooks'
 import { LoadingSpinner } from './loading-spinner'
 import { ErrorMessage } from './error-message'
 

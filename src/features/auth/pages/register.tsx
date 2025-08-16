@@ -7,8 +7,8 @@ import { registerSchema, type RegisterInput } from '@/features/auth/schema'
 import BackgroundEffects from '@shared/components/effects/grid-glow'
 import { useAuthNext } from '@shared/hooks/useAuthNext'
 
-import { RegisterForm } from './register/register-form'
-import { RegisterSidebar } from './register/register-sidebar'
+import { RegisterForm } from '../components/register/register-form'
+import { RegisterSidebar } from '../components/register/register-sidebar'
 
 /**
  * Register Page Component

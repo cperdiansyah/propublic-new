@@ -16,9 +16,9 @@ import {
 } from '@/features/auth/schema'
 
 // Relative imports
-import { ForgotPasswordForm } from './forgot-password/forgot-password-form'
-import { EmailSentSuccess } from './forgot-password/email-sent-success'
-import { ForgotPasswordSidebar } from './forgot-password/forgot-password-sidebar'
+import { ForgotPasswordForm } from '../components/forgot-password/forgot-password-form'
+import { EmailSentSuccess } from '../components/forgot-password/email-sent-success'
+import { ForgotPasswordSidebar } from '../components/forgot-password/forgot-password-sidebar'
 
 /**
  * Forgot Password Page Component
