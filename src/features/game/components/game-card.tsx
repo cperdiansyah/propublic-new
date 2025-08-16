@@ -9,6 +9,7 @@ import Link from 'next/link'
 interface IGameCard {
   game: CarouselGameItem
 }
+
 const GameCard: React.FC<IGameCard> = ({ game }) => {
   return (
     <Link href={ROUTE.PUBLIC.GAME.DETAIL(game.slug)}>

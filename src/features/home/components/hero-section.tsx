@@ -1,7 +1,7 @@
 'use client'
 
 import BackgroundEffects from '@shared/components/effects/grid-glow'
-import GameSlider from '@features/game-stats/components/game-slider'
+import GameSlider from '@/features/game/components/game-slider'
 import Marquee from '@shared/components/Marquee'
 import { COLORS } from '@shared/config/const'
 import type { CarouselGameItem } from '@shared/types/home.types'
