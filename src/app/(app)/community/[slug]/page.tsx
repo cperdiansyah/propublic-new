@@ -1,4 +1,4 @@
-import OverviewContent from '@features/community/components/detail/posts/overview/overview-content'
+import OverviewContent from '@/features/community/pages/overview'
 
 export default async function OverviewPage() {
   return (

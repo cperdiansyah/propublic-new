@@ -4,9 +4,9 @@
 // Components
 export { default as AuthLayout } from './components/auth-layout'
 
-export { default as LoginPage } from './components/login-page'
-export { default as RegisterPage } from './components/register-page'
-export { default as ForgotPassword } from './components/forgot-password'
+export { default as LoginPage } from './pages/login'
+export { default as RegisterPage } from './pages/register'
+export { default as ForgotPassword } from './pages/forgot-password'
 
 // Services are now in @shared/services/auth and @shared/services/oauth
 

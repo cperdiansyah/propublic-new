@@ -1,4 +1,4 @@
-import AcademyContent from '@features/academy'
+import AcademyContent from '@/features/academy/pages'
 import React from 'react'
 
 const page = () => {

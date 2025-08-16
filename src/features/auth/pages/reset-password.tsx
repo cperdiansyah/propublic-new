@@ -17,9 +17,9 @@ import {
 } from '@/features/auth/schema'
 
 // Relative imports
-import { ResetPasswordForm } from './reset-password/reset-password-form'
-import { ResetPasswordSuccess } from './reset-password/reset-password-success'
-import { ResetPasswordSidebar } from './reset-password/reset-password-sidebar'
+import { ResetPasswordForm } from '../components/reset-password/reset-password-form'
+import { ResetPasswordSuccess } from '../components/reset-password/reset-password-success'
+import { ResetPasswordSidebar } from '../components/reset-password/reset-password-sidebar'
 
 /**
  * Reset Password Page Component
