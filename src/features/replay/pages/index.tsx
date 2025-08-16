@@ -30,22 +30,19 @@ export default function ReplayContent() {
         {/* Main Form Container */}
         <div className="enhanced-card border-radius-propublic p-8 md:p-12">
           {/* Step 1: Upload Replay */}
-          <FileUpload
-            uploadedFile={uploadedFile}
-            setUploadedFile={setUploadedFile}
-          />
 
           {/* Step 2: Choose Package */}
           <PackageSelection
             selectedPackage={selectedPackage}
             setSelectedPackage={setSelectedPackage}
+            order={1}
           />
 
           {/* Step 3: Customer Information */}
-          <CustomerInfo />
+          <CustomerInfo order={2} />
 
           {/* Step 4: Order Summary & Payment */}
-          <OrderSummary selectedPackage={selectedPackage} />
+          <OrderSummary selectedPackage={selectedPackage} order={3} />
         </div>
 
         {/* How It Works */}

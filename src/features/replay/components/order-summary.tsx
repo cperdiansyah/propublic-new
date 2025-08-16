@@ -2,9 +2,13 @@ import { Lock } from 'lucide-react'
 
 interface OrderSummaryProps {
   selectedPackage: string
+  order?: number
 }
 
-export default function OrderSummary({ selectedPackage }: OrderSummaryProps) {
+export default function OrderSummary({
+  selectedPackage,
+  order,
+}: OrderSummaryProps) {
   const packageDetails = {
     basic: {
       name: 'Basic Review Package',
@@ -30,7 +34,7 @@ export default function OrderSummary({ selectedPackage }: OrderSummaryProps) {
     <div className="mb-8">
       <h2 className="text-2xl md:text-3xl font-bold mb-8 flex items-center">
         <span className="w-8 h-8 bg-gradient-to-r from-custom-primary to-custom-secondary rounded-full flex items-center justify-center text-white font-bold mr-4 text-lg">
-          4
+          {order}
         </span>
         Order Summary
       </h2>

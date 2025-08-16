@@ -1,9 +1,9 @@
-export default function CustomerInfo() {
+export default function CustomerInfo({ order }: { order?: number }) {
   return (
     <div className="mb-12">
       <h2 className="text-2xl md:text-3xl font-bold mb-8 flex items-center">
         <span className="w-8 h-8 bg-gradient-to-r from-custom-primary to-custom-secondary rounded-full flex items-center justify-center text-white font-bold mr-4 text-lg">
-          3
+          {order}
         </span>
         Your Information
       </h2>
